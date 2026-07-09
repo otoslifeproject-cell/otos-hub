@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OTOS Continuity™ — Academic Funding Pack</title>
+<link rel="stylesheet" href="academic-pack.css">
+<style>
+  body.afp-index{ font-family: var(--sans); background: var(--paper); min-height:100vh; margin:0; }
+  .wrap{ max-width: 860px; margin: 0 auto; padding: 72px 32px 100px; }
+  .eyebrow{ margin-bottom: 18px; }
+  h1{ font-family: var(--serif); font-weight:500; font-size:44px; line-height:1.08; letter-spacing:-0.015em; color:var(--ink); margin:0 0 16px; max-width:18ch; }
+  p.lede{ font-family: var(--serif); font-style:italic; font-size:18px; line-height:1.6; color:var(--ink-soft); max-width:60ch; margin:0 0 28px; }
+
+  /* why-not-applicant explainer */
+  .explainer{ border-top:2px solid var(--ink); border-bottom:1px solid var(--rule); padding:20px 0 22px; margin-bottom:20px; }
+  .explainer .lbl{ font-size:9.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px; }
+  .explainer p{ font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 10px; max-width:68ch; }
+  .explainer p:last-child{ margin-bottom:0; }
+  .explainer b{ color:var(--ink); }
+
+  /* task-list explainer */
+  .task-note{ font-size:12px; color:var(--muted); line-height:1.6; margin: 0 0 40px; padding-bottom:24px; border-bottom:1px solid var(--rule); }
+  .task-note b{ color:var(--ink); }
+
+  .grp{ margin-top: 40px; }
+  .grp .glbl{ font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--rule); }
+
+  ol.docs{ list-style:none; margin:0; padding:0; counter-reset: doc; }
+  ol.docs li{ counter-increment: doc; border-bottom:1px solid var(--rule-soft); display:flex; align-items:center; gap:16px; padding: 13px 4px; }
+  ol.docs li:first-child{ border-top:1px solid var(--rule-soft); }
+  ol.docs li:hover{ background: var(--accent-wash); }
+  ol.docs a{ display:flex; align-items:baseline; gap:16px; text-decoration:none; color:inherit; flex:1; min-width:0; }
+  ol.docs li:hover a .t{ color:var(--accent-ink); }
+  ol.docs .no{ font-family: var(--serif); font-size:15px; color:var(--faint); width:22px; flex:none; }
+  ol.docs .tt{ flex:1; min-width:0; }
+  ol.docs .t{ display:block; font-size:15px; font-weight:600; color:var(--ink); transition: color .15s; }
+  ol.docs .d{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
+
+  .task{ display:flex; align-items:center; gap:12px; flex:none; }
+  .task label{ display:flex; align-items:center; gap:4px; font-size:9.5px; font-weight:700; letter-spacing:.04em; color:var(--faint); cursor:pointer; user-select:none; }
+  .task input[type=checkbox]{ width:13px; height:13px; accent-color: var(--accent-ink); cursor:pointer; }
+  .task label.ready{ color:var(--muted); padding-left:12px; border-left:1px solid var(--rule); }
+  .task input:checked + span{ color: var(--accent-ink); }
+  ol.docs li.is-ready .t{ text-decoration: line-through; text-decoration-color: var(--rule); color: var(--muted); }
+
+  footer.note{ margin-top:56px; padding-top:20px; border-top:1px solid var(--rule); font-size:12px; color:var(--faint); line-height:1.6; }
+</style>
+</head>
+<body class="afp-index">
+  <div class="wrap">
+    <div class="eyebrow">OTOS Continuity™ · Academic Funding Pack</div>
+    <h1>Medical Research Council &amp; Wellcome funding route pack</h1>
+    <p class="lede">Draft v1 — first pass. Fifteen working documents mapping OTOS Continuity™ to Medical Research Council (MRC) Proof of Concept (Stage One, Stage Two) and Wellcome Mental Health.</p>
+
+    <div class="explainer">
+      <div class="lbl">Read this first — why OTOS is not the applicant</div>
+      <p>On every route in this pack, <b>OTOS Digital Ltd is not the applicant.</b> The MRC and Wellcome both fund eligible academic or NHS research organisations — so an academic or clinical academic leads each application, holds the grant and sponsors the ethics approval.</p>
+      <p>OTOS Digital Ltd sits as <b>project partner, intervention owner and technology partner</b>: we provide the model and the technology being studied, not the research governance. Service partners (e.g. NHS trusts, addiction or wellbeing services) support recruitment and delivery where agreed. Full detail in <a href="03-otos-role-project-partner.html">03 — OTOS Role as Project Partner</a>.</p>
+    </div>
+
+    <p class="task-note"><b>Task list, per document:</b> tick as each is drafted and reviewed. This is a static pack — ticks live in this page's file, so they only carry between Gareth, Mark and Dean once this file is saved and pushed to GitHub; pull latest before trusting what's ticked.</p>
+
+    <div class="grp">
+      <div class="glbl">Route &amp; positioning</div>
+      <ol class="docs">
+        <li><a href="01-funding-route-summary.html"><span class="no">01</span><span class="tt"><span class="t">Funding Route Summary</span><span class="d">Job: one-page map of all three routes and where OTOS sits in each</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="02-academic-concept-note.html"><span class="no">02</span><span class="tt"><span class="t">Academic Concept Note</span><span class="d">Job: first thing a prospective PI reads, before any application exists</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="03-otos-role-project-partner.html"><span class="no">03</span><span class="tt"><span class="t">OTOS Role as Project Partner</span><span class="d">Job: locks down who leads vs. who partners, for every application</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+      </ol>
+    </div>
+
+    <div class="grp">
+      <div class="glbl">Study &amp; governance</div>
+      <ol class="docs">
+        <li><a href="04-first-50-feasibility-outline.html"><span class="no">04</span><span class="tt"><span class="t">First-50 Feasibility Study Outline</span><span class="d">Job: the pre-pilot study design behind the Stage One application</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="05-governance-boundary-note.html"><span class="no">05</span><span class="tt"><span class="t">Governance Boundary Note</span><span class="d">Job: the one clinical / non-clinical statement every other document quotes from</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="06-evidence-anchors.html"><span class="no">06</span><span class="tt"><span class="t">Evidence Anchors</span><span class="d">Job: what can and can't be claimed yet, incl. First-50 and START figures</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="07-partner-site-logic.html"><span class="no">07</span><span class="tt"><span class="t">Partner / Site Logic</span><span class="d">Job: who a delivery/recruitment site is, and what we're asking of them</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="08-research-team-ask.html"><span class="no">08</span><span class="tt"><span class="t">Research Team Ask</span><span class="d">Job: the PI and team we still need to find, and why a PhD student alone isn't it</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+      </ol>
+    </div>
+
+    <div class="grp">
+      <div class="glbl">Outreach templates</div>
+      <ol class="docs">
+        <li><a href="09-cambridge-outreach-email.html"><span class="no">09</span><span class="tt"><span class="t">Cambridge Academic Outreach Email</span><span class="d">Job: first-contact email to send a prospective PI</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="10-cambridge-quote-template.html"><span class="no">10</span><span class="tt"><span class="t">Cambridge Academic Quote Template</span><span class="d">Job: request and record an academic's approved quote for use elsewhere</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="11-support-letter-otos.html"><span class="no">11</span><span class="tt"><span class="t">Support Letter — OTOS as Project Partner</span><span class="d">Job: OTOS Digital Ltd's own signed letter of support, for the application pack</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="12-support-letter-partner-sites.html"><span class="no">12</span><span class="tt"><span class="t">Support Letter — Partner Sites</span><span class="d">Job: the letter a delivery site (CPFT / RCE / CGL / Public Health-style) signs</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+      </ol>
+    </div>
+
+    <div class="grp">
+      <div class="glbl">Application skeletons</div>
+      <ol class="docs">
+        <li><a href="13-mrc-stage-one-skeleton.html"><span class="no">13</span><span class="tt"><span class="t">MRC Stage One — Application Skeleton</span><span class="d">Job: section-by-section shell to hand to the lead applicant's research office</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="14-mrc-stage-two-skeleton.html"><span class="no">14</span><span class="tt"><span class="t">MRC Stage Two — Follow-on Skeleton</span><span class="d">Job: placeholder only — do not draft in earnest before Stage One reports</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="15-wellcome-mh-skeleton.html"><span class="no">15</span><span class="tt"><span class="t">Wellcome Mental Health — Skeleton</span><span class="d">Job: research-partner shell — a mechanism question, not a product-build ask</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Mark reviewed"><input type="checkbox"><span>M</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+      </ol>
+    </div>
+
+    <footer class="note">Draft for internal discussion only. Names, departments and dates throughout are placeholders pending a confirmed academic lead. Not for external circulation until reviewed.</footer>
+  </div>
+  <script>
+    document.querySelectorAll('ol.docs li').forEach(li => {
+      const ready = li.querySelector('.task label.ready input');
+      const sync = () => li.classList.toggle('is-ready', ready.checked);
+      ready.addEventListener('change', sync);
+      sync();
+    });
+  </script>
+</body>
+</html>
