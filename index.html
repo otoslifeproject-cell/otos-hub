@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>OTOS Continuity™ — Academic Funding Pack</title>
+<title>OTOS Continuity™ — Working Hub</title>
 <link rel="stylesheet" href="css/academic-pack.css">
 <style>
   body.afp-index{ font-family: var(--sans); background: var(--paper); min-height:100vh; margin:0; }
@@ -44,13 +44,50 @@
   ol.docs li.is-ready .t{ text-decoration: line-through; text-decoration-color: var(--rule); color: var(--muted); }
 
   footer.note{ margin-top:56px; padding-top:20px; border-top:1px solid var(--rule); font-size:12px; color:var(--faint); line-height:1.6; }
+
+  .draft-tag{ display:inline-block; font-family:var(--sans); font-size:8.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); border:1px solid var(--accent); border-radius:2px; padding:1px 6px; margin-left:8px; vertical-align:1px; }
+  .masters-note{ border-top:2px solid var(--ink); border-bottom:1px solid var(--rule); padding:20px 0 22px; margin: 40px 0 0; }
+  .masters-note .lbl{ font-size:9.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px; }
+  .masters-note p{ font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 10px; max-width:68ch; }
+  .masters-note p:last-child{ margin-bottom:0; }
+  .masters-note b{ color:var(--ink); }
+
+  /* ---------- CRM-style status dashboard ---------- */
+  .dash{ border:1px solid var(--rule); border-radius:6px; padding:26px 28px 24px; margin: 8px 0 36px; background: var(--accent-wash); }
+  .dash-head{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+  .dash-head .lbl{ font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); }
+  .dash-head .upd{ font-size:11px; color:var(--faint); }
+  .dash-grid{ display:grid; grid-template-columns: repeat(5, 1fr); gap:14px; margin-bottom:22px; }
+  .dcard{ background:var(--paper); border:1px solid var(--rule); border-radius:4px; padding:14px 14px 12px; }
+  .dcard .dn{ font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink); line-height:1; margin-bottom:6px; }
+  .dcard .dn.warn{ color:var(--accent-ink); }
+  .dcard .dd{ font-size:11px; line-height:1.4; color:var(--muted); }
+  .dash-groups{ display:flex; flex-direction:column; gap:10px; }
+  .dgrow{ display:flex; align-items:center; gap:14px; }
+  .dgrow .gn{ font-size:11.5px; font-weight:600; color:var(--ink-soft); width:200px; flex:none; }
+  .dgrow .bar{ flex:1; height:6px; border-radius:3px; background:var(--rule); overflow:hidden; }
+  .dgrow .bar > span{ display:block; height:100%; background:var(--accent-ink); border-radius:3px; width:0%; transition:width .3s; }
+  .dgrow .gv{ font-size:11px; color:var(--faint); width:52px; text-align:right; flex:none; }
+  @media (max-width:760px){ .dash-grid{ grid-template-columns: repeat(2,1fr); } }
 </style>
 </head>
 <body class="afp-index">
   <div class="wrap">
-    <div class="eyebrow">OTOS Continuity™ · Academic Funding Pack</div>
-    <h1>Medical Research Council &amp; Wellcome funding route pack</h1>
-    <p class="lede">Draft v1 — now with a practical outreach layer. Twenty working documents mapping OTOS Continuity™ to four funding routes: Medical Research Council (MRC) Proof of Concept (Stage One, Stage Two), Wellcome Mental Health, and a fourth, earlier route — Cambridge internal translational / Impact Acceleration-style funding — to verify.</p>
+    <div class="eyebrow">OTOS Continuity™ · Working Hub</div>
+    <h1>Academic funding, operating masters &amp; outreach — one hub</h1>
+    <p class="lede">Started as an academic funding route pack; now the shared working hub for Dean and Gareth — funding-route documents, the operating/governance master set, and the outreach CRM, all in one place. Twenty-five funding-pack documents plus the eight draft operating &amp; governance masters below.</p>
+
+    <div class="dash">
+      <div class="dash-head"><span class="lbl">Hub status</span><span class="upd">Live snapshot — reads the ticks and tracker saved in this file right now</span></div>
+      <div class="dash-grid">
+        <div class="dcard"><div class="dn" id="dashReady">–</div><div class="dd">of 25 funding-pack docs ready to send</div></div>
+        <div class="dcard"><div class="dn" id="dashGareth">–</div><div class="dd">Gareth-reviewed, across the whole hub</div></div>
+        <div class="dcard"><div class="dn" id="dashDean">–</div><div class="dd">Dean-reviewed, across the whole hub</div></div>
+        <div class="dcard"><div class="dn warn" id="dashMasters">–</div><div class="dd">of 8 operating masters signed off</div></div>
+        <div class="dcard"><div class="dn" id="dashOutreach">–</div><div class="dd">Cambridge targets contacted (of tracked)</div></div>
+      </div>
+      <div class="dash-groups" id="dashGroups"></div>
+    </div>
 
     <div class="explainer">
       <div class="lbl">Read this first — why OTOS is not the applicant</div>
@@ -108,7 +145,32 @@
         <li><a href="18-cambridge-academic-target-list.html"><span class="no">18</span><span class="tt"><span class="t">Cambridge Academic Target List</span><span class="d">Job: who to contact, in what order, with what ask</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
         <li><a href="19-outreach-tracker.html"><span class="no">19</span><span class="tt"><span class="t">Outreach Tracker</span><span class="d">Job: living record of who's been contacted and what's next</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
         <li><a href="20-cambridge-outreach-email-drafts.html"><span class="no">20</span><span class="tt"><span class="t">Cambridge Outreach Email Drafts</span><span class="d">Job: six ready-to-fill first-contact emails, one per audience</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="21-plain-english-summary.html"><span class="no">21</span><span class="tt"><span class="t">Plain-English Summary</span><span class="d">Job: what OTOS Continuity™ is, no jargon — for PPI and non-specialist readers</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="22-faq-objection-handling.html"><span class="no">22</span><span class="tt"><span class="t">FAQ &amp; Objection Handling</span><span class="d">Job: straight answers to what an academic will actually ask on the first call</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="23-founder-bio.html"><span class="no">23</span><span class="tt"><span class="t">Founder Bio</span><span class="d">Job: who Dean is, in one page, before an academic gets on a call with him</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="24-iaa-tif-readiness-checklist.html"><span class="no">24</span><span class="tt"><span class="t">Cambridge Enterprise IAA/TIF Readiness Checklist</span><span class="d">Job: what has to be true before Route 4 can actually be applied for</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="25-talk-track-deck.html"><span class="no">25</span><span class="tt"><span class="t">Academic Talk-Track Deck</span><span class="d">Job: the concept note in visual form, for the 20-minute calls</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
       </ol>
+    </div>
+
+    <div class="grp">
+      <div class="glbl">Operating &amp; governance masters <span class="draft-tag">Draft — Dean review pending</span></div>
+      <ol class="docs">
+        <li><a href="masters/Master 01 - Narrative Companion ICB Submission.pdf"><span class="no">M1</span><span class="tt"><span class="t">Narrative Companion / ICB Submission</span><span class="d">Job: the human/system logic behind the proposal, for ICB and commissioner readers</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="masters/Master 02 - Commissioner's Case.pdf"><span class="no">M2</span><span class="tt"><span class="t">Commissioner's Case</span><span class="d">Job: frames the programme as an evidence budget / local decision test, not a savings claim</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="masters/Master 04 - ICB Governance and Business Case.pdf"><span class="no">M4</span><span class="tt"><span class="t">ICB Governance &amp; Business Case</span><span class="d">Job: how the First-50 test is governed safely before any build or onboarding</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="masters/Master 05 - Partner Pack.pdf"><span class="no">M5</span><span class="tt"><span class="t">Partner Pack</span><span class="d">Job: low-burden explanation for local partner services of what participation means</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="masters/Master 06 - Phase 0-1 Operating Model.pdf"><span class="no">M6</span><span class="tt"><span class="t">Phase 0/1 Operating Model</span><span class="d">Job: how the first intervention test runs, readiness through Week-12 evidence</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="masters/Master 08 - Developer RFP Intervention Test Build.pdf"><span class="no">M8</span><span class="tt"><span class="t">Developer RFP / Intervention Test Build Spec</span><span class="d">Job: technical build spec for suppliers, with clinical-drift non-negotiables</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="masters/Appendix - Technical Drawing Brief Visual Architecture.pdf"><span class="no">M8a</span><span class="tt"><span class="t">Appendix — Technical Drawing Brief / Visual Architecture</span><span class="d">Job: companion visual-architecture brief to the Developer RFP</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="masters/Master 09 - Evidence Dossier Sources Claims Register.pdf"><span class="no">M9</span><span class="tt"><span class="t">Evidence Dossier, Sources, Claims Register &amp; Caveats</span><span class="d">Job: claims-control source for the wider copy family — cross-check against 06 before quoting</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+      </ol>
+    </div>
+
+    <div class="masters-note">
+      <div class="lbl">Read before using the masters above</div>
+      <p>These eight documents are a <b>Notion export, brought in as-is</b> — each is individually marked DRAFT / PENDING REVIEW inside the PDF and still needs Dean's sign-off. They are the Developer / Technical / Operating pack referenced in the project's truth file: real, but not yet locked.</p>
+      <p>They sit firmly <b>post-NDA</b> — operating model, developer RFP and technical architecture never go out pre-NDA or alongside any academic first-contact material above. Cross-check any number or claim against Master 09 and against <a href="06-evidence-anchors.html">06 — Evidence Anchors</a> before reusing it elsewhere; where the two differ, the more recent, Dean-approved wording wins.</p>
     </div>
 
     <footer class="note">Draft for internal discussion only. Names, departments and dates throughout are placeholders pending a confirmed academic lead. Cambridge target-list contact details are a starting map — verify before use. Not for external circulation until reviewed.</footer>
@@ -120,6 +182,63 @@
       ready.addEventListener('change', sync);
       sync();
     });
+
+    (function renderDashboard(){
+      const groups = [...document.querySelectorAll('.grp')];
+      const isMasters = g => g.querySelector('.glbl').textContent.includes('Operating & governance masters');
+
+      let readyCount = 0, readyTotal = 0, gareth = 0, dean = 0, mastersSigned = 0, mastersTotal = 0;
+      const groupStats = [];
+
+      groups.forEach(g => {
+        const label = g.querySelector('.glbl').textContent.replace('Draft — Dean review pending', '').trim();
+        const items = [...g.querySelectorAll('ol.docs li')];
+        let gReady = 0;
+        items.forEach(li => {
+          const gBox = li.querySelector('label[title="Gareth reviewed"] input');
+          const dBox = li.querySelector('label[title="Dean reviewed"] input');
+          const rBox = li.querySelector('label.ready input');
+          if (gBox && gBox.checked) gareth++;
+          if (dBox && dBox.checked) dean++;
+          if (rBox && rBox.checked) { gReady++; }
+        });
+        if (isMasters(g)) {
+          mastersTotal += items.length;
+          mastersSigned += gReady;
+        } else {
+          readyTotal += items.length;
+          readyCount += gReady;
+        }
+        groupStats.push({ label, ready: gReady, total: items.length });
+      });
+
+      document.getElementById('dashReady').textContent = readyCount + ' / ' + readyTotal;
+      document.getElementById('dashGareth').textContent = gareth;
+      document.getElementById('dashDean').textContent = dean;
+      document.getElementById('dashMasters').textContent = mastersSigned + ' / ' + mastersTotal;
+
+      const dashGroups = document.getElementById('dashGroups');
+      groupStats.forEach(gs => {
+        const pct = gs.total ? Math.round((gs.ready / gs.total) * 100) : 0;
+        const row = document.createElement('div');
+        row.className = 'dgrow';
+        row.innerHTML = '<span class="gn">' + gs.label + '</span><span class="bar"><span style="width:' + pct + '%"></span></span><span class="gv">' + gs.ready + ' / ' + gs.total + '</span>';
+        dashGroups.appendChild(row);
+      });
+
+      // Outreach snapshot — parsed live from the tracker file
+      fetch('19-outreach-tracker.html').then(r => r.text()).then(html => {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const rows = [...doc.querySelectorAll('table.tracker tr')].slice(1);
+        const contacted = rows.filter(r => {
+          const cell = r.querySelector('td.status');
+          return cell && cell.textContent.trim() !== 'Not contacted';
+        }).length;
+        document.getElementById('dashOutreach').textContent = contacted + ' / ' + rows.length;
+      }).catch(() => {
+        document.getElementById('dashOutreach').textContent = 'n/a';
+      });
+    })();
   </script>
 </body>
 </html>
