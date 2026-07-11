@@ -2,55 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>OTOS Continuity™ — Working Hub</title>
+<title>The OTOS Hub</title>
 <link rel="stylesheet" href="css/academic-pack.css">
 <style>
   body.afp-index{ font-family: var(--sans); background: var(--paper); min-height:100vh; margin:0; }
-  .wrap{ max-width: 860px; margin: 0 auto; padding: 72px 32px 100px; }
+  .wrap{ max-width: 1000px; margin: 0 auto; padding: 72px 32px 100px; }
   .eyebrow{ margin-bottom: 18px; }
-  h1{ font-family: var(--serif); font-weight:500; font-size:44px; line-height:1.08; letter-spacing:-0.015em; color:var(--ink); margin:0 0 16px; max-width:18ch; }
-  p.lede{ font-family: var(--serif); font-style:italic; font-size:18px; line-height:1.6; color:var(--ink-soft); max-width:60ch; margin:0 0 28px; }
+  h1{ font-family: var(--serif); font-weight:500; font-size:44px; line-height:1.08; letter-spacing:-0.015em; color:var(--ink); margin:0 0 16px; max-width:20ch; }
+  p.lede{ font-family: var(--serif); font-style:italic; font-size:18px; line-height:1.6; color:var(--ink-soft); max-width:64ch; margin:0 0 28px; }
 
   /* why-not-applicant explainer */
-  .explainer{ border-top:2px solid var(--ink); border-bottom:1px solid var(--rule); padding:20px 0 22px; margin-bottom:20px; }
+  .explainer{ border-top:2px solid var(--ink); border-bottom:1px solid var(--rule); padding:20px 0 22px; margin-bottom:40px; }
   .explainer .lbl{ font-size:9.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px; }
   .explainer p{ font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 10px; max-width:68ch; }
   .explainer p:last-child{ margin-bottom:0; }
   .explainer b{ color:var(--ink); }
 
   /* task-list explainer */
-  .task-note{ font-size:12px; color:var(--muted); line-height:1.6; margin: 0 0 40px; padding-bottom:24px; border-bottom:1px solid var(--rule); }
+  .task-note{ font-size:12px; color:var(--muted); line-height:1.6; margin: 0 0 28px; padding-bottom:24px; border-bottom:1px solid var(--rule); }
   .task-note b{ color:var(--ink); }
 
-  .grp{ margin-top: 40px; }
-  .grp .glbl{ font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--rule); }
+  .sect-lbl{ font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin: 0 0 14px; }
 
-  ol.docs{ list-style:none; margin:0; padding:0; counter-reset: doc; }
-  ol.docs li{ counter-increment: doc; border-bottom:1px solid var(--rule-soft); display:flex; align-items:center; gap:16px; padding: 13px 4px; }
-  ol.docs li:first-child{ border-top:1px solid var(--rule-soft); }
-  ol.docs li:hover{ background: var(--accent-wash); }
-  ol.docs a{ display:flex; align-items:baseline; gap:16px; text-decoration:none; color:inherit; flex:1; min-width:0; }
-  ol.docs li:hover a .t{ color:var(--accent-ink); }
-  ol.docs .no{ font-family: var(--serif); font-size:15px; color:var(--faint); width:22px; flex:none; }
-  ol.docs .tt{ flex:1; min-width:0; }
-  ol.docs .t{ display:block; font-size:15px; font-weight:600; color:var(--ink); transition: color .15s; }
-  ol.docs .d{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
-
-  .task{ display:flex; align-items:center; gap:12px; flex:none; }
-  .task label{ display:flex; align-items:center; gap:4px; font-size:9.5px; font-weight:700; letter-spacing:.04em; color:var(--faint); cursor:pointer; user-select:none; }
-  .task input[type=checkbox]{ width:13px; height:13px; accent-color: var(--accent-ink); cursor:pointer; }
-  .task label.ready{ color:var(--muted); padding-left:12px; border-left:1px solid var(--rule); }
-  .task input:checked + span{ color: var(--accent-ink); }
-  ol.docs li.is-ready .t{ text-decoration: line-through; text-decoration-color: var(--rule); color: var(--muted); }
-
-  footer.note{ margin-top:56px; padding-top:20px; border-top:1px solid var(--rule); font-size:12px; color:var(--faint); line-height:1.6; }
-
-  .draft-tag{ display:inline-block; font-family:var(--sans); font-size:8.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); border:1px solid var(--accent); border-radius:2px; padding:1px 6px; margin-left:8px; vertical-align:1px; }
-  .masters-note{ border-top:2px solid var(--ink); border-bottom:1px solid var(--rule); padding:20px 0 22px; margin: 40px 0 0; }
-  .masters-note .lbl{ font-size:9.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px; }
-  .masters-note p{ font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 10px; max-width:68ch; }
-  .masters-note p:last-child{ margin-bottom:0; }
-  .masters-note b{ color:var(--ink); }
+  /* ---------- search/filter bar ---------- */
+  .search-wrap{ margin: 0 0 36px; }
+  .search-box{ position:relative; }
+  .search-box input{ width:100%; box-sizing:border-box; font-family:var(--sans); font-size:15px; color:var(--ink); background:var(--paper); border:1.5px solid var(--ink); border-radius:6px; padding:13px 16px 13px 42px; outline:none; }
+  .search-box input:focus{ border-color: var(--accent-ink); }
+  .search-box input::placeholder{ color:var(--faint); }
+  .search-box .icon{ position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--faint); font-size:15px; pointer-events:none; }
+  .search-meta{ margin-top:8px; font-size:11.5px; color:var(--faint); min-height:14px; }
+  .search-meta b{ color:var(--accent-ink); }
+  ol.docs li.is-hidden{ display:none; }
+  details.grp.is-hidden{ display:none; }
+  mark.hl{ background: oklch(63% 0.16 46 / 0.28); color:inherit; border-radius:2px; padding:0 1px; }
 
   /* ---------- CRM-style status dashboard ---------- */
   .dash{ border:1px solid var(--rule); border-radius:6px; padding:26px 28px 24px; margin: 8px 0 36px; background: var(--accent-wash); }
@@ -69,13 +54,88 @@
   .dgrow .bar > span{ display:block; height:100%; background:var(--accent-ink); border-radius:3px; width:0%; transition:width .3s; }
   .dgrow .gv{ font-size:11px; color:var(--faint); width:52px; text-align:right; flex:none; }
   @media (max-width:760px){ .dash-grid{ grid-template-columns: repeat(2,1fr); } }
+
+  /* ---------- Live outreach / CRM callout ---------- */
+  .crm-callout{ border:1.5px solid var(--ink); border-radius:6px; padding:22px 26px; margin-bottom:44px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .crm-callout .cc-txt .lbl{ font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:8px; }
+  .crm-callout .cc-txt h2{ font-family:var(--serif); font-weight:500; font-size:20px; margin:0 0 4px; color:var(--ink); }
+  .crm-callout .cc-txt p{ font-size:12.5px; color:var(--muted); margin:0; max-width:48ch; }
+  .cc-btns{ display:flex; gap:10px; flex:none; flex-wrap:wrap; }
+  .cc-btn{ display:inline-flex; flex-direction:column; gap:2px; text-decoration:none; background:var(--ink); color:var(--paper); padding:11px 18px; border-radius:4px; font-size:12.5px; font-weight:600; transition: background .15s; }
+  .cc-btn:hover{ background: var(--accent-ink); }
+  .cc-btn .n{ font-size:10px; font-weight:700; opacity:.7; letter-spacing:.03em; }
+  .cc-btn.ghost{ background:transparent; color:var(--ink); border:1.5px solid var(--ink); }
+  .cc-btn.ghost:hover{ background:var(--ink); color:var(--paper); }
+
+  /* ---------- Area tiles (buttons replacing the long menu) ---------- */
+  .tile-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-bottom:44px; }
+  .tile{ display:block; text-decoration:none; border:1px solid var(--rule); border-radius:6px; padding:18px 18px 16px; background:var(--paper); transition: border-color .15s, transform .1s; }
+  .tile:hover{ border-color:var(--accent-ink); }
+  .tile:active{ transform: scale(.99); }
+  .tile .tile-no{ font-family:var(--serif); font-size:13px; color:var(--faint); }
+  .tile .tile-name{ display:block; font-size:15.5px; font-weight:600; color:var(--ink); margin:6px 0 6px; }
+  .tile .tile-desc{ display:block; font-size:12px; line-height:1.5; color:var(--muted); margin-bottom:14px; min-height:32px; }
+  .tile .tile-meta{ display:flex; align-items:center; gap:8px; font-size:11px; color:var(--faint); }
+  .tile .tile-bar{ flex:1; height:5px; border-radius:3px; background:var(--rule); overflow:hidden; }
+  .tile .tile-bar > span{ display:block; height:100%; background:var(--accent-ink); border-radius:3px; }
+  .tile.is-draft{ background: var(--accent-wash); }
+  .tile .draft-tag{ display:inline-block; font-family:var(--sans); font-size:8.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); border:1px solid var(--accent); border-radius:2px; padding:1px 6px; margin-left:8px; vertical-align:1px; }
+  @media (max-width:820px){ .tile-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width:560px){ .tile-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- Collapsed detail sections (the old lists, now on demand) ---------- */
+  details.grp{ scroll-margin-top: 24px; border-bottom:1px solid var(--rule); margin-bottom:6px; }
+  details.grp summary{ list-style:none; cursor:pointer; padding: 14px 4px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  details.grp summary::-webkit-details-marker{ display:none; }
+  details.grp summary .glbl{ font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); }
+  details.grp summary .chev{ font-size:11px; color:var(--faint); transition: transform .15s; flex:none; }
+  details.grp[open] summary .chev{ transform: rotate(90deg); }
+  details.grp summary:hover .glbl{ color:var(--ink); }
+
+  ol.docs{ list-style:none; margin:0; padding:0 0 10px; counter-reset: doc; }
+  ol.docs li{ counter-increment: doc; border-bottom:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; align-items:center; gap:16px; padding: 13px 4px; }
+  ol.docs li:hover{ background: var(--accent-wash); }
+  ol.docs a{ display:flex; align-items:baseline; gap:16px; text-decoration:none; color:inherit; flex:1; min-width:0; }
+  ol.docs li:hover a .t{ color:var(--accent-ink); }
+  ol.docs .no{ font-family: var(--serif); font-size:15px; color:var(--faint); width:22px; flex:none; }
+  ol.docs .tt{ flex:1; min-width:0; }
+  ol.docs .t{ display:block; font-size:15px; font-weight:600; color:var(--ink); transition: color .15s; }
+  ol.docs .d{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
+
+  .task{ display:flex; align-items:center; gap:12px; flex:none; }
+  .task label{ display:flex; align-items:center; gap:4px; font-size:9.5px; font-weight:700; letter-spacing:.04em; color:var(--faint); cursor:pointer; user-select:none; }
+  .task input[type=checkbox]{ width:13px; height:13px; accent-color: var(--accent-ink); cursor:pointer; }
+  .task label.ready{ color:var(--muted); padding-left:12px; border-left:1px solid var(--rule); }
+  .task input:checked + span{ color: var(--accent-ink); }
+  ol.docs li.is-ready .t{ text-decoration: line-through; text-decoration-color: var(--rule); color: var(--muted); }
+
+  .note{ display:block; flex-basis:100%; margin-top:2px; padding:5px 8px 5px 38px; font-size:12px; line-height:1.5; color:var(--ink-soft); border-radius:3px; cursor:text; outline:none; }
+  .note:focus{ background:var(--accent-wash); }
+  .note:empty::before{ content: attr(data-placeholder); color:var(--faint); font-style:italic; }
+
+  footer.note{ margin-top:56px; padding-top:20px; border-top:1px solid var(--rule); font-size:12px; color:var(--faint); line-height:1.6; }
+
+  .draft-tag{ display:inline-block; font-family:var(--sans); font-size:8.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); border:1px solid var(--accent); border-radius:2px; padding:1px 6px; margin-left:8px; vertical-align:1px; }
+  .masters-note{ border-top:2px solid var(--ink); border-bottom:1px solid var(--rule); padding:20px 0 22px; margin: 40px 0 0; }
+  .masters-note .lbl{ font-size:9.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px; }
+  .masters-note p{ font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 10px; max-width:68ch; }
+  .masters-note p:last-child{ margin-bottom:0; }
+  .masters-note b{ color:var(--ink); }
 </style>
 </head>
 <body class="afp-index">
   <div class="wrap">
-    <div class="eyebrow">OTOS Continuity™ · Working Hub</div>
-    <h1>Academic funding, operating masters &amp; outreach — one hub</h1>
-    <p class="lede">Started as an academic funding route pack; now the shared working hub for Dean and Gareth — funding-route documents, the operating/governance master set, and the outreach CRM, all in one place. Twenty-five funding-pack documents plus the eight draft operating &amp; governance masters below.</p>
+    <div class="eyebrow">OTOS Continuity™ · Internal</div>
+    <h1>The OTOS Hub</h1>
+    <p class="lede">Started as an academic funding route pack; now the shared working hub for Dean and Gareth — funding-route documents, the operating/governance masters, the outreach CRM, and (shortly) all supporting PDFs, contacts, communications and progress notes, all in one place. Twenty-five funding-pack documents plus the eight draft operating &amp; governance masters below.</p>
+
+    <div class="search-wrap">
+      <div class="search-box">
+        <span class="icon">🔍</span>
+        <input type="text" id="hubSearch" placeholder="Search all documents by title or description…" autocomplete="off">
+      </div>
+      <div class="search-meta" id="searchMeta"></div>
+    </div>
 
     <div class="dash">
       <div class="dash-head"><span class="lbl">Hub status</span><span class="upd">Live snapshot — reads the ticks and tracker saved in this file right now</span></div>
@@ -89,6 +149,21 @@
       <div class="dash-groups" id="dashGroups"></div>
     </div>
 
+    <div class="crm-callout">
+      <div class="cc-txt">
+        <div class="lbl">Live outreach</div>
+        <h2>The outreach CRM</h2>
+        <p>Who's been contacted, what was sent, and what's next — the working record for Cambridge outreach.</p>
+      </div>
+      <div class="cc-btns">
+        <a class="cc-btn" href="19-outreach-tracker.html"><span class="n">19</span>Open outreach tracker</a>
+        <a class="cc-btn ghost" href="18-cambridge-academic-target-list.html"><span class="n">18</span>Open target list</a>
+      </div>
+    </div>
+
+    <div class="sect-lbl">Browse by area</div>
+    <div class="tile-grid" id="tileGrid"></div>
+
     <div class="explainer">
       <div class="lbl">Read this first — why OTOS is not the applicant</div>
       <p>On every route in this pack, <b>OTOS Digital Ltd is not the applicant.</b> The MRC and Wellcome both fund eligible academic or NHS research organisations — so an academic or clinical academic leads each application, holds the grant and sponsors the ethics approval.</p>
@@ -98,74 +173,74 @@
 
     <p class="task-note"><b>Task list, per document:</b> tick as each is drafted and reviewed. This is a static pack — ticks live in this page's file, so they only carry between Gareth and Dean once this file is saved and pushed to GitHub; pull latest before trusting what's ticked.</p>
 
-    <div class="grp">
-      <div class="glbl">Route &amp; positioning</div>
+    <details class="grp" id="grp-route" data-desc="Start here — the funding logic and who leads.">
+      <summary><span class="glbl">Route &amp; positioning</span><span class="chev">▸</span></summary>
       <ol class="docs">
-        <li><a href="01-funding-route-summary.html"><span class="no">01</span><span class="tt"><span class="t">Funding Route Summary</span><span class="d">Job: one-page map of all three routes and where OTOS sits in each</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="02-academic-concept-note.html"><span class="no">02</span><span class="tt"><span class="t">Academic Concept Note</span><span class="d">Job: first thing a prospective PI reads, before any application exists</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="03-otos-role-project-partner.html"><span class="no">03</span><span class="tt"><span class="t">OTOS Role as Project Partner</span><span class="d">Job: locks down who leads vs. who partners, for every application</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="01-funding-route-summary.html"><span class="no">01</span><span class="tt"><span class="t">Funding Route Summary</span><span class="d">Job: one-page map of all three routes and where OTOS sits in each</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="02-academic-concept-note.html"><span class="no">02</span><span class="tt"><span class="t">Academic Concept Note</span><span class="d">Job: first thing a prospective PI reads, before any application exists</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="03-otos-role-project-partner.html"><span class="no">03</span><span class="tt"><span class="t">OTOS Role as Project Partner</span><span class="d">Job: locks down who leads vs. who partners, for every application</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
       </ol>
-    </div>
+    </details>
 
-    <div class="grp">
-      <div class="glbl">Study &amp; governance</div>
+    <details class="grp" id="grp-study" data-desc="The pre-pilot design and the clinical boundary line.">
+      <summary><span class="glbl">Study &amp; governance</span><span class="chev">▸</span></summary>
       <ol class="docs">
-        <li><a href="04-first-50-feasibility-outline.html"><span class="no">04</span><span class="tt"><span class="t">First-50 Feasibility Study Outline</span><span class="d">Job: the pre-pilot study design behind the Stage One application</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="05-governance-boundary-note.html"><span class="no">05</span><span class="tt"><span class="t">Governance Boundary Note</span><span class="d">Job: the one clinical / non-clinical statement every other document quotes from</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="06-evidence-anchors.html"><span class="no">06</span><span class="tt"><span class="t">Evidence Anchors</span><span class="d">Job: what can and can't be claimed yet, incl. First-50 and START figures</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="07-partner-site-logic.html"><span class="no">07</span><span class="tt"><span class="t">Partner / Site Logic</span><span class="d">Job: who a delivery/recruitment site is, and what we're asking of them</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="08-research-team-ask.html"><span class="no">08</span><span class="tt"><span class="t">Research Team Ask</span><span class="d">Job: the PI and team we still need to find, and why a PhD student alone isn't it</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="04-first-50-feasibility-outline.html"><span class="no">04</span><span class="tt"><span class="t">First-50 Feasibility Study Outline</span><span class="d">Job: the pre-pilot study design behind the Stage One application</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="05-governance-boundary-note.html"><span class="no">05</span><span class="tt"><span class="t">Governance Boundary Note</span><span class="d">Job: the one clinical / non-clinical statement every other document quotes from</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="06-evidence-anchors.html"><span class="no">06</span><span class="tt"><span class="t">Evidence Anchors</span><span class="d">Job: what can and can't be claimed yet, incl. First-50 and START figures</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="07-partner-site-logic.html"><span class="no">07</span><span class="tt"><span class="t">Partner / Site Logic</span><span class="d">Job: who a delivery/recruitment site is, and what we're asking of them</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="08-research-team-ask.html"><span class="no">08</span><span class="tt"><span class="t">Research Team Ask</span><span class="d">Job: the PI and team we still need to find, and why a PhD student alone isn't it</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
       </ol>
-    </div>
+    </details>
 
-    <div class="grp">
-      <div class="glbl">Outreach templates</div>
+    <details class="grp" id="grp-outreach-templates" data-desc="Letters and quote requests, ready to send.">
+      <summary><span class="glbl">Outreach templates</span><span class="chev">▸</span></summary>
       <ol class="docs">
-        <li><a href="09-cambridge-outreach-email.html"><span class="no">09</span><span class="tt"><span class="t">Cambridge Academic Outreach Email</span><span class="d">Job: first-contact email to send a prospective PI</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="10-cambridge-quote-template.html"><span class="no">10</span><span class="tt"><span class="t">Cambridge Academic Quote Template</span><span class="d">Job: request and record an academic's approved quote for use elsewhere</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="11-support-letter-otos.html"><span class="no">11</span><span class="tt"><span class="t">Support Letter — OTOS as Project Partner</span><span class="d">Job: OTOS Digital Ltd's own signed letter of support, for the application pack</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="12-support-letter-partner-sites.html"><span class="no">12</span><span class="tt"><span class="t">Support Letter — Partner Sites</span><span class="d">Job: the letter a delivery site (CPFT / RCE / CGL / Public Health-style) signs</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="09-cambridge-outreach-email.html"><span class="no">09</span><span class="tt"><span class="t">Cambridge Academic Outreach Email</span><span class="d">Job: first-contact email to send a prospective PI</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="10-cambridge-quote-template.html"><span class="no">10</span><span class="tt"><span class="t">Cambridge Academic Quote Template</span><span class="d">Job: request and record an academic's approved quote for use elsewhere</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="11-support-letter-otos.html"><span class="no">11</span><span class="tt"><span class="t">Support Letter — OTOS as Project Partner</span><span class="d">Job: OTOS Digital Ltd's own signed letter of support, for the application pack</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="12-support-letter-partner-sites.html"><span class="no">12</span><span class="tt"><span class="t">Support Letter — Partner Sites</span><span class="d">Job: the letter a delivery site (CPFT / RCE / CGL / Public Health-style) signs</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
       </ol>
-    </div>
+    </details>
 
-    <div class="grp">
-      <div class="glbl">Application skeletons</div>
+    <details class="grp" id="grp-app-skeletons" data-desc="Section-by-section shells for each funding route.">
+      <summary><span class="glbl">Application skeletons</span><span class="chev">▸</span></summary>
       <ol class="docs">
-        <li><a href="13-mrc-stage-one-skeleton.html"><span class="no">13</span><span class="tt"><span class="t">MRC Stage One — Application Skeleton</span><span class="d">Job: section-by-section shell to hand to the lead applicant's research office</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="14-mrc-stage-two-skeleton.html"><span class="no">14</span><span class="tt"><span class="t">MRC Stage Two — Follow-on Skeleton</span><span class="d">Job: placeholder only — do not draft in earnest before Stage One reports</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="15-wellcome-mh-skeleton.html"><span class="no">15</span><span class="tt"><span class="t">Wellcome Mental Health — Skeleton</span><span class="d">Job: research-partner shell — a mechanism question, not a product-build ask</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="13-mrc-stage-one-skeleton.html"><span class="no">13</span><span class="tt"><span class="t">MRC Stage One — Application Skeleton</span><span class="d">Job: section-by-section shell to hand to the lead applicant's research office</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="14-mrc-stage-two-skeleton.html"><span class="no">14</span><span class="tt"><span class="t">MRC Stage Two — Follow-on Skeleton</span><span class="d">Job: placeholder only — do not draft in earnest before Stage One reports</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="15-wellcome-mh-skeleton.html"><span class="no">15</span><span class="tt"><span class="t">Wellcome Mental Health — Skeleton</span><span class="d">Job: research-partner shell — a mechanism question, not a product-build ask</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
       </ol>
-    </div>
+    </details>
 
-    <div class="grp">
-      <div class="glbl">Outreach &amp; Cambridge targets</div>
+    <details class="grp" id="grp-outreach-targets" data-desc="Who to contact, first-send rules, and the CRM tracker.">
+      <summary><span class="glbl">Outreach &amp; Cambridge targets</span><span class="chev">▸</span></summary>
       <ol class="docs">
-        <li><a href="16-first-contact-pack.html"><span class="no">16</span><span class="tt"><span class="t">First Contact Pack</span><span class="d">Job: what to send first, by audience — and the do-not-send-cold list</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="17-otos-holding-page-brief.html"><span class="no">17</span><span class="tt"><span class="t">OTOS Holding Page Brief</span><span class="d">Job: TODO spec for a simple credibility page, not a product launch</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="18-cambridge-academic-target-list.html"><span class="no">18</span><span class="tt"><span class="t">Cambridge Academic Target List</span><span class="d">Job: who to contact, in what order, with what ask</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="19-outreach-tracker.html"><span class="no">19</span><span class="tt"><span class="t">Outreach Tracker</span><span class="d">Job: living record of who's been contacted and what's next</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="20-cambridge-outreach-email-drafts.html"><span class="no">20</span><span class="tt"><span class="t">Cambridge Outreach Email Drafts</span><span class="d">Job: six ready-to-fill first-contact emails, one per audience</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="21-plain-english-summary.html"><span class="no">21</span><span class="tt"><span class="t">Plain-English Summary</span><span class="d">Job: what OTOS Continuity™ is, no jargon — for PPI and non-specialist readers</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="22-faq-objection-handling.html"><span class="no">22</span><span class="tt"><span class="t">FAQ &amp; Objection Handling</span><span class="d">Job: straight answers to what an academic will actually ask on the first call</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="23-founder-bio.html"><span class="no">23</span><span class="tt"><span class="t">Founder Bio</span><span class="d">Job: who Dean is, in one page, before an academic gets on a call with him</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="24-iaa-tif-readiness-checklist.html"><span class="no">24</span><span class="tt"><span class="t">Cambridge Enterprise IAA/TIF Readiness Checklist</span><span class="d">Job: what has to be true before Route 4 can actually be applied for</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="25-talk-track-deck.html"><span class="no">25</span><span class="tt"><span class="t">Academic Talk-Track Deck</span><span class="d">Job: the concept note in visual form, for the 20-minute calls</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="16-first-contact-pack.html"><span class="no">16</span><span class="tt"><span class="t">First Contact Pack</span><span class="d">Job: what to send first, by audience — and the do-not-send-cold list</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="17-otos-holding-page-brief.html"><span class="no">17</span><span class="tt"><span class="t">OTOS Holding Page Brief</span><span class="d">Job: TODO spec for a simple credibility page, not a product launch</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="18-cambridge-academic-target-list.html"><span class="no">18</span><span class="tt"><span class="t">Cambridge Academic Target List</span><span class="d">Job: who to contact, in what order, with what ask</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="19-outreach-tracker.html"><span class="no">19</span><span class="tt"><span class="t">Outreach Tracker</span><span class="d">Job: living record of who's been contacted and what's next</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="20-cambridge-outreach-email-drafts.html"><span class="no">20</span><span class="tt"><span class="t">Cambridge Outreach Email Drafts</span><span class="d">Job: six ready-to-fill first-contact emails, one per audience</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="21-plain-english-summary.html"><span class="no">21</span><span class="tt"><span class="t">Plain-English Summary</span><span class="d">Job: what OTOS Continuity™ is, no jargon — for PPI and non-specialist readers</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="22-faq-objection-handling.html"><span class="no">22</span><span class="tt"><span class="t">FAQ &amp; Objection Handling</span><span class="d">Job: straight answers to what an academic will actually ask on the first call</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="23-founder-bio.html"><span class="no">23</span><span class="tt"><span class="t">Founder Bio</span><span class="d">Job: who Dean is, in one page, before an academic gets on a call with him</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="24-iaa-tif-readiness-checklist.html"><span class="no">24</span><span class="tt"><span class="t">Cambridge Enterprise IAA/TIF Readiness Checklist</span><span class="d">Job: what has to be true before Route 4 can actually be applied for</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="25-talk-track-deck.html"><span class="no">25</span><span class="tt"><span class="t">Academic Talk-Track Deck</span><span class="d">Job: the concept note in visual form, for the 20-minute calls</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
       </ol>
-    </div>
+    </details>
 
-    <div class="grp">
-      <div class="glbl">Operating &amp; governance masters <span class="draft-tag">Draft — Dean review pending</span></div>
+    <details class="grp" id="grp-masters" data-desc="Post-NDA only — operating model, build spec, evidence register.">
+      <summary><span class="glbl">Operating &amp; governance masters <span class="draft-tag">Draft — Dean review pending</span></span><span class="chev">▸</span></summary>
       <ol class="docs">
-        <li><a href="masters/Master 01 - Narrative Companion ICB Submission.pdf"><span class="no">M1</span><span class="tt"><span class="t">Narrative Companion / ICB Submission</span><span class="d">Job: the human/system logic behind the proposal, for ICB and commissioner readers</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="masters/Master 02 - Commissioner's Case.pdf"><span class="no">M2</span><span class="tt"><span class="t">Commissioner's Case</span><span class="d">Job: frames the programme as an evidence budget / local decision test, not a savings claim</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="masters/Master 04 - ICB Governance and Business Case.pdf"><span class="no">M4</span><span class="tt"><span class="t">ICB Governance &amp; Business Case</span><span class="d">Job: how the First-50 test is governed safely before any build or onboarding</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="masters/Master 05 - Partner Pack.pdf"><span class="no">M5</span><span class="tt"><span class="t">Partner Pack</span><span class="d">Job: low-burden explanation for local partner services of what participation means</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="masters/Master 06 - Phase 0-1 Operating Model.pdf"><span class="no">M6</span><span class="tt"><span class="t">Phase 0/1 Operating Model</span><span class="d">Job: how the first intervention test runs, readiness through Week-12 evidence</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="masters/Master 08 - Developer RFP Intervention Test Build.pdf"><span class="no">M8</span><span class="tt"><span class="t">Developer RFP / Intervention Test Build Spec</span><span class="d">Job: technical build spec for suppliers, with clinical-drift non-negotiables</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="masters/Appendix - Technical Drawing Brief Visual Architecture.pdf"><span class="no">M8a</span><span class="tt"><span class="t">Appendix — Technical Drawing Brief / Visual Architecture</span><span class="d">Job: companion visual-architecture brief to the Developer RFP</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
-        <li><a href="masters/Master 09 - Evidence Dossier Sources Claims Register.pdf"><span class="no">M9</span><span class="tt"><span class="t">Evidence Dossier, Sources, Claims Register &amp; Caveats</span><span class="d">Job: claims-control source for the wider copy family — cross-check against 06 before quoting</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div></li>
+        <li><a href="masters/Master 01 - Narrative Companion ICB Submission.pdf"><span class="no">M1</span><span class="tt"><span class="t">Narrative Companion / ICB Submission</span><span class="d">Job: the human/system logic behind the proposal, for ICB and commissioner readers</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="masters/Master 02 - Commissioner's Case.pdf"><span class="no">M2</span><span class="tt"><span class="t">Commissioner's Case</span><span class="d">Job: frames the programme as an evidence budget / local decision test, not a savings claim</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="masters/Master 04 - ICB Governance and Business Case.pdf"><span class="no">M4</span><span class="tt"><span class="t">ICB Governance &amp; Business Case</span><span class="d">Job: how the First-50 test is governed safely before any build or onboarding</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="masters/Master 05 - Partner Pack.pdf"><span class="no">M5</span><span class="tt"><span class="t">Partner Pack</span><span class="d">Job: low-burden explanation for local partner services of what participation means</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="masters/Master 06 - Phase 0-1 Operating Model.pdf"><span class="no">M6</span><span class="tt"><span class="t">Phase 0/1 Operating Model</span><span class="d">Job: how the first intervention test runs, readiness through Week-12 evidence</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="masters/Master 08 - Developer RFP Intervention Test Build.pdf"><span class="no">M8</span><span class="tt"><span class="t">Developer RFP / Intervention Test Build Spec</span><span class="d">Job: technical build spec for suppliers, with clinical-drift non-negotiables</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="masters/Appendix - Technical Drawing Brief Visual Architecture.pdf"><span class="no">M8a</span><span class="tt"><span class="t">Appendix — Technical Drawing Brief / Visual Architecture</span><span class="d">Job: companion visual-architecture brief to the Developer RFP</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+        <li><a href="masters/Master 09 - Evidence Dossier Sources Claims Register.pdf"><span class="no">M9</span><span class="tt"><span class="t">Evidence Dossier, Sources, Claims Register &amp; Caveats</span><span class="d">Job: claims-control source for the wider copy family — cross-check against 06 before quoting</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
       </ol>
-    </div>
+    </details>
 
     <div class="masters-note">
       <div class="lbl">Read before using the masters above</div>
@@ -184,8 +259,8 @@
     });
 
     (function renderDashboard(){
-      const groups = [...document.querySelectorAll('.grp')];
-      const isMasters = g => g.querySelector('.glbl').textContent.includes('Operating & governance masters');
+      const groups = [...document.querySelectorAll('details.grp')];
+      const isMasters = g => g.id === 'grp-masters';
 
       let readyCount = 0, readyTotal = 0, gareth = 0, dean = 0, mastersSigned = 0, mastersTotal = 0;
       const groupStats = [];
@@ -209,7 +284,7 @@
           readyTotal += items.length;
           readyCount += gReady;
         }
-        groupStats.push({ label, ready: gReady, total: items.length });
+        groupStats.push({ id: g.id, label, desc: g.dataset.desc || '', ready: gReady, total: items.length, draft: isMasters(g) });
       });
 
       document.getElementById('dashReady').textContent = readyCount + ' / ' + readyTotal;
@@ -226,6 +301,24 @@
         dashGroups.appendChild(row);
       });
 
+      // Area tiles — buttons replacing the long menu, one per group
+      const tileGrid = document.getElementById('tileGrid');
+      groupStats.forEach(gs => {
+        const pct = gs.total ? Math.round((gs.ready / gs.total) * 100) : 0;
+        const a = document.createElement('a');
+        a.className = 'tile' + (gs.draft ? ' is-draft' : '');
+        a.href = '#' + gs.id;
+        a.innerHTML = '<span class="tile-no">' + gs.label + (gs.draft ? '<span class="draft-tag">Draft</span>' : '') + '</span>'
+          + '<span class="tile-name">' + gs.total + ' document' + (gs.total === 1 ? '' : 's') + '</span>'
+          + '<span class="tile-desc">' + gs.desc + '</span>'
+          + '<span class="tile-meta"><span class="tile-bar"><span style="width:' + pct + '%"></span></span>' + gs.ready + '/' + gs.total + ' ready</span>';
+        a.addEventListener('click', () => {
+          const details = document.getElementById(gs.id);
+          if (details) details.open = true;
+        });
+        tileGrid.appendChild(a);
+      });
+
       // Outreach snapshot — parsed live from the tracker file
       fetch('19-outreach-tracker.html').then(r => r.text()).then(html => {
         const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -237,6 +330,72 @@
         document.getElementById('dashOutreach').textContent = contacted + ' / ' + rows.length;
       }).catch(() => {
         document.getElementById('dashOutreach').textContent = 'n/a';
+      });
+
+      // If the page loads with a #grp-... hash, open that section
+      if (location.hash) {
+        const target = document.querySelector(location.hash);
+        if (target && target.matches('details.grp')) target.open = true;
+      }
+    })();
+
+    // ---------- Search / filter across all documents ----------
+    (function setupSearch(){
+      const input = document.getElementById('hubSearch');
+      const meta = document.getElementById('searchMeta');
+      const allGroups = [...document.querySelectorAll('details.grp')];
+      const wasOpen = new WeakMap();
+
+      function clearHighlights(scope){
+        scope.querySelectorAll('mark.hl').forEach(m => {
+          const parent = m.parentNode;
+          parent.replaceChild(document.createTextNode(m.textContent), m);
+          parent.normalize();
+        });
+      }
+      function highlight(el, q){
+        const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+        [...el.querySelectorAll('.t, .d')].forEach(node => {
+          const text = node.textContent;
+          if (re.test(text)) {
+            node.innerHTML = text.replace(re, '<mark class="hl">$1</mark>');
+          }
+        });
+      }
+
+      input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        let visibleCount = 0, totalCount = 0;
+
+        if (!q) {
+          allGroups.forEach(g => {
+            g.classList.remove('is-hidden');
+            clearHighlights(g);
+            g.querySelectorAll('ol.docs li').forEach(li => li.classList.remove('is-hidden'));
+            if (wasOpen.has(g)) g.open = wasOpen.get(g);
+          });
+          meta.textContent = '';
+          return;
+        }
+
+        allGroups.forEach(g => {
+          if (!wasOpen.has(g)) wasOpen.set(g, g.open);
+          clearHighlights(g);
+          const items = [...g.querySelectorAll('ol.docs li')];
+          let groupHasMatch = false;
+          items.forEach(li => {
+            totalCount++;
+            const t = li.querySelector('.t').textContent.toLowerCase();
+            const d = li.querySelector('.d').textContent.toLowerCase();
+            const match = t.includes(q) || d.includes(q);
+            li.classList.toggle('is-hidden', !match);
+            if (match) { visibleCount++; groupHasMatch = true; highlight(li, input.value.trim()); }
+          });
+          g.classList.toggle('is-hidden', !groupHasMatch);
+          if (groupHasMatch) g.open = true;
+        });
+
+        meta.innerHTML = '<b>' + visibleCount + '</b> of ' + totalCount + ' documents match "' + input.value.trim() + '"';
       });
     })();
   </script>

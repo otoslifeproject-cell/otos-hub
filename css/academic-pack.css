@@ -156,6 +156,12 @@ table.tracker td{ font-size:11.5px; line-height:1.5; color:var(--ink-soft); padd
 table.tracker td:first-child, table.tracker th:first-child{ padding-left:0; }
 table.tracker td.k{ font-weight:600; color:var(--ink); white-space:nowrap; }
 table.tracker td.status{ font-weight:700; color: var(--accent-ink); white-space:nowrap; }
+table.tracker td.log{ min-width:220px; white-space:pre-wrap; }
+table.tracker td.log[contenteditable]{ cursor:text; outline:none; }
+table.tracker td.log[contenteditable]:focus{ background: var(--accent-wash); border-radius:2px; }
+table.tracker td.log[contenteditable]:empty::before{ content: attr(data-placeholder); color: var(--faint); font-style:italic; }
+table.tracker td.log .entry{ display:block; margin-bottom:4px; }
+table.tracker td.log .entry .dt{ font-weight:700; color:var(--ink); }
 
 /* ---------- application skeleton: form field + fill guidance ---------- */
 .field{ margin: 22px 0; padding-top:16px; border-top:1px solid var(--rule-soft); }
@@ -241,7 +247,12 @@ body.afp.letter-mode .afp-head{ display:none; }
 }
 .afp-backlink:hover{ color: var(--accent-ink); border-color: var(--accent); }
 
-/* ---------- print ---------- */
+/* ---------- per-document notes section (bottom of doc) ---------- */
+.doc-notes{ border-top:2px solid var(--ink); padding-top:18px; margin-top:36px; }
+.doc-notes .lbl{ font-family:var(--sans); font-size:9.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px; display:block; }
+.note-box{ min-height:90px; border:1px solid var(--rule); border-radius:4px; padding:14px 16px; font-size:13.5px; line-height:1.65; color:var(--ink-soft); cursor:text; outline:none; white-space:pre-wrap; }
+.note-box:focus{ background: var(--accent-wash); border-color:var(--accent); }
+.note-box:empty::before{ content: attr(data-placeholder); color:var(--faint); font-style:italic; }
 @media print{
   html, body{ background:#fff; }
   .afp-backlink{ display:none; }

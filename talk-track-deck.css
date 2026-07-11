@@ -1,0 +1,108 @@
+/* ============================================================
+   OTOS Continuity™ — Academic Talk-Track Deck
+   Same tokens as the Academic Funding Pack document system
+   (css/academic-pack.css), adapted for a 1920×1080 talk-track.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap");
+
+:root{
+  --paper:      oklch(98.2% 0.008 85);
+  --paper-2:    oklch(95.5% 0.012 80);
+  --ink:        oklch(21% 0.018 55);
+  --ink-soft:   oklch(34% 0.016 55);
+  --muted:      oklch(48% 0.014 55);
+  --faint:      oklch(64% 0.01 55);
+  --rule:       oklch(21% 0.018 55 / 0.14);
+  --rule-soft:  oklch(21% 0.018 55 / 0.08);
+  --accent:     oklch(63% 0.16 46);
+  --accent-ink: oklch(46% 0.15 44);
+  --accent-wash:oklch(63% 0.16 46 / 0.07);
+
+  --serif: "Newsreader", Georgia, serif;
+  --sans:  "IBM Plex Sans", Helvetica, Arial, sans-serif;
+}
+
+html, body{ margin:0; padding:0; background:#0b0a09; }
+deck-stage:not(:defined){ visibility:hidden; }
+
+deck-stage section{
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  padding: 100px 130px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- shared furniture ---------- */
+.tt-eyebrow{
+  display:flex; align-items:center; gap:16px;
+  font-size:24px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color: var(--accent-ink); margin-bottom:36px;
+}
+.tt-eyebrow::before{ content:""; width:44px; height:2px; background: var(--accent); }
+
+.tt-foot{
+  position:absolute; left:130px; right:130px; bottom:56px;
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:24px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color: var(--faint);
+  padding-top:20px; border-top:1px solid var(--rule);
+}
+
+h1.tt-h1{ font-family: var(--serif); font-weight:600; font-size:76px; line-height:1.08; letter-spacing:-.01em; color: var(--ink); max-width:20ch; margin:0 0 30px; }
+h2.tt-h2{ font-family: var(--serif); font-weight:600; font-size:58px; line-height:1.14; letter-spacing:-.008em; color: var(--ink); max-width:20ch; margin:0 0 34px; }
+p.tt-lede{ font-size:30px; line-height:1.5; color: var(--muted); max-width:64ch; margin:0 0 10px; }
+
+ul.tt-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:22px; }
+ul.tt-list li{ font-size:28px; line-height:1.5; color: var(--ink-soft); padding-left:38px; position:relative; max-width:66ch; }
+ul.tt-list li::before{ content:""; position:absolute; left:0; top:14px; width:18px; height:2px; background: var(--accent); }
+
+.tt-stat-row{ display:flex; gap:70px; margin-top:20px; }
+.tt-stat{ border-top:2px solid var(--rule); padding-top:20px; max-width:340px; }
+.tt-stat .n{ font-family: var(--serif); font-size:56px; font-weight:600; color: var(--accent-ink); line-height:1; margin-bottom:12px; }
+.tt-stat .d{ font-size:24px; line-height:1.4; color: var(--muted); margin-bottom:8px; }
+.tt-stat .s{ font-size:24px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color: var(--faint); }
+
+table.tt-table{ border-collapse:collapse; width:100%; margin-top:10px; }
+table.tt-table th{ text-align:left; font-size:24px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color: var(--faint); padding:0 24px 18px 0; border-bottom:2px solid var(--ink); }
+table.tt-table td{ font-size:24px; line-height:1.45; color: var(--ink-soft); padding:20px 24px 20px 0; border-bottom:1px solid var(--rule); vertical-align:top; }
+table.tt-table td:first-child, table.tt-table th:first-child{ color: var(--ink); font-weight:600; }
+
+.tt-tiers{ display:grid; grid-template-columns: repeat(3,1fr); gap:36px; margin-top:16px; }
+.tt-tier{ background: var(--paper-2); border:1px solid var(--rule); border-radius:4px; padding:32px 28px; }
+.tt-tier .tt-tag{ font-size:24px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color: var(--accent-ink); margin-bottom:14px; }
+.tt-tier .who{ font-size:26px; font-weight:600; color: var(--ink); margin-bottom:10px; }
+.tt-tier .what{ font-size:24px; line-height:1.5; color: var(--muted); }
+
+.tt-routes{ display:flex; flex-direction:column; gap:16px; margin-top:16px; }
+.tt-route{ display:flex; align-items:baseline; gap:24px; border-top:1px solid var(--rule-soft); padding-top:16px; }
+.tt-route:first-child{ border-top:none; padding-top:0; }
+.tt-route .rn{ font-family:var(--serif); font-size:30px; color: var(--accent-ink); width:38px; flex-shrink:0; }
+.tt-route .rt{ font-size:26px; font-weight:600; color: var(--ink); width:300px; flex-shrink:0; }
+.tt-route .rd{ font-size:24px; color: var(--muted); }
+
+.tt-two-col{ display:grid; grid-template-columns: 1fr 1fr; gap:60px; margin-top:10px; }
+.tt-col-h{ font-size:24px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color: var(--accent-ink); margin-bottom:20px; }
+
+.tt-callout{ margin-top:auto; padding-top:28px; border-top:2px solid var(--rule); font-size:26px; line-height:1.5; color: var(--ink-soft); max-width:80ch; }
+.tt-callout b{ color: var(--ink); }
+
+.tt-not-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:20px 40px; margin-top:8px; }
+.tt-not-grid .item{ font-size:25px; line-height:1.4; color: var(--ink-soft); padding-left:34px; position:relative; }
+.tt-not-grid .item::before{ content:"✕"; position:absolute; left:0; top:1px; color: var(--accent-ink); font-weight:700; font-size:20px; }
+
+.tt-cta{ font-family: var(--serif); font-size:40px; font-weight:600; color: var(--ink); margin: 40px 0 20px; max-width:22ch; }
+.tt-contact{ font-size:26px; color: var(--ink-soft); }
+.tt-contact b{ color:var(--ink); }
+
+/* ---------- dark cover / close ---------- */
+.tt-dark{ background:#171310; color: var(--paper); }
+.tt-dark h1.tt-h1, .tt-dark h2.tt-h2{ color:#f8f3ea; }
+.tt-dark p.tt-lede{ color: oklch(80% 0.02 70); }
+.tt-dark .tt-foot{ color: oklch(60% 0.02 70); border-top-color: rgba(255,255,255,.14); }
+.tt-dark .tt-eyebrow{ color: var(--accent); }
+.tt-dark .tt-cta{ color:#f8f3ea; }
+.tt-dark .tt-contact{ color: oklch(82% 0.02 70); }
+.tt-dark .tt-contact b{ color:#f8f3ea; }
