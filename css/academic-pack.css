@@ -156,12 +156,42 @@ table.tracker td{ font-size:11.5px; line-height:1.5; color:var(--ink-soft); padd
 table.tracker td:first-child, table.tracker th:first-child{ padding-left:0; }
 table.tracker td.k{ font-weight:600; color:var(--ink); white-space:nowrap; }
 table.tracker td.status{ font-weight:700; color: var(--accent-ink); white-space:nowrap; }
+.status-select{ font-family:var(--sans); font-size:11px; font-weight:700; letter-spacing:.02em; color:var(--faint); background:var(--paper); border:1px solid var(--rule); border-radius:3px; padding:5px 8px; cursor:pointer; outline:none; }
+.status-select:focus{ border-color:var(--accent); }
+.status-select[data-val="not-contacted"]{ color:var(--faint); }
+.status-select[data-val="sent"], .status-select[data-val="emailed"], .status-select[data-val="called-no-answer"], .status-select[data-val="voicemail"]{ color:var(--accent-ink); border-color:var(--accent); }
+.status-select[data-val="replied"], .status-select[data-val="call-booked"], .status-select[data-val="meeting-held"]{ color: oklch(46% 0.13 152); border-color: oklch(46% 0.13 152 / 0.4); }
+.status-select[data-val="declined"], .status-select[data-val="no-response"]{ color: oklch(50% 0.14 25); border-color: oklch(50% 0.14 25 / 0.4); }
+.status-select[data-val="referred"]{ color: var(--ink-soft); border-color: var(--rule); }
 table.tracker td.log{ min-width:220px; white-space:pre-wrap; }
-table.tracker td.log[contenteditable]{ cursor:text; outline:none; }
-table.tracker td.log[contenteditable]:focus{ background: var(--accent-wash); border-radius:2px; }
-table.tracker td.log[contenteditable]:empty::before{ content: attr(data-placeholder); color: var(--faint); font-style:italic; }
-table.tracker td.log .entry{ display:block; margin-bottom:4px; }
-table.tracker td.log .entry .dt{ font-weight:700; color:var(--ink); }
+table.tracker td.log .log-history{ min-height:20px; max-height:110px; overflow-y:auto; cursor:text; outline:none; margin-bottom:5px; }
+table.tracker td.log .log-history:focus{ background: var(--accent-wash); border-radius:2px; }
+table.tracker td.log .log-history:empty::before{ content: attr(data-placeholder); color: var(--faint); font-style:italic; }
+table.tracker td.log .log-quick{ width:100%; box-sizing:border-box; font-family:var(--sans); font-size:11px; color:var(--ink); border:1px solid var(--accent); border-radius:3px; padding:5px 7px; outline:none; background:var(--paper); }
+table.tracker td.log .log-quick::placeholder{ color:var(--faint); font-style:italic; }
+table.tracker td.log .log-quick:focus{ border-color:var(--accent-ink); }
+table.tracker td.mailto{ white-space:nowrap; }
+.mailto-btn{ display:inline-block; font-family:var(--sans); font-size:10.5px; font-weight:700; letter-spacing:.03em; text-decoration:none; color:var(--accent-ink); border:1px solid var(--accent); border-radius:3px; padding:4px 9px; }
+.mailto-btn:hover{ background:var(--accent-ink); color:var(--paper); border-color:var(--accent-ink); }
+.mailto-btn.is-disabled{ color:var(--faint); border-color:var(--rule); cursor:not-allowed; pointer-events:none; }
+.del-row-btn{ background:none; border:1px solid var(--rule); border-radius:3px; color:var(--faint); font-size:12px; font-weight:700; width:22px; height:22px; line-height:1; cursor:pointer; }
+.del-row-btn:hover{ color:#c0392b; border-color:#c0392b; background:oklch(50% 0.14 25 / 0.08); }
+.undo-toasts{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; gap:8px; z-index:100; }
+.undo-toast{ background:var(--ink); color:var(--paper); padding:11px 12px 11px 16px; border-radius:6px; display:flex; align-items:center; gap:16px; font-family:var(--sans); font-size:12.5px; box-shadow:0 6px 20px rgba(0,0,0,.22); }
+.undo-toast b{ color:#fff; }
+.undo-toast .undo-btn{ background:none; border:1px solid rgba(255,255,255,.4); color:#fff; border-radius:4px; padding:5px 12px; font-size:11px; font-weight:700; cursor:pointer; font-family:var(--sans); }
+.undo-toast .undo-btn:hover{ background:rgba(255,255,255,.15); }
+.actor-picker{ position:fixed; top:14px; right:14px; z-index:50; display:flex; gap:3px; background:var(--paper); border:1px solid var(--rule); border-radius:20px; padding:4px; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+.actor-picker button{ font-family:var(--sans); font-size:11px; font-weight:700; padding:5px 13px; border-radius:16px; border:none; background:transparent; color:var(--muted); cursor:pointer; }
+.actor-picker button.active{ background:var(--ink); color:var(--paper); }
+.f-input.f-date{ font-family:var(--sans); font-size:11px; color:var(--ink-soft); border:1px solid var(--rule); border-radius:3px; padding:4px 6px; background:var(--paper); }
+td.f-editable{ cursor:text; outline:none; min-width:140px; }
+td.f-editable:focus{ background:var(--accent-wash); }
+td.f-editable:empty::before{ content: attr(data-placeholder); color:var(--faint); font-style:italic; }
+table.tracker td[contenteditable]:empty::before{ content: attr(data-placeholder); color: var(--faint); font-style:italic; }
+table.tracker td.k[contenteditable]{ cursor:text; outline:none; }
+table.tracker td.k[contenteditable]:focus{ background:var(--accent-wash); }
+#addTargetBtn{ background:none; font-family:var(--sans); cursor:pointer; }
 
 /* ---------- application skeleton: form field + fill guidance ---------- */
 .field{ margin: 22px 0; padding-top:16px; border-top:1px solid var(--rule-soft); }
@@ -197,6 +227,12 @@ table.tracker td.log .entry .dt{ font-weight:700; color:var(--ink); }
 .tgrid > div b{ display:block; font-family: var(--sans); font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color: var(--faint); margin-bottom:2px; }
 .priority-tag{ display:inline-block; font-family:var(--sans); font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:2px 8px; border:1px solid var(--rule); border-radius:2px; color:var(--muted); margin-right:2px; }
 .priority-tag.p1{ color: var(--accent-ink); border-color: var(--accent); }
+.live-status{ display:inline-flex; align-items:center; gap:5px; font-family:var(--sans); font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+.live-status select{ font-family:var(--sans); font-size:10px; font-weight:700; color:var(--faint); background:var(--paper); border:1px solid var(--rule); border-radius:3px; padding:3px 6px; cursor:pointer; outline:none; }
+.live-status select[data-val="sent"], .live-status select[data-val="emailed"], .live-status select[data-val="called-no-answer"], .live-status select[data-val="voicemail"]{ color:var(--accent-ink); border-color:var(--accent); }
+.live-status select[data-val="replied"], .live-status select[data-val="call-booked"], .live-status select[data-val="meeting-held"]{ color: oklch(46% 0.13 152); border-color: oklch(46% 0.13 152 / 0.4); }
+.live-status select[data-val="declined"], .live-status select[data-val="no-response"]{ color: oklch(50% 0.14 25); border-color: oklch(50% 0.14 25 / 0.4); }
+.live-status select[data-val="referred"]{ color: var(--ink-soft); border-color: var(--rule); }
 
 /* ---------- roles list (team ask) ---------- */
 .role{ padding: 14px 0; border-bottom:1px solid var(--rule-soft); }

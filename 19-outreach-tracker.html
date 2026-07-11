@@ -5,10 +5,16 @@
 <title>Outreach Tracker — OTOS Continuity™</title>
 <link rel="stylesheet" href="css/academic-pack.css">
 <style>doc-page:not(:defined){visibility:hidden}</style>
+<style>
+  /* This document is a working table/CRM tool, not a print-fidelity page —
+     give it a wide sheet so the tracker table doesn't need horizontal scroll. */
+  .col.wide{ max-width: 1450px; }
+  table.tracker{ min-width: 0; width:100%; }
+</style>
 </head>
 <body class="afp">
 <a href="index.html" class="afp-backlink">← Academic Funding Pack</a>
-<doc-page size="a4" margin="24mm">
+<doc-page width="1550px" height="1200px" margin="24mm">
   <div slot="header" class="afp-head"><span class="doc-id">AFP · 19</span><span>Outreach Tracker</span></div>
   <div slot="footer" class="afp-foot"><span>OTOS Digital Ltd — draft for discussion</span><span>Not for external distribution</span></div>
 
@@ -18,33 +24,213 @@
     <p class="dek">One row per target from <a href="18-cambridge-academic-target-list.html">18 — Cambridge Academic Target List</a>. Edit cells directly as outreach progresses; this is a living record, not a report.</p>
 
     <div class="note-strip">
-      <span class="lbl">Static-pack note</span>
-      <p>This table lives in this page's file. Updates only reach Gareth and Dean once saved and pushed to GitHub — pull latest before trusting what's shown here.</p>
+      <span class="lbl">Live, shared instantly</span>
+      <p>Every editable cell in this table — Status, Owner, Date contacted, Follow-up date, Sent material, Response, Next action, Communication log — and the "Notes on this document" box below sync via Supabase. Dean and Gareth see each other's edits on refresh, no GitHub push needed. Target, Organisation, Role fit, Email and Profile/contact URL are still plain text — edit the file directly and push to GitHub to change those.</p>
     </div>
 
     <div class="tracker-wrap">
       <table class="tracker">
-        <tr><th>Target</th><th>Organisation</th><th>Role fit</th><th>Email</th><th>Profile / contact URL</th><th>Status</th><th>Date contacted</th><th>Follow-up date</th><th>Sent material</th><th>Response</th><th>Next action</th><th>Communication log</th></tr>
-        <tr><td class="k">Prof. Barbara Sahakian</td><td>Cambridge Psychiatry / BCNI</td><td>Topic fit</td><td>—</td><td>psychiatry.cam.ac.uk staff profile</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send first</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Prof. Tamsin Ford / Psychiatry office</td><td>Cambridge Psychiatry</td><td>Dept gateway</td><td>HoDPsychiatry@medschl.cam.ac.uk</td><td>psychiatry.cam.ac.uk</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send first</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Prof. Mary Dixon-Woods / THIS</td><td>THIS Institute, Cambridge</td><td>Implementation science</td><td>—</td><td>thisinstitute.cam.ac.uk contact</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send first</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Prof. Henrietta Bowden-Jones</td><td>Cambridge Psychiatry (hon.) / UCL / CNWL</td><td>Addiction credibility</td><td>—</td><td>Institutional profile (UCL/CNWL)</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send first</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Cambridge Public Health network</td><td>Public Health &amp; Primary Care, Cambridge</td><td>PH / health econ</td><td>—</td><td>cph.cam.ac.uk/contact-us</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send first</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Prof. Trevor Robbins</td><td>Cambridge BCNI/Psychology</td><td>Senior steer</td><td>—</td><td>psychol.cam.ac.uk staff profile</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Verify status, then send</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">NIHR ARC East of England</td><td>NIHR ARC EoE</td><td>Feasibility design</td><td>—</td><td>arc-eoe.nihr.ac.uk contact form</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">NIHR Cambridge BRC</td><td>Cambridge Biomedical Campus</td><td>Clinical routing</td><td>—</td><td>cambridgebrc.nihr.ac.uk contact</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Cambridge Enterprise</td><td>University of Cambridge</td><td>Route 4 / translational</td><td>enquiries@enterprise.cam.ac.uk</td><td>Alt: iaa@admin.cam.ac.uk (Univ. IAA team)</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send — priority for Route 4</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Prof. Carol Brayne</td><td>Public Health &amp; Primary Care, Cambridge</td><td>PH / epidemiology</td><td>—</td><td>Cambridge Public Health staff profile</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Verify focus, then send</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Public Health &amp; Primary Care gateway</td><td>University of Cambridge</td><td>Dept gateway</td><td>—</td><td>phpc.cam.ac.uk/contact</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Prof. Camilla Nord</td><td>University of Cambridge</td><td>Mechanism / Wellcome fit</td><td>—</td><td>MRC CBU / Psychiatry staff profile</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Prof. Tim Dalgleish</td><td>MRC CBU, Cambridge</td><td>Clinical psychology</td><td>—</td><td>MRC CBU staff profile</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Prof. Simon Baron-Cohen / ARC</td><td>Autism Research Centre, Cambridge</td><td>Adjacent, low priority</td><td>—</td><td>autismresearchcentre.com</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Only if relevant</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">Dept of Psychiatry research office</td><td>University of Cambridge</td><td>Dept gateway</td><td>HoDPsychiatry@medschl.cam.ac.uk</td><td>psychiatry.cam.ac.uk</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Send</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-        <tr><td class="k">CPFT Research &amp; Development</td><td>CPFT</td><td>Governance / local site</td><td>—</td><td>cpft.nhs.uk/contactus (ask for R&amp;D)</td><td class="status">Not contacted</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Route via existing contact, not cold</td><td class="log" contenteditable="true" data-placeholder="Click to add a dated note…"></td></tr>
-      </table>
+        <tbody><tr><th>Target</th><th>Organisation</th><th>Role fit</th><th>Email</th><th>Profile / contact URL</th><th>Status</th><th>Date contacted</th><th>Follow-up date</th><th>Sent material</th><th>Response</th><th>Next action</th><th>Communication log</th><th>Draft email</th><th>Owner</th><th></th></tr>
+        <tr id="row-sahakian" data-id="sahakian"><td class="k">Prof. Barbara Sahakian</td><td>Cambridge Psychiatry / BCNI</td><td>Topic fit</td><td>—</td><td>psychiatry.cam.ac.uk staff profile</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send first</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-ford" data-id="ford"><td class="k">Prof. Tamsin Ford / Psychiatry office</td><td>Cambridge Psychiatry</td><td>Dept gateway</td><td>HoDPsychiatry@medschl.cam.ac.uk</td><td>psychiatry.cam.ac.uk</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send first</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-dixonwoods" data-id="dixonwoods"><td class="k">Prof. Mary Dixon-Woods / THIS</td><td>THIS Institute, Cambridge</td><td>Implementation science</td><td>—</td><td>thisinstitute.cam.ac.uk contact</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send first</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-bowdenjones" data-id="bowdenjones"><td class="k">Prof. Henrietta Bowden-Jones</td><td>Cambridge Psychiatry (hon.) / UCL / CNWL</td><td>Addiction credibility</td><td>—</td><td>Institutional profile (UCL/CNWL)</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send first</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-cph_network" data-id="cph_network"><td class="k">Cambridge Public Health network</td><td>Public Health &amp; Primary Care, Cambridge</td><td>PH / health econ</td><td>—</td><td>cph.cam.ac.uk/contact-us</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send first</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-robbins" data-id="robbins"><td class="k">Prof. Trevor Robbins</td><td>Cambridge BCNI/Psychology</td><td>Senior steer</td><td>—</td><td>psychol.cam.ac.uk staff profile</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Verify status, then send</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-nihr_arc_eoe" data-id="nihr_arc_eoe"><td class="k">NIHR ARC East of England</td><td>NIHR ARC EoE</td><td>Feasibility design</td><td>—</td><td>arc-eoe.nihr.ac.uk contact form</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-nihr_brc" data-id="nihr_brc"><td class="k">NIHR Cambridge BRC</td><td>Cambridge Biomedical Campus</td><td>Clinical routing</td><td>—</td><td>cambridgebrc.nihr.ac.uk contact</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-cam_enterprise" data-id="cam_enterprise"><td class="k">Cambridge Enterprise</td><td>University of Cambridge</td><td>Route 4 / translational</td><td>enquiries@enterprise.cam.ac.uk</td><td>Alt: iaa@admin.cam.ac.uk (Univ. IAA team)</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send — priority for Route 4</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-brayne" data-id="brayne"><td class="k">Prof. Carol Brayne</td><td>Public Health &amp; Primary Care, Cambridge</td><td>PH / epidemiology</td><td>—</td><td>Cambridge Public Health staff profile</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Verify focus, then send</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-phpc_gateway" data-id="phpc_gateway"><td class="k">Public Health &amp; Primary Care gateway</td><td>University of Cambridge</td><td>Dept gateway</td><td>—</td><td>phpc.cam.ac.uk/contact</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-nord" data-id="nord"><td class="k">Prof. Camilla Nord</td><td>University of Cambridge</td><td>Mechanism / Wellcome fit</td><td>—</td><td>MRC CBU / Psychiatry staff profile</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-dalgleish" data-id="dalgleish"><td class="k">Prof. Tim Dalgleish</td><td>MRC CBU, Cambridge</td><td>Clinical psychology</td><td>—</td><td>MRC CBU staff profile</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-baroncohen" data-id="baroncohen"><td class="k">Prof. Simon Baron-Cohen / ARC</td><td>Autism Research Centre, Cambridge</td><td>Adjacent, low priority</td><td>—</td><td>autismresearchcentre.com</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Only if relevant</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-psych_office" data-id="psych_office"><td class="k">Dept of Psychiatry research office</td><td>University of Cambridge</td><td>Dept gateway</td><td>HoDPsychiatry@medschl.cam.ac.uk</td><td>psychiatry.cam.ac.uk</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Send</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+        <tr id="row-cpft_rd" data-id="cpft_rd"><td class="k">CPFT Research &amp; Development</td><td>CPFT</td><td>Governance / local site</td><td>—</td><td>cpft.nhs.uk/contactus (ask for R&amp;D)</td><td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td><td><input type="date" class="f-input f-date"></td><td><input type="date" class="f-input f-date"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td><td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first">Route via existing contact, not cold</td><td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td><td class="mailto"><a href="#" class="mailto-btn">Draft ✉</a></td><td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td><td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td></tr>
+      </tbody></table>
     </div>
 
+    <button type="button" id="addTargetBtn" class="mailto-btn" style="margin-top:14px;">+ Add new target</button>
+
     <p class="note">Add rows as new targets emerge from replies (a "who else should I speak to" answer is itself a new row).</p>
+
+    <p class="note">"Draft email" builds a mailto: link from this row's name, organisation and role fit, using the same short, non-salesy tone as <a href="09-cambridge-outreach-email.html">09</a>/<a href="20-cambridge-outreach-email-drafts.html">20</a> and attaching nothing but the ask for a short call — attach the Academic Concept Note yourself before sending. Disabled where no email address is on file; use the profile/contact URL instead.</p>
 
     <div class="doc-notes">
       <span class="lbl">Notes on this document</span>
@@ -53,5 +239,299 @@
   </div>
 </doc-page>
 <script src="js/doc-page.js"></script>
+<script>
+(function () {
+  document.querySelectorAll('table.tracker tr').forEach((tr, i) => {
+    if (i === 0) return; // header
+    const cells = tr.querySelectorAll('td');
+    if (!cells.length) return;
+    const name = cells[0].textContent.trim();
+    const org = cells[1].textContent.trim();
+    const roleFit = cells[2].textContent.trim();
+    const email = cells[3].textContent.trim();
+    const btn = tr.querySelector('.mailto-btn');
+    if (!btn) return;
+
+    if (!email || email === '—') {
+      btn.classList.add('is-disabled');
+      btn.textContent = 'No email on file';
+      btn.removeAttribute('href');
+      return;
+    }
+
+    const salutation = /^(Prof\.|Dr\.)/.test(name) ? ('Dear ' + name + ',') : 'Dear colleagues,';
+    const subject = 'Advice on where OTOS Continuity might fit — 20 minutes?';
+    const body = salutation + '\n\n'
+      + 'I hope you do not mind the direct email. I am the founder of OTOS Continuity, a non-clinical continuity layer for adults moving between ADHD, addiction and recovery support, and I am looking for the right academic advice on shaping this into a fundable feasibility study (MRC Stage One, Wellcome, or a Cambridge translational route).\n\n'
+      + 'Given your work in ' + roleFit.toLowerCase() + ', I wondered whether you — or someone you would recommend — might be willing to have a short call, no more than 20 minutes, to help me understand who the right academic sponsor or co-lead might be.\n\n'
+      + 'I have attached a one-page concept note rather than a full pack, so as not to presume any interest.\n\n'
+      + 'Thank you for considering it.\n\n'
+      + 'Best wishes,\nDean Butler\nFounder, OTOS Digital Ltd\ndean@otos.life · 07585 899235';
+
+    btn.href = 'mailto:' + encodeURIComponent(email) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+})();
+</script>
+
+
+<script>
+document.querySelectorAll('.status-select').forEach(sel => {
+  sel.addEventListener('change', () => { sel.dataset.val = sel.value; });
+});
+</script>
+
+<script>
+  // ---------- Supabase (live shared state for Dean & Gareth) ----------
+  const SB_URL = 'https://ibpvgyopwuciaqfzjxdm.supabase.co';
+  const SB_KEY = 'sb_publishable_WltftZWjHemFq1FNOFOFVQ_X-hgvSGI';
+  const SB_HEADERS = { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json' };
+
+  function sbGet(table, query){
+    return fetch(SB_URL + '/rest/v1/' + table + (query || '?select=*'), { headers: SB_HEADERS })
+      .then(r => r.ok ? r.json() : []).catch(() => []);
+  }
+  function sbUpsert(table, row, onConflict){
+    return fetch(SB_URL + '/rest/v1/' + table + '?on_conflict=' + onConflict, {
+      method: 'POST',
+      headers: Object.assign({}, SB_HEADERS, { Prefer: 'resolution=merge-duplicates' }),
+      body: JSON.stringify([row])
+    }).catch(() => {});
+  }
+  // Pre-seeded rows (tracker_targets) only ever need updating, never inserting —
+  // PATCH by primary key sidesteps NOT NULL checks that a POST upsert's insert
+  // branch would otherwise trip on partial payloads.
+  function sbPatch(table, idField, idValue, patch, el){
+    return fetch(SB_URL + '/rest/v1/' + table + '?' + idField + '=eq.' + encodeURIComponent(idValue), {
+      method: 'PATCH',
+      headers: Object.assign({}, SB_HEADERS, { Prefer: 'return=minimal' }),
+      body: JSON.stringify(patch)
+    }).then(r => {
+      if (!r.ok) throw new Error('save failed: ' + r.status);
+      if (el) { el.style.outline = ''; }
+    }).catch(err => {
+      console.error('Supabase save failed', table, idValue, err);
+      if (el) { el.style.outline = '2px solid #c0392b'; el.title = 'Save failed — check connection and retry'; }
+    });
+  }
+  function debounce(fn, ms){ let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+  function logActivity(docLabel, detail){
+    fetch(SB_URL + '/rest/v1/activity_log', {
+      method: 'POST', headers: SB_HEADERS,
+      body: JSON.stringify([{ doc_label: docLabel, detail: detail, actor: getActor() }])
+    }).catch(() => {});
+  }
+  function showUndoToast(label, onExpire, onUndo){
+    let container = document.getElementById('undoToasts');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'undoToasts';
+      container.className = 'undo-toasts';
+      document.body.appendChild(container);
+    }
+    const toast = document.createElement('div');
+    toast.className = 'undo-toast';
+    toast.innerHTML = '<span>Deleted <b>' + label + '</b></span><button type="button" class="undo-btn">Undo</button>';
+    container.appendChild(toast);
+    const timer = setTimeout(() => { toast.remove(); onExpire(); }, 6000);
+    toast.querySelector('.undo-btn').addEventListener('click', () => {
+      clearTimeout(timer);
+      toast.remove();
+      onUndo();
+    });
+  }
+  function getActor(){ return localStorage.getItem('otos_actor') || 'Unknown'; }
+  function setActor(name){ localStorage.setItem('otos_actor', name); renderActorPicker(); }
+  function renderActorPicker(){
+    let el = document.getElementById('actorPicker');
+    if (!el) {
+      el = document.createElement('div'); el.id = 'actorPicker'; el.className = 'actor-picker';
+      el.innerHTML = '<button data-a="Dean">Dean</button><button data-a="Gareth">Gareth</button>';
+      document.body.appendChild(el);
+      el.querySelectorAll('button').forEach(b => b.addEventListener('click', () => setActor(b.dataset.a)));
+    }
+    const current = getActor();
+    el.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.a === current));
+  }
+  renderActorPicker();
+
+  async function wireTracker(){
+    const rows = await sbGet('tracker_targets');
+    const byId = {};
+    rows.forEach(r => { byId[r.id] = r; });
+
+    document.querySelectorAll('table.tracker tr[data-id]').forEach(tr => wireRow(tr, byId[tr.dataset.id]));
+  }
+  wireTracker();
+
+  function wireRow(tr, saved){
+    const id = tr.dataset.id;
+    const cells = tr.querySelectorAll('td');
+    const sel = tr.querySelector('.status-select');
+    const logHistory = tr.querySelector('.log-history');
+    const logQuick = tr.querySelector('.log-quick');
+    const dateContacted = cells[6].querySelector('input');
+    const followup = cells[7].querySelector('input');
+    const sent = cells[8];
+    const response = cells[9];
+    const next = cells[10];
+    const ownerSel = tr.querySelector('.owner-select');
+
+    if (saved) {
+      if (sel && saved.status) { sel.value = saved.status; sel.dataset.val = saved.status; }
+      if (logHistory && saved.comm_log) logHistory.textContent = saved.comm_log;
+      if (dateContacted && saved.date_contacted) dateContacted.value = saved.date_contacted;
+      if (followup && saved.followup_date) followup.value = saved.followup_date;
+      if (sent && saved.sent_material) sent.textContent = saved.sent_material;
+      if (response && saved.response) response.textContent = saved.response;
+      if (next && saved.next_action) next.textContent = saved.next_action;
+      if (ownerSel && saved.owner) ownerSel.value = saved.owner;
+    }
+
+    const pushState = () => {
+      const patch = {
+        status: sel ? sel.value : 'not-contacted',
+        comm_log: logHistory ? logHistory.textContent : '',
+        date_contacted: dateContacted && dateContacted.value ? dateContacted.value : null,
+        followup_date: followup && followup.value ? followup.value : null,
+        sent_material: sent ? sent.textContent : '',
+        response: response ? response.textContent : '',
+        next_action: next ? next.textContent : '',
+        owner: ownerSel && ownerSel.value !== 'Unassigned' ? ownerSel.value : null,
+        updated_at: new Date().toISOString()
+      };
+      sbPatch('tracker_targets', 'id', id, patch, tr);
+    };
+
+    const nameLabel = tr.querySelector('.k') ? tr.querySelector('.k').textContent.trim() : id;
+
+    const delBtn = tr.querySelector('.del-row-btn');
+    if (delBtn) {
+      delBtn.addEventListener('click', () => {
+        tr.style.display = 'none';
+        showUndoToast(nameLabel,
+          () => { // grace period expired — actually delete
+            fetch(SB_URL + '/rest/v1/tracker_targets?id=eq.' + encodeURIComponent(id), {
+              method: 'DELETE', headers: SB_HEADERS
+            }).then(r => {
+              if (!r.ok) throw new Error('delete failed: ' + r.status);
+              tr.remove();
+              logActivity(nameLabel, 'deleted from tracker');
+            }).catch(err => {
+              console.error('Delete failed', err);
+              tr.style.display = '';
+              alert('Could not delete — check connection and try again.');
+            });
+          },
+          () => { tr.style.display = ''; } // undo clicked — row was never actually deleted from Supabase
+        );
+      });
+    }
+
+    if (sel) sel.addEventListener('change', () => { pushState(); logActivity(nameLabel, 'status set to "' + sel.options[sel.selectedIndex].text + '"'); });
+    if (logHistory) logHistory.addEventListener('input', debounce(pushState, 900));
+    if (dateContacted) dateContacted.addEventListener('change', pushState);
+    if (followup) followup.addEventListener('change', pushState);
+    if (sent) sent.addEventListener('input', debounce(pushState, 900));
+    if (response) response.addEventListener('input', debounce(pushState, 900));
+    if (next) next.addEventListener('input', debounce(pushState, 900));
+    if (ownerSel) ownerSel.addEventListener('change', () => { pushState(); logActivity(nameLabel, 'assigned to ' + ownerSel.value); });
+
+    // Quick-log: type an attempt, press Enter, it's dated and prepended to the
+    // history — the box then clears itself, always ready for the next attempt.
+    if (logQuick) {
+      logQuick.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' || !logQuick.value.trim()) return;
+        e.preventDefault();
+        const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+        const noteText = logQuick.value.trim();
+        const entry = today + ' — ' + noteText;
+        const prior = logHistory.textContent.trim();
+        logHistory.textContent = entry + (prior ? '\n' + prior : '');
+        logQuick.value = '';
+        pushState();
+        logActivity(nameLabel, 'logged: "' + noteText + '"');
+      });
+    }
+
+    // Name/org/role-fit/email/contact cells on a freshly-added row are editable —
+    // any edit re-saves the display fields too (existing seeded rows keep these read-only in the UI, but the underlying PATCH is harmless either way).
+    if (tr.dataset.isNew) {
+      const nameCell = cells[0], orgCell = cells[1], roleCell = cells[2], emailCell = cells[3], urlCell = cells[4];
+      const pushMeta = debounce(() => sbPatch('tracker_targets', 'id', id, {
+        name: nameCell.textContent.trim() || 'Untitled target',
+        organisation: orgCell.textContent.trim(),
+        role_fit: roleCell.textContent.trim(),
+        email: emailCell.textContent.trim(),
+        contact_url: urlCell.textContent.trim(),
+        updated_at: new Date().toISOString()
+      }, tr), 900);
+      [nameCell, orgCell, roleCell, emailCell, urlCell].forEach(c => c.addEventListener('input', pushMeta));
+    }
+  }
+
+  let newTargetCount = 0;
+  document.getElementById('addTargetBtn').addEventListener('click', async () => {
+    newTargetCount++;
+    const id = 'new-' + Date.now() + '-' + newTargetCount;
+    const table = document.querySelector('table.tracker tbody');
+    const tr = document.createElement('tr');
+    tr.id = 'row-' + id;
+    tr.dataset.id = id;
+    tr.dataset.isNew = '1';
+    tr.innerHTML = `
+      <td class="k" contenteditable="true" data-placeholder="Name"></td>
+      <td contenteditable="true" data-placeholder="Organisation"></td>
+      <td contenteditable="true" data-placeholder="Role fit"></td>
+      <td contenteditable="true" data-placeholder="Email"></td>
+      <td contenteditable="true" data-placeholder="Profile / contact URL"></td>
+      <td class="status"><select class="status-select" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option>
+          </select></td>
+      <td><input type="date" class="f-input f-date"></td>
+      <td><input type="date" class="f-input f-date"></td>
+      <td contenteditable="true" class="f-editable" data-placeholder="e.g. Concept Note + Funding Route Summary"></td>
+      <td contenteditable="true" class="f-editable" data-placeholder="e.g. Interested, suggested co-I"></td>
+      <td contenteditable="true" class="f-editable" data-placeholder="e.g. Send first"></td>
+      <td class="log"><div class="log-history" contenteditable="true" data-placeholder="Past log entries appear here…"></div><input type="text" class="log-quick" placeholder="Log this attempt, press Enter…"></td>
+      <td class="mailto"><a href="#" class="mailto-btn is-disabled">No email on file</a></td>
+      <td class="owner"><select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></td>
+      <td class="del-cell"><button type="button" class="del-row-btn" title="Delete this target">✕</button></td>
+    `;
+    table.appendChild(tr);
+
+    // Real insert — a placeholder name satisfies the NOT NULL constraint; subsequent edits PATCH the same row.
+    await fetch(SB_URL + '/rest/v1/tracker_targets', {
+      method: 'POST',
+      headers: Object.assign({}, SB_HEADERS, { Prefer: 'resolution=ignore-duplicates' }),
+      body: JSON.stringify([{ id: id, name: 'Untitled target', status: 'not-contacted' }])
+    }).catch(err => console.error('Could not create new target row', err));
+
+    wireRow(tr, null);
+    tr.querySelector('.k').focus();
+  });
+
+  // ---------- Doc-level notes box, shared live ----------
+  async function wireDocNotes(){
+    const docId = '19-outreach-tracker';
+    const box = document.querySelector('.note-box');
+    if (!box) return;
+    const rows = await sbGet('doc_notes', '?doc_id=eq.' + docId + '&select=*');
+    if (rows.length && rows[0].body) box.textContent = rows[0].body;
+    box.addEventListener('input', debounce(() => {
+      sbUpsert('doc_notes', { doc_id: docId, body: box.textContent, updated_at: new Date().toISOString() }, 'doc_id');
+    }, 900));
+  }
+  wireDocNotes();
+</script>
+
 </body>
 </html>
