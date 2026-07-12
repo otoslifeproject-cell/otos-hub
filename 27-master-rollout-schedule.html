@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Master Rollout &amp; Send Schedule — OTOS Continuity™</title>
+<link rel="stylesheet" href="css/academic-pack.css">
+<style>
+  doc-page:not(:defined){visibility:hidden}
+  .col.full{ max-width: none; }
+  .phase-block{ margin: 30px 0 40px; }
+  .phase-tag{ display:inline-flex; align-items:center; gap:8px; font-family:var(--sans); font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:4px; }
+  .phase-tag .n{ width:22px; height:22px; border-radius:50%; background:var(--ink); color:var(--paper); display:inline-flex; align-items:center; justify-content:center; font-size:11px; }
+  .phase-title{ font-family:var(--serif); font-size:22px; font-weight:600; color:var(--ink); margin:2px 0 4px; }
+  .phase-sub{ font-size:12.5px; color:var(--muted); margin:0 0 14px; max-width:80ch; }
+  table.rollout{ width:100%; border-collapse:collapse; font-size:12px; }
+  table.rollout th{ text-align:left; font-family:var(--sans); font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); padding:0 10px 7px 0; border-bottom:1px solid var(--ink); white-space:nowrap; }
+  table.rollout td{ padding:9px 10px 9px 0; border-bottom:1px solid var(--rule); vertical-align:top; line-height:1.45; }
+  table.rollout tr:last-child td{ border-bottom:1px solid var(--rule); }
+  table.rollout td.k{ font-weight:600; color:var(--ink); white-space:nowrap; }
+  table.rollout td.org{ color:var(--muted); }
+  table.rollout td.docs{ min-width:210px; }
+  table.rollout td.trigger{ color:var(--accent-ink); font-weight:600; white-space:nowrap; }
+  table.rollout td.notes{ color:var(--muted); font-style:italic; }
+  .paused-block table.rollout{ opacity:.72; }
+  .paused-flag{ display:inline-block; font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border:1px solid var(--rule); border-radius:999px; padding:3px 10px; margin-left:10px; }
+  .legend{ display:flex; gap:22px; flex-wrap:wrap; font-size:11px; color:var(--muted); margin:6px 0 0; }
+  .legend b{ color:var(--ink); }
+</style>
+</head>
+<body class="afp">
+<a href="index.html" class="afp-backlink">← Academic Funding Pack</a>
+<doc-page width="440mm" height="297mm" margin="16mm">
+  <div slot="header" class="afp-head"><span class="doc-id">AFP · 27</span><span>Master Rollout &amp; Send Schedule</span></div>
+  <div slot="footer" class="afp-foot"><span>OTOS Digital Ltd — draft for discussion</span><span>Not for external distribution</span></div>
+
+  <div class="col full">
+    <div class="eyebrow">Academic Funding Pack — 27</div>
+    <h1 class="doc-title">Master rollout &amp; send schedule</h1>
+    <p class="dek">Everyone, in one place, in order — every audience across the whole OTOS family, exactly which document(s) they get, and what has to be true before they get it. See <a href="26-outreach-sequencing-plan.html">26 — Outreach Sequencing Plan</a> for the reasoning behind the phase order.</p>
+
+    <div class="note-strip">
+      <span class="lbl">How to read this</span>
+      <p>Rows are not a to-do list to clear in one sitting — each phase gates the next. Nothing in Phase 2 goes out before Phase 0 is closed; nothing in Phase 3 (partners, pharma, angel) goes out before Phase 1 has produced at least one real response. Update the "Trigger" column as things move — this is the single wide view; the outreach tracker (<a href="19-outreach-tracker.html">19</a>) is the day-to-day log per contact.</p>
+    </div>
+
+    <!-- PHASE 0 -->
+    <div class="phase-block">
+      <div class="phase-tag"><span class="n">0</span> Internal lock</div>
+      <div class="phase-title">Before anything leaves the building</div>
+      <p class="phase-sub">No external send of any kind starts until this row is clear.</p>
+      <table class="rollout">
+        <tr><th>Who</th><th>Docs</th><th>Trigger to move on</th><th>Notes</th></tr>
+        <tr>
+          <td class="k">Gareth &amp; Dean</td>
+          <td class="docs">All 15 core funding-pack docs (01–15) + this schedule</td>
+          <td class="trigger">G/D/Ready ticks complete on the hub task list</td>
+          <td class="notes">Review Wall sign-off tickboxes exist for the wider document family too</td>
+        </tr>
+        <tr>
+          <td class="k">Gareth &amp; Dean</td>
+          <td class="docs">8 Operating &amp; Governance Masters (draft)</td>
+          <td class="trigger">Stay in draft — never gate Phase 0–2 on these</td>
+          <td class="notes">Post-NDA only; not referenced in any pre-NDA material</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase-block">
+      <div class="phase-tag"><span class="n">1</span> Cover, then one test</div>
+      <div class="phase-title">The single narrow send</div>
+      <p class="phase-sub">One contact only. Wait for a reply, or 10 working days, before phase 2 opens.</p>
+      <table class="rollout">
+        <tr><th>Who</th><th>Org</th><th>Docs to send</th><th>Trigger</th><th>Notes</th></tr>
+        <tr>
+          <td class="k">— (site infra)</td>
+          <td class="org">otos.network / holding page</td>
+          <td class="docs">Holding page live (see <a href="17-otos-holding-page-brief.html">17</a>)</td>
+          <td class="trigger">Must be live before the email below sends</td>
+          <td class="notes">Credibility card, not a product launch</td>
+        </tr>
+        <tr>
+          <td class="k">Professor Barbara Sahakian</td>
+          <td class="org">Dept of Psychiatry / BCNI, Cambridge</td>
+          <td class="docs"><a href="20-cambridge-outreach-email-drafts.html">Email 1</a> + <a href="02-academic-concept-note.html">02 — Concept Note</a> only</td>
+          <td class="trigger">First send of the whole plan</td>
+          <td class="notes">Strongest topic fit — ADHD, addiction, cognitive psychopharmacology</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-block">
+      <div class="phase-tag"><span class="n">2</span> Widen the academic ring</div>
+      <div class="phase-title">Remaining Cambridge targets — pre-NDA, concept note only</div>
+      <p class="phase-sub">Opens only on a clean or positive Phase 1 response. Space sends a few days apart. Full detail on each in <a href="18-cambridge-academic-target-list.html">18 — Cambridge Academic Target List</a>.</p>
+      <table class="rollout">
+        <tr><th>#</th><th>Who</th><th>Org</th><th>Docs to send</th><th>Notes</th></tr>
+        <tr><td class="k">2</td><td>Professor Tamsin Ford / Psychiatry office</td><td class="org">Head of Dept of Psychiatry, Cambridge</td><td class="docs">02 — Concept Note</td><td class="notes">Department gateway — route to the right adult ADHD/addiction academic</td></tr>
+        <tr><td class="k">3</td><td>Professor Mary Dixon-Woods / THIS Institute</td><td class="org">Director, THIS Institute</td><td class="docs">02 + <a href="04-first-50-feasibility-outline.html">04</a></td><td class="notes">Implementation science / NHS improvement route</td></tr>
+        <tr><td class="k">4</td><td>Professor Henrietta Bowden-Jones</td><td class="org">Hon. Senior Visiting Fellow, Psychiatry, Cambridge</td><td class="docs">02 — Concept Note</td><td class="notes">Addiction psychiatry credibility / adviser route</td></tr>
+        <tr><td class="k">5</td><td>Cambridge Public Health network</td><td class="org">Cambridge Public Health — IRC</td><td class="docs">02 + short <a href="01-funding-route-summary.html">01</a></td><td class="notes">Health-economics / evaluation angle</td></tr>
+        <tr><td class="k">6</td><td>Professor Trevor Robbins</td><td class="org">Emeritus Prof. Cognitive Neuroscience, BCNI</td><td class="docs">02 — Concept Note</td><td class="notes">Senior scientific steer / route to right PI</td></tr>
+        <tr><td class="k">9</td><td>NIHR ARC East of England</td><td class="org">arc-eoe.nihr.ac.uk</td><td class="docs">02 + 04</td><td class="notes">Applied health research / feasibility design advice</td></tr>
+        <tr><td class="k">10</td><td>NIHR Cambridge BRC</td><td class="org">Cambridge Biomedical Campus, Mental Health theme</td><td class="docs">02 — Concept Note</td><td class="notes">Routes to clinical-academic theme lead</td></tr>
+        <tr><td class="k">11</td><td>Cambridge Enterprise</td><td class="org">University tech-transfer / translational funding office</td><td class="docs">01 + <a href="03-otos-role-project-partner.html">03</a></td><td class="notes">Route 4 (Impact Acceleration / Gap-fund) contact — can run in parallel with Phase 2, low drift risk</td></tr>
+        <tr><td class="k">12</td><td>Professor Carol Brayne</td><td class="org">Public Health &amp; Primary Care, Cambridge</td><td class="docs">02 + cost/evaluation angle</td><td class="notes">Public-health / epidemiology gateway</td></tr>
+        <tr><td class="k">13</td><td>Dept of Public Health &amp; Primary Care — gateway</td><td class="org">phpc.cam.ac.uk</td><td class="docs">02 + 01</td><td class="notes">Health-economics gateway</td></tr>
+        <tr><td class="k">14</td><td>Professor Camilla Nord</td><td class="org">Mental Health Neuroscience, Cambridge</td><td class="docs">02 — Concept Note</td><td class="notes">Mechanism / engagement — potential Wellcome co-I</td></tr>
+        <tr><td class="k">15</td><td>Professor Tim Dalgleish</td><td class="org">MRC Cognition and Brain Sciences Unit</td><td class="docs">02 — Concept Note</td><td class="notes">Clinical psychology / mechanism adviser</td></tr>
+        <tr><td class="k">16</td><td>Professor Simon Baron-Cohen / ARC route</td><td class="org">Autism Research Centre, Cambridge</td><td class="docs">02 — Concept Note only</td><td class="notes">Adjacent adviser, not primary PI candidate</td></tr>
+        <tr><td class="k">17</td><td>Dept of Psychiatry — research office</td><td class="org">University of Cambridge</td><td class="docs">02 + short covering note</td><td class="notes">Gateway target</td></tr>
+        <tr><td class="k">18</td><td>CPFT Research &amp; Development</td><td class="org">Cambridgeshire &amp; Peterborough NHS FT</td><td class="docs">02 + <a href="05-governance-boundary-note.html">05</a></td><td class="notes">Not cold — Dean has existing local relationships here; frame as governance conversation, not first contact</td></tr>
+      </table>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-block paused-block">
+      <div class="phase-tag"><span class="n">3</span> Funding-route applications <span class="paused-flag">Starts only after Phase 2 traction</span></div>
+      <div class="phase-title">Staged, not simultaneous</div>
+      <table class="rollout">
+        <tr><th>Route</th><th>Docs</th><th>Starts when</th><th>Not before</th></tr>
+        <tr><td class="k">MRC Impact Acceleration / Gap-style (Route 4)</td><td class="docs"><a href="24-iaa-tif-readiness-checklist.html">24</a> + 01 + 03</td><td class="trigger">An academic sponsor is identified and willing</td><td class="notes">—</td></tr>
+        <tr><td class="k">MRC Stage One</td><td class="docs"><a href="13-mrc-stage-one-skeleton.html">13</a></td><td class="trigger">Route 4 has produced a sponsor + shaped protocol</td><td class="notes">Before a PI is attached</td></tr>
+        <tr><td class="k">MRC Stage Two</td><td class="docs"><a href="14-mrc-stage-two-skeleton.html">14</a></td><td class="trigger">First-50 / Stage One feasibility data exists</td><td class="notes">Before Stage One reports</td></tr>
+        <tr><td class="k">Wellcome Mental Health</td><td class="docs"><a href="15-wellcome-mh-skeleton.html">15</a></td><td class="trigger">A mechanism-research academic is engaged</td><td class="notes">Not as a build-funding substitute</td></tr>
+      </table>
+    </div>
+
+    <!-- PHASE 4 — paused until proven -->
+    <div class="phase-block paused-block">
+      <div class="phase-tag"><span class="n">4</span> Existing partners, pharma, angel <span class="paused-flag">Paused until Phase 2 is proven</span></div>
+      <div class="phase-title">Everyone outside the academic ring</div>
+      <p class="phase-sub">These sit in the wider OTOS document family (outside this pack) and follow the packaging ladder in the project truth file — never opened while the academic story is still being tested.</p>
+      <table class="rollout">
+        <tr><th>Who</th><th>Register</th><th>Docs</th><th>Notes</th></tr>
+        <tr><td class="k">CGL &amp; CRS Team Leaders</td><td class="org">Partner-first-send</td><td class="docs">CGL &amp; CRS Team Leaders Brief</td><td class="notes">Existing relationship, not cold discovery</td></tr>
+        <tr><td class="k">Alcohol Liaison (bedside)</td><td class="org">Partner-first-send</td><td class="docs">Alcohol Liaison Bedside Brief</td><td class="notes">—</td></tr>
+        <tr><td class="k">RCE Wellbeing Hub</td><td class="org">Partner-first-send</td><td class="docs">RCE Wellbeing Hub Partner Brief</td><td class="notes">Pressure-test before formal RCE approach</td></tr>
+        <tr><td class="k">Mind · WorkWell · Therapy</td><td class="org">Partner-first-send</td><td class="docs">Mind WorkWell Therapy Brief</td><td class="notes">—</td></tr>
+        <tr><td class="k">Dr Claire Gillvray / LAMP</td><td class="org">Partner-first-send</td><td class="docs">Dr Claire Gillvray LAMP Brief</td><td class="notes">Strategic ally, pressure-test framing</td></tr>
+        <tr><td class="k">Public Health (local)</td><td class="org">Partner-first-send</td><td class="docs">Public Health Cost Case Brief</td><td class="notes">Dean has already had a first meeting — this is the follow-up doc, evidence-map allowed</td></tr>
+        <tr><td class="k">Champion (general advocate)</td><td class="org">Pre-NDA</td><td class="docs">Champion Brief</td><td class="notes">—</td></tr>
+        <tr><td class="k">AstraZeneca</td><td class="org">Pre-NDA (exec) → post-NDA (AZ NIA Master)</td><td class="docs">Exec Summary — AstraZeneca</td><td class="notes">Its own register — never opened alongside an unproven academic pitch</td></tr>
+        <tr><td class="k">Roche</td><td class="org">Pre-NDA</td><td class="docs">Exec Summary — Roche</td><td class="notes">Distinct from AZ — diagnostics/data framing, not category/medicine-plus-continuity</td></tr>
+        <tr><td class="k">Angel / strategic funder</td><td class="org">Staged — First-Look then Prospectus</td><td class="docs">OTOS Angel First-Look → OTOS Angel Brief</td><td class="notes">No angel conversation should run concurrently with an unproven academic pitch</td></tr>
+      </table>
+    </div>
+
+    <div class="legend">
+      <span><b>Bold accent</b> = trigger / gate to check before moving</span>
+      <span>Rows in muted phases (3–4) are intentionally paused — they are listed for completeness, not for action yet</span>
+    </div>
+  </div>
+</doc-page>
+<script src="js/doc-page.js"></script>
+</body>
+</html>
