@@ -405,6 +405,34 @@
     </div>
 
     <div class="sec">
+      <span class="num">02b</span>
+      <h2 class="sec-title">National clinical-academic routes (non-Cambridge)</h2>
+      <p>Cambridge is the home-ground route, but the single strongest <em>topic</em> match in the country sits in London. Keep this separate from the Cambridge list — it is a national specialist and research route, approached carefully and not as a local pilot site.</p>
+
+      <div class="target" data-target-id="slam_maudsley">
+        <div class="thead"><span class="priority-tag p1">★</span><span class="tname">South London &amp; Maudsley (SLaM) — National Adult ADHD &amp; Addictions / IoPPN</span><span class="torg">South London and Maudsley NHS Foundation Trust + King's College London Institute of Psychiatry, Psychology &amp; Neuroscience (IoPPN); Maudsley Hospital, De Crespigny Park, London SE5</span><span class="live-status">Outreach status: <select class="mini-status" data-val="not-contacted">
+            <option value="not-contacted" selected>Not contacted</option>
+            <option value="emailed">Emailed — awaiting reply</option>
+            <option value="called-no-answer">Called — no answer</option>
+            <option value="voicemail">Voicemail left</option>
+            <option value="replied">Replied</option>
+            <option value="call-booked">Call booked</option>
+            <option value="meeting-held">Meeting held</option>
+            <option value="no-response">No response after follow-up</option>
+            <option value="declined">Declined</option>
+            <option value="referred">Referred elsewhere</option></select></span><span class="live-status">Owner: <select class="owner-select"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></span></div>
+        <div class="tgrid">
+          <div><b>Why this matters</b><span>Uniquely exact fit. SLaM is the one trust that runs <strong>both</strong> a <strong>National Adult ADHD &amp; ASD Service</strong> and a <strong>National Addiction Centre</strong> (a leading addictions research centre) — the precise ADHD–addiction interface OTOS is built around — alongside the <strong>SLaM Biomedical Research Centre</strong> (the CRIS / Case Register, 250k+ anonymised mental-health records: a major real-world-evidence engine).</span></div>
+          <div><b>Best ask</b><span>Advisory / research steer, not a pilot-site pitch: "Who at the IoPPN or the National Addiction Centre works on the adult ADHD–addiction interface and continuity of care, and would they advise on shaping a feasibility study?"</span></div>
+          <div><b>Evidence of relevance</b><span>National Adult ADHD &amp; ASD Service and National Addiction Centre both confirmed live at SLaM; IoPPN (King's) is its academic partner and a top-ranked psychiatry research institution. Strong potential co-applicant / real-world-evidence route.</span></div>
+          <div><b>Public contact route</b><span>Route via IoPPN academic staff profiles / departmental research contacts (King's College London) or the National Addiction Centre — <strong>not</strong> the clinical service inbox (adhdasdadmin@slam.nhs.uk is for patient referrals, not research approaches). Verify the right named academic before sending.</span></div>
+          <div><b>First material</b><span>02 — Academic Concept Note only.</span></div>
+          <div class="full"><b>Notes / boundary</b><span>Approach as national specialists and researchers, not as a local delivery site (they are London-catchment + national referral). Do not imply endorsement. The RWE/data angle (CRIS) is powerful but post-NDA / research-partner territory — keep first contact to the one-page concept note. Advised route flagged by Dean, 15 Jul 2026.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
       <span class="num">03</span>
       <h2 class="sec-title">Target categories for the fourth funding route</h2>
       <p>Route 4 (Impact Acceleration / Gap-style / internal university translational funding, see <a href="01-funding-route-summary.html">01</a>) needs a different kind of contact than a research question does.</p>
@@ -469,6 +497,25 @@
     const rows = await sbGet('tracker_targets', '?select=id,status,owner');
     const byId = {};
     rows.forEach(r => { byId[r.id] = r; });
+
+    // Seed any target card not yet in the table (e.g. newly added routes like SLaM/Maudsley)
+    // so its status/owner persist — sbPatch only updates existing rows.
+    const missing = [];
+    const seen = {};
+    document.querySelectorAll('.target[data-target-id]').forEach(t => {
+      const id = t.dataset.targetId;
+      if (byId[id] || seen[id]) return;
+      seen[id] = 1;
+      const nm = t.querySelector('.tname') ? t.querySelector('.tname').textContent.trim() : id;
+      missing.push({ id: id, name: nm, status: 'not-contacted' });
+    });
+    if (missing.length) {
+      await fetch(SB_URL + '/rest/v1/tracker_targets', {
+        method: 'POST',
+        headers: Object.assign({}, SB_HEADERS, { Prefer: 'resolution=ignore-duplicates,return=minimal' }),
+        body: JSON.stringify(missing)
+      }).catch(() => {});
+    }
 
     document.querySelectorAll('.target[data-target-id]').forEach(t => {
       const id = t.dataset.targetId;

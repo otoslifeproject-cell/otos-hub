@@ -167,6 +167,35 @@
   .cd-actions{ display:flex; justify-content:space-between; align-items:center; margin-top:14px; }
   .cd-actions a{ font-size:11.5px; font-weight:700; color:var(--accent-ink); text-decoration:none; }
   .cd-actions a:hover{ color:var(--ink); }
+  .cd-actions .rec-addtask{ font-family:var(--sans); font-size:11.5px; font-weight:700; color:#fff; background:var(--accent-ink); border:none; border-radius:5px; padding:7px 13px; cursor:pointer; }
+  .cd-actions .rec-addtask:hover{ background:var(--ink); }
+  .contact-row .cr-open{ margin-left:auto; flex:none; font-size:11px; font-weight:700; color:var(--accent-ink); }
+  .contact-row:hover .cr-open{ color:var(--ink); }
+
+  /* ---------- Contact record (master → detail) ---------- */
+  .contact-record[hidden]{ display:none; }
+  .rec-back{ display:inline-flex; align-items:center; gap:6px; background:none; border:none; font-family:var(--sans); font-size:12px; font-weight:700; color:var(--accent-ink); cursor:pointer; padding:0; margin-bottom:18px; }
+  .rec-back:hover{ color:var(--ink); }
+  .rec-head{ border-bottom:2px solid var(--ink); padding-bottom:16px; margin-bottom:20px; }
+  .rec-head .rh-name{ font-family:var(--serif); font-size:27px; line-height:1.12; color:var(--ink); margin:0 0 4px; }
+  .rec-head .rh-org{ font-size:13.5px; color:var(--muted); margin:0 0 12px; }
+  .rec-head .rh-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .rec-head .rh-pill{ font-size:10.5px; font-weight:700; letter-spacing:.03em; border:1px solid var(--rule); border-radius:20px; padding:4px 11px; color:var(--muted); background:var(--paper); }
+  .rec-head .rh-pill b{ color:var(--ink); font-weight:700; }
+  .rec-cols{ display:grid; grid-template-columns:1fr 300px; gap:30px; align-items:start; }
+  .rec-activity{ border:1px solid var(--rule); border-radius:6px; padding:16px 18px; }
+  .rec-activity .lbl{ font-size:9.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:12px; }
+  .rec-activity .ra-item{ font-size:12px; line-height:1.45; color:var(--ink-soft); padding:8px 0; border-bottom:1px solid var(--rule-soft); }
+  .rec-activity .ra-item:last-child{ border-bottom:none; }
+  .rec-activity .ra-item .ra-meta{ display:block; font-size:10px; color:var(--faint); margin-top:2px; }
+  .rec-activity .ra-empty{ font-size:12px; color:var(--faint); font-style:italic; }
+  .rec-bg{ border:1px solid var(--rule); border-radius:6px; padding:16px 18px; margin-top:16px; background:oklch(98% 0.004 90); }
+  .rec-bg .lbl{ font-size:9.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px; }
+  .rec-bg .bg-field{ padding:7px 0; border-bottom:1px solid var(--rule-soft); }
+  .rec-bg .bg-field:last-child{ border-bottom:none; }
+  .rec-bg .bg-field b{ display:block; font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-bottom:2px; }
+  .rec-bg .bg-field span{ font-size:12.5px; line-height:1.5; color:var(--ink-soft); }
+  @media (max-width:820px){ .rec-cols{ grid-template-columns:1fr; } }
 
   /* ---------- To-do list (ad-hoc jobs, owned by Dean or Gareth) ---------- */
   .todo-panel{ border:1px solid var(--rule); border-radius:6px; padding:20px 24px; }
@@ -178,6 +207,10 @@
   .todo-add button{ font-family:var(--sans); font-size:12.5px; font-weight:700; background:var(--ink); color:var(--paper); border:none; border-radius:4px; padding:9px 18px; cursor:pointer; }
   .todo-add button:hover{ background:var(--accent-ink); }
   .todo-list{ display:flex; flex-direction:column; }
+  .task-filters{ display:flex; align-items:center; gap:14px; margin-bottom:14px; flex-wrap:wrap; }
+  .task-filters select{ font-family:var(--sans); font-size:11.5px; font-weight:700; border:1px solid var(--rule); border-radius:5px; padding:5px 8px; background:var(--paper); color:var(--ink); cursor:pointer; }
+  .task-filters label{ display:flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; color:var(--muted); cursor:pointer; }
+  .task-filters .tf-count{ margin-left:auto; font-size:11px; color:var(--faint); }
   .todo-item{ display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid var(--rule-soft); flex-wrap:wrap; }
   .todo-item:last-child{ border-bottom:none; }
   .todo-item input[type=checkbox]{ width:15px; height:15px; accent-color:var(--accent-ink); cursor:pointer; flex:none; }
@@ -192,6 +225,54 @@
   .todo-item .ti-del{ flex:none; background:none; border:none; color:var(--faint); font-size:13px; cursor:pointer; padding:2px 6px; }
   .todo-item .ti-del:hover{ color:#c0392b; }
   .todo-empty{ font-size:12.5px; color:var(--faint); font-style:italic; }
+  .todo-item.is-linked{ cursor:pointer; }
+  .todo-item.is-linked:hover{ background:var(--accent-wash); }
+  .todo-item .ti-meta{ flex:none; display:flex; gap:10px; align-items:center; margin-left:auto; }
+  .todo-item .ti-owner-tag{ font-size:9.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); border:1px solid var(--rule); border-radius:12px; padding:2px 9px; }
+  .todo-item .ti-due-tag{ font-size:11px; font-weight:700; color:var(--faint); white-space:nowrap; }
+  .todo-item .ti-due-tag.is-overdue{ color:oklch(50% 0.14 25); }
+  .todo-item .ti-open{ flex:none; font-size:11px; font-weight:700; color:var(--accent-ink); }
+  .todo-item.is-linked:hover .ti-open{ color:var(--ink); }
+  .todo-item{ cursor:pointer; }
+  .todo-item:hover{ background:var(--accent-wash); }
+  .todo-item .ti-dot{ flex:none; width:9px; height:9px; border-radius:50%; border:2px solid var(--accent); background:transparent; box-sizing:border-box; }
+  .todo-item.is-done .ti-dot{ background:var(--accent-ink); border-color:var(--accent-ink); }
+  .todo-item .ti-chev{ flex:none; color:var(--faint); font-size:17px; line-height:1; }
+  .todo-item:hover .ti-chev{ color:var(--accent-ink); }
+  .todo-item .ti-linktag{ flex:none; font-size:8px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); border:1px solid var(--accent); border-radius:10px; padding:1px 7px; }
+  /* ---------- Task window (modal) ---------- */
+  .task-modal[hidden]{ display:none; }
+  .task-modal{ position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; }
+  .tm-backdrop{ position:absolute; inset:0; background:rgba(20,18,15,.42); }
+  .tm-window{ position:relative; background:var(--paper); border-radius:10px; width:min(520px,92vw); max-height:88vh; overflow-y:auto; padding:26px 28px; box-shadow:0 20px 60px rgba(0,0,0,.28); }
+  .tm-close{ position:absolute; top:12px; right:14px; background:none; border:none; font-size:16px; color:var(--faint); cursor:pointer; }
+  .tm-close:hover{ color:var(--ink); }
+  .tm-lbl{ font-size:9.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px; }
+  .tm-title{ width:100%; box-sizing:border-box; font-family:var(--serif); font-size:20px; line-height:1.28; color:var(--ink); border:none; border-bottom:1px solid var(--rule); padding:0 0 10px; margin-bottom:18px; background:transparent; outline:none; }
+  .tm-title:focus{ border-bottom-color:var(--accent); }
+  .tm-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; margin-bottom:16px; }
+  .tm-field label{ display:block; font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-bottom:5px; }
+  .tm-field select, .tm-field input{ width:100%; box-sizing:border-box; font-family:var(--sans); font-size:13px; border:1px solid var(--rule); border-radius:5px; padding:7px 9px; background:var(--paper); }
+  .tm-field textarea{ width:100%; box-sizing:border-box; font-family:var(--sans); font-size:13px; line-height:1.5; border:1px solid var(--rule); border-radius:5px; padding:8px 9px; background:var(--paper); resize:vertical; }
+  .tm-field textarea:focus{ border-color:var(--accent); outline:none; }
+  .todo-item .ti-status-tag{ flex:none; font-size:8.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; border-radius:10px; padding:2px 8px; }
+  .todo-item .ti-status-tag.s-open{ color:var(--muted); border:1px solid var(--rule); }
+  .todo-item .ti-status-tag.s-in-progress{ color:var(--accent-ink); border:1px solid var(--accent); }
+  .todo-item .ti-status-tag.s-waiting{ color:oklch(55% 0.12 60); border:1px solid oklch(55% 0.12 60 / 0.5); }
+  .todo-item.is-high{ box-shadow: inset 3px 0 0 var(--accent-ink); }
+  .todo-item .ti-prio-tag{ flex:none; font-size:8.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#fff; background:var(--accent-ink); border-radius:10px; padding:2px 8px; }
+  .todo-item .ti-prio-tag.p-low{ color:var(--faint); background:transparent; border:1px solid var(--rule); }
+  .tm-status{ display:flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; color:var(--ink); }
+  .tm-status .dot{ width:10px; height:10px; border-radius:50%; }
+  .tm-linked{ margin:2px 0 16px; }
+  .tm-linked a{ font-size:12.5px; font-weight:700; color:var(--accent-ink); text-decoration:none; }
+  .tm-linked a:hover{ color:var(--ink); }
+  .tm-metaline{ font-size:11px; color:var(--faint); margin-bottom:18px; }
+  .tm-actions{ display:flex; gap:10px; align-items:center; }
+  .tm-complete{ font-family:var(--sans); font-size:13px; font-weight:700; color:#fff; background:var(--accent-ink); border:none; border-radius:5px; padding:9px 16px; cursor:pointer; }
+  .tm-complete.is-done{ background:oklch(46% 0.13 152); }
+  .tm-delete{ margin-left:auto; font-family:var(--sans); font-size:12px; font-weight:700; color:var(--faint); background:none; border:1px solid var(--rule); border-radius:5px; padding:8px 12px; cursor:pointer; }
+  .tm-delete:hover{ color:#c0392b; border-color:#c0392b; }
 
   /* ---------- reminder toasts (due tasks) ---------- */
   .reminder-toasts{ position:fixed; top:60px; right:14px; z-index:60; display:flex; flex-direction:column; gap:8px; max-width:340px; }
@@ -336,7 +417,35 @@
             </select>
             <button type="button" id="todoAddBtn">Add</button>
           </div>
+          <div class="task-filters">
+            <select id="taskFilterOwner"><option value="">All owners</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option><option value="Unassigned">Unassigned</option></select>
+            <label><input type="checkbox" id="taskFilterOverdue"> Overdue only</label>
+            <label><input type="checkbox" id="taskFilterHideDone"> Hide completed</label>
+            <span class="tf-count" id="taskFilterCount"></span>
+          </div>
           <div class="todo-list" id="todoList"><div class="todo-empty">Loading…</div></div>
+        </div>
+        <div class="task-modal" id="taskModal" hidden>
+          <div class="tm-backdrop"></div>
+          <div class="tm-window">
+            <button type="button" class="tm-close" title="Close">✕</button>
+            <div class="tm-lbl">Task</div>
+            <input type="text" class="tm-title" placeholder="Task title">
+            <div class="tm-grid">
+              <div class="tm-field"><label>Owner</label><select class="tm-owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div>
+              <div class="tm-field"><label>Status</label><select class="tm-status-sel"><option value="open">Open</option><option value="in-progress">In progress</option><option value="waiting">Waiting on them</option><option value="done">Done</option></select></div>
+              <div class="tm-field"><label>Priority</label><select class="tm-prio"><option value="high">High</option><option value="normal">Normal</option><option value="low">Low</option></select></div>
+              <div class="tm-field"><label>Due date</label><input type="date" class="tm-due"></div>
+              <div class="tm-field"><label>Due time (optional)</label><input type="time" class="tm-due-time"></div>
+            </div>
+            <div class="tm-field" style="margin-bottom:16px;"><label>Notes</label><textarea class="tm-notes" rows="4" placeholder="Calls made, what was said, next step…"></textarea></div>
+            <div class="tm-linked"></div>
+            <div class="tm-metaline"></div>
+            <div class="tm-actions">
+              <button type="button" class="tm-complete">Mark complete</button>
+              <button type="button" class="tm-delete">Delete task</button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -344,21 +453,10 @@
       <section data-view-panel="contacts" hidden>
         <div class="panel-head">
           <h1>Contacts</h1>
-          <div class="ph-sub">The Cambridge outreach CRM — who's been contacted, what's overdue, and where to go for the full record.</div>
+          <div class="ph-sub">Every contact, route and organisation — who's been contacted, what's overdue, and where to open the full record.</div>
         </div>
 
-        <div class="crm-callout">
-          <div class="cc-txt">
-            <div class="lbl">Live outreach</div>
-            <h2>The outreach CRM</h2>
-            <p>Who's been contacted, what was sent, and what's next — the working record for Cambridge outreach.</p>
-          </div>
-          <div class="cc-btns">
-            <a class="cc-btn" href="19-outreach-tracker.html"><span class="n">19</span>Open outreach tracker</a>
-            <a class="cc-btn ghost" href="18-cambridge-academic-target-list.html"><span class="n">18</span>Open target list</a>
-          </div>
-        </div>
-
+        <div id="contactsMaster">
         <div class="overdue">
           <div class="lbl">Overdue follow-ups</div>
           <div id="overdueList"><div class="overdue-empty">Loading…</div></div>
@@ -373,6 +471,8 @@
           <div class="search-meta" id="contactSearchMeta"></div>
         </div>
         <div class="contact-list" id="contactList"><div style="padding:16px;font-size:12.5px;color:var(--faint);font-style:italic;">Loading…</div></div>
+        </div>
+        <div class="contact-record" id="contactRecord" hidden></div>
       </section>
 
       <!-- ============ DOCUMENTS ============ -->
@@ -397,7 +497,7 @@
             <div class="dcard"><div class="dn" id="dashGareth">–</div><div class="dd">Gareth-reviewed, across the whole hub</div></div>
             <div class="dcard"><div class="dn" id="dashDean">–</div><div class="dd">Dean-reviewed, across the whole hub</div></div>
             <div class="dcard"><div class="dn warn" id="dashMasters">–</div><div class="dd">of 8 operating masters signed off</div></div>
-            <div class="dcard"><div class="dn" id="dashOutreach">–</div><div class="dd">Cambridge targets contacted (of tracked)</div></div>
+            <div class="dcard"><div class="dn" id="dashOutreach">–</div><div class="dd">outreach targets contacted (of tracked)</div></div>
           </div>
           <div class="dash-groups" id="dashGroups"></div>
         </div>
@@ -460,6 +560,7 @@
             <li><a href="24-iaa-tif-readiness-checklist.html"><span class="no">24</span><span class="tt"><span class="t">Cambridge Enterprise IAA/TIF Readiness Checklist</span><span class="d">Job: what has to be true before Route 4 can actually be applied for</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
             <li><a href="25-talk-track-deck.html"><span class="no">25</span><span class="tt"><span class="t">Academic Talk-Track Deck</span><span class="d">Job: the concept note in visual form, for the 20-minute calls</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
             <li><a href="26-outreach-sequencing-plan.html"><span class="no">26</span><span class="tt"><span class="t">Outreach Sequencing Plan</span><span class="d">Job: who gets what, in what order — before any external send goes out</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
+            <li><a href="29-funding-investment-routes.html"><span class="no">29</span><span class="tt"><span class="t">Funding &amp; Investment Routes</span><span class="d">Job: angel, grant, investment &amp; build-support routes — owner + live status per route (incl. Maudsley/SLaM via the target list)</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
           </ol>
         </details>
 
@@ -665,10 +766,8 @@
         const rows = [...container.querySelectorAll('.contact-row')];
         let shown = 0;
         rows.forEach(row => {
-          const detail = row.nextElementSibling;
           const match = !q || (row.dataset.searchText || '').includes(q);
           row.style.display = match ? '' : 'none';
-          if (detail && detail.classList.contains('contact-detail')) detail.style.display = match ? '' : 'none';
           if (match) shown++;
         });
         meta.textContent = q ? shown + ' of ' + rows.length + ' contacts match "' + input.value.trim() + '"' : '';
@@ -820,6 +919,26 @@
       ['no-response', 'No response after follow-up'], ['declined', 'Declined'], ['referred', 'Referred elsewhere']
     ].map(([v, l]) => '<option value="' + v + '">' + l + '</option>').join('');
 
+    // Route background — funding/investment routes + national clinical route. Surfaced read-only inside the contact record.
+    const ROUTE_BACKGROUND = {
+      'he-digital-health-hub': { role:'Best live local NHS/digital build route (Health Innovation East Digital Health Hub, EOI open).', fit:'No-code build, DTAC-aligned support, sandboxing, 6-month build + possible 4-month real-world testing — ideal for a low-cost pre-pilot demonstrator.', action:'Short route-check: "Is OTOS a fit for the Digital Health Hub before we submit the EOI?" No PDF first.', contact:'enquiries@healthinnovationeast.co.uk · 01223 661500', boundary:'Not a clinical-decision / diagnostic / prescribing / EPR / NHS-record tool — non-clinical continuity demonstrator.' },
+      'cambridge-angels': { role:'Cleanest local angel match to ~£150k (Cambridge Angels, typ. £150k–£1.5m, first equity round).', fit:'Science/engineering/IP-rich tech, tools enabling healthcare, B2B, 10x-exit logic.', action:'Office-hours / route feedback before cold-submitting: "Right kind of healthcare-enabling infrastructure for you?"', contact:'cambridgeangels.com/entrepreneurs · /apply-to-cambridge-angels', boundary:'Needs team, defensible IP, SEIS/EIS, market + exit. Do not lead with lived story alone; no full founder/clinical detail first.' },
+      'lottery-reaching-communities': { role:'Strongest lived-experience / community-power route (National Lottery Reaching Communities England).', fit:'Explicitly favours lived-experience-led orgs; fits "add to, not replace" statutory services and health inequalities.', action:'Call advice team: "Would a lived-experience-led continuity demonstrator fit Reaching Communities?"', contact:'tnlcommunityfund.org.uk — Reaching Communities England', boundary:'Must not sound like "fund our SaaS." Needs CIC/VCSE/community-governance angle, co-production. No ROI-first language.' },
+      'anglia-capital': { role:'Strong East Anglia angel route (Anglia Capital Group, ~60 investors; 2026 deadlines incl. 10 Aug, 13 Oct).', fit:'Wants East Anglia link, SEIS/EIS, MVP, traction, route to market, fair valuation, exit.', action:'Fit-check: "Too early for 10 August, or worth preparing with a partner-backed demonstrator pack?"', contact:'info@angliacapitalgroup.co.uk', boundary:'Risk is being too early / pre-build. Position as pre-pilot demonstrator with partner interest, not a proven product.' },
+      'nihr-jla-ahg': { role:'High-credibility research / lived-experience addiction-healthcare route (NIHR JLA / Addiction Healthcare Goals, open to 5 Aug 2026).', fit:'Names co-existing MH conditions, relapse prevention, integration of addiction + MH services. Fits a feasibility/evaluation study.', action:'Find an academic/NHS co-applicant first: "Who would shape this as a feasibility/evaluation study?"', contact:'NIHR JLA rolling opportunity (EME Programme), nihr.ac.uk', boundary:'Needs research design, co-production, PPIE, a health-related primary outcome. Research version, not commercial PDF.' },
+      'cambridge-capital': { role:'Golden Triangle angel syndicate, second wave (Cambridge Capital Group, £100k–£2m).', fit:'Best if the deck is tech/IP/defensibility-led (medtech, software, AI, B2B).', action:'Contact form, short fit check: "Appropriate seed-stage / B2B digital-health infrastructure opportunity?"', contact:'cambridgecapitalgroup.co.uk/ccg', boundary:'Tech/IP/exit heavy — needs defensibility + market story. Investment version, not charity-style PDF.' },
+      'msd-uk-grants': { role:'Small satellite grant (MSD UK 2026 Grants, window 2 Jul–end Aug 2026, £5k–£25k).', fit:'A bounded strand — lived-experience engagement, digital inclusion, co-production, evaluation support.', action:'Prepare Jul/Aug strand; use only if an eligible partner structure is clear.', contact:'msd-uk.com — 2026 Grants Programme applicant PDF', boundary:'Not £150k; cannot fund individuals or direct medical care. Satellite only.' },
+      'cambs-asc-seed': { role:'Local relationship route (Cambridgeshire ASC seed / Local MH Community Fund — CLOSED, bidders due end Jun 2026).', fit:'Near-perfect language match; use for local partner intelligence + next-cycle language.', action:'Do not apply now. Track successful bidders, find a VCSE admin partner, ask for feedback.', contact:'cambridgeshire.gov.uk — ASC 2026-27 funding opportunities', boundary:'Window closed — do not present as open.' },
+      'nihr-i4i-pda': { role:'Future product-development funding (NIHR i4i PDA — April 2026 round CLOSED 27 May).', fit:'Product development, digital-health classification, patient benefit, milestones, PPIE, co-applicant.', action:'Prepare a next-round outline; ask for eligibility guidance. Not an active submission.', contact:'i4i@nihr.ac.uk', boundary:'Likely needs a stronger NHS/academic partner + 24–36 month plan.' },
+      'sib-reach-fund': { role:'Investment-readiness grant, later (Social Investment Business Reach Fund, £5k–£15k).', fit:'Business plan, forecasting, governance, investment readiness for repayable finance.', action:'Hold until a CIC/social-enterprise + repayable-finance route are real.', contact:'grants@sibgroup.org.uk', boundary:'Needs social-enterprise/charity structure + asset lock. Not pilot money.' },
+      'bethnal-green-ventures': { role:'Tech-for-good pre-seed route (Bethnal Green Ventures).', fit:'Strong if framed as tech-for-good / health-inequality / lived-experience infrastructure.', action:'Approach once impact + venture-scale story is clean. Angel PDF, not NHS grant PDF.', contact:'bethnalgreenventures.com — Talk to our team', boundary:'Needs a scalable venture story, not just a local NHS pilot.' },
+      'ada-ventures': { role:'Inclusive pre-seed VC, later (Ada Ventures).', fit:'Useful if OTOS becomes a broader health/continuity platform with defensible tech.', action:'Hold until deck is strong; use their deck/feedback routes before a cold pitch.', contact:'adaventures.com', boundary:'Likely too early; raise size usually larger than £150k.' },
+      'zinc-vc': { role:'Science-for-impact venture-building ecosystem (Zinc).', fit:'For venture-building, fellows, innovation partners rather than immediate investment.', action:'Explore as an ecosystem route only.', contact:'zinc.vc', boundary:'Not an obvious direct £150k route; do not prioritise above Cambridge routes.' },
+      'cambridge-innovation-capital': { role:'Major Cambridge VC, warm-intro only (Cambridge Innovation Capital).', fit:'More appropriate after evidence, IP, team and traction are stronger.', action:'No cold send now — watchlist for after demonstrator evidence.', contact:'Public website / warm intro only', boundary:'Too big/institutional for a first £150k round unless a warm bridge appears.' },
+      'innovate-uk-sbri': { role:'Policy-aligned monitor route (Innovate UK / SBRI successor calls).', fit:'Previous addiction digital/MedTech calls were highly relevant; monitor for a live successor.', action:'Set a funding-finder alert. No application time unless a live call appears.', contact:'UKRI / Innovate UK funding finder', boundary:'Do not present closed calls as active.' },
+      'slam_maudsley': { role:'Strongest national clinical-academic topic fit (South London & Maudsley + King\'s IoPPN).', fit:'The only trust running a National Adult ADHD service AND a National Addiction Centre, plus the SLaM BRC data engine (CRIS, 250k+ records) — the exact ADHD–addiction interface + a real-world-evidence route.', action:'Advisory/research steer, not a pilot-site pitch: "Who works on the adult ADHD–addiction interface and continuity, and would they advise on a feasibility study?"', contact:'Via IoPPN academic profiles / National Addiction Centre (King\'s) — NOT the clinical referral inbox.', boundary:'National specialists/researchers, not a local delivery site. RWE/CRIS angle is post-NDA. First contact = one-page concept note only.' }
+    };
+
     async function loadContactsList(){
       const container = document.getElementById('contactList');
       const rows = await sbGet('tracker_targets', '?select=*&order=sort_order.asc');
@@ -828,96 +947,130 @@
         container.innerHTML = '<div style="padding:16px;font-size:12.5px;color:var(--faint);font-style:italic;">No contacts yet.</div>';
         return;
       }
+      const record = document.getElementById('contactRecord');
+      const master = document.getElementById('contactsMaster');
+      const FIELDS_HTML =
+        '<div class="cd-grid">' +
+          '<div class="cd-field"><label>Status</label><select class="cd-status">' + STATUS_OPTIONS_HTML + '</select></div>' +
+          '<div class="cd-field"><label>Owner</label><select class="cd-owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div>' +
+          '<div class="cd-field"><label>Date contacted</label><input type="date" class="cd-date-contacted"></div>' +
+          '<div class="cd-field"><label>Follow-up date</label><input type="date" class="cd-followup"></div>' +
+          '<div class="cd-field" style="grid-column:1/-1;"><label>Sent material</label><input type="text" class="cd-sent"></div>' +
+          '<div class="cd-field" style="grid-column:1/-1;"><label>Response</label><input type="text" class="cd-response"></div>' +
+          '<div class="cd-field" style="grid-column:1/-1;"><label>Next action</label><input type="text" class="cd-next"></div>' +
+        '</div>' +
+        '<div class="cd-field"><label>Communication log</label><div class="cd-log-history" contenteditable="true"></div>' +
+        '<input type="text" class="cd-log-quick" placeholder="Log this attempt, press Enter…"></div>';
+
+      function backToList(){
+        record.hidden = true; record.innerHTML = '';
+        master.hidden = false;
+        history.replaceState(null, '', '#contacts');
+        window.scrollTo(0, 0);
+      }
+
+      function renderActivity(box, acts){
+        if (!acts || !acts.length) { box.innerHTML = '<div class="ra-empty">No activity logged for this contact yet.</div>'; return; }
+        box.innerHTML = acts.map(a => {
+          const d = a.created_at ? new Date(a.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
+          return '<div class="ra-item">' + (a.detail || '') + '<span class="ra-meta">' + (a.actor || 'Unknown') + (d ? ' · ' + d : '') + '</span></div>';
+        }).join('');
+      }
+
+      async function openContactRecord(r){
+        master.hidden = true;
+        record.hidden = false;
+        const bg = ROUTE_BACKGROUND[r.id];
+        const bgHtml = bg ? '<div class="rec-bg"><div class="lbl">Route background</div>' +
+          '<div class="bg-field"><b>Best role</b><span>' + bg.role + '</span></div>' +
+          '<div class="bg-field"><b>Fit</b><span>' + bg.fit + '</span></div>' +
+          '<div class="bg-field"><b>First action</b><span>' + bg.action + '</span></div>' +
+          '<div class="bg-field"><b>Contact route</b><span>' + bg.contact + '</span></div>' +
+          '<div class="bg-field"><b>Boundary / don\'t send</b><span>' + bg.boundary + '</span></div>' +
+          '</div>' : '';
+        record.innerHTML =
+          '<button type="button" class="rec-back">← Back to contacts</button>' +
+          '<div class="rec-head"><h2 class="rh-name"></h2><p class="rh-org"></p>' +
+            '<div class="rh-tags"><span class="rh-pill">Status: <b class="rh-status"></b></span><span class="rh-pill">Owner: <b class="rh-owner-tag"></b></span></div></div>' +
+          '<div class="rec-cols"><div class="rec-main">' + FIELDS_HTML +
+            '<div class="cd-actions"><button type="button" class="rec-addtask">+ Add task for this contact</button><a href="19-outreach-tracker.html#row-' + r.id + '">Open full tracker row →</a></div>' + bgHtml + '</div>' +
+            '<aside class="rec-activity"><div class="lbl">Activity history</div><div class="ra-list"><div class="ra-empty">Loading…</div></div></aside>' +
+          '</div>';
+        const q = sel => record.querySelector(sel);
+        q('.rh-name').textContent = r.name;
+        q('.rh-org').textContent = r.organisation || '';
+        q('.cd-status').value = r.status || 'not-contacted';
+        q('.cd-owner').value = r.owner || 'Unassigned';
+        if (r.date_contacted) q('.cd-date-contacted').value = r.date_contacted;
+        if (r.followup_date) q('.cd-followup').value = r.followup_date;
+        q('.cd-sent').value = r.sent_material || '';
+        q('.cd-response').value = r.response || '';
+        q('.cd-next').value = r.next_action || '';
+        q('.cd-log-history').textContent = r.comm_log || '';
+        const refreshTags = () => {
+          q('.rh-status').textContent = q('.cd-status').selectedOptions[0].text;
+          q('.rh-owner-tag').textContent = q('.cd-owner').value;
+          const mrow = container.querySelector('.contact-row[data-cid="' + r.id + '"]');
+          if (mrow) { mrow.querySelector('.cr-status').textContent = q('.cd-status').value.replace(/-/g, ' '); mrow.querySelector('.cr-owner').textContent = q('.cd-owner').value !== 'Unassigned' ? q('.cd-owner').value : '—'; }
+        };
+        refreshTags();
+        const push = () => {
+          r.status = q('.cd-status').value; r.owner = q('.cd-owner').value !== 'Unassigned' ? q('.cd-owner').value : null;
+          r.date_contacted = q('.cd-date-contacted').value || null; r.followup_date = q('.cd-followup').value || null;
+          r.sent_material = q('.cd-sent').value; r.response = q('.cd-response').value; r.next_action = q('.cd-next').value; r.comm_log = q('.cd-log-history').textContent;
+          sbPatch('tracker_targets', 'id', r.id, {
+            status: r.status, owner: r.owner, date_contacted: r.date_contacted, followup_date: r.followup_date,
+            sent_material: r.sent_material, response: r.response, next_action: r.next_action, comm_log: r.comm_log, updated_at: new Date().toISOString()
+          });
+          refreshTags();
+        };
+        q('.cd-status').addEventListener('change', () => { push(); logActivity(r.name, 'status set to "' + q('.cd-status').selectedOptions[0].text + '"'); });
+        q('.cd-owner').addEventListener('change', () => { push(); logActivity(r.name, 'assigned to ' + q('.cd-owner').value); });
+        q('.cd-date-contacted').addEventListener('change', push);
+        q('.cd-followup').addEventListener('change', push);
+        q('.cd-sent').addEventListener('input', debounce(push, 900));
+        q('.cd-response').addEventListener('input', debounce(push, 900));
+        q('.cd-next').addEventListener('input', debounce(push, 900));
+        q('.cd-log-history').addEventListener('input', debounce(push, 900));
+        q('.cd-log-quick').addEventListener('keydown', (e) => {
+          if (e.key !== 'Enter' || !e.target.value.trim()) return;
+          e.preventDefault();
+          const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+          const hist = q('.cd-log-history'); const prior = hist.textContent.trim();
+          hist.textContent = today + ' — ' + e.target.value.trim() + (prior ? '\n' + prior : '');
+          e.target.value = '';
+          push(); logActivity(r.name, 'logged: "' + hist.textContent.split('\n')[0] + '"');
+          sbGet('activity_log', '?select=detail,actor,created_at&doc_label=eq.' + encodeURIComponent(r.name) + '&order=created_at.desc&limit=40').then(a => renderActivity(record.querySelector('.ra-list'), a));
+        });
+        record.querySelector('.rec-back').addEventListener('click', backToList);
+        const atBtn = record.querySelector('.rec-addtask');
+        if (atBtn) atBtn.addEventListener('click', () => addTaskForRecord(r.id, r.name, r.owner));
+        history.replaceState(null, '', '#row-' + r.id);
+        window.scrollTo(0, 0);
+        const acts = await sbGet('activity_log', '?select=detail,actor,created_at&doc_label=eq.' + encodeURIComponent(r.name) + '&order=created_at.desc&limit=40');
+        renderActivity(record.querySelector('.ra-list'), acts);
+      }
+
       rows.forEach(r => {
         const row = document.createElement('div');
         row.className = 'contact-row';
-        row.innerHTML = '<span class="cr-chev">▸</span><span class="cr-name"></span><span class="cr-org"></span><span class="cr-status"></span><span class="cr-owner"></span>';
+        row.dataset.cid = r.id;
+        row.innerHTML = '<span class="cr-name"></span><span class="cr-org"></span><span class="cr-status"></span><span class="cr-owner"></span><span class="cr-open">Open →</span>';
         row.querySelector('.cr-name').textContent = r.name;
         row.querySelector('.cr-org').textContent = r.organisation || '';
         row.querySelector('.cr-status').textContent = (r.status || 'not-contacted').replace(/-/g, ' ');
         row.querySelector('.cr-owner').textContent = r.owner || '—';
-
-        const detail = document.createElement('div');
-        detail.className = 'contact-detail';
-        detail.innerHTML =
-          '<div class="cd-grid">' +
-            '<div class="cd-field"><label>Status</label><select class="cd-status">' + STATUS_OPTIONS_HTML + '</select></div>' +
-            '<div class="cd-field"><label>Owner</label><select class="cd-owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div>' +
-            '<div class="cd-field"><label>Date contacted</label><input type="date" class="cd-date-contacted"></div>' +
-            '<div class="cd-field"><label>Follow-up date</label><input type="date" class="cd-followup"></div>' +
-            '<div class="cd-field" style="grid-column:1/-1;"><label>Sent material</label><input type="text" class="cd-sent"></div>' +
-            '<div class="cd-field" style="grid-column:1/-1;"><label>Response</label><input type="text" class="cd-response"></div>' +
-            '<div class="cd-field" style="grid-column:1/-1;"><label>Next action</label><input type="text" class="cd-next"></div>' +
-          '</div>' +
-          '<div class="cd-field"><label>Communication log</label><div class="cd-log-history" contenteditable="true"></div>' +
-          '<input type="text" class="cd-log-quick" placeholder="Log this attempt, press Enter…"></div>' +
-          '<div class="cd-actions"><a href="19-outreach-tracker.html#row-' + r.id + '">Open full tracker row →</a></div>';
-
-        detail.querySelector('.cd-status').value = r.status || 'not-contacted';
-        detail.querySelector('.cd-owner').value = r.owner || 'Unassigned';
-        if (r.date_contacted) detail.querySelector('.cd-date-contacted').value = r.date_contacted;
-        if (r.followup_date) detail.querySelector('.cd-followup').value = r.followup_date;
-        detail.querySelector('.cd-sent').value = r.sent_material || '';
-        detail.querySelector('.cd-response').value = r.response || '';
-        detail.querySelector('.cd-next').value = r.next_action || '';
-        detail.querySelector('.cd-log-history').textContent = r.comm_log || '';
-
-        const push = () => {
-          const patch = {
-            status: detail.querySelector('.cd-status').value,
-            owner: detail.querySelector('.cd-owner').value !== 'Unassigned' ? detail.querySelector('.cd-owner').value : null,
-            date_contacted: detail.querySelector('.cd-date-contacted').value || null,
-            followup_date: detail.querySelector('.cd-followup').value || null,
-            sent_material: detail.querySelector('.cd-sent').value,
-            response: detail.querySelector('.cd-response').value,
-            next_action: detail.querySelector('.cd-next').value,
-            comm_log: detail.querySelector('.cd-log-history').textContent,
-            updated_at: new Date().toISOString()
-          };
-          sbPatch('tracker_targets', 'id', r.id, patch);
-          row.querySelector('.cr-status').textContent = patch.status.replace(/-/g, ' ');
-          row.querySelector('.cr-owner').textContent = patch.owner || '—';
-        };
-        detail.querySelector('.cd-status').addEventListener('change', () => { push(); logActivity(r.name, 'status set to "' + detail.querySelector('.cd-status').selectedOptions[0].text + '"'); });
-        detail.querySelector('.cd-owner').addEventListener('change', () => { push(); logActivity(r.name, 'assigned to ' + detail.querySelector('.cd-owner').value); });
-        detail.querySelector('.cd-date-contacted').addEventListener('change', push);
-        detail.querySelector('.cd-followup').addEventListener('change', push);
-        detail.querySelector('.cd-sent').addEventListener('input', debounce(push, 900));
-        detail.querySelector('.cd-response').addEventListener('input', debounce(push, 900));
-        detail.querySelector('.cd-next').addEventListener('input', debounce(push, 900));
-        detail.querySelector('.cd-log-history').addEventListener('input', debounce(push, 900));
-        detail.querySelector('.cd-log-quick').addEventListener('keydown', (e) => {
-          if (e.key !== 'Enter' || !e.target.value.trim()) return;
-          e.preventDefault();
-          const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
-          const hist = detail.querySelector('.cd-log-history');
-          const prior = hist.textContent.trim();
-          hist.textContent = today + ' — ' + e.target.value.trim() + (prior ? '\n' + prior : '');
-          e.target.value = '';
-          push();
-        });
-
-        row.addEventListener('click', () => {
-          const wasOpen = detail.classList.contains('is-open');
-          container.querySelectorAll('.contact-detail.is-open').forEach(d => d.classList.remove('is-open'));
-          container.querySelectorAll('.contact-row.is-open').forEach(rr => rr.classList.remove('is-open'));
-          if (!wasOpen) { detail.classList.add('is-open'); row.classList.add('is-open'); }
-        });
-
         row.dataset.searchText = (r.name + ' ' + (r.organisation || '') + ' ' + (r.status || '')).toLowerCase();
+        row.addEventListener('click', () => openContactRecord(r));
         container.appendChild(row);
-        container.appendChild(detail);
       });
 
-      // If arriving via a #row-<id> hash from elsewhere, open that contact's detail
+      // If arriving via a #row-<id> hash from elsewhere, open that contact's record
+      window.__openContact = (id) => { const rec = rows.find(r => r.id === id); if (rec) { goToView('contacts'); openContactRecord(rec); } };
       if (location.hash.startsWith('#row-')) {
         const id = location.hash.slice(5);
-        const rowIdx = rows.findIndex(r => r.id === id);
-        if (rowIdx > -1) {
-          const allRows = container.querySelectorAll('.contact-row');
-          const allDetails = container.querySelectorAll('.contact-detail');
-          if (allRows[rowIdx]) { allRows[rowIdx].click(); goToView('contacts'); }
-        }
+        const rec = rows.find(r => r.id === id);
+        if (rec) { goToView('contacts'); openContactRecord(rec); }
       }
     }
 
@@ -938,59 +1091,143 @@
     }
 
     // ---------- To-do list (ad-hoc jobs, owned by Dean/Gareth/Unassigned) ----------
+    const TASK_MATCHERS = [
+      ['slam_maudsley', ['maudsley', 'slam', 'ioppn']],
+      ['cambridge-angels', ['cambridge angels']],
+      ['he-digital-health-hub', ['health innovation east', 'digital health hub']],
+      ['lottery-reaching-communities', ['reaching communities', 'national lottery']],
+      ['anglia-capital', ['anglia capital']],
+      ['cambridge-capital', ['cambridge capital']],
+      ['nihr-jla-ahg', ['nihr jla', 'addiction healthcare goals']],
+      ['msd-uk-grants', ['msd uk']],
+      ['cambs-asc-seed', ['cambridgeshire asc']],
+      ['nihr-i4i-pda', ['nihr i4i', 'i4i next-round']],
+      ['sahakian', ['sahakian']],
+      ['ford', ['tamsin ford']],
+      ['dixonwoods', ['dixon-woods', 'this institute']],
+      ['bowdenjones', ['bowden-jones']],
+      ['cph_network', ['cambridge public health']]
+    ];
+    function matchTaskToRecord(title){
+      const l = (title || '').toLowerCase();
+      for (const [id, needles] of TASK_MATCHERS) { if (needles.some(n => l.includes(n))) return id; }
+      return null;
+    }
+
     function renderTodoItem(t){
       const div = document.createElement('div');
       div.className = 'todo-item' + (t.done ? ' is-done' : '');
       div.dataset.id = t.id;
-      div.innerHTML = '<input type="checkbox" ' + (t.done ? 'checked' : '') + '>' +
-        '<span class="ti-title"></span>' +
-        '<input type="date" class="ti-due" title="Due date">' +
-        '<input type="time" class="ti-due-time" title="Due time (optional)">' +
-        '<select class="ti-owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select>' +
-        '<button type="button" class="ti-del" title="Delete">✕</button>';
-      div.querySelector('.ti-title').textContent = t.title;
-      div.querySelector('.ti-owner').value = t.owner || 'Unassigned';
-      const dueInput = div.querySelector('.ti-due');
-      const dueTimeInput = div.querySelector('.ti-due-time');
-      if (t.due_date) dueInput.value = t.due_date;
-      if (t.due_time) dueTimeInput.value = t.due_time.slice(0, 5);
       const today = new Date().toISOString().slice(0, 10);
-      if (t.due_date && t.due_date < today && !t.done) dueInput.classList.add('is-overdue');
-
-      div.querySelector('input[type=checkbox]').addEventListener('change', (e) => {
-        div.classList.toggle('is-done', e.target.checked);
-        sbPatch('todos', 'id', t.id, { done: e.target.checked, updated_at: new Date().toISOString() });
-        logActivity('To-do', (e.target.checked ? 'completed: "' : 'reopened: "') + t.title + '"');
-        markReminded(t.id);
-        refreshTaskBadge();
-      });
-      div.querySelector('.ti-owner').addEventListener('change', (e) => {
-        sbPatch('todos', 'id', t.id, { owner: e.target.value, updated_at: new Date().toISOString() });
-        logActivity('To-do', 'assigned "' + t.title + '" to ' + e.target.value);
-      });
-      const pushDue = () => {
-        const val = dueInput.value || null;
-        dueInput.classList.toggle('is-overdue', !!(val && val < today && !t.done));
-        t.due_date = val; t.due_time = dueTimeInput.value ? dueTimeInput.value + ':00' : null;
-        sbPatch('todos', 'id', t.id, { due_date: val, due_time: t.due_time, updated_at: new Date().toISOString() });
-        logActivity('To-do', 'due date set to ' + (val || '(cleared)') + (t.due_time ? ' ' + dueTimeInput.value : '') + ' for "' + t.title + '"');
-        clearReminded(t.id);
-      };
-      dueInput.addEventListener('change', pushDue);
-      dueTimeInput.addEventListener('change', pushDue);
-      div.querySelector('.ti-del').addEventListener('click', () => {
-        fetch(SB_URL + '/rest/v1/todos?id=eq.' + t.id, { method: 'DELETE', headers: SB_HEADERS }).then(r => {
-          if (!r.ok) throw new Error('delete failed: ' + r.status);
-          div.remove();
-          logActivity('To-do', 'deleted: "' + t.title + '"');
-          refreshTaskBadge();
-        }).catch(err => {
-          console.error('Could not delete to-do', err);
-          showConfirm('Could not delete — check connection');
-        });
-      });
+      const overdue = t.due_date && t.due_date < today && !t.done;
+      div.dataset.owner = t.owner || 'Unassigned';
+      div.dataset.done = t.done ? '1' : '0';
+      div.dataset.overdue = overdue ? '1' : '0';
+      const dueTxt = t.due_date
+        ? new Date(t.due_date + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) + (t.due_time ? ' ' + t.due_time.slice(0, 5) : '')
+        : 'No due date';
+      const recId = t.linked_id || matchTaskToRecord(t.title);
+      const prio = t.priority || 'normal';
+      div.innerHTML = '<span class="ti-dot"></span><span class="ti-title"></span>' +
+        '<span class="ti-meta">' + (recId ? '<span class="ti-linktag">record</span>' : '') +
+        (prio !== 'normal' ? '<span class="ti-prio-tag' + (prio === 'low' ? ' p-low' : '') + '">' + (prio === 'high' ? 'High' : 'Low') + '</span>' : '') +
+        (t.status && t.status !== 'open' && t.status !== 'done' ? '<span class="ti-status-tag s-' + t.status + '"></span>' : '') +
+        '<span class="ti-owner-tag"></span><span class="ti-due-tag' + (overdue ? ' is-overdue' : '') + '"></span></span>' +
+        '<span class="ti-chev">›</span>';
+      if (prio === 'high' && !t.done) div.classList.add('is-high');
+      div.querySelector('.ti-title').textContent = t.title;
+      div.querySelector('.ti-owner-tag').textContent = t.owner || 'Unassigned';
+      div.querySelector('.ti-due-tag').textContent = dueTxt;
+      const stag = div.querySelector('.ti-status-tag');
+      if (stag) stag.textContent = t.status === 'in-progress' ? 'In progress' : 'Waiting';
+      div.addEventListener('click', () => openTaskWindow(t));
       return div;
     }
+
+    // ---------- Task window: every task opens here; completion/edit/delete all happen inside ----------
+    async function autoLogTaskToContact(recId, title){
+      if (!recId) return;
+      const rows = await sbGet('tracker_targets', '?select=name,comm_log,status,date_contacted&id=eq.' + encodeURIComponent(recId));
+      const c = rows && rows[0]; if (!c) return;
+      const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+      const prior = (c.comm_log || '').trim();
+      const patch = { comm_log: today + ' — Task completed: ' + title + (prior ? '\n' + prior : ''), updated_at: new Date().toISOString() };
+      if (c.status === 'not-contacted') patch.status = 'emailed';
+      if (!c.date_contacted) patch.date_contacted = new Date().toISOString().slice(0, 10);
+      sbPatch('tracker_targets', 'id', recId, patch);
+      logActivity(c.name, 'task completed & logged to record: "' + title + '"');
+      showConfirm('Logged to ' + c.name.split(' — ')[0]);
+    }
+    let TM_CURRENT = null;
+    function openTaskWindow(t){
+      const m = document.getElementById('taskModal');
+      TM_CURRENT = t;
+      const q = s => m.querySelector(s);
+      q('.tm-title').value = t.title;
+      q('.tm-owner').value = t.owner || 'Unassigned';
+      q('.tm-status-sel').value = t.status || (t.done ? 'done' : 'open');
+      q('.tm-prio').value = t.priority || 'normal';
+      q('.tm-notes').value = t.notes || '';
+      q('.tm-due').value = t.due_date || '';
+      q('.tm-due-time').value = t.due_time ? t.due_time.slice(0, 5) : '';
+      const setStatus = () => {
+        const done = t.status === 'done';
+        const c = q('.tm-complete'); c.textContent = done ? 'Reopen task' : 'Mark complete'; c.classList.toggle('is-done', done);
+        q('.tm-status-sel').value = t.status || 'open';
+      };
+      setStatus();
+      const recId = t.linked_id || matchTaskToRecord(t.title);
+      q('.tm-linked').innerHTML = recId ? '<a href="#" class="tm-reclink">Open linked record →</a>' : '';
+      q('.tm-metaline').textContent = (t.created_at ? 'Created ' + new Date(t.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '') +
+        (t.updated_at ? ' · updated ' + new Date(t.updated_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : '');
+      q('.tm-title').onchange = () => { const v = q('.tm-title').value.trim(); if (!v) { q('.tm-title').value = t.title; return; } t.title = v; sbPatch('todos', 'id', t.id, { title: v, updated_at: new Date().toISOString() }); logActivity('To-do', 'renamed to "' + v + '"'); };
+      q('.tm-owner').onchange = () => { t.owner = q('.tm-owner').value; sbPatch('todos', 'id', t.id, { owner: t.owner, updated_at: new Date().toISOString() }); logActivity('To-do', 'assigned "' + t.title + '" to ' + t.owner); };
+      q('.tm-prio').onchange = () => { t.priority = q('.tm-prio').value; sbPatch('todos', 'id', t.id, { priority: t.priority, updated_at: new Date().toISOString() }); logActivity('To-do', 'priority → ' + t.priority + ' for "' + t.title + '"'); };
+      q('.tm-status-sel').onchange = () => {
+        t.status = q('.tm-status-sel').value; t.done = (t.status === 'done');
+        sbPatch('todos', 'id', t.id, { status: t.status, done: t.done, updated_at: new Date().toISOString() });
+        logActivity('To-do', 'status → ' + q('.tm-status-sel').selectedOptions[0].text + ' for "' + t.title + '"');
+        if (t.done) autoLogTaskToContact(recId, t.title);
+        setStatus(); refreshTaskBadge();
+      };
+      q('.tm-notes').oninput = debounce(() => { t.notes = q('.tm-notes').value; sbPatch('todos', 'id', t.id, { notes: t.notes, updated_at: new Date().toISOString() }); }, 900);
+      const pushDue = () => { t.due_date = q('.tm-due').value || null; t.due_time = q('.tm-due-time').value ? q('.tm-due-time').value + ':00' : null; sbPatch('todos', 'id', t.id, { due_date: t.due_date, due_time: t.due_time, updated_at: new Date().toISOString() }); clearReminded(t.id); logActivity('To-do', 'due date set to ' + (t.due_date || '(cleared)') + ' for "' + t.title + '"'); };
+      q('.tm-due').onchange = pushDue; q('.tm-due-time').onchange = pushDue;
+      q('.tm-complete').onclick = () => { t.status = (t.status === 'done') ? 'open' : 'done'; t.done = (t.status === 'done'); sbPatch('todos', 'id', t.id, { status: t.status, done: t.done, updated_at: new Date().toISOString() }); logActivity('To-do', (t.done ? 'completed: "' : 'reopened: "') + t.title + '"'); if (t.done) autoLogTaskToContact(recId, t.title); markReminded(t.id); setStatus(); refreshTaskBadge(); showConfirm(t.done ? 'Task completed' : 'Task reopened'); };
+      q('.tm-delete').onclick = () => {
+        if (!confirm('Delete this task permanently?')) return;
+        fetch(SB_URL + '/rest/v1/todos?id=eq.' + t.id, { method: 'DELETE', headers: SB_HEADERS }).then(r => {
+          if (!r.ok) throw new Error('delete failed: ' + r.status);
+          logActivity('To-do', 'deleted: "' + t.title + '"'); showConfirm('Task deleted'); closeTaskWindow();
+        }).catch(err => { console.error('Could not delete to-do', err); showConfirm('Could not delete — check connection'); });
+      };
+      const rl = q('.tm-reclink'); if (rl) rl.onclick = (e) => { e.preventDefault(); closeTaskWindow(true); if (window.__openContact) window.__openContact(recId); };
+      m.hidden = false;
+    }
+    function closeTaskWindow(skipReload){
+      const m = document.getElementById('taskModal');
+      m.hidden = true; TM_CURRENT = null;
+      if (!skipReload) loadTodos();
+    }
+    async function addTaskForRecord(recId, name, owner){
+      const short = (name || '').split(' — ')[0];
+      const title = 'Follow up with ' + short;
+      const r = await fetch(SB_URL + '/rest/v1/todos', {
+        method: 'POST', headers: Object.assign({}, SB_HEADERS, { Prefer: 'return=representation' }),
+        body: JSON.stringify([{ title: title, owner: owner && owner !== 'Unassigned' ? owner : null, done: false, status: 'open', priority: 'normal', linked_id: recId }])
+      }).catch(() => null);
+      if (!r || !r.ok) { showConfirm('Could not create task — check connection'); return; }
+      const rows = await r.json();
+      logActivity(name, 'task created: "' + title + '"');
+      refreshTaskBadge();
+      if (rows && rows[0]) { goToView('tasks'); loadTodos(); setTimeout(() => openTaskWindow(rows[0]), 300); }
+    }
+    (function setupTaskModal(){
+      const m = document.getElementById('taskModal'); if (!m) return;
+      m.querySelector('.tm-close').addEventListener('click', () => closeTaskWindow());
+      m.querySelector('.tm-backdrop').addEventListener('click', () => closeTaskWindow());
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && !m.hidden) closeTaskWindow(); });
+    })();
 
     function refreshTaskBadge(){
       const open = document.querySelectorAll('.todo-item:not(.is-done)').length;
@@ -1002,16 +1239,52 @@
 
     async function loadTodos(){
       const list = document.getElementById('todoList');
-      const rows = await sbGet('todos', '?select=*&order=done.asc,created_at.desc');
+      const rows = await sbGet('todos', '?select=*');
       list.innerHTML = '';
       if (!rows || !rows.length) {
         list.innerHTML = '<div class="todo-empty">No jobs yet — add one above.</div>';
         refreshTaskBadge();
         return;
       }
+      const pr = { high: 0, normal: 1, low: 2 };
+      rows.sort((a, b) => {
+        if (!!a.done !== !!b.done) return a.done ? 1 : -1;
+        const pa = pr[a.priority || 'normal'], pb = pr[b.priority || 'normal'];
+        if (pa !== pb) return pa - pb;
+        const da = a.due_date || '9999-99-99', db = b.due_date || '9999-99-99';
+        if (da !== db) return da < db ? -1 : 1;
+        return (b.created_at || '').localeCompare(a.created_at || '');
+      });
       rows.forEach(t => list.appendChild(renderTodoItem(t)));
       refreshTaskBadge();
+      applyTaskFilters();
     }
+
+    function applyTaskFilters(){
+      const ownEl = document.getElementById('taskFilterOwner');
+      if (!ownEl) return;
+      const own = ownEl.value;
+      const od = document.getElementById('taskFilterOverdue').checked;
+      const hd = document.getElementById('taskFilterHideDone').checked;
+      const items = [...document.querySelectorAll('#todoList .todo-item')];
+      let shown = 0;
+      items.forEach(el => {
+        let ok = true;
+        if (own && el.dataset.owner !== own) ok = false;
+        if (od && el.dataset.overdue !== '1') ok = false;
+        if (hd && el.dataset.done === '1') ok = false;
+        el.style.display = ok ? '' : 'none';
+        if (ok) shown++;
+      });
+      const c = document.getElementById('taskFilterCount');
+      if (c) c.textContent = (own || od || hd) ? shown + ' of ' + items.length + ' shown' : items.length + ' tasks';
+    }
+    (function setupTaskFilters(){
+      ['taskFilterOwner', 'taskFilterOverdue', 'taskFilterHideDone'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('change', applyTaskFilters);
+      });
+    })();
 
     // ---------- Reminders: pop a toast (+ native notification if allowed) when a to-do's due date/time arrives ----------
     if ('Notification' in window && Notification.permission === 'default') {
@@ -1044,15 +1317,17 @@
       toast.querySelector('.rt-title').textContent = title;
       container.appendChild(toast);
 
-      const goToTask = () => {
+      const goToTask = async () => {
         goToView('tasks');
+        toast.remove();
+        const rows = await sbGet('todos', '?select=*&id=eq.' + id);
+        if (rows && rows[0]) { openTaskWindow(rows[0]); return; }
         const row = document.querySelector('.todo-item[data-id="' + id + '"]');
         if (row) {
           window.scrollTo({ top: row.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
           row.classList.add('is-flash');
           setTimeout(() => row.classList.remove('is-flash'), 3000);
         }
-        toast.remove();
       };
       toast.querySelector('.rt-go').addEventListener('click', goToTask);
       toast.querySelector('.rt-dismiss').addEventListener('click', () => toast.remove());
@@ -1103,7 +1378,7 @@
       fetch(SB_URL + '/rest/v1/todos', {
         method: 'POST',
         headers: Object.assign({}, SB_HEADERS, { Prefer: 'return=representation' }),
-        body: JSON.stringify([{ title: title, owner: owner === 'Unassigned' ? null : owner, due_date: due, due_time: dueTime, done: false }])
+        body: JSON.stringify([{ title: title, owner: owner === 'Unassigned' ? null : owner, due_date: due, due_time: dueTime, done: false, status: 'open', priority: 'normal', linked_id: matchTaskToRecord(title) }])
       }).then(r => {
         if (!r.ok) return r.json().then(err => { throw new Error(err.message || ('HTTP ' + r.status)); });
         return r.json();
@@ -1127,10 +1402,11 @@
     async function loadNextActions(){
       const list = document.getElementById('nextActionsList');
       const today = new Date().toISOString().slice(0, 10);
-      const [overdue, targets, docStatusRows] = await Promise.all([
+      const [overdue, targets, docStatusRows, todos] = await Promise.all([
         sbGet('tracker_targets', '?select=id,name,followup_date,owner&followup_date=lt.' + today + '&order=followup_date.asc'),
         sbGet('tracker_targets', '?select=id,name,status,owner'),
-        sbGet('doc_status')
+        sbGet('doc_status'),
+        sbGet('todos', '?select=id,title,owner,due_date,due_time,done&done=eq.false')
       ]);
 
       const actions = [];
@@ -1142,7 +1418,7 @@
           label: 'Follow up with ' + r.name,
           sub: days + ' day' + (days === 1 ? '' : 's') + ' overdue',
           href: '19-outreach-tracker.html#row-' + r.id,
-          weight: 100 + days,
+          weight: 100 + days, due: r.followup_date,
           ownerType: 'target', ownerId: r.id, owner: r.owner || 'Unassigned'
         });
       });
@@ -1157,7 +1433,7 @@
             label: 'Send first contact to ' + t.name,
             sub: 'Top-5 priority target — not yet contacted',
             href: '18-cambridge-academic-target-list.html',
-            weight: 90,
+            weight: 90, due: null,
             ownerType: 'target', ownerId: t.id, owner: t.owner || 'Unassigned'
           });
         }
@@ -1174,7 +1450,7 @@
             label: 'Dean: review ' + docIdx[id].title,
             sub: 'Operating & governance master — pending Dean sign-off',
             href: docIdx[id].href,
-            weight: 60,
+            weight: 60, due: null,
             ownerType: 'doc', ownerId: id, owner: (st && st.owner) || 'Unassigned'
           });
         }
@@ -1188,13 +1464,39 @@
             label: 'Finish and mark ready: ' + docIdx[id].title,
             sub: 'Document ' + id + ' — not yet marked ready to send',
             href: docIdx[id].href,
-            weight: 50,
+            weight: 50, due: null,
             ownerType: 'doc', ownerId: id, owner: (st && st.owner) || 'Unassigned'
           });
         }
       });
 
-      actions.sort((a, b) => b.weight - a.weight);
+      // To-do items with a due date — folded straight into the ordering
+      const todayStr = today;
+      (todos || []).forEach(t => {
+        let sub = 'To-do';
+        if (t.due_date) {
+          const days = Math.floor((Date.now() - new Date(t.due_date + 'T' + (t.due_time || '23:59:59')).getTime()) / 86400000);
+          if (t.due_date < todayStr) sub = 'To-do — ' + Math.max(1, days) + ' day' + (Math.max(1, days) === 1 ? '' : 's') + ' overdue';
+          else if (t.due_date === todayStr) sub = 'To-do — due today' + (t.due_time ? ' ' + t.due_time.slice(0, 5) : '');
+          else sub = 'To-do — due ' + t.due_date;
+        } else { sub = 'To-do — no due date'; }
+        actions.push({
+          label: t.title,
+          sub: sub + (t.owner ? ' · ' + t.owner : ''),
+          viewJump: 'tasks',
+          weight: 85, due: t.due_date || null,
+          ownerType: 'todo', ownerId: t.id, owner: t.owner || 'Unassigned'
+        });
+      });
+
+      // Reorganise by due date: dated items first (soonest / most-overdue first),
+      // then undated items by priority weight.
+      actions.sort((a, b) => {
+        if (a.due && b.due) return a.due < b.due ? -1 : (a.due > b.due ? 1 : b.weight - a.weight);
+        if (a.due) return -1;
+        if (b.due) return 1;
+        return b.weight - a.weight;
+      });
       const top3 = actions.slice(0, 3);
 
       if (!top3.length) {
@@ -1206,14 +1508,18 @@
       top3.forEach((a, i) => {
         const row = document.createElement('div');
         row.className = 'na-item';
+        const goHtml = a.viewJump ? '<a class="na-go" href="#' + a.viewJump + '">Go →</a>' : '<a class="na-go" href="' + a.href + '">Go →</a>';
         row.innerHTML = '<span class="na-no">' + (i + 1) + '</span><span class="na-txt"><b>' + a.label + '</b><span>' + a.sub + '</span></span>' +
           '<select class="na-owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select>' +
-          '<a class="na-go" href="' + a.href + '">Go →</a>';
+          goHtml;
+        if (a.viewJump) {
+          row.querySelector('.na-go').addEventListener('click', (e) => { e.preventDefault(); goToView(a.viewJump); });
+        }
         const sel = row.querySelector('.na-owner');
         sel.value = a.owner;
         sel.addEventListener('change', () => {
-          const table = a.ownerType === 'target' ? 'tracker_targets' : 'doc_status';
-          const idField = a.ownerType === 'target' ? 'id' : 'doc_id';
+          const table = a.ownerType === 'target' ? 'tracker_targets' : (a.ownerType === 'todo' ? 'todos' : 'doc_status');
+          const idField = (a.ownerType === 'doc') ? 'doc_id' : 'id';
           sbPatch(table, idField, a.ownerId, { owner: sel.value !== 'Unassigned' ? sel.value : null, updated_at: new Date().toISOString() });
           logActivity(a.label, 'assigned to ' + sel.value);
         });
