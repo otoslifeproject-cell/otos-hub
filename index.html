@@ -715,7 +715,7 @@
 
         <div class="next-actions">
           <div class="lbl">Next actions</div>
-          <div class="na-sub">Computed live — the 3 highest-priority things to do right now.</div>
+          <div class="na-sub">Computed live — the 5 highest-priority things to do right now.</div>
           <div id="nextActionsList"><div class="na-item"><span class="na-txt"><span>Loading…</span></span></div></div>
         </div>
 
@@ -1524,7 +1524,9 @@
       { id: 'cambridge-iaa', name: 'Cambridge IAA enquiry', subject: 'OTOS Continuity — advice on a Cambridge translational / impact-acceleration route',
         body: 'Dear {{name}},\n\nI am the founder of OTOS Digital Ltd, developing OTOS Continuity™ — a non-clinical continuity layer for adults moving between ADHD, addiction and recovery services.\n\nI am not asking the University to fund OTOS directly. I am trying to find out whether a Cambridge academic could lead a small internal translational / impact-acceleration (IAA / gap-style) application to shape this into a fundable MRC Stage One, Wellcome or NIHR feasibility study — with OTOS as project partner and intervention owner.\n\nCould you point me to the right academic sponsor, department, or translational-funding contact? A one-page concept note and funding-route summary are available on request.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
       { id: 'ethics-governance', name: 'Ethics / governance intro', subject: 'OTOS Continuity — governance and information-governance boundaries',
-        body: 'Dear {{name}},\n\nI am the founder of OTOS Digital Ltd. We are shaping a feasibility study around OTOS Continuity™, a non-clinical continuity layer for adults moving between ADHD, addiction and recovery services, and I want to get the governance right from the outset.\n\nTo be clear about scope: OTOS is non-clinical. It does not diagnose, prescribe, treat, provide therapy or crisis care, or make safeguarding decisions, and it is not a shared clinical record or EPR. Clinical teams retain responsibility for assessment, diagnosis, treatment and monitoring. The layer records consent, prompts, replies, opt-outs, handoff receipts, attendance and drift signals, and human-review events.\n\nCould {{org}} advise on the information-governance, ethics and data-protection route for a bounded feasibility study of this kind — and who I should be speaking to? A one-page concept note and a governance boundary note are available on request.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' }
+        body: 'Dear {{name}},\n\nI am the founder of OTOS Digital Ltd. We are shaping a feasibility study around OTOS Continuity™, a non-clinical continuity layer for adults moving between ADHD, addiction and recovery services, and I want to get the governance right from the outset.\n\nTo be clear about scope: OTOS is non-clinical. It does not diagnose, prescribe, treat, provide therapy or crisis care, or make safeguarding decisions, and it is not a shared clinical record or EPR. Clinical teams retain responsibility for assessment, diagnosis, treatment and monitoring. The layer records consent, prompts, replies, opt-outs, handoff receipts, attendance and drift signals, and human-review events.\n\nCould {{org}} advise on the information-governance, ethics and data-protection route for a bounded feasibility study of this kind — and who I should be speaking to? A one-page concept note and a governance boundary note are available on request.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'welcome-onboarding', name: 'Welcome / onboarding', subject: 'Welcome to OTOS — your logins and how to get set up',
+        body: 'Hi {{name}},\n\nWelcome aboard. Here is everything you need to get up and running.\n\n1) YOUR OTOS EMAIL\n   Address:  gareth.owen@otos.digital\n   Webmail:  https://mail.zoho.eu\n   First login: use the temporary password below, then set your own when prompted.\n   Temporary password: [set in Zoho admin — paste here]\n\n   Phone / desktop mail app settings:\n     Incoming (IMAP):  imappro.zoho.eu · port 993 · SSL\n     Outgoing (SMTP):  smtppro.zoho.eu · port 465 · SSL\n     Username: your full email address\n\n2) THE OTOS HUB (our internal CRM)\n   Address:  https://hub.otos.network\n   No password needed — the login page emails you a one-time code each time.\n   Just enter your otos.digital address and paste the code it sends you.\n\n3) EMAIL SIGNATURE\n   I will send our standard signature and disclaimer separately — please add it in Zoho settings.\n\nAnything not working, just reply here and we will sort it.\n\nWelcome to the team.\n\nDean\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' }
     ];
     function mergeTemplate(str, c){
       if (!c || c.__raw) return str;
@@ -2709,7 +2711,7 @@
         if (b.due) return 1;
         return b.weight - a.weight;
       });
-      const top3 = actions.slice(0, 3);
+      const top3 = actions.slice(0, 5);
 
       if (!top3.length) {
         list.innerHTML = '<div class="na-item"><span class="na-txt"><b>Nothing urgent right now.</b><span>All top-5 targets contacted, no overdue follow-ups, foundational docs ready.</span></span></div>';
@@ -2723,7 +2725,7 @@
         const goHtml = a.ownerType === 'target'
           ? '<button type="button" class="na-go na-card">Open →</button>'
           : (a.viewJump ? '<a class="na-go" href="#' + a.viewJump + '">Go →</a>' : '<a class="na-go" href="' + a.href + '">Go →</a>');
-        row.innerHTML = '<span class="na-no">' + (i + 1) + '</span><span class="na-txt"><b>' + a.label + '</b><span>' + a.sub + '</span></span>' +
+        row.innerHTML = '<span class="na-no">' + (i + 1) + '</span><span class="na-txt"><b>' + a.label + '</b></span>' +
           '<select class="na-owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select>' +
           goHtml;
         if (a.ownerType === 'target') {
