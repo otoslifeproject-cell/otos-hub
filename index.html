@@ -131,6 +131,7 @@
   .today-item .ti-badge{ flex:none; font-size:10px; font-weight:800; padding:5px 10px; border-radius:11px; white-space:nowrap; min-width:74px; text-align:center; }
   .today-item .ti-badge.over{ background:#fdeaea; color:#c0392b; } .today-item .ti-badge.today{ background:#fdf4e3; color:#a5761b; }
   .today-item .ti-badge.stall{ background:#f4eef7; color:#8a5a5a; }
+  .today-item .ti-badge.chase{ background:#fdf4e3; color:#a5761b; }
   .today-item .ti-txt{ flex:1; min-width:0; }
   .today-item .ti-txt b{ display:block; font-size:14px; color:var(--ink); }
   .today-item .ti-txt span{ display:block; font-size:12px; color:var(--muted); margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -432,6 +433,8 @@
   .pipe-card.dragging{ opacity:.5; }
   .pipe-card.stalled{ border-color:#e0b4b4; }
   .pipe-card .pk-stall{ font-size:9px; font-weight:800; letter-spacing:.03em; color:#c0392b; background:#fdeaea; border-radius:4px; padding:2px 6px; margin-bottom:6px; display:inline-block; }
+  .pipe-card.chasing{ border-color:#d8c08a; }
+  .pipe-card .pk-chase{ font-size:9px; font-weight:800; letter-spacing:.03em; color:#a5761b; background:#fdf4e3; border-radius:4px; padding:2px 6px; margin-bottom:6px; display:inline-block; }
   .pipe-card .pk-name{ font-size:12.5px; font-weight:700; color:var(--ink); }
   .pipe-card .pk-org{ font-size:11px; color:var(--muted); margin-top:1px; }
   .pipe-card .pk-foot{ display:flex; align-items:center; gap:6px; margin-top:6px; }
@@ -1517,7 +1520,11 @@
       { id: 'out-of-office', name: 'Out-of-office reply', subject: 'Out of office',
         body: 'Thank you for your email.\n\nI am currently out of the office with limited access to email, returning [date]. I will reply to your message as soon as I can after that.\n\nFor anything urgent in the meantime, please contact [name] at [email].\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
       { id: 'warm-reintro', name: 'Warm re-intro', subject: 'OTOS Continuity — reconnecting after our earlier conversation',
-        body: 'Dear {{name}},\n\nWe spoke some time ago about OTOS Continuity™, and I wanted to reintroduce myself now that the work has developed.\n\nSince we last talked, the model and evidence have firmed up considerably, and I still believe there is a strong fit with {{org}}. I would genuinely value picking the conversation back up when it suits you — even a short call would be welcome.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' }
+        body: 'Dear {{name}},\n\nWe spoke some time ago about OTOS Continuity™, and I wanted to reintroduce myself now that the work has developed.\n\nSince we last talked, the model and evidence have firmed up considerably, and I still believe there is a strong fit with {{org}}. I would genuinely value picking the conversation back up when it suits you — even a short call would be welcome.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'cambridge-iaa', name: 'Cambridge IAA enquiry', subject: 'OTOS Continuity — advice on a Cambridge translational / impact-acceleration route',
+        body: 'Dear {{name}},\n\nI am the founder of OTOS Digital Ltd, developing OTOS Continuity™ — a non-clinical continuity layer for adults moving between ADHD, addiction and recovery services.\n\nI am not asking the University to fund OTOS directly. I am trying to find out whether a Cambridge academic could lead a small internal translational / impact-acceleration (IAA / gap-style) application to shape this into a fundable MRC Stage One, Wellcome or NIHR feasibility study — with OTOS as project partner and intervention owner.\n\nCould you point me to the right academic sponsor, department, or translational-funding contact? A one-page concept note and funding-route summary are available on request.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'ethics-governance', name: 'Ethics / governance intro', subject: 'OTOS Continuity — governance and information-governance boundaries',
+        body: 'Dear {{name}},\n\nI am the founder of OTOS Digital Ltd. We are shaping a feasibility study around OTOS Continuity™, a non-clinical continuity layer for adults moving between ADHD, addiction and recovery services, and I want to get the governance right from the outset.\n\nTo be clear about scope: OTOS is non-clinical. It does not diagnose, prescribe, treat, provide therapy or crisis care, or make safeguarding decisions, and it is not a shared clinical record or EPR. Clinical teams retain responsibility for assessment, diagnosis, treatment and monitoring. The layer records consent, prompts, replies, opt-outs, handoff receipts, attendance and drift signals, and human-review events.\n\nCould {{org}} advise on the information-governance, ethics and data-protection route for a bounded feasibility study of this kind — and who I should be speaking to? A one-page concept note and a governance boundary note are available on request.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' }
     ];
     function mergeTemplate(str, c){
       if (!c || c.__raw) return str;
@@ -2185,9 +2192,13 @@
           card.innerHTML = '<div class="pk-name"></div>' + (r.organisation ? '<div class="pk-org"></div>' : '') +
             '<div class="pk-foot"><span class="pk-owner">' + (r.owner || 'Unassigned') + '</span><span class="pk-fu ' + fuCls + '">' + fuTxt + '</span></div>';
           const ageDays = r.updated_at ? Math.floor((Date.now() - new Date(r.updated_at).getTime()) / 86400000) : null;
+          const awaitingReply = ['emailed', 'voicemail', 'callback-requested'].includes(r.status);
           if (activeStages.includes(stage.key) && ageDays != null && ageDays >= STALL_DAYS) {
             card.classList.add('stalled');
             card.insertAdjacentHTML('afterbegin', '<div class="pk-stall">⚠ Stalled · ' + ageDays + 'd quiet</div>');
+          } else if (awaitingReply && ageDays != null && ageDays >= 4) {
+            card.classList.add('chasing');
+            card.insertAdjacentHTML('afterbegin', '<div class="pk-chase">↺ Reply due · chase (' + ageDays + 'd)</div>');
           }
           card.querySelector('.pk-name').textContent = r.name.split(' — ')[0];
           if (r.organisation) card.querySelector('.pk-org').textContent = r.organisation;
@@ -2867,10 +2878,12 @@
       if (!el) return;
       const today = new Date().toISOString().slice(0, 10);
       const stallCut = new Date(Date.now() - 14 * 86400000).toISOString();
-      const [dueContacts, todos, stalled] = await Promise.all([
+      const chaseCut = new Date(Date.now() - 4 * 86400000).toISOString();
+      const [dueContacts, todos, stalled, chase] = await Promise.all([
         sbGet('tracker_targets', '?select=id,name,organisation,status,owner,followup_date&followup_date=lte.' + today + '&order=followup_date.asc'),
         sbGet('todos', '?select=id,title,owner,due_date,due_time,done&done=eq.false&due_date=lte.' + today + '&order=due_date.asc'),
-        sbGet('tracker_targets', '?select=id,name,organisation,status,owner,updated_at,followup_date&status=in.(emailed,called-no-answer,voicemail,callback-requested,replied,call-booked)&updated_at=lt.' + stallCut + '&order=updated_at.asc')
+        sbGet('tracker_targets', '?select=id,name,organisation,status,owner,updated_at,followup_date&status=in.(emailed,called-no-answer,voicemail,callback-requested,replied,call-booked)&updated_at=lt.' + stallCut + '&order=updated_at.asc'),
+        sbGet('tracker_targets', '?select=id,name,organisation,status,owner,updated_at&status=in.(emailed,voicemail,callback-requested)&updated_at=lt.' + chaseCut + '&updated_at=gte.' + stallCut + '&order=updated_at.asc')
       ]);
       const items = [];
       (dueContacts || []).forEach(r => {
@@ -2888,6 +2901,12 @@
         if (dueIds.has(r.id)) return;
         const days = r.updated_at ? Math.floor((Date.now() - new Date(r.updated_at).getTime()) / 86400000) : 14;
         items.push({ kind: 'contact', id: r.id, title: 'Chase ' + r.name.split(' — ')[0], sub: [r.organisation, STATUS_MAP[r.status]].filter(Boolean).join(' · '), due: '', badge: days + 'd quiet', bcls: 'stall' });
+      });
+      const seen = new Set([...dueIds, ...(stalled || []).map(r => r.id)]);
+      (chase || []).forEach(r => {
+        if (seen.has(r.id)) return;
+        const days = r.updated_at ? Math.floor((Date.now() - new Date(r.updated_at).getTime()) / 86400000) : 4;
+        items.push({ kind: 'contact', id: r.id, title: 'Chase ' + r.name.split(' — ')[0], sub: [r.organisation, STATUS_MAP[r.status], 'reply due'].filter(Boolean).join(' · '), due: '', badge: 'chase ' + days + 'd', bcls: 'chase' });
       });
       if (!items.length) { el.innerHTML = '<div class="today-empty">\u2713 Nothing due today. You\u2019re clear \u2014 pick up a Next action below.</div>'; return; }
       el.innerHTML = '';
