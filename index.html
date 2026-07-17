@@ -65,7 +65,102 @@
   .na-item .na-txt span{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
   .na-item .na-go{ flex:none; text-decoration:none; background:var(--ink); color:var(--paper); font-size:12.5px; font-weight:700; padding:9px 18px; border-radius:4px; white-space:nowrap; }
   .na-item .na-go:hover{ background:var(--accent-ink); }
+  .na-item button.na-go{ font-family:var(--sans); border:none; cursor:pointer; }
+  .overdue-item a{ cursor:pointer; }
+  /* ---------- Action Card ---------- */
+  .ac-overlay{ position:fixed; inset:0; background:rgba(22,24,30,.55); backdrop-filter:blur(2px); display:none; align-items:flex-start; justify-content:center; z-index:9000; padding:44px 16px; overflow-y:auto; }
+  .ac-overlay.open{ display:flex; }
+  .ac-card{ position:relative; background:var(--paper); width:100%; max-width:560px; border-radius:12px; box-shadow:0 24px 60px rgba(0,0,0,.32); overflow:hidden; }
+  .ac-close{ position:absolute; top:13px; right:14px; width:30px; height:30px; border:none; border-radius:50%; background:rgba(0,0,0,.06); color:var(--muted); font-size:16px; line-height:1; cursor:pointer; z-index:2; }
+  .ac-close:hover{ background:rgba(0,0,0,.12); color:var(--ink); }
+  .ac-top{ display:flex; align-items:flex-start; gap:12px; padding:20px 22px 15px; border-bottom:1px solid var(--rule-soft); background:var(--accent-wash); }
+  .ac-top .ac-kicker{ font-size:9px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); }
+  .ac-top h3{ margin:4px 40px 0 0; font-family:var(--sans); font-size:17px; line-height:1.25; color:var(--ink); }
+  .ac-due{ margin-left:auto; flex:none; font-size:10px; font-weight:800; padding:5px 10px; border-radius:11px; white-space:nowrap; }
+  .ac-due.over{ background:#fdeaea; color:#c0392b; } .ac-due.today{ background:#fdf4e3; color:#a5761b; } .ac-due.soon{ background:#eef2f6; color:#5a7089; }
+  .ac-body{ padding:16px 22px 4px; }
+  .ac-who{ display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+  .ac-who .ac-name{ font-weight:800; font-size:15px; color:var(--ink); }
+  .ac-who .ac-org{ color:var(--muted); font-size:12.5px; }
+  .ac-chip{ font-size:9.5px; font-weight:700; padding:3px 9px; border-radius:10px; border:1px solid var(--rule); color:var(--muted); white-space:nowrap; }
+  .ac-owner{ margin-left:auto; font-size:10px; font-weight:800; color:var(--accent-ink); }
+  .ac-tags{ display:flex; flex-wrap:wrap; gap:5px; margin-top:9px; }
+  .ac-tags .t{ font-size:9px; font-weight:700; padding:2px 8px; border-radius:9px; }
+  .ac-contact{ display:flex; gap:8px; margin-top:12px; }
+  .ac-contact a{ font-size:12px; font-weight:700; padding:8px 14px; min-height:40px; box-sizing:border-box; display:inline-flex; align-items:center; border-radius:8px; background:var(--accent-ink); color:#fff; text-decoration:none; }
+  .ac-contact a.sec{ background:var(--paper); color:var(--accent-ink); border:1px solid var(--rule); }
+  .ac-contact a:hover{ background:var(--ink); color:#fff; }
+  .ac-sent{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:15px 0; }
+  .ac-sent .box{ border:1px solid var(--rule); border-radius:8px; padding:9px 11px; }
+  .ac-sent .box .k{ font-size:8.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+  .ac-sent .box.next{ border-color:var(--accent-ink); background:var(--accent-wash); }
+  .ac-sent .box .v{ font-size:12.5px; color:var(--ink); margin-top:3px; line-height:1.35; }
+  .ac-hist{ margin:15px 0 4px; }
+  .ac-hist .hh{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; }
+  .ac-hist .hh .lbl{ font-size:8.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+  .ac-hist .hh a{ font-size:10.5px; font-weight:700; color:var(--accent-ink); text-decoration:none; cursor:pointer; }
+  .ac-hist ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .ac-hist li{ font-size:11.5px; display:flex; gap:9px; align-items:baseline; }
+  .ac-hist li .t{ color:var(--ink); flex:1; min-width:0; } .ac-hist li .m{ color:var(--faint); font-size:10px; white-space:nowrap; }
+  .ac-hist .none{ font-size:11.5px; color:var(--faint); font-style:italic; }
+  .ac-actions{ border-top:1px solid var(--rule-soft); margin-top:6px; padding:16px 22px 20px; }
+  .ac-grp{ margin-bottom:13px; } .ac-grp:last-child{ margin-bottom:0; }
+  .ac-grp .glbl{ font-size:8.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-bottom:8px; }
+  .ac-btns{ display:flex; flex-wrap:wrap; gap:7px; }
+  .ac-btn{ font-family:var(--sans); font-size:12px; font-weight:700; padding:9px 13px; min-height:42px; box-sizing:border-box; border-radius:8px; border:1px solid var(--rule); background:var(--paper); color:var(--ink); cursor:pointer; }
+  .ac-btn:hover{ border-color:var(--accent-ink); color:var(--accent-ink); }
+  .ac-btn.done{ background:#1f8a52; color:#fff; border-color:transparent; margin-left:auto; }
+  .ac-btn.done:hover{ background:#166b3f; color:#fff; }
+  .ac-sentrow{ display:flex; gap:7px; }
+  .ac-sentrow input{ flex:1; min-width:0; font-family:var(--sans); font-size:12px; border:1px solid var(--rule); border-radius:8px; padding:0 12px; min-height:42px; }
+  .ac-sentrow input:focus{ border-color:var(--accent-ink); outline:none; }
+  .ac-btn.prim{ background:var(--accent-ink); color:#fff; border-color:transparent; }
+  .ac-btn.prim:hover{ background:var(--ink); color:#fff; }
+  @media (max-width:600px){ .ac-overlay{ padding:0; } .ac-card{ max-width:none; min-height:100vh; border-radius:0; } .ac-sent{ grid-template-columns:1fr; } }
   .na-item .na-owner{ flex:none; font-family:var(--sans); font-size:10.5px; font-weight:700; border:1px solid var(--rule); border-radius:12px; padding:4px 9px; background:var(--paper); color:var(--muted); cursor:pointer; }
+
+  /* ---------- Today worklist ---------- */
+  .today-work{ border:1.5px solid var(--accent-ink); border-radius:8px; padding:20px 24px; margin-bottom:28px; background:var(--accent-wash); }
+  .today-work .lbl{ font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
+  .today-work .na-sub{ font-size:12px; color:var(--muted); margin-bottom:14px; }
+  .today-item{ display:flex; align-items:center; gap:14px; width:100%; text-align:left; background:var(--paper); border:1px solid var(--rule-soft); border-radius:8px; padding:12px 15px; cursor:pointer; font-family:var(--sans); position:relative; touch-action:pan-y; will-change:transform; }
+  .today-row{ position:relative; margin-bottom:8px; border-radius:8px; overflow:hidden; }
+  .today-row:last-child{ margin-bottom:0; }
+  .today-row .tr-done{ position:absolute; inset:0; display:flex; align-items:center; justify-content:flex-end; padding-right:22px; background:#1f8a52; color:#fff; font-weight:800; font-size:13px; letter-spacing:.02em; }
+  .today-item:hover{ border-color:var(--accent-ink); }
+  .today-item .ti-badge{ flex:none; font-size:10px; font-weight:800; padding:5px 10px; border-radius:11px; white-space:nowrap; min-width:74px; text-align:center; }
+  .today-item .ti-badge.over{ background:#fdeaea; color:#c0392b; } .today-item .ti-badge.today{ background:#fdf4e3; color:#a5761b; }
+  .today-item .ti-badge.stall{ background:#f4eef7; color:#8a5a5a; }
+  .today-item .ti-txt{ flex:1; min-width:0; }
+  .today-item .ti-txt b{ display:block; font-size:14px; color:var(--ink); }
+  .today-item .ti-txt span{ display:block; font-size:12px; color:var(--muted); margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .today-item .ti-go{ flex:none; font-size:11.5px; font-weight:700; color:var(--accent-ink); white-space:nowrap; }
+  .today-empty{ font-size:13px; color:var(--muted); padding:6px 0; }
+  .digest-steps{ margin:10px 0 4px; padding-left:20px; }
+  .digest-steps li{ font-size:13px; line-height:1.55; color:var(--ink-soft); margin-bottom:8px; }
+  .explainer code{ font-family:ui-monospace,Menlo,monospace; font-size:12px; background:oklch(95% 0.01 90); padding:1px 5px; border-radius:3px; color:var(--accent-ink); }
+  .digest-time{ margin-top:14px; padding:14px 16px; border:1px solid var(--rule); border-radius:8px; background:var(--paper); }
+  .digest-time .dt-row{ display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin-bottom:10px; }
+  .digest-time label{ font-size:13px; color:var(--ink-soft); display:flex; align-items:center; gap:7px; }
+  .digest-time input[type=time], .digest-time select{ font-family:var(--sans); font-size:13px; padding:5px 8px; border:1px solid var(--rule); border-radius:6px; }
+  .digest-time .dt-tz{ font-size:11.5px; color:var(--faint); }
+  .digest-time .dt-cron{ font-family:ui-monospace,Menlo,monospace; font-size:12px; background:oklch(97% 0.006 90); border:1px solid var(--rule-soft); border-radius:6px; padding:10px 12px; margin:0 0 10px; white-space:pre-wrap; color:var(--ink); }
+  .digest-recips{ margin-top:14px; padding:14px 16px; border:1px solid var(--rule); border-radius:8px; background:var(--paper); }
+  .digest-recips .dr-lbl{ font-size:12px; font-weight:700; color:var(--ink); margin-bottom:10px; }
+  .digest-recips .dr-lbl span{ font-weight:400; color:var(--muted); }
+  .dr-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:9px; }
+  .dr-chip{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; padding:4px 5px 4px 11px; border-radius:13px; background:var(--accent-wash); color:var(--accent-ink); }
+  .dr-chip button{ background:none; border:none; cursor:pointer; color:inherit; font-size:14px; line-height:1; padding:0 3px; opacity:.7; }
+  .dr-chip button:hover{ opacity:1; }
+  .dr-add{ display:flex; align-items:center; gap:10px; }
+  .dr-add input{ font-family:var(--sans); font-size:13px; padding:7px 10px; border:1px solid var(--rule); border-radius:6px; min-width:260px; }
+  .dr-add input:focus{ border-color:var(--accent-ink); outline:none; }
+  .today-digest{ display:flex; align-items:center; gap:12px; padding:11px 14px; margin-bottom:12px; border:1px solid var(--accent-ink); border-radius:8px; background:var(--paper); }
+  .today-digest .td-msg{ flex:1; min-width:0; font-size:12.5px; color:var(--ink); }
+  .today-digest .td-send{ flex:none; font-family:var(--sans); font-size:11.5px; font-weight:700; padding:8px 14px; border:none; border-radius:7px; background:var(--accent-ink); color:#fff; cursor:pointer; }
+  .today-digest .td-send:hover{ background:var(--ink); }
+  .today-digest .td-dismiss{ flex:none; width:28px; height:28px; border:none; border-radius:50%; background:rgba(0,0,0,.05); color:var(--muted); font-size:15px; line-height:1; cursor:pointer; }
+  .today-digest .td-dismiss:hover{ background:rgba(0,0,0,.1); color:var(--ink); }
 
   /* ---------- quick shortcuts (Home) ---------- */
   .quick-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:36px; }
@@ -133,6 +228,13 @@
   .feed-item .fi-body b{ color:var(--ink); }
   .feed-item .fi-when{ flex:none; font-size:11px; color:var(--faint); white-space:nowrap; }
   .feed-empty{ font-size:12.5px; color:var(--faint); font-style:italic; padding:8px 0; }
+  .pin-item{ display:flex; gap:10px; align-items:flex-start; padding:9px 0; border-bottom:1px solid var(--rule-soft); font-size:12px; line-height:1.45; cursor:pointer; }
+  .pin-item:last-child{ border-bottom:none; }
+  .pin-item:hover .pin-name{ text-decoration:underline; }
+  .pin-item .pin-star{ flex:none; color:var(--accent-ink); font-size:12px; }
+  .pin-item .pin-body{ flex:1; min-width:0; color:var(--ink-soft); }
+  .pin-item .pin-name{ display:block; font-weight:700; color:var(--accent-ink); font-size:10.5px; margin-top:2px; }
+  .pin-item .pin-when{ flex:none; font-size:10px; color:var(--faint); white-space:nowrap; }
 
   /* ---------- Overdue follow-ups ---------- */
   .overdue{ border:1.5px solid oklch(50% 0.14 25 / 0.5); border-radius:6px; padding:20px 24px; margin-bottom:28px; background: oklch(50% 0.14 25 / 0.05); }
@@ -151,6 +253,15 @@
   .contact-row:last-child{ border-bottom:none; }
   .contact-row:hover{ background:var(--accent-wash); }
   .contact-row .cr-name{ font-weight:700; color:var(--ink); flex:1; min-width:0; font-size:13.5px; }
+  .contact-row .cr-sel{ flex:none; display:flex; align-items:center; }
+  .contact-row.sel{ background:var(--accent-wash); }
+  .bulk-bar{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px; padding:10px 14px; border:1px solid var(--accent-ink); border-radius:8px; background:var(--accent-wash); }
+  .bulk-bar[hidden]{ display:none; }
+  .bulk-bar .bb-count{ font-size:12px; font-weight:800; color:var(--accent-ink); }
+  .bulk-bar select{ font-family:var(--sans); font-size:12px; padding:6px 9px; border:1px solid var(--rule); border-radius:6px; background:var(--paper); }
+  .bulk-bar .bb-apply{ font-family:var(--sans); font-size:12px; font-weight:700; padding:7px 14px; border:none; border-radius:6px; background:var(--accent-ink); color:#fff; cursor:pointer; }
+  .bulk-bar .bb-apply:hover{ background:var(--ink); }
+  .bulk-bar .bb-clear{ font-family:var(--sans); font-size:12px; font-weight:700; padding:7px 12px; border:none; background:none; color:var(--muted); cursor:pointer; text-decoration:underline; }
   .contact-row .cr-org{ color:var(--muted); font-size:12px; flex:none; max-width:240px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .contact-row .cr-status{ flex:none; font-size:9.5px; font-weight:700; padding:3px 9px; border-radius:10px; border:1px solid var(--rule); color:var(--muted); white-space:nowrap; }
   .contact-row .cr-owner{ flex:none; font-size:9.5px; font-weight:700; color:var(--accent-ink); width:52px; text-align:right; }
@@ -171,6 +282,26 @@
   .cd-actions .rec-addtask:hover{ background:var(--ink); }
   .contact-row .cr-open{ margin-left:auto; flex:none; font-size:11px; font-weight:700; color:var(--accent-ink); }
   .contact-row:hover .cr-open{ color:var(--ink); }
+  .contact-row .cr-tags{ flex:none; display:flex; gap:4px; }
+  .contact-row .cr-tag{ font-size:9px; font-weight:700; padding:2px 7px; border-radius:9px; background:var(--accent-wash); color:var(--accent-ink); white-space:nowrap; }
+  .tag-filter-bar{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:-14px 0 22px; }
+  .tag-filter-bar .tf-lbl{ font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-right:2px; }
+  .tf-chip{ font-family:var(--sans); font-size:10.5px; font-weight:700; padding:4px 11px; border-radius:12px; border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
+  .tf-chip:hover{ border-color:var(--tfink); color:var(--tfink); }
+  .tf-chip.on{ background:var(--tfbg); color:var(--tfink); border-color:transparent; }
+  .tf-clear{ font-family:var(--sans); font-size:10.5px; font-weight:700; padding:4px 10px; border:none; background:none; color:var(--accent-ink); cursor:pointer; text-decoration:underline; }
+  .cd-tags-wrap{ margin-top:14px; }
+  .cd-tags-wrap > .lbl{ font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-bottom:6px; }
+  .cd-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+  .cd-tag{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; padding:3px 4px 3px 10px; border-radius:12px; background:var(--accent-wash); color:var(--accent-ink); }
+  .cd-tag button{ background:none; border:none; cursor:pointer; color:inherit; font-size:13px; line-height:1; padding:0 3px; opacity:.7; }
+  .cd-tag button:hover{ opacity:1; }
+  .cd-tag-empty{ font-size:11.5px; color:var(--faint); font-style:italic; }
+  .cd-tag-input{ width:100%; box-sizing:border-box; font-family:var(--sans); font-size:12px; border:1px solid var(--rule); border-radius:4px; padding:6px 9px; background:var(--paper); }
+  .cd-tag-input:focus{ border-color:var(--accent-ink); outline:none; }
+  .cd-preset-bar{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .cd-preset{ font-family:var(--sans); font-size:10.5px; font-weight:700; padding:4px 10px; border-radius:12px; border:1px dashed currentColor; cursor:pointer; opacity:.85; }
+  .cd-preset:hover{ opacity:1; border-style:solid; }
 
   /* ---------- Contact record (master → detail) ---------- */
   .contact-record[hidden]{ display:none; }
@@ -183,19 +314,166 @@
   .rec-head .rh-pill{ font-size:10.5px; font-weight:700; letter-spacing:.03em; border:1px solid var(--rule); border-radius:20px; padding:4px 11px; color:var(--muted); background:var(--paper); }
   .rec-head .rh-pill b{ color:var(--ink); font-weight:700; }
   .rec-cols{ display:grid; grid-template-columns:1fr 300px; gap:30px; align-items:start; }
+  /* snapshot strip */
+  .rec-snap{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px; }
+  .rec-snap .snap{ flex:1; min-width:120px; border:1px solid var(--rule); border-radius:7px; padding:10px 13px; background:var(--paper); }
+  .rec-snap .snap .k{ font-size:8.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+  .rec-snap .snap .v{ font-size:14px; font-weight:700; color:var(--ink); margin-top:3px; }
+  .rec-snap .snap .v.over{ color:#c0392b; } .rec-snap .snap .v.soon{ color:#a5761b; } .rec-snap .snap .v.ok{ color:#1f8a52; }
+  .rec-snap .snap.act{ display:flex; align-items:center; gap:7px; }
+  .rec-snap .snap.act a{ font-size:12px; font-weight:700; padding:7px 11px; border-radius:6px; background:var(--accent-ink); color:#fff; text-decoration:none; white-space:nowrap; }
+  .rec-snap .snap.act a.sec{ background:var(--paper); color:var(--accent-ink); border:1px solid var(--rule); }
+  .rec-snap .snap.act a:hover{ background:var(--ink); color:#fff; }
+  /* tasks panel */
+  .rec-tasks{ border:1px solid var(--rule); border-radius:6px; padding:16px 18px; margin-top:16px; }
+  .rec-tasks .rt-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .rec-tasks .rt-head .lbl{ font-size:9.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); }
+  .rec-tasks .rt-add{ font-family:var(--sans); font-size:11px; font-weight:700; color:var(--accent-ink); background:none; border:none; cursor:pointer; }
+  .rec-tasks .rt-add:hover{ color:var(--ink); }
+  .rt-item{ display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--rule-soft); }
+  .rt-item:last-child{ border-bottom:none; }
+  .rt-item .rt-check{ flex:none; width:17px; height:17px; border:1.5px solid var(--rule); border-radius:4px; cursor:pointer; background:var(--paper); display:inline-flex; align-items:center; justify-content:center; font-size:11px; color:#fff; }
+  .rt-item .rt-check.done{ background:#1f8a52; border-color:#1f8a52; }
+  .rt-item .rt-body{ flex:1; min-width:0; cursor:pointer; }
+  .rt-item .rt-title{ font-size:12.5px; color:var(--ink); }
+  .rt-item.is-done .rt-title{ text-decoration:line-through; color:var(--faint); }
+  .rt-item .rt-meta{ font-size:10.5px; color:var(--faint); margin-top:1px; }
+  .rt-item .rt-meta.over{ color:#c0392b; font-weight:700; }
+  .rec-tasks .rt-empty{ font-size:12px; color:var(--faint); font-style:italic; padding:4px 0; }
   .rec-activity{ border:1px solid var(--rule); border-radius:6px; padding:16px 18px; }
   .rec-activity .lbl{ font-size:9.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:12px; }
+  .rec-activity .ra-head{ display:flex; align-items:baseline; justify-content:space-between; gap:8px; margin-bottom:12px; }
+  .rec-activity .ra-head .lbl{ margin-bottom:0; }
+  .ra-jump{ font-family:var(--sans); font-size:10px; font-weight:700; color:var(--accent-ink); background:none; border:none; cursor:pointer; padding:0; }
+  .ra-jump:hover{ text-decoration:underline; }
+  .ra-node{ position:relative; }
+  .ra-pin{ flex:none; background:none; border:none; cursor:pointer; font-size:13px; line-height:1; color:var(--faint); padding:0 0 0 4px; align-self:flex-start; }
+  .ra-pin:hover{ color:var(--accent-ink); }
+  .ra-node.is-pinned .ra-pin{ color:var(--accent-ink); }
+  .ra-pinned-sect .ra-daylbl{ color:var(--accent-ink); }
   .rec-activity .ra-item{ font-size:12px; line-height:1.45; color:var(--ink-soft); padding:8px 0; border-bottom:1px solid var(--rule-soft); }
   .rec-activity .ra-item:last-child{ border-bottom:none; }
   .rec-activity .ra-item .ra-meta{ display:block; font-size:10px; color:var(--faint); margin-top:2px; }
   .rec-activity .ra-empty{ font-size:12px; color:var(--faint); font-style:italic; }
+  .ra-filter{ display:flex; flex-wrap:wrap; gap:4px; margin-bottom:14px; }
+  .ra-filter button{ font-family:var(--sans); font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px; border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
+  .ra-filter button.active{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .ra-search{ width:100%; box-sizing:border-box; font-family:var(--sans); font-size:11.5px; color:var(--ink); background:var(--paper); border:1px solid var(--rule); border-radius:4px; padding:6px 9px; margin-bottom:12px; }
+  .ra-search:focus{ border-color:var(--accent-ink); outline:none; }
+  .ra-search::placeholder{ color:var(--faint); }
+  .ra-range{ display:flex; align-items:center; gap:6px; margin-bottom:12px; }
+  .ra-range input{ flex:1; min-width:0; box-sizing:border-box; font-family:var(--sans); font-size:10.5px; color:var(--ink); background:var(--paper); border:1px solid var(--rule); border-radius:4px; padding:5px 6px; }
+  .ra-range input:focus{ border-color:var(--accent-ink); outline:none; }
+  .ra-range span{ font-size:10px; color:var(--faint); flex:none; }
+  .ra-range button{ flex:none; font-family:var(--sans); font-size:10px; font-weight:700; padding:5px 8px; border-radius:4px; border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
+  .ra-presets{ display:flex; gap:4px; margin-bottom:12px; }
+  .ra-presets button{ font-family:var(--sans); font-size:10px; font-weight:700; padding:4px 9px; border-radius:12px; border:1px solid var(--rule); background:var(--paper); color:var(--muted); cursor:pointer; }
+  .ra-presets button.active{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .ra-body mark{ background:var(--accent-wash); color:var(--ink); font-weight:700; border-radius:2px; padding:0 1px; box-shadow:inset 0 -0.35em 0 var(--accent-wash); }
+  .ra-day{ margin-bottom:14px; }
+  .ra-day:last-child{ margin-bottom:0; }
+  .ra-daylbl{ font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin:0 0 8px 1px; }
+  .ra-node{ position:relative; display:flex; gap:11px; padding:0 0 12px; }
+  .ra-node:last-child{ padding-bottom:0; }
+  .ra-node:not(:last-child)::before{ content:''; position:absolute; left:8px; top:18px; bottom:-2px; width:1px; background:var(--rule-soft); }
+  .ra-dot{ flex:0 0 17px; width:17px; height:17px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; line-height:1; background:var(--paper); border:1.5px solid var(--rule); color:var(--muted); z-index:1; }
+  .ra-node.ra-done .ra-dot{ background:var(--accent-ink); border-color:var(--accent-ink); color:var(--paper); }
+  .ra-node.ra-task .ra-dot{ border-color:var(--accent-ink); color:var(--accent-ink); }
+  .ra-node.ra-status .ra-dot{ border-color:var(--ink); color:var(--ink); }
+  .ra-node.ra-assign .ra-dot{ border-color:var(--muted); color:var(--muted); }
+  .ra-node .ra-body{ flex:1; min-width:0; font-size:12px; line-height:1.45; color:var(--ink-soft); }
+  .ra-node .ra-body .ra-meta{ display:block; font-size:10px; color:var(--faint); margin-top:2px; }
   .rec-bg{ border:1px solid var(--rule); border-radius:6px; padding:16px 18px; margin-top:16px; background:oklch(98% 0.004 90); }
   .rec-bg .lbl{ font-size:9.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px; }
   .rec-bg .bg-field{ padding:7px 0; border-bottom:1px solid var(--rule-soft); }
   .rec-bg .bg-field:last-child{ border-bottom:none; }
   .rec-bg .bg-field b{ display:block; font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-bottom:2px; }
   .rec-bg .bg-field span{ font-size:12.5px; line-height:1.5; color:var(--ink-soft); }
+  .rec-bg .bg-field span a{ color:var(--accent-ink); font-weight:700; text-decoration:none; }
+  .rec-bg .bg-field span a:hover{ text-decoration:underline; }
   @media (max-width:820px){ .rec-cols{ grid-template-columns:1fr; } }
+  .snap-tpl{ cursor:pointer; }
+  /* ---------- Templates grid ---------- */
+  .tpl-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
+  .tpl-card{ text-align:left; background:var(--paper); border:1px solid var(--rule); border-radius:9px; padding:16px 18px; cursor:pointer; font-family:var(--sans); display:flex; flex-direction:column; gap:6px; }
+  .tpl-card:hover{ border-color:var(--accent-ink); }
+  .tpl-card .tc-name{ font-size:13.5px; font-weight:800; color:var(--ink); }
+  .tpl-card .tc-subj{ font-size:12px; font-weight:600; color:var(--accent-ink); }
+  .tpl-card .tc-snip{ font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .tpl-card .tc-go{ font-size:11px; font-weight:700; color:var(--accent-ink); margin-top:4px; }
+  /* ---------- Email template modal ---------- */
+  .etpl{ position:fixed; inset:0; background:rgba(22,24,30,.5); backdrop-filter:blur(2px); display:flex; align-items:flex-start; justify-content:center; z-index:9600; padding:8vh 16px; overflow-y:auto; }
+  .etpl[hidden]{ display:none; }
+  .etpl-card{ position:relative; background:var(--paper); border-radius:12px; padding:24px 26px; width:min(600px,94vw); box-shadow:0 24px 60px rgba(0,0,0,.34); }
+  .etpl-card h3{ font-family:var(--serif); font-size:19px; margin:0 0 14px; color:var(--ink); }
+  .etpl-x{ position:absolute; top:12px; right:14px; width:28px; height:28px; border:none; border-radius:50%; background:rgba(0,0,0,.06); color:var(--muted); font-size:16px; cursor:pointer; }
+  .etpl-pick{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:16px; }
+  .etpl-pick button{ font-family:var(--sans); font-size:11.5px; font-weight:700; padding:6px 12px; border:1px solid var(--rule); border-radius:14px; background:var(--paper); color:var(--muted); cursor:pointer; }
+  .etpl-pick button.on{ background:var(--accent-ink); color:#fff; border-color:transparent; }
+  .etpl-lbl{ display:block; font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin:0 0 5px; }
+  .etpl-subj{ width:100%; box-sizing:border-box; font-family:var(--sans); font-size:13px; border:1px solid var(--rule); border-radius:6px; padding:9px 11px; margin-bottom:14px; }
+  .etpl-body{ width:100%; box-sizing:border-box; font-family:var(--sans); font-size:13px; line-height:1.5; border:1px solid var(--rule); border-radius:6px; padding:11px 13px; resize:vertical; }
+  .etpl-foot{ display:flex; justify-content:flex-end; gap:10px; margin-top:16px; }
+  .etpl-foot button{ font-family:var(--sans); font-size:12.5px; font-weight:700; padding:9px 16px; border-radius:7px; cursor:pointer; }
+  .etpl-copy{ border:1px solid var(--rule); background:var(--paper); color:var(--ink); }
+  .etpl-send{ border:none; background:var(--accent-ink); color:#fff; }
+  .etpl-send:hover{ background:var(--ink); }
+  /* ---------- Pipeline board ---------- */
+  .pipe-board{ display:grid; grid-auto-flow:column; grid-auto-columns:minmax(210px,1fr); gap:14px; overflow-x:auto; padding-bottom:10px; align-items:start; }
+  .pipe-col{ background:oklch(97% 0.005 90); border:1px solid var(--rule); border-radius:9px; padding:10px; min-height:120px; }
+  .pipe-col.drop{ border-color:var(--accent-ink); background:var(--accent-wash); }
+  .pipe-col .pc-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:9px; padding:0 3px; }
+  .pipe-col .pc-title{ font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink); }
+  .pipe-col .pc-count{ font-size:10px; font-weight:800; color:#fff; background:var(--accent-ink); border-radius:10px; padding:2px 8px; }
+  .pipe-col .pc-bar{ height:3px; border-radius:2px; margin-bottom:9px; }
+  .pipe-card{ background:var(--paper); border:1px solid var(--rule); border-radius:7px; padding:9px 11px; margin-bottom:8px; cursor:grab; }
+  .pipe-card:last-child{ margin-bottom:0; }
+  .pipe-card:hover{ border-color:var(--accent-ink); }
+  .pipe-card.dragging{ opacity:.5; }
+  .pipe-card.stalled{ border-color:#e0b4b4; }
+  .pipe-card .pk-stall{ font-size:9px; font-weight:800; letter-spacing:.03em; color:#c0392b; background:#fdeaea; border-radius:4px; padding:2px 6px; margin-bottom:6px; display:inline-block; }
+  .pipe-card .pk-name{ font-size:12.5px; font-weight:700; color:var(--ink); }
+  .pipe-card .pk-org{ font-size:11px; color:var(--muted); margin-top:1px; }
+  .pipe-card .pk-foot{ display:flex; align-items:center; gap:6px; margin-top:6px; }
+  .pipe-card .pk-owner{ font-size:9.5px; font-weight:700; color:var(--accent-ink); }
+  .pipe-card .pk-fu{ font-size:9.5px; font-weight:700; margin-left:auto; }
+  .pipe-card .pk-fu.over{ color:#c0392b; } .pipe-card .pk-fu.soon{ color:#a5761b; } .pipe-card .pk-fu.ok{ color:var(--faint); }
+  .pipe-col .pc-empty{ font-size:11px; color:var(--faint); font-style:italic; padding:8px 3px; }
+  /* ---------- Quick-add FAB ---------- */
+  .fab-wrap{ position:fixed; right:26px; bottom:26px; z-index:8000; display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+  .fab-btn{ width:54px; height:54px; border-radius:50%; border:none; background:var(--accent-ink); color:#fff; font-size:28px; line-height:1; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,.22); transition:transform .18s, background .18s; }
+  .fab-btn:hover{ background:var(--ink); }
+  .fab-wrap.open .fab-btn{ transform:rotate(45deg); }
+  .fab-menu{ display:flex; flex-direction:column; gap:7px; }
+  .fab-menu[hidden]{ display:none; }
+  .fab-menu button{ display:flex; align-items:center; gap:9px; font-family:var(--sans); font-size:12.5px; font-weight:700; color:var(--ink); background:var(--paper); border:1px solid var(--rule); border-radius:9px; padding:9px 14px; cursor:pointer; box-shadow:0 3px 10px rgba(0,0,0,.1); white-space:nowrap; }
+  .fab-menu button:hover{ border-color:var(--accent-ink); color:var(--accent-ink); }
+  .fab-menu button span{ font-size:14px; }
+  @media (max-width:760px){ .fab-wrap{ right:16px; bottom:16px; } }
+  /* ---------- Shortcut help ---------- */
+  .sc-help{ position:fixed; inset:0; background:rgba(22,24,30,.5); backdrop-filter:blur(2px); display:flex; align-items:center; justify-content:center; z-index:9500; }
+  .sc-help[hidden]{ display:none; }
+  .sc-card{ position:relative; background:var(--paper); border-radius:12px; padding:26px 30px; width:min(400px,90vw); box-shadow:0 24px 60px rgba(0,0,0,.32); }
+  .sc-card h3{ font-family:var(--serif); font-size:19px; margin:0 0 16px; color:var(--ink); }
+  .sc-card .sc-x{ position:absolute; top:12px; right:14px; width:28px; height:28px; border:none; border-radius:50%; background:rgba(0,0,0,.06); color:var(--muted); font-size:16px; cursor:pointer; }
+  .sc-card ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; }
+  .sc-card li{ display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--ink-soft); }
+  .sc-card li span{ margin-left:auto; color:var(--muted); }
+  .sc-card kbd{ font-family:ui-monospace,Menlo,monospace; font-size:11px; background:oklch(95% 0.01 90); border:1px solid var(--rule); border-bottom-width:2px; border-radius:4px; padding:2px 7px; color:var(--ink); }
+  /* ---------- Command palette ---------- */
+  .cmdp{ position:fixed; inset:0; background:rgba(22,24,30,.5); backdrop-filter:blur(2px); display:flex; align-items:flex-start; justify-content:center; z-index:9600; padding-top:12vh; }
+  .cmdp[hidden]{ display:none; }
+  .cmdp-card{ background:var(--paper); border-radius:12px; width:min(560px,92vw); box-shadow:0 24px 60px rgba(0,0,0,.34); overflow:hidden; }
+  .cmdp-input{ width:100%; box-sizing:border-box; border:none; border-bottom:1px solid var(--rule); font-family:var(--sans); font-size:16px; padding:17px 20px; color:var(--ink); outline:none; }
+  .cmdp-list{ max-height:340px; overflow-y:auto; padding:6px; }
+  .cmdp-item{ display:flex; align-items:center; gap:11px; padding:9px 13px; border-radius:7px; cursor:pointer; }
+  .cmdp-item.sel{ background:var(--accent-wash); }
+  .cmdp-item .ci-ic{ font-size:14px; width:20px; text-align:center; }
+  .cmdp-item .ci-lbl{ font-size:13px; font-weight:600; color:var(--ink); }
+  .cmdp-item .ci-sub{ font-weight:400; color:var(--muted); font-size:12px; }
+  .cmdp-empty{ padding:16px 20px; font-size:13px; color:var(--faint); font-style:italic; }
+  .cmdp-foot{ border-top:1px solid var(--rule); padding:9px 16px; font-size:10.5px; color:var(--muted); }
+  .cmdp-foot kbd{ font-family:ui-monospace,Menlo,monospace; font-size:10px; background:oklch(95% 0.01 90); border:1px solid var(--rule); border-radius:3px; padding:1px 5px; }
 
   /* ---------- To-do list (ad-hoc jobs, owned by Dean or Gareth) ---------- */
   .todo-panel{ border:1px solid var(--rule); border-radius:6px; padding:20px 24px; }
@@ -207,10 +485,45 @@
   .todo-add button{ font-family:var(--sans); font-size:12.5px; font-weight:700; background:var(--ink); color:var(--paper); border:none; border-radius:4px; padding:9px 18px; cursor:pointer; }
   .todo-add button:hover{ background:var(--accent-ink); }
   .todo-list{ display:flex; flex-direction:column; }
+  .week-panel{ border:1px solid var(--rule); border-radius:6px; padding:18px 22px; margin-bottom:26px; }
+  .task-view-toggle{ display:inline-flex; border:1px solid var(--rule); border-radius:6px; overflow:hidden; margin-bottom:18px; }
+  .tvt-btn{ font-family:var(--sans); font-size:12px; font-weight:700; color:var(--muted); background:var(--paper); border:none; padding:7px 16px; cursor:pointer; }
+  .tvt-btn.active{ background:var(--accent-ink); color:#fff; }
+  .task-board{ display:flex; gap:14px; overflow-x:auto; padding-bottom:10px; align-items:flex-start; }
+  .tb-col{ flex:1 0 220px; min-width:220px; background:oklch(97% 0.004 90); border:1px solid var(--rule); border-radius:8px; padding:10px; }
+  .tb-col.drag-over{ border-color:var(--accent); background:var(--accent-wash); }
+  .tb-col-head{ display:flex; justify-content:space-between; align-items:center; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; padding:2px 4px; }
+  .tb-col-head .n{ color:var(--accent-ink); }
+  .tb-card{ background:var(--paper); border:1px solid var(--rule); border-radius:6px; padding:10px 11px; margin-bottom:8px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+  .tb-card:hover{ border-color:var(--accent); }
+  .tb-card.is-high{ box-shadow: inset 3px 0 0 var(--accent-ink); }
+  .tb-card .tc-title{ font-size:12.5px; color:var(--ink); line-height:1.35; margin-bottom:6px; }
+  .tb-card .tc-meta{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .tb-card .tc-owner{ font-size:8.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); border:1px solid var(--rule); border-radius:10px; padding:1px 7px; }
+  .tb-card .tc-due{ font-size:10px; font-weight:700; color:var(--faint); }
+  .tb-card .tc-due.is-overdue{ color:oklch(50% 0.14 25); }
+  .tb-card.dragging{ opacity:.4; }
+  .tb-col.over-limit{ border-color:oklch(50% 0.14 25 / 0.6); background:oklch(50% 0.14 25 / 0.05); }
+  .tb-col-head .tb-count{ display:inline-flex; gap:5px; align-items:baseline; }
+  .tb-col-head .n.over{ color:oklch(50% 0.14 25); }
+  .tb-col-head .lim{ cursor:pointer; color:var(--faint); font-weight:700; }
+  .tb-col-head .lim:hover{ color:var(--accent-ink); }
+  .week-panel .lbl{ font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
+  .wk-summary{ font-size:12px; color:var(--muted); margin-bottom:12px; }
+  .wk-item{ display:flex; align-items:center; gap:14px; padding:8px 0; border-bottom:1px solid var(--rule-soft); cursor:pointer; }
+  .wk-item:last-child{ border-bottom:none; }
+  .wk-item:hover{ background:var(--accent-wash); }
+  .wk-item .wk-day{ flex:none; width:112px; font-size:11px; font-weight:700; color:var(--muted); }
+  .wk-item .wk-day.is-overdue{ color:oklch(50% 0.14 25); }
+  .wk-item .wk-title{ flex:1; min-width:0; font-size:13px; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .wk-item .wk-owner{ flex:none; font-size:9.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); border:1px solid var(--rule); border-radius:12px; padding:2px 8px; }
+  .wk-empty{ font-size:12.5px; color:var(--faint); font-style:italic; }
   .task-filters{ display:flex; align-items:center; gap:14px; margin-bottom:14px; flex-wrap:wrap; }
   .task-filters select{ font-family:var(--sans); font-size:11.5px; font-weight:700; border:1px solid var(--rule); border-radius:5px; padding:5px 8px; background:var(--paper); color:var(--ink); cursor:pointer; }
   .task-filters label{ display:flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; color:var(--muted); cursor:pointer; }
   .task-filters .tf-count{ margin-left:auto; font-size:11px; color:var(--faint); }
+  .task-filters .tf-export{ font-family:var(--sans); font-size:11px; font-weight:700; color:var(--accent-ink); background:var(--paper); border:1px solid var(--accent); border-radius:5px; padding:5px 11px; cursor:pointer; }
+  .task-filters .tf-export:hover{ background:var(--accent-ink); color:#fff; border-color:var(--accent-ink); }
   .todo-item{ display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid var(--rule-soft); flex-wrap:wrap; }
   .todo-item:last-child{ border-bottom:none; }
   .todo-item input[type=checkbox]{ width:15px; height:15px; accent-color:var(--accent-ink); cursor:pointer; flex:none; }
@@ -283,6 +596,10 @@
   .reminder-toast button{ font-family:var(--sans); font-size:11.5px; font-weight:700; border-radius:4px; padding:6px 12px; cursor:pointer; border:none; }
   .reminder-toast .rt-go{ background:var(--accent); color:var(--ink); }
   .reminder-toast .rt-dismiss{ background:transparent; border:1px solid rgba(255,255,255,.35); color:#fff; }
+  .reminder-toast .rt-snooze{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:9px; padding-top:9px; border-top:1px solid rgba(255,255,255,.15); }
+  .reminder-toast .rt-snooze span{ font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.55); }
+  .reminder-toast .rt-snooze button{ background:rgba(255,255,255,.12); color:#fff; padding:4px 9px; font-size:11px; }
+  .reminder-toast .rt-snooze button:hover{ background:rgba(255,255,255,.22); }
 
   /* ---------- generic confirmation toast (e.g. "Task added") ---------- */
   .confirm-toasts{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%); z-index:70; display:flex; flex-direction:column; gap:8px; }
@@ -366,10 +683,12 @@
   <div class="shell">
     <nav class="sidenav">
       <div class="sn-brand"><img src="assets/otos-brain-icon.png" alt="OTOS"><span class="sn-brand-txt">OTOS Hub</span></div>
-      <button class="sn-item" data-view="home"><span class="sn-icon">🏠</span>Home</button>
+      <button class="sn-item" data-view="home"><span class="sn-icon">☀️</span>Today</button>
       <button class="sn-item" data-view="tasks"><span class="sn-icon">✅</span>Tasks<span class="sn-badge" id="navTaskBadge" style="display:none;"></span></button>
-      <button class="sn-item" data-view="contacts"><span class="sn-icon">👤</span>Contacts</button>
+      <button class="sn-item" data-view="contacts"><span class="sn-icon">👤</span>Contacts<span class="sn-badge" id="navPinBadge" style="display:none;"></span></button>
+      <button class="sn-item" data-view="pipeline"><span class="sn-icon">📊</span>Pipeline</button>
       <button class="sn-item" data-view="documents"><span class="sn-icon">📄</span>Documents</button>
+      <button class="sn-item" data-view="templates"><span class="sn-icon">✉️</span>Templates</button>
       <button class="sn-item" data-view="activity"><span class="sn-icon">🕒</span>Activity</button>
       <button class="sn-item" data-view="about"><span class="sn-icon">ℹ️</span>About</button>
       <div class="sn-spacer"></div>
@@ -381,8 +700,14 @@
       <!-- ============ HOME ============ -->
       <section data-view-panel="home" class="wm-brain">
         <div class="panel-head">
-          <h1>Welcome back.</h1>
-          <div class="ph-sub">Here's what needs doing right now.</div>
+          <h1>Today</h1>
+          <div class="ph-sub" id="todayDate"></div>
+        </div>
+
+        <div class="today-work">
+          <div class="lbl">Due today &amp; overdue</div>
+          <div class="na-sub">Everything that needs you today, soonest first. Tap any item to action it — on mobile, swipe left to mark done.</div>
+          <div id="todayList"><div class="today-empty">Loading…</div></div>
         </div>
 
         <div class="next-actions">
@@ -396,6 +721,18 @@
           <button type="button" class="quick-card sn-jump" data-view="contacts"><span class="qc-n" id="qcOverdue">–</span><span class="qc-l">Overdue follow-ups</span></button>
           <button type="button" class="quick-card sn-jump" data-view="documents"><span class="qc-n" id="qcReady">–</span><span class="qc-l">Docs ready to send</span></button>
         </div>
+
+        <div class="week-panel">
+          <div class="lbl">This week</div>
+          <div class="wk-summary" id="wkSummary">Loading…</div>
+          <button type="button" id="wkDigestBtn" class="tf-export" style="margin-bottom:12px;">Email digest of due tasks</button>
+          <div id="weekTaskList"></div>
+        </div>
+
+        <div class="week-panel" id="pinnedPanel" hidden>
+          <div class="lbl">&#9733; Pinned events</div>
+          <div id="pinnedList"></div>
+        </div>
       </section>
 
       <!-- ============ TASKS ============ -->
@@ -403,6 +740,10 @@
         <div class="panel-head">
           <h1>Tasks</h1>
           <div class="ph-sub">Your shared job list — add anything you need to remember, assign it, give it a due date.</div>
+        </div>
+        <div class="task-view-toggle">
+          <button type="button" class="tvt-btn active" data-mode="list">List</button>
+          <button type="button" class="tvt-btn" data-mode="board">Board</button>
         </div>
         <div class="todo-panel">
           <div class="lbl">To-do</div>
@@ -421,10 +762,14 @@
             <select id="taskFilterOwner"><option value="">All owners</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option><option value="Unassigned">Unassigned</option></select>
             <label><input type="checkbox" id="taskFilterOverdue"> Overdue only</label>
             <label><input type="checkbox" id="taskFilterHideDone"> Hide completed</label>
+            <button type="button" id="taskExportBtn" class="tf-export">Export CSV</button>
+            <button type="button" id="taskImportBtn" class="tf-export">Import CSV</button>
+            <input type="file" id="taskImportInput" accept=".csv,text/csv" hidden>
             <span class="tf-count" id="taskFilterCount"></span>
           </div>
           <div class="todo-list" id="todoList"><div class="todo-empty">Loading…</div></div>
         </div>
+        <div class="task-board" id="taskBoard" hidden></div>
         <div class="task-modal" id="taskModal" hidden>
           <div class="tm-backdrop"></div>
           <div class="tm-window">
@@ -454,6 +799,7 @@
         <div class="panel-head">
           <h1>Contacts</h1>
           <div class="ph-sub">Every contact, route and organisation — who's been contacted, what's overdue, and where to open the full record.</div>
+          <div style="margin-top:10px;"><button type="button" id="contactImportBtn" class="tf-export">⇪ Import contacts (CSV)</button><input type="file" id="contactImportInput" accept=".csv,text/csv" hidden><span class="tf-count" id="contactImportMsg" style="margin-left:10px;"></span></div>
         </div>
 
         <div id="contactsMaster">
@@ -470,9 +816,30 @@
           </div>
           <div class="search-meta" id="contactSearchMeta"></div>
         </div>
+        <div id="tagFilterBar" class="tag-filter-bar" style="display:none;"></div>
+        <div id="bulkBar" class="bulk-bar" hidden><span class="bb-count">0 selected</span><select class="bb-status"><option value="">Set status…</option></select><select class="bb-owner"><option value="">Set owner…</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option><option value="Unassigned">Unassigned</option></select><button type="button" class="bb-apply">Apply</button><button type="button" class="bb-clear">Clear</button></div>
         <div class="contact-list" id="contactList"><div style="padding:16px;font-size:12.5px;color:var(--faint);font-style:italic;">Loading…</div></div>
         </div>
         <div class="contact-record" id="contactRecord" hidden></div>
+      </section>
+
+      <!-- ============ PIPELINE ============ -->
+      <section data-view-panel="pipeline" hidden>
+        <div class="panel-head">
+          <h1>Pipeline</h1>
+          <div class="ph-sub">Every contact by outreach stage. Drag a card to move it — the status saves live. Click a card to open the record.</div>
+        </div>
+        <div class="pipe-board" id="pipelineBoard"><div style="padding:16px;font-size:12.5px;color:var(--faint);font-style:italic;">Loading…</div></div>
+      </section>
+
+      <!-- ============ TEMPLATES ============ -->
+      <section data-view-panel="templates" hidden>
+        <div class="panel-head">
+          <h1>Email templates</h1>
+          <div class="ph-sub">Ready-to-send drafts. Pick one to preview, edit the merge fields, then copy or open in your email client. Opening a template from inside a contact record auto-fills their name and organisation.</div>
+          <div class="search-box" style="margin-top:12px;max-width:360px;"><span class="icon">🔍</span><input type="text" id="templateSearch" placeholder="Search templates…" autocomplete="off"></div>
+        </div>
+        <div class="tpl-grid" id="templateGrid"></div>
       </section>
 
       <!-- ============ DOCUMENTS ============ -->
@@ -626,6 +993,41 @@
         </div>
 
         <p class="task-note"><b>What's live vs. static:</b> G/D/Ready ticks, Owner assignment, per-document notes, tracker status/dates/log, target-list status, to-dos and the activity feed all sync live via Supabase — Dean and Gareth see each other's changes on refresh, no GitHub push needed. The document files themselves (their actual content/copy) still need a save + push to GitHub to update for both.</p>
+
+        <div class="explainer" style="margin-top:24px;">
+          <div class="lbl">Automatic daily digest — backend cron (optional)</div>
+          <p>The <b>Today</b> screen shows a one-click "Email it" digest each day. To have the digest <b>sent automatically every morning</b> with no one logged in, a real backend cron is now wired into the repo — it just needs turning on in Vercel:</p>
+          <ol class="digest-steps">
+            <li><b>Files are already in the repo:</b> <code>api/daily-digest.js</code> and <code>api/weekly-summary.js</code> (the functions) and <code>vercel.json</code> (the schedules — daily 08:00 UK, plus a <b>weekly summary every Monday 08:00 UK</b>). Push them to GitHub so Vercel picks them up.</li>
+            <li><b>Create a free Resend account</b> at resend.com and copy an API key.</li>
+            <li><b>In Vercel → Project → Settings → Environment Variables</b>, add: <code>RESEND_API_KEY</code> (your key) and <code>DIGEST_TO</code> (recipients, comma-separated — e.g. dean@otos.life,gareth@…). Optional: <code>DIGEST_FROM</code> (a verified sender), <code>CRON_SECRET</code> (locks the endpoint).</li>
+            <li><b>Redeploy.</b> Vercel registers the cron automatically. It emails only when something is actually due (edit the function to always send).</li>
+          </ol>
+          <p style="font-size:12px;color:var(--muted);">Test it any time by visiting <code>/api/daily-digest</code> on the deployed site. Vercel's Hobby plan allows one daily cron; change the <code>schedule</code> in <code>vercel.json</code> to adjust the time (it's in UTC).</p>
+
+          <div class="digest-time">
+            <div class="dt-row">
+              <label>Daily digest at <input type="time" id="digDaily" value="08:00"></label>
+              <label>Weekly summary <select id="digDay"><option value="1">Mon</option><option value="2">Tue</option><option value="3">Wed</option><option value="4">Thu</option><option value="5">Fri</option><option value="6">Sat</option><option value="0">Sun</option></select> (same time)</label>
+              <span class="dt-tz" id="digTz"></span>
+            </div>
+            <pre class="dt-cron" id="digCron"></pre>
+            <button type="button" id="digCopy" class="td-send" style="border:1px solid var(--rule);border-radius:7px;background:var(--paper);color:var(--ink);font:700 11.5px var(--sans);padding:8px 14px;cursor:pointer;">Copy vercel.json crons</button>
+            <span id="digCopyMsg" style="font-size:12px;color:var(--muted);margin-left:8px;"></span>
+            <p style="font-size:12px;color:var(--muted);margin-top:8px;">Paste into <code>vercel.json</code>, commit &amp; redeploy — Vercel crons run in UTC, so the line is converted for you (accounts for BST/GMT as of today).</p>
+          </div>
+          <div class="digest-recips">
+            <div class="dr-lbl">Digest recipients <span>— who gets the daily &amp; weekly emails (you and/or Gareth). Saved live for both of you.</span></div>
+            <div class="dr-chips" id="drChips"></div>
+            <div class="dr-add"><input type="email" id="drInput" placeholder="name@email.com — press Enter to add"><span id="drMsg"></span></div>
+            <p style="font-size:12px;color:var(--muted);margin:8px 0 0;">One-time setup: in Supabase → SQL editor run <code>create table if not exists hub_settings (key text primary key, value text, updated_at timestamptz default now());</code> and allow the anon role to read/write it. The cron functions read this list first, then fall back to the <code>DIGEST_TO</code> env var.</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap;">
+            <button type="button" id="cronTestBtn" class="td-send" style="border:none;border-radius:7px;background:var(--accent-ink);color:#fff;font:700 12px var(--sans);padding:9px 16px;cursor:pointer;">Send daily digest now</button>
+            <button type="button" id="weeklyTestBtn" class="td-send" style="border:1px solid var(--accent-ink);border-radius:7px;background:var(--paper);color:var(--accent-ink);font:700 12px var(--sans);padding:9px 16px;cursor:pointer;">Send weekly summary now</button>
+            <span id="cronTestMsg" style="font-size:12px;color:var(--muted);"></span>
+          </div>
+        </div>
       </section>
 
     </main>
@@ -673,6 +1075,8 @@
       document.querySelectorAll('[data-view-panel]').forEach(p => p.hidden = p.dataset.viewPanel !== view);
       history.replaceState(null, '', '#' + view);
       window.scrollTo(0, 0);
+      if (view === 'pipeline') loadPipeline();
+      if (view === 'templates') loadTemplates();
     }
     document.querySelectorAll('.sn-item[data-view]').forEach(btn => {
       btn.addEventListener('click', () => goToView(btn.dataset.view));
@@ -752,25 +1156,137 @@
       renderDashboard();
       loadFeed();
       loadOverdue();
+      loadToday();
       loadNextActions();
+      loadWeekTasks();
       loadContactsList();
+      syncPinsFromCloud().then(() => { renderPinnedDash(); refreshPinBadge(); });
+    }
+
+    const PIN_TABLE = 'event_pins';
+    async function syncPinsFromCloud(){
+      const rows = await sbGet(PIN_TABLE, '?select=cid,event_key');
+      if (!rows) return; // offline — keep local cache as-is
+      const map = {};
+      rows.forEach(r => { (map[r.cid] = map[r.cid] || []).push(r.event_key); });
+      const ourKeys = [];
+      for (let i = 0; i < localStorage.length; i++) { const lk = localStorage.key(i); if (lk && lk.indexOf('otos_pins_') === 0) ourKeys.push(lk); }
+      ourKeys.forEach(k => localStorage.removeItem(k));
+      Object.keys(map).forEach(cid => localStorage.setItem('otos_pins_' + cid, JSON.stringify(map[cid])));
+    }
+    async function cloudSetPin(cid, key, detail, eventAt, pinned){
+      try {
+        if (pinned) {
+          await fetch(SB_URL + '/rest/v1/' + PIN_TABLE, { method: 'POST', headers: Object.assign({}, SB_HEADERS, { Prefer: 'resolution=merge-duplicates' }), body: JSON.stringify([{ cid: cid, event_key: key, detail: detail || null, event_at: eventAt || null }]) });
+        } else {
+          await fetch(SB_URL + '/rest/v1/' + PIN_TABLE + '?cid=eq.' + encodeURIComponent(cid) + '&event_key=eq.' + encodeURIComponent(key), { method: 'DELETE', headers: SB_HEADERS });
+        }
+      } catch (err) { console.error('Pin sync failed', err); }
+    }
+
+    async function renderPinnedDash(){
+      const panel = document.getElementById('pinnedPanel'), box = document.getElementById('pinnedList');
+      if (!panel || !box) return;
+      const entries = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const lk = localStorage.key(i);
+        if (!lk || lk.indexOf('otos_pins_') !== 0) continue;
+        const cid = lk.slice('otos_pins_'.length);
+        let keys = []; try { keys = JSON.parse(localStorage.getItem(lk) || '[]'); } catch (_) {}
+        keys.forEach(k => { const p = k.indexOf('|'); entries.push({ cid: cid, created_at: k.slice(0, p), detail: k.slice(p + 1) }); });
+      }
+      if (!entries.length) { panel.hidden = true; refreshPinBadge(); return; }
+      const names = await sbGet('tracker_targets', '?select=id,name');
+      const nameMap = {}; (names || []).forEach(n => { nameMap[n.id] = n.name; });
+      entries.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+      const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      panel.hidden = false;
+      box.innerHTML = entries.slice(0, 10).map(e => {
+        const when = e.created_at ? new Date(e.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : '';
+        const nm = nameMap[e.cid] || 'Unknown contact';
+        return '<div class="pin-item" data-cid="' + e.cid + '"><span class="pin-star">&#9733;</span>' +
+          '<div class="pin-body">' + esc(e.detail) + '<span class="pin-name">' + esc(nm.split(' \u2014 ')[0]) + '</span></div>' +
+          '<span class="pin-when">' + when + '</span></div>';
+      }).join('');
+      refreshPinBadge();
+      box.querySelectorAll('.pin-item').forEach(el => el.addEventListener('click', () => {
+        if (window.__openContact) window.__openContact(el.dataset.cid);
+      }));
+    }
+
+    async function loadWeekTasks(){
+      const box = document.getElementById('weekTaskList');
+      const sum = document.getElementById('wkSummary');
+      if (!box) return;
+      const today = new Date().toISOString().slice(0, 10);
+      const end = new Date(Date.now() + 6 * 86400000).toISOString().slice(0, 10);
+      const rows = await sbGet('todos', '?select=*&done=eq.false&due_date=lte.' + end + '&order=due_date.asc');
+      if (!rows || !rows.length) { sum.textContent = ''; box.innerHTML = '<div class="wk-empty">Nothing due in the next 7 days.</div>'; return; }
+      const overdue = rows.filter(r => r.due_date < today).length;
+      const dean = rows.filter(r => r.owner === 'Dean').length;
+      const gareth = rows.filter(r => r.owner === 'Gareth').length;
+      const unassigned = rows.length - dean - gareth;
+      sum.textContent = rows.length + ' open' + (overdue ? ' (' + overdue + ' overdue)' : '') + ' · ' + dean + ' Dean · ' + gareth + ' Gareth' + (unassigned ? ' · ' + unassigned + ' unassigned' : '');
+      box.innerHTML = '';
+      rows.forEach(t => {
+        const isOd = t.due_date < today;
+        const label = isOd ? 'Overdue' : new Date(t.due_date + 'T00:00:00').toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' });
+        const el = document.createElement('div');
+        el.className = 'wk-item';
+        el.innerHTML = '<span class="wk-day' + (isOd ? ' is-overdue' : '') + '"></span><span class="wk-title"></span><span class="wk-owner"></span>';
+        el.querySelector('.wk-day').textContent = label + (t.due_time && !isOd ? ' ' + t.due_time.slice(0, 5) : '');
+        el.querySelector('.wk-title').textContent = t.title;
+        el.querySelector('.wk-owner').textContent = t.owner || '—';
+        el.addEventListener('click', () => { goToView('tasks'); setTimeout(() => openTaskWindow(t), 250); });
+        box.appendChild(el);
+      });
+    }
+
+    window.__activeTagFilters = new Set();
+    function applyContactFilters(){
+      const input = document.getElementById('contactSearch');
+      const meta = document.getElementById('contactSearchMeta');
+      const q = (input && input.value.trim().toLowerCase()) || '';
+      const active = window.__activeTagFilters;
+      const rows = [...document.querySelectorAll('#contactList .contact-row')];
+      let shown = 0;
+      rows.forEach(row => {
+        const textOk = !q || (row.dataset.searchText || '').includes(q);
+        const rowTags = (row.dataset.tagList || '').toLowerCase().split('|').filter(Boolean);
+        const tagOk = !active.size || [...active].some(t => rowTags.includes(t));
+        const match = textOk && tagOk;
+        row.style.display = match ? '' : 'none';
+        if (match) shown++;
+      });
+      if (meta) meta.textContent = (q || active.size) ? shown + ' of ' + rows.length + ' contacts match' : '';
+    }
+    function buildTagFilterBar(){
+      const bar = document.getElementById('tagFilterBar'); if (!bar) return;
+      const rows = [...document.querySelectorAll('#contactList .contact-row')];
+      const map = new Map();
+      rows.forEach(r => (r.dataset.tagList || '').split('|').filter(Boolean).forEach(t => map.set(t.toLowerCase(), t)));
+      const active = window.__activeTagFilters;
+      [...active].forEach(t => { if (!map.has(t)) active.delete(t); });
+      if (!map.size) { bar.innerHTML = ''; bar.style.display = 'none'; return; }
+      bar.style.display = 'flex';
+      const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      bar.innerHTML = '<span class="tf-lbl">Filter by tag</span>' +
+        [...map.entries()].sort((a, b) => a[1].localeCompare(b[1])).map(([lc, disp]) => {
+          const c = tagColor(disp);
+          return '<button type="button" class="tf-chip' + (active.has(lc) ? ' on' : '') + '" data-t="' + encodeURIComponent(lc) + '" style="--tfbg:' + c[0] + ';--tfink:' + c[1] + ';">' + esc(disp) + '</button>';
+        }).join('') +
+        (active.size ? '<button type="button" class="tf-clear">Clear</button>' : '');
     }
 
     (function setupContactSearch(){
       const input = document.getElementById('contactSearch');
-      const meta = document.getElementById('contactSearchMeta');
+      const bar = document.getElementById('tagFilterBar');
       if (!input) return;
-      input.addEventListener('input', () => {
-        const q = input.value.trim().toLowerCase();
-        const container = document.getElementById('contactList');
-        const rows = [...container.querySelectorAll('.contact-row')];
-        let shown = 0;
-        rows.forEach(row => {
-          const match = !q || (row.dataset.searchText || '').includes(q);
-          row.style.display = match ? '' : 'none';
-          if (match) shown++;
-        });
-        meta.textContent = q ? shown + ' of ' + rows.length + ' contacts match "' + input.value.trim() + '"' : '';
+      input.addEventListener('input', applyContactFilters);
+      if (bar) bar.addEventListener('click', e => {
+        const chip = e.target.closest('.tf-chip');
+        if (chip) { const t = decodeURIComponent(chip.dataset.t); const a = window.__activeTagFilters; a.has(t) ? a.delete(t) : a.add(t); buildTagFilterBar(); applyContactFilters(); return; }
+        if (e.target.closest('.tf-clear')) { window.__activeTagFilters.clear(); buildTagFilterBar(); applyContactFilters(); }
       });
     })();
 
@@ -907,17 +1423,21 @@
         }
         el.innerHTML = rows.map(r => {
           const days = Math.floor((Date.now() - new Date(r.followup_date).getTime()) / 86400000);
-          return '<div class="overdue-item"><a href="19-outreach-tracker.html#row-' + r.id + '">' + r.name + '</a><span class="oi-org">' + (r.organisation || '') + '</span><span class="oi-days">' + days + 'd overdue</span></div>';
+          return '<div class="overdue-item"><a data-ac="' + r.id + '">' + r.name + '</a><span class="oi-org">' + (r.organisation || '') + '</span><span class="oi-days">' + days + 'd overdue</span></div>';
         }).join('');
+        el.onclick = (e) => { const a = e.target.closest('a[data-ac]'); if (a) { e.preventDefault(); openActionCard(a.dataset.ac, 'Follow up with ' + a.textContent, 'Overdue follow-up'); } };
       });
     }
 
     // ---------- Contacts list with inline expandable detail (mirrors the tracker's fields) ----------
-    const STATUS_OPTIONS_HTML = [
+    const STATUS_LIST = [
       ['not-contacted', 'Not contacted'], ['emailed', 'Emailed — awaiting reply'], ['called-no-answer', 'Called — no answer'],
       ['voicemail', 'Voicemail left'], ['replied', 'Replied'], ['call-booked', 'Call booked'], ['meeting-held', 'Meeting held'],
-      ['no-response', 'No response after follow-up'], ['declined', 'Declined'], ['referred', 'Referred elsewhere']
-    ].map(([v, l]) => '<option value="' + v + '">' + l + '</option>').join('');
+      ['no-response', 'No response after follow-up'], ['declined', 'Declined'], ['referred', 'Referred elsewhere'],
+      ['callback-requested', 'Callback requested'], ['not-interested', 'Not interested'], ['wrong-contact', 'Wrong contact']
+    ];
+    const STATUS_OPTIONS_HTML = STATUS_LIST.map(([v, l]) => '<option value="' + v + '">' + l + '</option>').join('');
+    const STATUS_MAP = Object.fromEntries(STATUS_LIST);
 
     // Route background — funding/investment routes + national clinical route. Surfaced read-only inside the contact record.
     const ROUTE_BACKGROUND = {
@@ -938,6 +1458,151 @@
       'innovate-uk-sbri': { role:'Policy-aligned monitor route (Innovate UK / SBRI successor calls).', fit:'Previous addiction digital/MedTech calls were highly relevant; monitor for a live successor.', action:'Set a funding-finder alert. No application time unless a live call appears.', contact:'UKRI / Innovate UK funding finder', boundary:'Do not present closed calls as active.' },
       'slam_maudsley': { role:'Strongest national clinical-academic topic fit (South London & Maudsley + King\'s IoPPN).', fit:'The only trust running a National Adult ADHD service AND a National Addiction Centre, plus the SLaM BRC data engine (CRIS, 250k+ records) — the exact ADHD–addiction interface + a real-world-evidence route.', action:'Advisory/research steer, not a pilot-site pitch: "Who works on the adult ADHD–addiction interface and continuity, and would they advise on a feasibility study?"', contact:'Via IoPPN academic profiles / National Addiction Centre (King\'s) — NOT the clinical referral inbox.', boundary:'National specialists/researchers, not a local delivery site. RWE/CRIS angle is post-NDA. First contact = one-page concept note only.' }
     };
+
+    const PRESET_TAGS = [
+      ['Hot lead', '#fdeaea', '#c0392b'], ['Priority', '#fdf0e6', '#c26a1b'],
+      ['Warm', '#fdf8e3', '#a08106'], ['Meeting booked', '#e9f7ec', '#2c8a45'],
+      ['Champion', '#e8f1fb', '#2467c4'], ['Academic', '#ecebfa', '#4b3fb0'],
+      ['Funder', '#f6eafa', '#9b2fb0'],
+      ['NHS', '#e6f6f4', '#0f8a7e'], ['Industry', '#eef1f5', '#4a5b70'],
+      ['Cold', '#eef2f6', '#5a7089'], ['Referral', '#eafaf0', '#1f9a5a'],
+      ['Decision maker', '#fbecf4', '#b5257e'], ['Gatekeeper', '#f4eee6', '#8a6a34'],
+      ['NDA sent', '#f0edfb', '#5b45c0'], ['Follow-up', '#fdf2e6', '#c9761a'],
+      ['Do not contact', '#f6e9e9', '#8a2b2b']
+    ];
+    const PRESET_MAP = {}; PRESET_TAGS.forEach(p => { PRESET_MAP[p[0].toLowerCase()] = [p[1], p[2]]; });
+    const TAG_PALETTE = [
+      ['#eef3fb', '#2f5b9e'], ['#fdeef0', '#a8455a'], ['#eef7f0', '#3a7a4e'],
+      ['#fbf2e8', '#a5642a'], ['#f2eefb', '#6a4aa0'], ['#eaf6f8', '#2b7a86'],
+      ['#f7f0ea', '#8a5a34'], ['#f0eef7', '#5a4e9e']
+    ];
+    function tagColor(name){
+      const p = PRESET_MAP[(name || '').toLowerCase()]; if (p) return p;
+      let h = 0; const s = (name || '').toLowerCase();
+      for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+      return TAG_PALETTE[h % TAG_PALETTE.length];
+    }
+    function paintTag(el, name){ const c = tagColor(name); el.style.background = c[0]; el.style.color = c[1]; }
+    function linkifyContact(text){
+      if (!text) return '';
+      let out = String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      out = out.replace(/[\w.+-]+@[\w.-]+\.\w+/g, m => '<a href="mailto:' + m + '">' + m + '</a>');
+      out = out.replace(/\+?\d[\d\s]{7,}\d/g, m => '<a href="tel:' + m.replace(/\s/g, '') + '">' + m.trim() + '</a>');
+      return out;
+    }
+
+    const EMAIL_TEMPLATES = [
+      { id: 'intro-academic', name: 'Academic first contact', subject: 'OTOS Continuity — brief introduction and a question',
+        body: 'Dear {{name}},\n\nI am the founder of OTOS Digital Ltd. We are developing OTOS Continuity™, a non-clinical continuity layer designed to hold people between ADHD, addiction and recovery services.\n\nI am trying to identify the right academic to advise on shaping this into a fundable feasibility study, with OTOS as project partner. Might you have 20 minutes for a short conversation, or point me to the right person?\n\nI can share a one-page concept note on request.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'followup', name: 'Gentle follow-up', subject: 'Following up — OTOS Continuity',
+        body: 'Dear {{name}},\n\nJust a short note to follow up on my previous email about OTOS Continuity™. I appreciate you are busy — if there is a better person for me to speak to, a quick steer would be very welcome.\n\nWith thanks,\nDean Butler\nOTOS Digital Ltd' },
+      { id: 'thanks-meeting', name: 'Thanks after meeting', subject: 'Thank you — next steps',
+        body: 'Dear {{name}},\n\nThank you for taking the time to speak today. It was genuinely helpful. As discussed, I will send across the materials we covered and follow up on the actions.\n\nWith thanks,\nDean Butler\nOTOS Digital Ltd' },
+      { id: 'send-pack', name: 'Sending materials', subject: 'OTOS Continuity — materials as promised',
+        body: 'Dear {{name}},\n\nAs promised, please find the materials we discussed. I would welcome any thoughts when you have a moment, and I am happy to talk through anything in more detail.\n\nWith thanks,\nDean Butler\nOTOS Digital Ltd' },
+      { id: 'support-letter', name: 'Support letter request', subject: 'OTOS Continuity — request for a short letter of support',
+        body: 'Dear {{name}},\n\nThank you for your interest in OTOS Continuity™. To help us progress toward a funded feasibility study, I am gathering short letters of support from partners and academics who see the value of the work.\n\nWould {{org}} be willing to provide a brief letter — a few lines confirming the relevance of the problem and your willingness to engage as the study develops? I can send a short template to make it quick, and I am happy to adapt it to your governance requirements.\n\nThere is no commitment implied beyond expressing support at this stage.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'cold-funder', name: 'Cold intro to funder', subject: 'OTOS Continuity — a fundable route into ADHD, addiction and recovery',
+        body: 'Dear {{name}},\n\nI am the founder of OTOS Digital Ltd. We are developing OTOS Continuity™ — a non-clinical continuity layer that holds people between ADHD, addiction and recovery services, where drop-off, waiting and lost handoffs currently drive avoidable cost and harm.\n\nI am mapping the right funding route and would value a brief steer on whether this fits {{org}}\u2019s priorities. We are positioning an academically-led feasibility study, with OTOS as project partner and intervention owner — not asking a funder to back a product build.\n\nCould I send a one-page summary, or would 20 minutes be possible?\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'meeting-request', name: 'Meeting request', subject: 'OTOS Continuity — could we find 20 minutes?',
+        body: 'Dear {{name}},\n\nThank you for your reply. I would welcome the chance to talk this through properly.\n\nWould a short call suit you in the next week or two? I am flexible — as a starting point I could do:\n\n  • [option 1 — day / time]\n  • [option 2 — day / time]\n  • [option 3 — day / time]\n\nHappy to work around your diary, and 20 minutes is plenty. I can send a one-page summary beforehand so the time is useful.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'reconnect', name: 'Reconnect after silence', subject: 'OTOS Continuity — picking this back up',
+        body: 'Dear {{name}},\n\nIt has been a little while since we were last in touch, and I wanted to reconnect rather than let this drift.\n\nThings have moved on with OTOS Continuity™ since we last spoke, and I still think there is a natural fit with {{org}}. No pressure at all — but if the timing is better now, I would welcome a short conversation, or a steer on who else I should be speaking to.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'nda-followup', name: 'NDA follow-up', subject: 'OTOS Continuity — NDA and next materials',
+        body: 'Dear {{name}},\n\nThank you for your interest in seeing more detail on OTOS Continuity™. As discussed, the fuller materials sit behind a simple mutual NDA — this protects the working model while we talk openly.\n\nI have attached our standard NDA. If {{org}} would prefer to use your own, that is absolutely fine — just send it across. Once it is signed, I will share the post-NDA pack straight away.\n\nDo let me know if anything needs adjusting.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'diary-invite', name: 'Diary invite', subject: 'OTOS Continuity — calendar invite for our call',
+        body: 'Dear {{name}},\n\nThank you — I have put a hold in the diary for our call:\n\n  Date:  [day / date]\n  Time:  [time, timezone]\n  Where: [video link / phone number]\n  Length: 20–30 minutes\n\nA calendar invite is on its way separately. If the time no longer works, just let me know and I will happily move it.\n\nI will send a one-page summary beforehand so we can make the most of the time.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'referral-thanks', name: 'Referral thank-you', subject: 'Thank you for the introduction',
+        body: 'Dear {{name}},\n\nThank you for pointing me toward [name of person they referred] — that was genuinely helpful, and exactly the kind of steer I was hoping for.\n\nI will reach out to them directly and keep it brief. I will let you know how it goes, and of course do say if there is ever anything I can do in return.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'out-of-office', name: 'Out-of-office reply', subject: 'Out of office',
+        body: 'Thank you for your email.\n\nI am currently out of the office with limited access to email, returning [date]. I will reply to your message as soon as I can after that.\n\nFor anything urgent in the meantime, please contact [name] at [email].\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' },
+      { id: 'warm-reintro', name: 'Warm re-intro', subject: 'OTOS Continuity — reconnecting after our earlier conversation',
+        body: 'Dear {{name}},\n\nWe spoke some time ago about OTOS Continuity™, and I wanted to reintroduce myself now that the work has developed.\n\nSince we last talked, the model and evidence have firmed up considerably, and I still believe there is a strong fit with {{org}}. I would genuinely value picking the conversation back up when it suits you — even a short call would be welcome.\n\nWith thanks,\nDean Butler\nFounder & Director, OTOS Digital Ltd\ndean.butler@otos.digital' }
+    ];
+    function mergeTemplate(str, c){
+      if (!c || c.__raw) return str;
+      return str.replace(/\{\{name\}\}/g, (c.name || '').split(' — ')[0].split(',')[0])
+        .replace(/\{\{org\}\}/g, c.organisation || 'your team')
+        .replace(/\{\{owner\}\}/g, c.owner || 'Dean');
+    }
+    function loadTemplates(){
+      const grid = document.getElementById('templateGrid'); if (!grid) return;
+      const search = document.getElementById('templateSearch');
+      const render = () => {
+        const q = (search && search.value.trim().toLowerCase()) || '';
+        const matches = EMAIL_TEMPLATES.filter(t => !q || (t.name + ' ' + t.subject + ' ' + t.body).toLowerCase().includes(q));
+        grid.innerHTML = matches.length ? matches.map(t => {
+          const snippet = t.body.replace(/\n+/g, ' ').slice(0, 130);
+          return '<button type="button" class="tpl-card" data-id="' + t.id + '"><div class="tc-name">' + t.name + '</div><div class="tc-subj">' + t.subject + '</div><div class="tc-snip">' + snippet + '…</div><span class="tc-go">Preview & send →</span></button>';
+        }).join('') : '<div style="font-size:13px;color:var(--faint);font-style:italic;padding:8px 2px;">No templates match “' + q + '”.</div>';
+        grid.querySelectorAll('.tpl-card').forEach(b => b.addEventListener('click', () => openEmailTemplates({ __raw: true }, '', b.dataset.id)));
+      };
+      if (search && !search._wired) { search._wired = true; search.addEventListener('input', render); }
+      render();
+    }
+
+    function openEmailTemplates(c, toEmail, startId){
+      let ov = document.getElementById('emailTplModal');
+      if (!ov) {
+        ov = document.createElement('div'); ov.id = 'emailTplModal'; ov.className = 'etpl';
+        ov.innerHTML = '<div class="etpl-card"><button type="button" class="etpl-x" aria-label="Close">×</button><h3>Email templates</h3><div class="etpl-pick"></div><label class="etpl-lbl">Subject</label><input type="text" class="etpl-subj"><label class="etpl-lbl">Body</label><textarea class="etpl-body" rows="12"></textarea><div class="etpl-foot"><button type="button" class="etpl-copy">Copy</button><button type="button" class="etpl-send">Open in email ✉</button></div></div>';
+        document.body.appendChild(ov);
+        ov.addEventListener('click', e => { if (e.target === ov || e.target.closest('.etpl-x')) ov.hidden = true; });
+      }
+      ov.hidden = false;
+      const pick = ov.querySelector('.etpl-pick');
+      const subj = ov.querySelector('.etpl-subj');
+      const body = ov.querySelector('.etpl-body');
+      const apply = t => { subj.value = mergeTemplate(t.subject, c); body.value = mergeTemplate(t.body, c); pick.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.id === t.id)); };
+      pick.innerHTML = EMAIL_TEMPLATES.map(t => '<button type="button" data-id="' + t.id + '">' + t.name + '</button>').join('');
+      pick.querySelectorAll('button').forEach(b => b.addEventListener('click', () => apply(EMAIL_TEMPLATES.find(t => t.id === b.dataset.id))));
+      apply(EMAIL_TEMPLATES.find(t => t.id === startId) || EMAIL_TEMPLATES[0]);
+      ov.querySelector('.etpl-copy').onclick = async () => {
+        try { await navigator.clipboard.writeText(subj.value + '\n\n' + body.value); showConfirm('Copied to clipboard'); } catch (e) { showConfirm('Select and copy manually'); }
+      };
+      ov.querySelector('.etpl-send').onclick = () => {
+        const to = toEmail || '';
+        window.location.href = 'mailto:' + encodeURIComponent(to) + '?subject=' + encodeURIComponent(subj.value) + '&body=' + encodeURIComponent(body.value);
+        if (typeof logActivity === 'function') logActivity(c.name, 'drafted email: "' + subj.value + '"');
+        ov.hidden = true;
+      };
+    }
+
+    const bulkSel = new Set();
+    function toggleBulkSelect(id, on){
+      if (on) bulkSel.add(id); else bulkSel.delete(id);
+      const bar = document.getElementById('bulkBar');
+      const cnt = bar && bar.querySelector('.bb-count');
+      if (cnt) cnt.textContent = bulkSel.size + ' selected';
+      if (bar) bar.hidden = bulkSel.size === 0;
+      const row = document.querySelector('.contact-row[data-cid="' + id + '"]');
+      if (row) row.classList.toggle('sel', on);
+    }
+    function setupBulkBar(rows){
+      const bar = document.getElementById('bulkBar'); if (!bar) return;
+      const statusSel = bar.querySelector('.bb-status');
+      if (statusSel.options.length <= 1) STATUS_LIST.forEach(([v, l]) => { const o = document.createElement('option'); o.value = v; o.textContent = l; statusSel.appendChild(o); });
+      bulkSel.clear(); bar.hidden = true; bar.querySelector('.bb-count').textContent = '0 selected';
+      if (bar._wired) return; bar._wired = true;
+      bar.querySelector('.bb-clear').addEventListener('click', () => {
+        bulkSel.clear(); bar.hidden = true;
+        document.querySelectorAll('.contact-row .cr-check').forEach(c => { c.checked = false; c.closest('.contact-row').classList.remove('sel'); });
+      });
+      bar.querySelector('.bb-apply').addEventListener('click', async () => {
+        if (!bulkSel.size) return;
+        const st = bar.querySelector('.bb-status').value;
+        const ow = bar.querySelector('.bb-owner').value;
+        if (!st && !ow) { showConfirm('Pick a status or owner to apply'); return; }
+        const patch = { updated_at: new Date().toISOString() };
+        if (st) patch.status = st;
+        if (ow) patch.owner = ow === 'Unassigned' ? null : ow;
+        const ids = [...bulkSel];
+        await Promise.all(ids.map(id => sbPatch('tracker_targets', 'id', id, patch)));
+        logActivity('Contacts', 'bulk-updated ' + ids.length + ' contact' + (ids.length === 1 ? '' : 's') + (st ? ' → ' + (STATUS_MAP[st] || st) : '') + (ow ? ' · owner ' + ow : ''));
+        showConfirm('Updated ' + ids.length + ' contacts');
+        bulkSel.clear(); loadContactsList();
+      });
+    }
 
     async function loadContactsList(){
       const container = document.getElementById('contactList');
@@ -970,11 +1635,163 @@
       }
 
       function renderActivity(box, acts){
-        if (!acts || !acts.length) { box.innerHTML = '<div class="ra-empty">No activity logged for this contact yet.</div>'; return; }
-        box.innerHTML = acts.map(a => {
-          const d = a.created_at ? new Date(a.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
-          return '<div class="ra-item">' + (a.detail || '') + '<span class="ra-meta">' + (a.actor || 'Unknown') + (d ? ' · ' + d : '') + '</span></div>';
-        }).join('');
+        if (acts && acts.length) box._all = acts;
+        const all = box._all || acts || [];
+        const f = box.dataset.filter || 'all';
+        const isStatus = d => d.includes('status') || d.includes('assigned') || d.includes('reviewed') || d.includes('ready to send');
+        const list = all.filter(a => {
+          const term = (box.dataset.q || '').trim().toLowerCase();
+          if (term && !((a.detail || '') + ' ' + (a.actor || '')).toLowerCase().includes(term)) return false;
+          const day = a.created_at ? new Date(a.created_at).toISOString().slice(0, 10) : '';
+          if (box.dataset.from && (!day || day < box.dataset.from)) return false;
+          if (box.dataset.to && (!day || day > box.dataset.to)) return false;
+          if (f === 'all') return true;
+          if (f === 'tasks') return a.actor === 'Task';
+          const d = (a.detail || '').toLowerCase();
+          if (f === 'status') return a.actor !== 'Task' && isStatus(d);
+          if (f === 'notes') return a.actor !== 'Task' && !isStatus(d);
+          return true;
+        });
+        if (!list.length) { box.innerHTML = '<div class="ra-empty">' + (all.length ? 'No matching events.' : 'No activity logged for this contact yet.') + '</div>'; return; }
+        const term = (box.dataset.q || '').trim();
+        const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const hl = s => {
+          const raw = esc(s || '');
+          if (!term) return raw;
+          const re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+          return raw.replace(re, '<mark>$1</mark>');
+        };
+        const classify = it => {
+          if (it.kind === 'done') return { cls: 'done', ic: '\u2713' };
+          if (it.kind === 'task') return { cls: 'task', ic: '+' };
+          const d = (it.detail || '').toLowerCase();
+          if (d.includes('completed') || d.includes('ready to send') || d.includes('reviewed')) return { cls: 'done', ic: '\u2713' };
+          if (d.includes('task ') || d.includes('added:')) return { cls: 'task', ic: '+' };
+          if (d.includes('status')) return { cls: 'status', ic: '\u25D0' };
+          if (d.includes('assigned')) return { cls: 'assign', ic: '@' };
+          if (d.includes('logged')) return { cls: 'note', ic: '\u270E' };
+          return { cls: 'note', ic: '\u2022' };
+        };
+        const cid = box.dataset.cid || '';
+        let pins = [];
+        try { pins = JSON.parse(localStorage.getItem('otos_pins_' + cid) || '[]'); } catch (_) {}
+        const keyOf = a => (a.created_at || '') + '|' + (a.detail || '');
+        const nodeHtml = a => {
+          const t = classify(a);
+          const tm = a.created_at ? new Date(a.created_at).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : '';
+          const k = keyOf(a); const pinned = pins.includes(k);
+          return '<div class="ra-node ra-' + t.cls + (pinned ? ' is-pinned' : '') + '"><span class="ra-dot">' + t.ic + '</span>' +
+            '<div class="ra-body">' + hl(a.detail) + '<span class="ra-meta">' + hl(a.actor || 'Unknown') + (tm ? ' \u00b7 ' + tm : '') + '</span></div>' +
+            '<button type="button" class="ra-pin" data-k="' + encodeURIComponent(k) + '" title="' + (pinned ? 'Unpin' : 'Pin') + '">' + (pinned ? '\u2605' : '\u2606') + '</button></div>';
+        };
+        const groups = [];
+        list.forEach(a => {
+          const dt = a.created_at ? new Date(a.created_at) : null;
+          const key = dt ? dt.toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' }) : 'Undated';
+          let g = groups.find(x => x.key === key);
+          if (!g) { g = { key: key, items: [] }; groups.push(g); }
+          g.items.push(a);
+        });
+        const pinnedItems = list.filter(a => pins.includes(keyOf(a)));
+        const pinnedHtml = pinnedItems.length
+          ? '<div class="ra-day ra-pinned-sect"><div class="ra-daylbl">\u2605 Pinned</div>' + pinnedItems.map(nodeHtml).join('') + '</div>'
+          : '';
+        box.innerHTML = pinnedHtml + groups.map(g =>
+          '<div class="ra-day"><div class="ra-daylbl">' + g.key + '</div>' +
+          g.items.map(nodeHtml).join('') + '</div>'
+        ).join('');
+      }
+
+      function renderRecSnapshot(el, r, bg){
+        if (!el) return;
+        const today = new Date().toISOString().slice(0, 10);
+        const fmt = d => d ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+        let fuCls = 'ok', fuTxt = '—';
+        if (r.followup_date) {
+          fuTxt = fmt(r.followup_date);
+          if (r.followup_date < today) { fuCls = 'over'; const d = Math.floor((Date.now() - new Date(r.followup_date).getTime()) / 86400000); fuTxt += ' (' + d + 'd late)'; }
+          else if (r.followup_date === today) { fuCls = 'soon'; fuTxt = 'Today'; }
+          else fuCls = 'ok';
+        }
+        let waited = '—';
+        if (r.date_contacted) { const d = Math.floor((Date.now() - new Date(r.date_contacted).getTime()) / 86400000); waited = d === 0 ? 'Today' : d + ' day' + (d === 1 ? '' : 's'); }
+        let actHtml = '';
+        let tplEmail = '';
+        if (bg && bg.contact) {
+          const email = (bg.contact.match(/[\w.+-]+@[\w.-]+\.\w+/) || [])[0];
+          const phone = (bg.contact.match(/\+?\d[\d\s]{7,}\d/) || [])[0];
+          tplEmail = email || '';
+          const parts = [];
+          if (phone) parts.push('<a href="tel:' + phone.replace(/\s/g, '') + '">\ud83d\udcde Call</a>');
+          if (email) parts.push('<a class="sec" href="mailto:' + email + '">\u2709\ufe0f Email</a>');
+          if (parts.length) actHtml = '<div class="snap act">' + parts.join('') + '</div>';
+        }
+        el.innerHTML =
+          '<div class="snap"><div class="k">Last contacted</div><div class="v">' + fmt(r.date_contacted) + '</div></div>' +
+          '<div class="snap"><div class="k">Waiting</div><div class="v">' + waited + '</div></div>' +
+          '<div class="snap"><div class="k">Next follow-up</div><div class="v ' + fuCls + '">' + fuTxt + '</div></div>' +
+          actHtml +
+          '<div class="snap act"><a class="sec snap-tpl">\u270e Templated email</a></div>';
+        const tb = el.querySelector('.snap-tpl');
+        if (tb) tb.addEventListener('click', () => openEmailTemplates(r, tplEmail));
+      }
+
+      async function loadContactTasks(box, r){
+        if (!box) return;
+        const tasks = await sbGet('todos', '?select=*&linked_id=eq.' + r.id + '&order=done.asc,due_date.asc.nullslast,created_at.desc');
+        if (!tasks || !tasks.length) { box.innerHTML = '<div class="rt-empty">No tasks yet. Add one to schedule the next step.</div>'; return; }
+        const today = new Date().toISOString().slice(0, 10);
+        box.innerHTML = '';
+        tasks.forEach(t => {
+          const div = document.createElement('div');
+          div.className = 'rt-item' + (t.done ? ' is-done' : '');
+          const due = t.due_date ? new Date(t.due_date + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) + (t.due_time ? ' ' + t.due_time.slice(0, 5) : '') : 'No due date';
+          const over = !t.done && t.due_date && t.due_date < today;
+          div.innerHTML = '<span class="rt-check' + (t.done ? ' done' : '') + '">' + (t.done ? '\u2713' : '') + '</span>' +
+            '<div class="rt-body"><div class="rt-title"></div><div class="rt-meta' + (over ? ' over' : '') + '">' + (over ? 'Overdue \u00b7 ' : '') + due + (t.owner ? ' \u00b7 ' + t.owner : '') + '</div></div>';
+          div.querySelector('.rt-title').textContent = t.title;
+          div.querySelector('.rt-check').addEventListener('click', async (e) => {
+            e.stopPropagation();
+            const nowDone = !t.done;
+            await sbPatch('todos', 'id', t.id, { done: nowDone, status: nowDone ? 'done' : 'open', updated_at: new Date().toISOString() });
+            logActivity(r.name, nowDone ? 'completed task: "' + t.title + '"' : 'reopened task: "' + t.title + '"');
+            if (nowDone) autoLogTaskToContact(r.id, t.title);
+            loadContactTasks(box, r); refreshTaskBadge();
+            loadContactTimeline(record.querySelector('.ra-list'), r);
+          });
+          div.querySelector('.rt-body').addEventListener('click', () => openTaskWindow(t));
+          box.appendChild(div);
+        });
+      }
+
+      async function addTaskForContactInline(r, box){
+        const title = prompt('New task for ' + r.name.split(' — ')[0] + ':', 'Follow up with ' + r.name.split(' — ')[0]);
+        if (!title || !title.trim()) return;
+        const res = await fetch(SB_URL + '/rest/v1/todos', {
+          method: 'POST', headers: Object.assign({}, SB_HEADERS, { Prefer: 'return=representation' }),
+          body: JSON.stringify([{ title: title.trim(), owner: r.owner && r.owner !== 'Unassigned' ? r.owner : null, done: false, status: 'open', priority: 'normal', linked_id: r.id }])
+        }).catch(() => null);
+        if (!res || !res.ok) { showConfirm('Could not create task — check connection'); return; }
+        logActivity(r.name, 'task created: "' + title.trim() + '"');
+        showConfirm('Task added to ' + r.name.split(' — ')[0]);
+        loadContactTasks(box, r); refreshTaskBadge();
+      }
+
+      async function loadContactTimeline(box, r){
+        box.dataset.cid = r.id;
+        const [acts, tasks] = await Promise.all([
+          sbGet('activity_log', '?select=detail,actor,created_at&doc_label=eq.' + encodeURIComponent(r.name) + '&order=created_at.desc&limit=60'),
+          sbGet('todos', '?select=title,status,done,created_at,updated_at,due_date&linked_id=eq.' + r.id + '&order=created_at.desc')
+        ]);
+        const items = (acts || []).map(a => ({ detail: a.detail, actor: a.actor, created_at: a.created_at, kind: 'log' }));
+        (tasks || []).forEach(t => {
+          items.push({
+            detail: (t.done ? 'Task completed: ' : 'Task open: ') + '\u201C' + t.title + '\u201D' + (t.due_date && !t.done ? ' \u00b7 due ' + new Date(t.due_date + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : ''),
+            actor: 'Task', created_at: t.updated_at || t.created_at, kind: t.done ? 'done' : 'task'
+          });
+        });
+        items.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+        renderActivity(box, items);
       }
 
       async function openContactRecord(r){
@@ -985,16 +1802,29 @@
           '<div class="bg-field"><b>Best role</b><span>' + bg.role + '</span></div>' +
           '<div class="bg-field"><b>Fit</b><span>' + bg.fit + '</span></div>' +
           '<div class="bg-field"><b>First action</b><span>' + bg.action + '</span></div>' +
-          '<div class="bg-field"><b>Contact route</b><span>' + bg.contact + '</span></div>' +
+          '<div class="bg-field"><b>Contact route</b><span>' + linkifyContact(bg.contact) + '</span></div>' +
           '<div class="bg-field"><b>Boundary / don\'t send</b><span>' + bg.boundary + '</span></div>' +
           '</div>' : '';
         record.innerHTML =
           '<button type="button" class="rec-back">← Back to contacts</button>' +
           '<div class="rec-head"><h2 class="rh-name"></h2><p class="rh-org"></p>' +
             '<div class="rh-tags"><span class="rh-pill">Status: <b class="rh-status"></b></span><span class="rh-pill">Owner: <b class="rh-owner-tag"></b></span></div></div>' +
-          '<div class="rec-cols"><div class="rec-main">' + FIELDS_HTML +
-            '<div class="cd-actions"><button type="button" class="rec-addtask">+ Add task for this contact</button><a href="19-outreach-tracker.html#row-' + r.id + '">Open full tracker row →</a></div>' + bgHtml + '</div>' +
-            '<aside class="rec-activity"><div class="lbl">Activity history</div><div class="ra-list"><div class="ra-empty">Loading…</div></div></aside>' +
+          '<div class="rec-cols"><div class="rec-main">' +
+            '<div class="rec-snap"></div>' + FIELDS_HTML +
+            '<div class="cd-tags-wrap"><div class="lbl">Tags</div><div class="cd-tags"></div><input type="text" class="cd-tag-input" placeholder="Add a tag, press Enter\u2026"></div>' +
+            '<div class="rec-tasks"><div class="rt-head"><span class="lbl">Tasks for this contact</span><button type="button" class="rt-add">+ Add task</button></div><div class="rt-list"><div class="rt-empty">Loading\u2026</div></div></div>' +
+            '<div class="cd-actions"><a href="19-outreach-tracker.html#row-' + r.id + '">Open full tracker row →</a></div>' + bgHtml + '</div>' +
+            '<aside class="rec-activity"><div class="ra-head"><div class="lbl">Activity history</div><button type="button" class="ra-jump">\u2191 Latest</button></div>' +
+              '<div class="ra-filter">' +
+                '<button type="button" data-raf="all" class="active">All</button>' +
+                '<button type="button" data-raf="notes">Notes</button>' +
+                '<button type="button" data-raf="status">Status</button>' +
+                '<button type="button" data-raf="tasks">Tasks</button>' +
+              '</div>' +
+              '<input type="text" class="ra-search" placeholder="Search activity\u2026" />' +
+              '<div class="ra-presets"><button type="button" data-rap="7">7d</button><button type="button" data-rap="30">30d</button><button type="button" data-rap="90">90d</button><button type="button" data-rap="all" class="active">All</button></div>' +
+              '<div class="ra-range"><input type="date" class="ra-from" aria-label="From date" /><span>\u2192</span><input type="date" class="ra-to" aria-label="To date" /><button type="button" class="ra-clear">Clear</button></div>' +
+              '<div class="ra-list"><div class="ra-empty">Loading\u2026</div></div></aside>' +
           '</div>';
         const q = sel => record.querySelector(sel);
         q('.rh-name').textContent = r.name;
@@ -1023,6 +1853,7 @@
             sent_material: r.sent_material, response: r.response, next_action: r.next_action, comm_log: r.comm_log, updated_at: new Date().toISOString()
           });
           refreshTags();
+          const snapEl = record.querySelector('.rec-snap'); if (snapEl) renderRecSnapshot(snapEl, r, ROUTE_BACKGROUND[r.id]);
         };
         q('.cd-status').addEventListener('change', () => { push(); logActivity(r.name, 'status set to "' + q('.cd-status').selectedOptions[0].text + '"'); });
         q('.cd-owner').addEventListener('change', () => { push(); logActivity(r.name, 'assigned to ' + q('.cd-owner').value); });
@@ -1040,30 +1871,120 @@
           hist.textContent = today + ' — ' + e.target.value.trim() + (prior ? '\n' + prior : '');
           e.target.value = '';
           push(); logActivity(r.name, 'logged: "' + hist.textContent.split('\n')[0] + '"');
-          sbGet('activity_log', '?select=detail,actor,created_at&doc_label=eq.' + encodeURIComponent(r.name) + '&order=created_at.desc&limit=40').then(a => renderActivity(record.querySelector('.ra-list'), a));
+          setTimeout(() => loadContactTimeline(record.querySelector('.ra-list'), r), 400);
         });
         record.querySelector('.rec-back').addEventListener('click', backToList);
-        const atBtn = record.querySelector('.rec-addtask');
-        if (atBtn) atBtn.addEventListener('click', () => addTaskForRecord(r.id, r.name, r.owner));
+        (function setupTags(){
+          const escT = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          let tags = (r.tags || '').split(',').map(s => s.trim()).filter(Boolean);
+          const tagsBox = q('.cd-tags');
+          const draw = () => { tagsBox.innerHTML = tags.length ? tags.map(t => '<span class="cd-tag">' + escT(t) + '<button type="button" data-t="' + encodeURIComponent(t) + '">\u00d7</button></span>').join('') : '<span class="cd-tag-empty">No tags yet.</span>'; [...tagsBox.querySelectorAll('.cd-tag')].forEach((el, i) => paintTag(el, tags[i])); };
+          const syncRow = () => { const mrow = container.querySelector('.contact-row[data-cid="' + r.id + '"]'); if (mrow) { const tb = mrow.querySelector('.cr-tags'); if (tb) { tb.innerHTML = tags.slice(0, 3).map(() => '<span class="cr-tag"></span>').join(''); [...tb.querySelectorAll('.cr-tag')].forEach((el, i) => { el.textContent = tags[i]; paintTag(el, tags[i]); }); } mrow.dataset.tagList = tags.join('|'); mrow.dataset.searchText = (r.name + ' ' + (r.organisation || '') + ' ' + (r.status || '') + ' ' + tags.join(' ')).toLowerCase(); } };
+          const save = () => { r.tags = tags.join(', '); sbPatch('tracker_targets', 'id', r.id, { tags: r.tags, updated_at: new Date().toISOString() }); syncRow(); buildTagFilterBar(); };
+          draw();
+          const presetBar = document.createElement('div');
+          presetBar.className = 'cd-preset-bar';
+          presetBar.innerHTML = PRESET_TAGS.map(p => '<button type="button" class="cd-preset" data-t="' + encodeURIComponent(p[0]) + '" style="background:' + p[1] + ';color:' + p[2] + '">' + p[0] + '</button>').join('');
+          q('.cd-tag-input').insertAdjacentElement('afterend', presetBar);
+          const addTag = v => { if (!v || tags.some(t => t.toLowerCase() === v.toLowerCase())) return; tags.push(v); draw(); save(); logActivity(r.name, 'tagged \u201C' + v + '\u201D'); };
+          presetBar.addEventListener('click', e => { const b = e.target.closest('.cd-preset'); if (!b) return; addTag(decodeURIComponent(b.dataset.t)); });
+          q('.cd-tag-input').addEventListener('keydown', e => {
+            if (e.key !== 'Enter') return; e.preventDefault();
+            const v = e.target.value.trim(); e.target.value = ''; addTag(v);
+          });
+          tagsBox.addEventListener('click', e => {
+            const b = e.target.closest('button[data-t]'); if (!b) return;
+            const t = decodeURIComponent(b.dataset.t); tags = tags.filter(x => x !== t); draw(); save();
+          });
+        })();
+        record.querySelectorAll('.ra-filter button').forEach(btn => btn.addEventListener('click', () => {
+          record.querySelectorAll('.ra-filter button').forEach(b => b.classList.toggle('active', b === btn));
+          const box = record.querySelector('.ra-list');
+          box.dataset.filter = btn.dataset.raf;
+          renderActivity(box, box._all || []);
+        }));
+        const raSearch = record.querySelector('.ra-search');
+        if (raSearch) raSearch.addEventListener('input', debounce(() => {
+          const box = record.querySelector('.ra-list');
+          box.dataset.q = raSearch.value;
+          renderActivity(box, box._all || []);
+        }, 200));
+        const raFrom = record.querySelector('.ra-from'), raTo = record.querySelector('.ra-to');
+        const applyRange = () => {
+          const box = record.querySelector('.ra-list');
+          box.dataset.from = raFrom.value || '';
+          box.dataset.to = raTo.value || '';
+          renderActivity(box, box._all || []);
+        };
+        if (raFrom) raFrom.addEventListener('change', () => { clearPresets(); applyRange(); });
+        if (raTo) raTo.addEventListener('change', () => { clearPresets(); applyRange(); });
+        const clearPresets = () => record.querySelectorAll('.ra-presets button').forEach(b => b.classList.toggle('active', b.dataset.rap === 'all'));
+        record.querySelectorAll('.ra-presets button').forEach(btn => btn.addEventListener('click', () => {
+          record.querySelectorAll('.ra-presets button').forEach(b => b.classList.toggle('active', b === btn));
+          if (btn.dataset.rap === 'all') { raFrom.value = ''; raTo.value = ''; }
+          else {
+            const to = new Date(), from = new Date(Date.now() - (parseInt(btn.dataset.rap, 10) - 1) * 86400000);
+            raFrom.value = from.toISOString().slice(0, 10);
+            raTo.value = to.toISOString().slice(0, 10);
+          }
+          applyRange();
+        }));
+        const raClear = record.querySelector('.ra-clear');
+        if (raClear) raClear.addEventListener('click', () => { raFrom.value = ''; raTo.value = ''; clearPresets(); applyRange(); });
+        const raJump = record.querySelector('.ra-jump');
+        if (raJump) raJump.addEventListener('click', () => {
+          const box = record.querySelector('.ra-list');
+          const aside = record.querySelector('.rec-activity');
+          if (aside) window.scrollTo({ top: aside.getBoundingClientRect().top + window.scrollY - 16, behavior: 'smooth' });
+          if (box) box.scrollTop = 0;
+        });
+        const raList0 = record.querySelector('.ra-list');
+        if (raList0) raList0.addEventListener('click', (e) => {
+          const pb = e.target.closest('.ra-pin'); if (!pb) return;
+          const cid = raList0.dataset.cid; if (!cid) return;
+          const lsk = 'otos_pins_' + cid;
+          let pins = []; try { pins = JSON.parse(localStorage.getItem(lsk) || '[]'); } catch (_) {}
+          const k = decodeURIComponent(pb.dataset.k);
+          const nowPinned = !pins.includes(k);
+          pins = pins.includes(k) ? pins.filter(x => x !== k) : pins.concat(k);
+          localStorage.setItem(lsk, JSON.stringify(pins));
+          const sep = k.indexOf('|');
+          cloudSetPin(cid, k, k.slice(sep + 1), k.slice(0, sep), nowPinned);
+          renderActivity(raList0, raList0._all || []);
+          refreshPinBadge();
+        });
+        const atBtn = record.querySelector('.rt-add');
+        if (atBtn) atBtn.addEventListener('click', () => addTaskForContactInline(r, record.querySelector('.rt-list')));
+        renderRecSnapshot(record.querySelector('.rec-snap'), r, bg);
+        loadContactTasks(record.querySelector('.rt-list'), r);
         history.replaceState(null, '', '#row-' + r.id);
         window.scrollTo(0, 0);
-        const acts = await sbGet('activity_log', '?select=detail,actor,created_at&doc_label=eq.' + encodeURIComponent(r.name) + '&order=created_at.desc&limit=40');
-        renderActivity(record.querySelector('.ra-list'), acts);
+        loadContactTimeline(record.querySelector('.ra-list'), r);
       }
 
       rows.forEach(r => {
         const row = document.createElement('div');
         row.className = 'contact-row';
         row.dataset.cid = r.id;
-        row.innerHTML = '<span class="cr-name"></span><span class="cr-org"></span><span class="cr-status"></span><span class="cr-owner"></span><span class="cr-open">Open →</span>';
+        row.innerHTML = '<span class="cr-sel"><input type="checkbox" class="cr-check" aria-label="Select"></span><span class="cr-name"></span><span class="cr-org"></span><span class="cr-tags"></span><span class="cr-status"></span><span class="cr-owner"></span><span class="cr-open">Open →</span>';
+        const chk = row.querySelector('.cr-check');
+        chk.addEventListener('click', e => { e.stopPropagation(); toggleBulkSelect(r.id, chk.checked); });
         row.querySelector('.cr-name').textContent = r.name;
         row.querySelector('.cr-org').textContent = r.organisation || '';
+        const rowTags = (r.tags || '').split(',').map(s => s.trim()).filter(Boolean);
+        const tb = row.querySelector('.cr-tags');
+        tb.innerHTML = rowTags.slice(0, 3).map(() => '<span class="cr-tag"></span>').join('');
+        [...tb.querySelectorAll('.cr-tag')].forEach((el, i) => { el.textContent = rowTags[i]; paintTag(el, rowTags[i]); });
         row.querySelector('.cr-status').textContent = (r.status || 'not-contacted').replace(/-/g, ' ');
         row.querySelector('.cr-owner').textContent = r.owner || '—';
-        row.dataset.searchText = (r.name + ' ' + (r.organisation || '') + ' ' + (r.status || '')).toLowerCase();
+        row.dataset.tagList = (r.tags || '').split(',').map(s => s.trim()).filter(Boolean).join('|');
+        row.dataset.searchText = (r.name + ' ' + (r.organisation || '') + ' ' + (r.status || '') + ' ' + (r.tags || '')).toLowerCase();
         row.addEventListener('click', () => openContactRecord(r));
         container.appendChild(row);
       });
+      buildTagFilterBar();
+      applyContactFilters();
+      setupBulkBar(rows);
 
       // If arriving via a #row-<id> hash from elsewhere, open that contact's record
       window.__openContact = (id) => { const rec = rows.find(r => r.id === id); if (rec) { goToView('contacts'); openContactRecord(rec); } };
@@ -1207,7 +2128,141 @@
     function closeTaskWindow(skipReload){
       const m = document.getElementById('taskModal');
       m.hidden = true; TM_CURRENT = null;
-      if (!skipReload) loadTodos();
+      if (!skipReload) { loadTodos(); const b = document.getElementById('taskBoard'); if (b && !b.hidden) loadTaskBoard(); }
+    }
+
+    // ---------- Task board (kanban) ----------
+    let TB_TASKS = {};
+    const TB_EFF = t => (t.done || t.status === 'done') ? 'done' : (t.status || 'open');
+    const TB_LABELS = { open: 'Open', 'in-progress': 'In progress', waiting: 'Waiting on them', done: 'Done' };
+    function getWipLimits(){ const d = { open: 0, 'in-progress': 3, waiting: 5, done: 0 }; try { return Object.assign(d, JSON.parse(localStorage.getItem('otos_wip_limits') || '{}')); } catch (e) { return d; } }
+    function setWipLimit(status, n){ const l = getWipLimits(); l[status] = n; localStorage.setItem('otos_wip_limits', JSON.stringify(l)); }
+    function setTaskMode(mode){
+      document.querySelectorAll('.tvt-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+      const panel = document.querySelector('.todo-panel');
+      const board = document.getElementById('taskBoard');
+      if (mode === 'board') { if (panel) panel.style.display = 'none'; board.hidden = false; loadTaskBoard(); }
+      else { if (panel) panel.style.display = ''; board.hidden = true; }
+    }
+    (function setupTaskModeToggle(){
+      document.querySelectorAll('.tvt-btn').forEach(b => b.addEventListener('click', () => setTaskMode(b.dataset.mode)));
+    })();
+    const PIPE_STAGES = [
+      { key: 'new', title: 'New', color: '#8a94a6', primary: 'not-contacted', statuses: ['not-contacted', ''] },
+      { key: 'reached', title: 'Reached out', color: '#c26a1b', primary: 'emailed', statuses: ['emailed', 'called-no-answer', 'voicemail', 'callback-requested'] },
+      { key: 'engaged', title: 'Engaged', color: '#2467c4', primary: 'replied', statuses: ['replied', 'call-booked'] },
+      { key: 'meeting', title: 'Meeting', color: '#1f8a52', primary: 'meeting-held', statuses: ['meeting-held'] },
+      { key: 'closed', title: 'Closed / parked', color: '#8a5a5a', primary: 'no-response', statuses: ['no-response', 'declined', 'referred', 'not-interested', 'wrong-contact'] }
+    ];
+    function pipeStageOf(status){
+      const s = status || 'not-contacted';
+      const st = PIPE_STAGES.find(g => g.statuses.includes(s));
+      return st ? st.key : 'new';
+    }
+    async function loadPipeline(){
+      const board = document.getElementById('pipelineBoard'); if (!board) return;
+      const rows = await sbGet('tracker_targets', '?select=id,name,organisation,status,owner,followup_date,updated_at&order=name.asc');
+      const today = new Date().toISOString().slice(0, 10);
+      const STALL_DAYS = 14;
+      const activeStages = ['reached', 'engaged'];
+      board.innerHTML = '';
+      PIPE_STAGES.forEach(stage => {
+        const col = document.createElement('div');
+        col.className = 'pipe-col'; col.dataset.stage = stage.key;
+        const cards = (rows || []).filter(r => pipeStageOf(r.status) === stage.key);
+        col.innerHTML = '<div class="pc-head"><span class="pc-title">' + stage.title + '</span><span class="pc-count">' + cards.length + '</span></div>' +
+          '<div class="pc-bar" style="background:' + stage.color + '"></div>';
+        if (!cards.length) col.insertAdjacentHTML('beforeend', '<div class="pc-empty">Drop contacts here.</div>');
+        cards.forEach(r => {
+          const card = document.createElement('div');
+          card.className = 'pipe-card'; card.draggable = true; card.dataset.id = r.id;
+          let fuCls = 'ok', fuTxt = '';
+          if (r.followup_date) {
+            if (r.followup_date < today) { fuCls = 'over'; fuTxt = '● overdue'; }
+            else if (r.followup_date === today) { fuCls = 'soon'; fuTxt = '● today'; }
+            else { fuCls = 'ok'; fuTxt = new Date(r.followup_date + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }); }
+          }
+          card.innerHTML = '<div class="pk-name"></div>' + (r.organisation ? '<div class="pk-org"></div>' : '') +
+            '<div class="pk-foot"><span class="pk-owner">' + (r.owner || 'Unassigned') + '</span><span class="pk-fu ' + fuCls + '">' + fuTxt + '</span></div>';
+          const ageDays = r.updated_at ? Math.floor((Date.now() - new Date(r.updated_at).getTime()) / 86400000) : null;
+          if (activeStages.includes(stage.key) && ageDays != null && ageDays >= STALL_DAYS) {
+            card.classList.add('stalled');
+            card.insertAdjacentHTML('afterbegin', '<div class="pk-stall">⚠ Stalled · ' + ageDays + 'd quiet</div>');
+          }
+          card.querySelector('.pk-name').textContent = r.name.split(' — ')[0];
+          if (r.organisation) card.querySelector('.pk-org').textContent = r.organisation;
+          card.addEventListener('dragstart', () => { card.classList.add('dragging'); board._drag = { id: r.id, from: stage.key }; });
+          card.addEventListener('dragend', () => card.classList.remove('dragging'));
+          card.addEventListener('click', () => { if (window.__openContact) window.__openContact(r.id); });
+          col.appendChild(card);
+        });
+        col.addEventListener('dragover', e => { e.preventDefault(); col.classList.add('drop'); });
+        col.addEventListener('dragleave', () => col.classList.remove('drop'));
+        col.addEventListener('drop', async e => {
+          e.preventDefault(); col.classList.remove('drop');
+          const d = board._drag; if (!d || d.from === stage.key) return;
+          await sbPatch('tracker_targets', 'id', d.id, { status: stage.primary, updated_at: new Date().toISOString() });
+          const rec = (rows || []).find(x => x.id === d.id);
+          logActivity(rec ? rec.name : 'Contact', 'moved to pipeline stage "' + stage.title + '"');
+          loadPipeline();
+          if (document.getElementById('contactList')) loadContactsList();
+        });
+        board.appendChild(col);
+      });
+    }
+
+    async function loadTaskBoard(){
+      const board = document.getElementById('taskBoard'); if (!board) return;
+      const rows = await sbGet('todos', '?select=*&order=priority.asc,due_date.asc.nullslast');
+      TB_TASKS = {}; (rows || []).forEach(t => TB_TASKS[t.id] = t);
+      const cols = [['open', 'Open'], ['in-progress', 'In progress'], ['waiting', 'Waiting on them'], ['done', 'Done']];
+      const today = new Date().toISOString().slice(0, 10);
+      const wip = getWipLimits();
+      board.innerHTML = '';
+      cols.forEach(([key, label]) => {
+        const colTasks = (rows || []).filter(t => TB_EFF(t) === key);
+        const limit = wip[key] || 0;
+        const over = limit > 0 && colTasks.length > limit;
+        const col = document.createElement('div'); col.className = 'tb-col' + (over ? ' over-limit' : ''); col.dataset.status = key;
+        col.innerHTML = '<div class="tb-col-head"><span>' + label + '</span><span class="tb-count"><span class="n' + (over ? ' over' : '') + '">' + colTasks.length + '</span><span class="lim" title="Set WIP limit">/ ' + (limit > 0 ? limit : '∞') + '</span></span></div>';
+        col.querySelector('.lim').addEventListener('click', e => {
+          e.stopPropagation();
+          const v = prompt('WIP limit for "' + label + '" (0 = no limit):', limit);
+          if (v !== null) { const n = parseInt(v, 10); if (!isNaN(n) && n >= 0) { setWipLimit(key, n); loadTaskBoard(); } }
+        });
+        colTasks.forEach(t => {
+          const prio = t.priority || 'normal';
+          const overdue = t.due_date && t.due_date < today && key !== 'done';
+          const card = document.createElement('div');
+          card.className = 'tb-card' + (prio === 'high' ? ' is-high' : ''); card.draggable = true; card.dataset.id = t.id;
+          const due = t.due_date ? new Date(t.due_date + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : '';
+          card.innerHTML = '<div class="tc-title"></div><div class="tc-meta"><span class="tc-owner"></span>' + (due ? '<span class="tc-due' + (overdue ? ' is-overdue' : '') + '">' + due + '</span>' : '') + '</div>';
+          card.querySelector('.tc-title').textContent = t.title;
+          card.querySelector('.tc-owner').textContent = t.owner || '—';
+          card.addEventListener('click', () => openTaskWindow(t));
+          card.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', String(t.id)); card.classList.add('dragging'); });
+          card.addEventListener('dragend', () => card.classList.remove('dragging'));
+          col.appendChild(card);
+        });
+        col.addEventListener('dragover', e => { e.preventDefault(); col.classList.add('drag-over'); });
+        col.addEventListener('dragleave', () => col.classList.remove('drag-over'));
+        col.addEventListener('drop', e => { e.preventDefault(); col.classList.remove('drag-over'); moveTaskTo(e.dataTransfer.getData('text/plain'), key); });
+        board.appendChild(col);
+      });
+    }
+    function moveTaskTo(id, status){
+      const t = TB_TASKS[id]; if (!t) return;
+      if (TB_EFF(t) === status) return;
+      const wip = getWipLimits(); const limit = wip[status] || 0;
+      if (limit > 0) {
+        const cur = Object.values(TB_TASKS).filter(x => TB_EFF(x) === status).length;
+        if (cur >= limit && !confirm('"' + (TB_LABELS[status] || status) + '" is at its WIP limit (' + limit + '). Move anyway?')) { loadTaskBoard(); return; }
+      }
+      t.status = status; t.done = (status === 'done');
+      sbPatch('todos', 'id', t.id, { status: t.status, done: t.done, updated_at: new Date().toISOString() });
+      logActivity('To-do', 'moved "' + t.title + '" → ' + status);
+      if (t.done) { const rec = t.linked_id || matchTaskToRecord(t.title); if (rec) autoLogTaskToContact(rec, t.title); }
+      loadTaskBoard(); refreshTaskBadge();
     }
     async function addTaskForRecord(recId, name, owner){
       const short = (name || '').split(' — ')[0];
@@ -1228,6 +2283,17 @@
       m.querySelector('.tm-backdrop').addEventListener('click', () => closeTaskWindow());
       document.addEventListener('keydown', e => { if (e.key === 'Escape' && !m.hidden) closeTaskWindow(); });
     })();
+
+    function refreshPinBadge(){
+      let total = 0;
+      for (let i = 0; i < localStorage.length; i++) {
+        const lk = localStorage.key(i);
+        if (!lk || lk.indexOf('otos_pins_') !== 0) continue;
+        try { total += (JSON.parse(localStorage.getItem(lk) || '[]') || []).length; } catch (_) {}
+      }
+      const badge = document.getElementById('navPinBadge');
+      if (badge) { badge.textContent = '\u2605 ' + total; badge.style.display = total ? '' : 'none'; }
+    }
 
     function refreshTaskBadge(){
       const open = document.querySelectorAll('.todo-item:not(.is-done)').length;
@@ -1284,7 +2350,125 @@
         const el = document.getElementById(id);
         if (el) el.addEventListener('change', applyTaskFilters);
       });
+      const ex = document.getElementById('taskExportBtn');
+      if (ex) ex.addEventListener('click', exportTasksCSV);
+      const im = document.getElementById('taskImportBtn');
+      const imInput = document.getElementById('taskImportInput');
+      if (im && imInput) {
+        im.addEventListener('click', () => imInput.click());
+        imInput.addEventListener('change', () => { if (imInput.files[0]) { importTasksCSV(imInput.files[0]); imInput.value = ''; } });
+      }
+      const dg = document.getElementById('wkDigestBtn');
+      if (dg) dg.addEventListener('click', buildEmailDigest);
     })();
+
+    async function buildEmailDigest(){
+      const today = new Date().toISOString().slice(0, 10);
+      const end = new Date(Date.now() + 6 * 86400000).toISOString().slice(0, 10);
+      const rows = await sbGet('todos', '?select=title,owner,due_date,due_time,status&done=eq.false&due_date=lte.' + end + '&order=due_date.asc');
+      if (!rows || !rows.length) { showConfirm('No due tasks to send'); return; }
+      const fmt = t => { const od = t.due_date < today; const d = new Date(t.due_date + 'T00:00:00').toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' }); return '• [' + (od ? 'OVERDUE ' + d : d) + (t.due_time ? ' ' + t.due_time.slice(0, 5) : '') + '] ' + t.title + (t.owner ? ' (' + t.owner + ')' : ''); };
+      const overdue = rows.filter(r => r.due_date < today), week = rows.filter(r => r.due_date >= today);
+      let body = 'OTOS Hub — tasks due\n\n';
+      if (overdue.length) body += 'OVERDUE (' + overdue.length + ')\n' + overdue.map(fmt).join('\n') + '\n\n';
+      body += 'DUE THIS WEEK (' + week.length + ')\n' + (week.length ? week.map(fmt).join('\n') : 'None') + '\n\n— Generated from hub.otos.network';
+      const subj = 'OTOS tasks due — ' + new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+      window.location.href = 'mailto:?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+      logActivity('Tasks', 'generated email digest (' + rows.length + ' due)');
+      showConfirm('Digest opened in your email client');
+    }
+
+    function parseCSV(text){
+      const rows = []; let field = '', row = [], inQ = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (inQ) { if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else inQ = false; } else field += c; }
+        else if (c === '"') inQ = true;
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+        else if (c !== '\r') field += c;
+      }
+      if (field.length || row.length) { row.push(field); rows.push(row); }
+      return rows.filter(r => !(r.length === 1 && r[0] === ''));
+    }
+
+    async function importTasksCSV(file){
+      const text = await file.text();
+      const rows = parseCSV(text.replace(/^\ufeff/, ''));
+      if (rows.length < 2) { showConfirm('CSV has no data rows'); return; }
+      const header = rows[0].map(h => h.trim().toLowerCase());
+      const ti = header.indexOf('title');
+      if (ti < 0) { showConfirm('CSV needs a "title" column'); return; }
+      const idx = n => header.indexOf(n);
+      const oi = idx('owner'), si = idx('status'), pi = idx('priority'), di = idx('due_date'), dti = idx('due_time'), doi = idx('done'), li = idx('linked_id'), ni = idx('notes');
+      const get = (row, i) => (i >= 0 && row[i] !== undefined) ? String(row[i]).trim() : '';
+      const payload = [];
+      for (let r = 1; r < rows.length; r++) {
+        const row = rows[r]; const title = get(row, ti); if (!title) continue;
+        const owner = get(row, oi); const done = get(row, doi).toLowerCase() === 'true';
+        payload.push({ title, owner: owner && owner !== 'Unassigned' ? owner : null, status: get(row, si) || (done ? 'done' : 'open'), priority: get(row, pi) || 'normal', due_date: get(row, di) || null, due_time: get(row, dti) || null, done, linked_id: get(row, li) || matchTaskToRecord(title), notes: get(row, ni) || null });
+      }
+      if (!payload.length) { showConfirm('No valid rows to import'); return; }
+      const res = await fetch(SB_URL + '/rest/v1/todos', { method: 'POST', headers: Object.assign({}, SB_HEADERS, { Prefer: 'return=minimal' }), body: JSON.stringify(payload) }).catch(() => null);
+      if (!res || !res.ok) { showConfirm('Import failed' + (res ? ' — ' + res.status : '')); return; }
+      logActivity('Tasks', 'imported ' + payload.length + ' tasks from CSV');
+      showConfirm('Imported ' + payload.length + ' tasks');
+      loadTodos(); loadWeekTasks(); refreshTaskBadge();
+    }
+
+    async function importContactsCSV(file){
+      const text = await file.text();
+      const rows = parseCSV(text.replace(/^\ufeff/, ''));
+      const msg = document.getElementById('contactImportMsg');
+      if (rows.length < 2) { if (msg) msg.textContent = 'CSV has no data rows'; return; }
+      const header = rows[0].map(h => h.trim().toLowerCase());
+      const ni = header.indexOf('name'), oi = header.indexOf('organisation'), ai = header.indexOf('owner');
+      const si = header.indexOf('status'), ei = header.findIndex(h => h === 'email' || h === 'contact'), ti = header.indexOf('tags');
+      if (ni < 0) { if (msg) msg.textContent = 'CSV needs a "name" column'; return; }
+      const get = (row, i) => (i >= 0 && row[i] !== undefined) ? String(row[i]).trim() : '';
+      const payload = [];
+      for (let r = 1; r < rows.length; r++) {
+        const name = get(rows[r], ni); if (!name) continue;
+        const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) + '-' + Math.random().toString(36).slice(2, 6);
+        const rec = { id, name, organisation: get(rows[r], oi) || null, owner: get(rows[r], ai) || null, status: get(rows[r], si) || 'not-contacted', tags: get(rows[r], ti) || null, updated_at: new Date().toISOString() };
+        const email = get(rows[r], ei); if (email) rec.response = null;
+        payload.push(rec);
+      }
+      if (!payload.length) { if (msg) msg.textContent = 'No valid rows found'; return; }
+      const res = await fetch(SB_URL + '/rest/v1/tracker_targets', {
+        method: 'POST', headers: Object.assign({}, SB_HEADERS, { Prefer: 'return=minimal' }),
+        body: JSON.stringify(payload)
+      }).catch(() => null);
+      if (!res || !res.ok) { if (msg) msg.textContent = 'Import failed — check CSV/connection'; return; }
+      logActivity('Contacts', 'imported ' + payload.length + ' contact' + (payload.length === 1 ? '' : 's') + ' from CSV');
+      if (msg) msg.textContent = '✓ Imported ' + payload.length;
+      showConfirm('Imported ' + payload.length + ' contacts');
+      if (typeof loadContactsList === 'function') loadContactsList();
+    }
+    (function wireContactImport(){
+      const btn = document.getElementById('contactImportBtn');
+      const inp = document.getElementById('contactImportInput');
+      if (!btn || !inp) return;
+      btn.addEventListener('click', () => inp.click());
+      inp.addEventListener('change', () => { if (inp.files[0]) { importContactsCSV(inp.files[0]); inp.value = ''; } });
+    })();
+
+    async function exportTasksCSV(){
+      const rows = await sbGet('todos', '?select=*&order=due_date.asc.nullslast,created_at.asc');
+      if (!rows || !rows.length) { showConfirm('No tasks to export'); return; }
+      const cols = ['title', 'owner', 'status', 'priority', 'due_date', 'due_time', 'done', 'linked_id', 'notes', 'created_at'];
+      const esc = v => '"' + String(v === null || v === undefined ? '' : v).replace(/"/g, '""') + '"';
+      const lines = [cols.join(',')];
+      rows.forEach(r => lines.push(cols.map(c => esc(r[c])).join(',')));
+      const blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'otos-tasks-' + new Date().toISOString().slice(0, 10) + '.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      logActivity('Tasks', 'exported ' + rows.length + ' tasks to CSV');
+      showConfirm('Exported ' + rows.length + ' tasks');
+    }
 
     // ---------- Reminders: pop a toast (+ native notification if allowed) when a to-do's due date/time arrives ----------
     if ('Notification' in window && Notification.permission === 'default') {
@@ -1313,7 +2497,7 @@
       }
       const toast = document.createElement('div');
       toast.className = 'reminder-toast';
-      toast.innerHTML = '<div class="rt-lbl">Due now</div><div class="rt-title"></div><div class="rt-btns"><button class="rt-go">View</button><button class="rt-dismiss">Dismiss</button></div>';
+      toast.innerHTML = '<div class="rt-lbl">Due now</div><div class="rt-title"></div><div class="rt-btns"><button class="rt-go">View</button><button class="rt-dismiss">Dismiss</button></div><div class="rt-snooze"><span>Snooze:</span><button data-snz="1h">1h</button><button data-snz="3h">3h</button><button data-snz="tomorrow">Tomorrow</button><button data-snz="3d">3d</button></div>';
       toast.querySelector('.rt-title').textContent = title;
       container.appendChild(toast);
 
@@ -1331,6 +2515,23 @@
       };
       toast.querySelector('.rt-go').addEventListener('click', goToTask);
       toast.querySelector('.rt-dismiss').addEventListener('click', () => toast.remove());
+      toast.querySelectorAll('.rt-snooze button[data-snz]').forEach(b => b.addEventListener('click', async () => {
+        const now = new Date(); let due;
+        const p = b.dataset.snz;
+        if (p === '1h') { due = new Date(now.getTime() + 3600000); }
+        else if (p === '3h') { due = new Date(now.getTime() + 3 * 3600000); }
+        else if (p === 'tomorrow') { due = new Date(now); due.setDate(due.getDate() + 1); due.setHours(9, 0, 0, 0); }
+        else { due = new Date(now); due.setDate(due.getDate() + 3); due.setHours(9, 0, 0, 0); }
+        const dd = due.toISOString().slice(0, 10);
+        const dt = due.toTimeString().slice(0, 8);
+        await sbPatch('todos', 'id', id, { due_date: dd, due_time: dt, updated_at: new Date().toISOString() });
+        clearReminded(id);
+        logActivity('To-do', 'snoozed "' + title + '" to ' + due.toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }));
+        showConfirm('Snoozed to ' + due.toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }));
+        if (typeof loadTodos === 'function') loadTodos();
+        if (typeof loadToday === 'function') loadToday();
+        toast.remove();
+      }));
 
       if ('Notification' in window && Notification.permission === 'granted') {
         const n = new Notification('OTOS Hub — due now', { body: title });
@@ -1508,11 +2709,15 @@
       top3.forEach((a, i) => {
         const row = document.createElement('div');
         row.className = 'na-item';
-        const goHtml = a.viewJump ? '<a class="na-go" href="#' + a.viewJump + '">Go →</a>' : '<a class="na-go" href="' + a.href + '">Go →</a>';
+        const goHtml = a.ownerType === 'target'
+          ? '<button type="button" class="na-go na-card">Open →</button>'
+          : (a.viewJump ? '<a class="na-go" href="#' + a.viewJump + '">Go →</a>' : '<a class="na-go" href="' + a.href + '">Go →</a>');
         row.innerHTML = '<span class="na-no">' + (i + 1) + '</span><span class="na-txt"><b>' + a.label + '</b><span>' + a.sub + '</span></span>' +
           '<select class="na-owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select>' +
           goHtml;
-        if (a.viewJump) {
+        if (a.ownerType === 'target') {
+          row.querySelector('.na-go').addEventListener('click', () => openActionCard(a.ownerId, a.label, a.sub));
+        } else if (a.viewJump) {
           row.querySelector('.na-go').addEventListener('click', (e) => { e.preventDefault(); goToView(a.viewJump); });
         }
         const sel = row.querySelector('.na-owner');
@@ -1525,6 +2730,334 @@
         });
         list.appendChild(row);
       });
+    }
+
+    // ---------- Daily Today digest (auto-surfaced once per day) ----------
+    function todayDigestBody(items){
+      const dstr = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'long' });
+      const lines = items.map(it => '\u2022 [' + it.badge + '] ' + it.title + (it.sub ? ' \u2014 ' + it.sub : ''));
+      return 'OTOS Hub \u2014 Today, ' + dstr + '\n\n' + items.length + ' item' + (items.length === 1 ? '' : 's') + ' need you today:\n\n' + lines.join('\n') + '\n\n\u2014 Generated from hub.otos.network';
+    }
+    function sendTodayDigest(items){
+      const subj = 'OTOS Today \u2014 ' + new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) + ' (' + items.length + ' due)';
+      window.location.href = 'mailto:?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(todayDigestBody(items));
+      logActivity('Tasks', 'emailed Today digest (' + items.length + ' due)');
+      showConfirm('Today digest opened in your email client');
+    }
+    function maybeShowDailyDigest(el, items){
+      const today = new Date().toISOString().slice(0, 10);
+      const key = 'otos_digest_' + today;
+      if (localStorage.getItem(key)) return;
+      const banner = document.createElement('div');
+      banner.className = 'today-digest';
+      banner.innerHTML = '<span class="td-msg">\ud83d\udcec Your daily digest is ready \u2014 <b>' + items.length + '</b> item' + (items.length === 1 ? '' : 's') + ' due today.</span>' +
+        '<button type="button" class="td-send">Email it</button><button type="button" class="td-dismiss" aria-label="Dismiss">\u00d7</button>';
+      banner.querySelector('.td-send').addEventListener('click', () => { sendTodayDigest(items); localStorage.setItem(key, '1'); banner.remove(); });
+      banner.querySelector('.td-dismiss').addEventListener('click', () => { localStorage.setItem(key, '1'); banner.remove(); });
+      el.appendChild(banner);
+    }
+
+    (function setupCronTest(){
+      const msg = document.getElementById('cronTestMsg');
+      const run = async (path, label, btn) => {
+        if (location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+          msg.style.color = 'var(--muted)'; msg.textContent = 'Only works on the deployed site (the API route needs Vercel).';
+          return;
+        }
+        btn.disabled = true; msg.style.color = 'var(--muted)'; msg.textContent = 'Calling ' + path + '\u2026';
+        try {
+          const r = await fetch(path, { cache: 'no-store' });
+          const d = await r.json().catch(() => ({}));
+          if (r.status === 401) { msg.style.color = '#c0392b'; msg.textContent = 'Locked by CRON_SECRET \u2014 trigger it from Vercel instead.'; }
+          else if (d.sent) { msg.style.color = '#1f8a52'; msg.textContent = '\u2713 ' + label + ' sent' + (d.count != null ? ' \u2014 ' + d.count + ' item(s).' : '.'); }
+          else if (d.reason) { msg.style.color = 'var(--muted)'; msg.textContent = 'No email sent: ' + d.reason + '.'; }
+          else if (d.error) { msg.style.color = '#c0392b'; msg.textContent = 'Error: ' + d.error + '.'; }
+          else { msg.textContent = 'Response: ' + JSON.stringify(d); }
+        } catch (e) {
+          msg.style.color = '#c0392b'; msg.textContent = 'Request failed \u2014 is the function deployed?';
+        }
+        btn.disabled = false;
+      };
+      const db = document.getElementById('cronTestBtn');
+      const wb = document.getElementById('weeklyTestBtn');
+      if (db) db.addEventListener('click', () => run('/api/daily-digest', 'Daily digest', db));
+      if (wb) wb.addEventListener('click', () => run('/api/weekly-summary', 'Weekly summary', wb));
+    })();
+
+    (function setupDigestTime(){
+      const timeEl = document.getElementById('digDaily');
+      const dayEl = document.getElementById('digDay');
+      const cronEl = document.getElementById('digCron');
+      const tzEl = document.getElementById('digTz');
+      const copyBtn = document.getElementById('digCopy');
+      const copyMsg = document.getElementById('digCopyMsg');
+      if (!timeEl) return;
+      const saved = JSON.parse(localStorage.getItem('otos_digest_time') || '{}');
+      if (saved.time) timeEl.value = saved.time;
+      if (saved.day != null) dayEl.value = String(saved.day);
+      function londonOffsetHours(){
+        const now = new Date();
+        const lon = +new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour: '2-digit', hour12: false }).format(now).slice(0, 2);
+        let off = lon - now.getUTCHours();
+        if (off > 12) off -= 24; if (off < -12) off += 24;
+        return off;
+      }
+      let lastJson = '';
+      function render(){
+        const [h, m] = timeEl.value.split(':').map(Number);
+        const off = londonOffsetHours();
+        const utcH = ((h - off) % 24 + 24) % 24;
+        const day = dayEl.value;
+        const daily = m + ' ' + utcH + ' * * *';
+        const weekly = m + ' ' + utcH + ' * * ' + day;
+        lastJson = '{\n  "crons": [\n    { "path": "/api/daily-digest", "schedule": "' + daily + '" },\n    { "path": "/api/weekly-summary", "schedule": "' + weekly + '" }\n  ]\n}';
+        cronEl.textContent = lastJson;
+        tzEl.textContent = 'UK is currently UTC' + (off >= 0 ? '+' : '') + off + ' (' + (off === 1 ? 'BST' : 'GMT') + ')';
+        localStorage.setItem('otos_digest_time', JSON.stringify({ time: timeEl.value, day: +day }));
+      }
+      timeEl.addEventListener('input', render);
+      dayEl.addEventListener('change', render);
+      copyBtn.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(lastJson); copyMsg.style.color = '#1f8a52'; copyMsg.textContent = '\u2713 Copied'; }
+        catch (e) { copyMsg.style.color = 'var(--muted)'; copyMsg.textContent = 'Select the text above to copy.'; }
+        setTimeout(() => { copyMsg.textContent = ''; }, 2500);
+      });
+      render();
+    })();
+
+    (function setupRecipients(){
+      const chips = document.getElementById('drChips');
+      const input = document.getElementById('drInput');
+      const msg = document.getElementById('drMsg');
+      if (!chips) return;
+      let list = [];
+      const draw = () => {
+        chips.innerHTML = list.length
+          ? list.map(e => '<span class="dr-chip">' + e + '<button type="button" data-e="' + encodeURIComponent(e) + '" aria-label="Remove">\u00d7</button></span>').join('')
+          : '<span style="font-size:12px;color:#c0392b;">No recipients \u2014 digests won\u2019t send.</span>';
+      };
+      const save = () => {
+        sbUpsert('hub_settings', { key: 'digest_recipients', value: list.join(', '), updated_at: new Date().toISOString() }, 'key')
+          .then(() => { msg.style.color = '#1f8a52'; msg.textContent = '\u2713 Saved'; setTimeout(() => { msg.textContent = ''; }, 2000); })
+          .catch(() => { msg.style.color = '#c0392b'; msg.textContent = 'Save failed \u2014 create the hub_settings table (see below).'; });
+      };
+      sbGet('hub_settings', '?select=value&key=eq.digest_recipients').then(rows => {
+        if (rows && rows[0] && rows[0].value) list = rows[0].value.split(',').map(s => s.trim()).filter(Boolean);
+        if (!list.length) list = ['dean.butler@otos.digital', 'gareth.owen@otos.digital'];
+        draw();
+      });
+      input.addEventListener('keydown', e => {
+        if (e.key !== 'Enter') return; e.preventDefault();
+        const v = e.target.value.trim().toLowerCase(); e.target.value = '';
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { msg.style.color = '#c0392b'; msg.textContent = 'Enter a valid email.'; return; }
+        if (list.includes(v)) return;
+        list.push(v); draw(); save();
+      });
+      chips.addEventListener('click', e => {
+        const b = e.target.closest('button[data-e]'); if (!b) return;
+        list = list.filter(x => x !== decodeURIComponent(b.dataset.e)); draw(); save();
+      });
+    })();
+
+    // ---------- Today worklist (landing screen) ----------
+    async function loadToday(){
+      const el = document.getElementById('todayList');
+      const dateEl = document.getElementById('todayDate');
+      if (dateEl) dateEl.textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+      if (!el) return;
+      const today = new Date().toISOString().slice(0, 10);
+      const stallCut = new Date(Date.now() - 14 * 86400000).toISOString();
+      const [dueContacts, todos, stalled] = await Promise.all([
+        sbGet('tracker_targets', '?select=id,name,organisation,status,owner,followup_date&followup_date=lte.' + today + '&order=followup_date.asc'),
+        sbGet('todos', '?select=id,title,owner,due_date,due_time,done&done=eq.false&due_date=lte.' + today + '&order=due_date.asc'),
+        sbGet('tracker_targets', '?select=id,name,organisation,status,owner,updated_at,followup_date&status=in.(emailed,called-no-answer,voicemail,callback-requested,replied,call-booked)&updated_at=lt.' + stallCut + '&order=updated_at.asc')
+      ]);
+      const items = [];
+      (dueContacts || []).forEach(r => {
+        const over = r.followup_date < today;
+        const days = Math.floor((Date.now() - new Date(r.followup_date).getTime()) / 86400000);
+        items.push({ kind: 'contact', id: r.id, title: 'Follow up with ' + r.name, sub: [r.organisation, STATUS_MAP[r.status]].filter(Boolean).join(' \u00b7 '), due: r.followup_date, badge: over ? days + 'd overdue' : 'Today', bcls: over ? 'over' : 'today' });
+      });
+      (todos || []).forEach(t => {
+        const over = (t.due_date || today) < today;
+        items.push({ kind: 'todo', id: t.id, title: t.title, sub: 'To-do' + (t.owner ? ' \u00b7 ' + t.owner : '') + (t.due_time ? ' \u00b7 ' + t.due_time.slice(0, 5) : ''), due: t.due_date || today, badge: over ? 'Overdue' : 'Today', bcls: over ? 'over' : 'today' });
+      });
+      items.sort((a, b) => (a.due || '').localeCompare(b.due || '') || (a.bcls === 'over' ? -1 : 1));
+      const dueIds = new Set((dueContacts || []).map(r => r.id));
+      (stalled || []).forEach(r => {
+        if (dueIds.has(r.id)) return;
+        const days = r.updated_at ? Math.floor((Date.now() - new Date(r.updated_at).getTime()) / 86400000) : 14;
+        items.push({ kind: 'contact', id: r.id, title: 'Chase ' + r.name.split(' — ')[0], sub: [r.organisation, STATUS_MAP[r.status]].filter(Boolean).join(' · '), due: '', badge: days + 'd quiet', bcls: 'stall' });
+      });
+      if (!items.length) { el.innerHTML = '<div class="today-empty">\u2713 Nothing due today. You\u2019re clear \u2014 pick up a Next action below.</div>'; return; }
+      el.innerHTML = '';
+      maybeShowDailyDigest(el, items);
+      items.forEach(it => {
+        const wrap = document.createElement('div');
+        wrap.className = 'today-row';
+        wrap.innerHTML = '<span class="tr-done">\u2713 Done</span>';
+        const row = document.createElement('button');
+        row.type = 'button'; row.className = 'today-item';
+        row.innerHTML = '<span class="ti-badge ' + it.bcls + '">' + it.badge + '</span><span class="ti-txt"><b></b><span></span></span><span class="ti-go">' + (it.kind === 'contact' ? 'Open \u2192' : 'View \u2192') + '</span>';
+        row.querySelector('b').textContent = it.title;
+        row.querySelector('.ti-txt span').textContent = it.sub;
+        row.addEventListener('click', () => { if (row._swiped) return; if (it.kind === 'contact') openActionCard(it.id, it.title, it.sub); else goToView('tasks'); });
+        attachSwipe(row, () => completeTodayItem(it));
+        wrap.appendChild(row);
+        el.appendChild(wrap);
+      });
+    }
+
+    function attachSwipe(item, onDone){
+      let startX = 0, startY = 0, dx = 0, active = false;
+      item.addEventListener('touchstart', e => { const t = e.touches[0]; startX = t.clientX; startY = t.clientY; dx = 0; active = true; item.style.transition = 'none'; }, { passive: true });
+      item.addEventListener('touchmove', e => {
+        if (!active) return;
+        const t = e.touches[0]; dx = t.clientX - startX; const dy = t.clientY - startY;
+        if (Math.abs(dy) > Math.abs(dx)) { active = false; item.style.transition = 'transform .18s'; item.style.transform = ''; return; }
+        if (Math.abs(dx) > 8) item._swiped = true;
+        item.style.transform = 'translateX(' + Math.min(0, Math.max(dx, -window.innerWidth)) + 'px)';
+      }, { passive: true });
+      item.addEventListener('touchend', () => {
+        item.style.transition = 'transform .2s ease';
+        const threshold = Math.min(160, item.offsetWidth * 0.4);
+        if (active && dx < -threshold) { item.style.transform = 'translateX(-110%)'; setTimeout(onDone, 180); }
+        else { item.style.transform = ''; }
+        active = false;
+        setTimeout(() => { item._swiped = false; }, 320);
+      });
+    }
+
+    async function completeTodayItem(it){
+      if (it.kind === 'todo') {
+        await sbPatch('todos', 'id', it.id, { done: true, status: 'done', updated_at: new Date().toISOString() });
+        logActivity('Tasks', 'completed: ' + it.title);
+        showConfirm('Done: ' + it.title);
+        loadToday(); loadNextActions();
+        if (typeof loadTodos === 'function') loadTodos();
+        if (typeof loadWeekTasks === 'function') loadWeekTasks();
+        if (typeof refreshTaskBadge === 'function') refreshTaskBadge();
+        return;
+      }
+      const rows = await sbGet('tracker_targets', '?select=*&id=eq.' + encodeURIComponent(it.id));
+      const r = rows && rows[0]; if (!r) return;
+      acApply(r, { followup_date: null }, 'Action completed');
+    }
+
+    // ---------- Action Card (one-tap contact actions from any alert) ----------
+    function acAddDays(n){ const d = new Date(); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); }
+    function acDueBadge(followup){
+      if (!followup) return '';
+      const today = new Date().toISOString().slice(0, 10);
+      if (followup < today) { const days = Math.floor((Date.now() - new Date(followup).getTime()) / 86400000); return '<span class="ac-due over">' + days + 'd overdue</span>'; }
+      if (followup === today) return '<span class="ac-due today">Due today</span>';
+      const dt = new Date(followup + 'T00:00:00');
+      return '<span class="ac-due soon">Due ' + dt.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) + '</span>';
+    }
+    function ensureActionCard(){
+      let ov = document.getElementById('actionCard');
+      if (ov) return ov;
+      ov = document.createElement('div');
+      ov.id = 'actionCard'; ov.className = 'ac-overlay';
+      ov.innerHTML = '<div class="ac-card"><button type="button" class="ac-close" aria-label="Close">\u00d7</button><div class="ac-shell"></div></div>';
+      document.body.appendChild(ov);
+      ov.addEventListener('click', e => { if (e.target === ov) closeActionCard(); });
+      ov.querySelector('.ac-close').addEventListener('click', closeActionCard);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('open')) closeActionCard(); });
+      return ov;
+    }
+    function closeActionCard(){ const ov = document.getElementById('actionCard'); if (ov) ov.classList.remove('open'); }
+
+    async function openActionCard(id, taskLabel, taskSub){
+      const ov = ensureActionCard();
+      const shell = ov.querySelector('.ac-shell');
+      shell.innerHTML = '<div class="ac-body"><div style="padding:30px 0;color:var(--faint);font-size:12.5px;">Loading\u2026</div></div>';
+      ov.classList.add('open');
+      const rows = await sbGet('tracker_targets', '?select=*&id=eq.' + encodeURIComponent(id));
+      const r = rows && rows[0];
+      if (!r) { shell.innerHTML = '<div class="ac-body"><div style="padding:30px 0;color:var(--faint);">Contact not found.</div></div>'; return; }
+      const acts = await sbGet('activity_log', '?select=detail,actor,created_at&doc_label=eq.' + encodeURIComponent(r.name) + '&order=created_at.desc&limit=3');
+
+      const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const statusLabel = STATUS_MAP[r.status] || 'Not contacted';
+      const tags = (r.tags || '').split(',').map(s => s.trim()).filter(Boolean);
+      const bg = ROUTE_BACKGROUND[r.id];
+
+      let contactHtml = '';
+      if (bg && bg.contact) {
+        const email = (bg.contact.match(/[\w.+-]+@[\w.-]+\.\w+/) || [])[0];
+        const phone = (bg.contact.match(/\+?\d[\d\s]{7,}\d/) || [])[0];
+        const parts = [];
+        if (phone) parts.push('<a href="tel:' + phone.replace(/\s/g, '') + '">\ud83d\udcde Call</a>');
+        if (email) parts.push('<a class="sec" href="mailto:' + email + '">\u2709\ufe0f Email</a>');
+        if (parts.length) contactHtml = '<div class="ac-contact">' + parts.join('') + '</div>';
+      }
+
+      const nextText = r.next_action || (bg && bg.action) || 'Follow up';
+      const FOLLOWUP_DAYS = { emailed: 5, 'called-no-answer': 2, voicemail: 3, replied: 7, 'call-booked': 3, 'meeting-held': 14, 'no-response': null, declined: null, referred: null, 'callback-requested': 2, 'not-interested': null, 'wrong-contact': null };
+      const outcomeBtns = STATUS_LIST.filter(([v]) => v !== 'not-contacted').map(([v, l]) => '<button type="button" class="ac-btn" data-status="' + v + '">' + l + '</button>').join('');
+      const histHtml = acts && acts.length
+        ? '<ul>' + acts.map(a => { const tm = a.created_at ? new Date(a.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : ''; return '<li><span class="t">' + esc(a.detail) + '</span><span class="m">' + esc(a.actor || '') + (tm ? ' \u00b7 ' + tm : '') + '</span></li>'; }).join('') + '</ul>'
+        : '<div class="none">No history logged yet.</div>';
+
+      shell.innerHTML =
+        '<div class="ac-top"><div style="flex:1;min-width:0;"><div class="ac-kicker">\u25b2 Do this next</div><h3>' + esc(taskLabel || ('Follow up with ' + r.name)) + '</h3></div>' + acDueBadge(r.followup_date) + '</div>' +
+        '<div class="ac-body">' +
+          '<div class="ac-who"><span class="ac-name">' + esc(r.name) + '</span>' + (r.organisation ? '<span class="ac-org">' + esc(r.organisation) + '</span>' : '') +
+            '<span class="ac-chip">' + esc(statusLabel) + '</span><span class="ac-owner">' + (r.owner ? esc(r.owner) : 'Unassigned') + '</span></div>' +
+          (tags.length ? '<div class="ac-tags">' + tags.map(t => '<span class="t"></span>').join('') + '</div>' : '') +
+          contactHtml +
+          '<div class="ac-sent"><div class="box"><div class="k">Last sent</div><div class="v">' + esc(r.sent_material || '\u2014') + '</div></div>' +
+            '<div class="box next"><div class="k">Next step</div><div class="v">' + esc(nextText) + '</div></div></div>' +
+          '<div class="ac-hist"><div class="hh"><span class="lbl">Recent history</span><a class="ac-full">Full record \u2197</a></div>' + histHtml + '</div>' +
+        '</div>' +
+        '<div class="ac-actions">' +
+          '<div class="ac-grp"><div class="glbl">Log call outcome</div><div class="ac-btns">' + outcomeBtns + '</div></div>' +
+          '<div class="ac-grp"><div class="glbl">Mark material sent</div><div class="ac-sentrow"><input type="text" class="ac-sent-in" placeholder="What did you send? e.g. Pre-NDA Exec Summary"><button type="button" class="ac-btn prim ac-sent-go">Mark sent</button></div></div>' +
+          '<div class="ac-grp"><div class="glbl">Snooze follow-up</div><div class="ac-btns">' +
+            '<button type="button" class="ac-btn" data-snz="1">Tomorrow</button>' +
+            '<button type="button" class="ac-btn" data-snz="3">In 3 days</button>' +
+            '<button type="button" class="ac-btn" data-snz="7">Next week</button>' +
+            '<button type="button" class="ac-btn done" data-done="1">\u2713 Done</button></div></div>' +
+        '</div>';
+
+      shell.querySelectorAll('.ac-tags .t').forEach((el, i) => { el.textContent = tags[i]; paintTag(el, tags[i]); });
+      shell.querySelector('.ac-full').addEventListener('click', () => { closeActionCard(); if (window.__openContact) window.__openContact(r.id); });
+
+      shell.querySelectorAll('[data-status]').forEach(b => b.addEventListener('click', () => {
+        const st = b.dataset.status; const days = FOLLOWUP_DAYS[st];
+        const fu = days == null ? null : acAddDays(days);
+        const line = (STATUS_MAP[st] || st) + (fu ? ' \u00b7 follow-up ' + new Date(fu + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : ' \u00b7 no follow-up set');
+        acApply(r, { status: st, date_contacted: new Date().toISOString().slice(0, 10), followup_date: fu }, line);
+      }));
+      shell.querySelector('.ac-sent-go').addEventListener('click', () => {
+        const v = shell.querySelector('.ac-sent-in').value.trim();
+        if (!v) { shell.querySelector('.ac-sent-in').focus(); return; }
+        const patch = { sent_material: v, date_contacted: new Date().toISOString().slice(0, 10), followup_date: acAddDays(5) };
+        if (r.status === 'not-contacted') patch.status = 'emailed';
+        acApply(r, patch, 'Sent: ' + v);
+      });
+      shell.querySelector('.ac-sent-in').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); shell.querySelector('.ac-sent-go').click(); } });
+      shell.querySelectorAll('[data-snz]').forEach(b => b.addEventListener('click', () => {
+        const days = +b.dataset.snz; const d = acAddDays(days);
+        acApply(r, { followup_date: d }, 'Snoozed follow-up to ' + new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }));
+      }));
+      shell.querySelector('[data-done]').addEventListener('click', () => {
+        acApply(r, { followup_date: null }, 'Action completed');
+      });
+    }
+
+    async function acApply(r, patch, logLine){
+      const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+      const line = today + ' \u2014 ' + logLine;
+      const prior = (r.comm_log || '').trim();
+      const full = Object.assign({ comm_log: line + (prior ? '\n' + prior : ''), updated_at: new Date().toISOString() }, patch);
+      await sbPatch('tracker_targets', 'id', r.id, full);
+      logActivity(r.name, logLine);
+      showConfirm(logLine + ' \u2014 ' + r.name);
+      closeActionCard();
+      loadNextActions(); loadOverdue(); loadToday(); loadFeed();
+      if (document.getElementById('contactList')) loadContactsList();
     }
 
     // ---------- Search / filter across all documents ----------
@@ -1585,6 +3118,172 @@
 
         meta.innerHTML = '<b>' + visibleCount + '</b> of ' + totalCount + ' documents match "' + input.value.trim() + '"';
       });
+    })();
+  </script>
+
+  <div class="fab-wrap" id="fabWrap">
+    <div class="fab-menu" id="fabMenu" hidden>
+      <button type="button" data-add="task"><span>✅</span>New task</button>
+      <button type="button" data-add="contact"><span>👤</span>New contact</button>
+      <button type="button" data-add="note"><span>📝</span>Quick note</button>
+    </div>
+    <button type="button" class="fab-btn" id="fabBtn" aria-label="Quick add">+</button>
+  </div>
+
+  <script>
+    (function setupQuickAdd(){
+      const wrap = document.getElementById('fabWrap');
+      const btn = document.getElementById('fabBtn');
+      const menu = document.getElementById('fabMenu');
+      if (!btn) return;
+      const close = () => { menu.hidden = true; wrap.classList.remove('open'); };
+      btn.addEventListener('click', () => { menu.hidden = !menu.hidden; wrap.classList.toggle('open', !menu.hidden); });
+      document.addEventListener('click', e => { if (!wrap.contains(e.target)) close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+      menu.addEventListener('click', async e => {
+        const b = e.target.closest('button[data-add]'); if (!b) return;
+        close();
+        const kind = b.dataset.add;
+        if (kind === 'task') {
+          const title = prompt('New task:'); if (!title || !title.trim()) return;
+          const owner = prompt('Owner — Dean, Gareth, or leave blank:', '') || '';
+          const due = prompt('Due date (YYYY-MM-DD) or leave blank:', '') || '';
+          const res = await fetch(SB_URL + '/rest/v1/todos', {
+            method: 'POST', headers: Object.assign({}, SB_HEADERS, { Prefer: 'return=representation' }),
+            body: JSON.stringify([{ title: title.trim(), owner: owner.trim() || null, due_date: /^\d{4}-\d{2}-\d{2}$/.test(due.trim()) ? due.trim() : null, done: false, status: 'open', priority: 'normal', linked_id: (typeof matchTaskToRecord === 'function' ? matchTaskToRecord(title.trim()) : null) }])
+          }).catch(() => null);
+          if (!res || !res.ok) { showConfirm('Could not add task — check connection'); return; }
+          logActivity('To-do', 'task created: "' + title.trim() + '"');
+          showConfirm('Task added');
+          if (typeof loadTodos === 'function') loadTodos();
+          if (typeof refreshTaskBadge === 'function') refreshTaskBadge();
+          if (typeof loadToday === 'function') loadToday();
+        } else if (kind === 'contact') {
+          const name = prompt('Contact name:'); if (!name || !name.trim()) return;
+          const org = prompt('Organisation (optional):', '') || '';
+          const owner = prompt('Owner — Dean, Gareth, or leave blank:', '') || '';
+          const id = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) + '-' + Math.random().toString(36).slice(2, 6);
+          const res = await fetch(SB_URL + '/rest/v1/tracker_targets', {
+            method: 'POST', headers: Object.assign({}, SB_HEADERS, { Prefer: 'return=representation' }),
+            body: JSON.stringify([{ id: id, name: name.trim(), organisation: org.trim() || null, owner: owner.trim() || null, status: 'not-contacted', updated_at: new Date().toISOString() }])
+          }).catch(() => null);
+          if (!res || !res.ok) { showConfirm('Could not add contact — check connection'); return; }
+          logActivity(name.trim(), 'contact created');
+          showConfirm('Contact added');
+          goToView('contacts');
+          if (typeof loadContactsList === 'function') setTimeout(loadContactsList, 200);
+        } else if (kind === 'note') {
+          const note = prompt('Quick note (logged to Activity):'); if (!note || !note.trim()) return;
+          logActivity('Note', note.trim());
+          showConfirm('Note logged');
+          if (typeof loadFeed === 'function') loadFeed();
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function setupShortcuts(){
+      const views = { t: 'tasks', c: 'contacts', p: 'pipeline', d: 'documents', a: 'activity', h: 'home' };
+      let gArmed = false, gTimer = null;
+      const typing = e => { const el = e.target; return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || el.isContentEditable); };
+      document.addEventListener('keydown', e => {
+        if (e.metaKey || e.ctrlKey || e.altKey || typing(e)) return;
+        const k = e.key.toLowerCase();
+        if (gArmed) {
+          gArmed = false; clearTimeout(gTimer);
+          if (views[k]) { e.preventDefault(); goToView(views[k]); return; }
+        }
+        if (k === 'g') { gArmed = true; gTimer = setTimeout(() => { gArmed = false; }, 1200); return; }
+        if (k === 'n') { e.preventDefault(); const b = document.getElementById('fabBtn'); if (b) b.click(); return; }
+        if (k === '?') { e.preventDefault(); toggleShortcutHelp(); return; }
+        if (e.key === 'Escape') { const h = document.getElementById('scHelp'); if (h && !h.hidden) h.hidden = true; }
+      });
+      document.addEventListener('keydown', e => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openPalette(); }
+      });
+      function toggleShortcutHelp(){
+        let h = document.getElementById('scHelp');
+        if (!h) {
+          h = document.createElement('div'); h.id = 'scHelp'; h.className = 'sc-help';
+          h.innerHTML = '<div class="sc-card"><button type="button" class="sc-x" aria-label="Close">×</button><h3>Keyboard shortcuts</h3><ul>' +
+            '<li><kbd>g</kbd> then <kbd>h</kbd><span>Today</span></li>' +
+            '<li><kbd>g</kbd> then <kbd>t</kbd><span>Tasks</span></li>' +
+            '<li><kbd>g</kbd> then <kbd>c</kbd><span>Contacts</span></li>' +
+            '<li><kbd>g</kbd> then <kbd>p</kbd><span>Pipeline</span></li>' +
+            '<li><kbd>g</kbd> then <kbd>d</kbd><span>Documents</span></li>' +
+            '<li><kbd>g</kbd> then <kbd>a</kbd><span>Activity</span></li>' +
+            '<li><kbd>n</kbd><span>Quick add (new task / contact / note)</span></li>' +
+            '<li><kbd>⌘</kbd>/<kbd>Ctrl</kbd>+<kbd>k</kbd><span>Command palette</span></li>' +
+            '<li><kbd>?</kbd><span>This help</span></li></ul></div>';
+          document.body.appendChild(h);
+          h.addEventListener('click', e => { if (e.target === h || e.target.closest('.sc-x')) h.hidden = true; });
+        }
+        h.hidden = !h.hidden;
+      }
+    })();
+  </script>
+  <script>
+    (function setupPalette(){
+      let contacts = [];
+      const CMDS = [
+        { label: 'Go to Today', icon: '☀️', run: () => goToView('home') },
+        { label: 'Go to Tasks', icon: '✅', run: () => goToView('tasks') },
+        { label: 'Go to Contacts', icon: '👤', run: () => goToView('contacts') },
+        { label: 'Go to Pipeline', icon: '📊', run: () => goToView('pipeline') },
+        { label: 'Go to Documents', icon: '📄', run: () => goToView('documents') },
+        { label: 'Go to Activity', icon: '🕒', run: () => goToView('activity') },
+        { label: 'Go to About / setup', icon: 'ℹ️', run: () => goToView('about') },
+        { label: 'New task', icon: '✅', kw: 'add create', run: () => quickAdd('task') },
+        { label: 'New contact', icon: '👤', kw: 'add create', run: () => quickAdd('contact') },
+        { label: 'Quick note', icon: '📝', kw: 'add log', run: () => quickAdd('note') },
+        { label: 'Keyboard shortcuts', icon: '⌨️', kw: 'help keys', run: () => { const b = document.body; document.dispatchEvent(new KeyboardEvent('keydown', { key: '?' })); } }
+      ];
+      function quickAdd(kind){ const menu = document.getElementById('fabMenu'); const b = menu && menu.querySelector('[data-add="' + kind + '"]'); if (b) b.click(); }
+
+      function build(){
+        const ov = document.createElement('div'); ov.id = 'cmdPalette'; ov.className = 'cmdp'; ov.hidden = true;
+        ov.innerHTML = '<div class="cmdp-card"><input type="text" class="cmdp-input" placeholder="Type a command or search contacts…" autocomplete="off"><div class="cmdp-list"></div><div class="cmdp-foot"><kbd>↑</kbd><kbd>↓</kbd> navigate · <kbd>↵</kbd> open · <kbd>esc</kbd> close</div></div>';
+        document.body.appendChild(ov);
+        ov.addEventListener('click', e => { if (e.target === ov) hide(); });
+        return ov;
+      }
+      let ov, input, listEl, items = [], sel = 0;
+      async function openPalette(){
+        if (!ov) { ov = build(); input = ov.querySelector('.cmdp-input'); listEl = ov.querySelector('.cmdp-list');
+          input.addEventListener('input', render);
+          input.addEventListener('keydown', onKey);
+        }
+        ov.hidden = false; input.value = ''; 
+        if (!contacts.length && typeof sbGet === 'function') { contacts = await sbGet('tracker_targets', '?select=id,name,organisation&order=name.asc') || []; }
+        render(); input.focus();
+      }
+      function hide(){ if (ov) ov.hidden = true; }
+      window.openPalette = openPalette;
+      function render(){
+        const q = (input.value || '').trim().toLowerCase();
+        items = [];
+        CMDS.forEach(c => { if (!q || (c.label + ' ' + (c.kw || '')).toLowerCase().includes(q)) items.push({ type: 'cmd', label: c.label, icon: c.icon, run: c.run }); });
+        if (q) {
+          contacts.filter(c => (c.name + ' ' + (c.organisation || '')).toLowerCase().includes(q)).slice(0, 8)
+            .forEach(c => items.push({ type: 'contact', label: c.name.split(' — ')[0], sub: c.organisation || '', icon: '→', run: () => { hide(); if (window.__openContact) window.__openContact(c.id); } }));
+        }
+        sel = 0; paint();
+      }
+      function paint(){
+        listEl.innerHTML = items.length ? items.map((it, i) => '<div class="cmdp-item' + (i === sel ? ' sel' : '') + '" data-i="' + i + '"><span class="ci-ic">' + it.icon + '</span><span class="ci-lbl">' + it.label + (it.sub ? ' <span class="ci-sub">' + it.sub + '</span>' : '') + '</span></div>').join('') : '<div class="cmdp-empty">No matches</div>';
+        [...listEl.querySelectorAll('.cmdp-item')].forEach(el => {
+          el.addEventListener('mouseenter', () => { sel = +el.dataset.i; highlight(); });
+          el.addEventListener('click', () => items[+el.dataset.i].run());
+        });
+      }
+      function highlight(){ [...listEl.querySelectorAll('.cmdp-item')].forEach((el, i) => el.classList.toggle('sel', i === sel)); }
+      function onKey(e){
+        if (e.key === 'ArrowDown') { e.preventDefault(); sel = Math.min(sel + 1, items.length - 1); highlight(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); sel = Math.max(sel - 1, 0); highlight(); }
+        else if (e.key === 'Enter') { e.preventDefault(); if (items[sel]) items[sel].run(); }
+        else if (e.key === 'Escape') { e.preventDefault(); hide(); }
+      }
     })();
   </script>
 </body>
