@@ -197,7 +197,8 @@ const LANES=[
   {id:'local',ll:'Local NHS / partners',ls:'Existing relationships'},
   {id:'funding',ll:'Funding routes',ls:'MRC / Wellcome'},
   {id:'pharma',ll:'Pharma',ls:'Own register'},
-  {id:'angel',ll:'Angel / strategic',ls:'Staged'}
+  {id:'angel',ll:'Angel / strategic',ls:'Staged'},
+  {id:'gov',ll:'Government',ls:'Ministerial — four winners'}
 ];
 const DISC={0:'Personal — not a send',1:'1 · Impression only',2:'2 · Concept note (pre-NDA)',3:'3 · Gated site / demo',4:'4 · Post-NDA full pack'};
 const ITEMS=[
@@ -211,7 +212,7 @@ const ITEMS=[
   {lane:'local',wave:2,disc:2,conf:'proposed',name:'Sally — CGL',org:'CGL',what:'Quiet word — test appetite.',gate:'Informal, existing relationship.',note:'Not a full-pack send. A relationship sounding to gauge the addiction-side appetite before CPFT.'},
   {lane:'local',wave:3,disc:2,conf:'proposed',name:'Paula Baker → CPFT ADHD Team',org:'CPFT Adult ADHD Service',what:'ADHD Team Project Brief (the OTOS ask).',gate:'AFTER the personal letter lands.',note:'Paula is the admin gateway — the real decision owners are the Services Manager + Teams Manager she forwards to. Keep this strictly separate from the personal letter.'},
   {lane:'local',wave:4,disc:2,conf:'proposed',name:'RCE Wellbeing Hub (Franceska)',org:'Recovery College East · contact: Franceska',what:'RCE Wellbeing Hub Partner Brief.',gate:'Formal approach only after Dr Claire pressure-test.',note:'Franceska is the RCE contact. "Digital waiting room" framing — CPFT-signposted, voluntary, course-based. OTOS does not make RCE clinical.'},
-  {lane:'local',wave:4,disc:2,conf:'proposed',name:'Scott Davidson',org:'Public Health — Drugs & Alcohol, Cambridgeshire (Insight)',what:'Wants a 60s intro + a working demo.',gate:'Public-health commissioning route.',note:'Asked for a demo \u2014 a rung-3 (gated site) candidate once warmed. Confirm City vs County Council. Public Health is a step ahead (a first meeting already happened); cost-case brief is the follow-up.'},
+  {lane:'local',wave:4,disc:2,conf:'proposed',name:'Scott Davidson',org:'Public Health — Drugs & Alcohol, Cambridgeshire (Insight)',what:'Offer him a WINNER — help him tap the £20m fund.',gate:'Public-health commissioning route — warm angle.',note:'Posted on LinkedIn about a £20m fund we\u2019re trying to tap — his buzzword is "upstream", which is exactly OTOS. Frame it as helping him help us get funded: a shared win. Rung-3 (gated demo) candidate once warmed. Confirm City vs County Council.'},
   {lane:'local',wave:4,disc:2,conf:'proposed',name:'Mind (+ WorkWell)',org:'Mind · WorkWell — new active target',what:'Mind · WorkWell · Therapy Partner Brief.',gate:'Approach directly — now a full outreach target.',note:'Dean recommended to approach Mind with this too. Full outreach status, not just Jo\u2019s referral route.'},
   {lane:'local',wave:4,disc:2,conf:'proposed',name:'Rak — CGL Team Leader',org:'CGL',what:'Part of the CGL partner-brief stage.',gate:'Sits behind the Sally sounding.',note:'Team-leader level CGL contact.'},
   {lane:'local',wave:4,disc:2,conf:'proposed',name:'Andrea — CRS Keyworker',org:'CRS',what:'Part of the CRS partner-brief stage.',gate:'Paused until academic traction.',note:'Keyworker-level CRS contact.'},
@@ -223,7 +224,12 @@ const ITEMS=[
   {lane:'funding',wave:4,disc:4,conf:'decided',name:'MRC Stage Two / Wellcome MH',org:'Follow-on',what:'14 / 15 skeletons.',gate:'Stage Two needs First-50 data first.',note:'Wellcome is a mechanism-research route, not a build-funding substitute.'},
   {lane:'pharma',wave:4,disc:1,conf:'decided',name:'AstraZeneca',org:'Own register',what:'Exec Summary — AZ only → (post-NDA) AZ NIA Master.',gate:'Never alongside an unproven academic pitch.',note:'Category / medicine-plus-continuity / patient-support / RWE framing.'},
   {lane:'pharma',wave:4,disc:1,conf:'proposed',name:'Roche',org:'Own register',what:'Exec Summary — Roche only.',gate:'Post-NDA master does not exist yet.',note:'Distinct from AZ — diagnostics / identification / data / RWE. Never copy the AZ master.'},
-  {lane:'angel',wave:4,disc:1,conf:'proposed',name:'Angel / strategic funder',org:'Staged',what:'OTOS Angel First-Look → Prospectus.',gate:'No angel talk during an unproven academic pitch.',note:'First-Look is pre-NDA by selection; the fuller brief is the Prospectus stage.'}
+  {lane:'angel',wave:4,disc:1,conf:'proposed',name:'Angel / strategic funder',org:'Staged',what:'OTOS Angel First-Look → Prospectus.',gate:'No angel talk during an unproven academic pitch.',note:'First-Look is pre-NDA by selection; the fuller brief is the Prospectus stage.'},
+  {lane:'gov',wave:4,disc:1,conf:'proposed',name:'Prime Minister (Andy Burnham target)',org:'UK Government',what:'A winner letter — already drafted.',gate:'Government route — sequence after proof-points exist.',note:'Four departments could each be a winner: PM, Health, AI, Chancellor. Letters already written. Hold until there is traction to point to.'},
+  {lane:'gov',wave:4,disc:1,conf:'proposed',name:'Secretary of State for Health',org:'UK Government · DHSC',what:'Winner letter.',gate:'Government route.',note:'Part of the four-winner ministerial set.'},
+  {lane:'gov',wave:4,disc:1,conf:'proposed',name:'Minister for AI',org:'UK Government',what:'Winner letter.',gate:'Government route.',note:'Part of the four-winner ministerial set — the AI/tech angle.'},
+  {lane:'gov',wave:4,disc:1,conf:'proposed',name:'Chancellor of the Exchequer',org:'UK Government · HM Treasury',what:'Winner letter — the cost/savings case.',gate:'Government route.',note:'Part of the four-winner ministerial set — leads with the economic case.'},
+  {lane:'gov',wave:3,disc:2,conf:'proposed',name:'Clive Lewis MP',org:'UK Parliament',what:'Advisory-board target — warm intro available.',gate:'Move earlier — relationship-led, not a cold ministerial send.',note:'Social-justice champion; the kind who fights inside Parliament. If he hears it and backs it, he could champion OTOS in the House. Warm intro in hand — sequence ahead of the cold ministerial letters.'}
 ];
 const UNPLACED=[
   {lane:'local',disc:0,conf:'undecided',name:'KC — Su Network',org:'Su Network',what:'No further action.',gate:'Closed — parked for reference.',note:'Reviewed the pack via Su Network; no further action agreed. Kept here so the name isn\u2019t lost, not an active target.'}

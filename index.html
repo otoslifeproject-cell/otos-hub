@@ -254,11 +254,11 @@
 
   /* ---------- Contacts list + inline detail ---------- */
   .list-shell{ padding:16px; border-radius:12px; background:oklch(97% 0.005 90); border:1px solid var(--rule); margin-bottom:32px; }
-  .list-shell .contact-list{ margin-bottom:0; border:1px solid var(--rule); border-radius:10px; }
-  .contact-list{ display:flex; flex-direction:column; border:1px solid var(--rule); border-radius:6px; overflow:hidden; margin-bottom:32px; }
-  .contact-row{ display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:1px solid var(--rule-soft); cursor:pointer; background:var(--paper); }
-  .contact-row:last-child{ border-bottom:none; }
-  .contact-row:hover{ background:var(--accent-wash); }
+  .list-shell .contact-list{ margin-bottom:0; border:none; border-radius:0; overflow:visible; gap:12px; }
+  .contact-list{ display:flex; flex-direction:column; gap:12px; margin-bottom:32px; }
+  .contact-row{ display:flex; align-items:center; gap:12px; padding:14px 16px; border:1px solid var(--rule); border-radius:10px; cursor:pointer; background:var(--paper); }
+  .contact-row:last-child{ border:1px solid var(--rule); }
+  .contact-row:hover{ background:var(--paper); border-color:var(--accent-ink); box-shadow:0 4px 12px rgba(0,0,0,.08); }
   .contact-row .cr-name{ font-weight:700; color:var(--ink); flex:1; min-width:0; font-size:13.5px; }
   .contact-row .cr-sel{ flex:none; display:flex; align-items:center; }
   .contact-row.sel{ background:var(--accent-wash); }
@@ -453,15 +453,15 @@
   .etpl-send:hover{ background:var(--ink); }
   /* ---------- Pipeline board ---------- */
   .pipe-board{ display:grid; grid-auto-flow:column; grid-auto-columns:minmax(210px,1fr); gap:14px; overflow-x:auto; padding-bottom:10px; align-items:start; }
-  .pipe-col{ background:oklch(97% 0.005 90); border:1px solid var(--rule); border-radius:9px; padding:10px; min-height:120px; }
+  .pipe-col{ background:oklch(97% 0.005 90); border:1px solid var(--rule); border-radius:12px; padding:12px; min-height:120px; }
   .pipe-col.drop{ border-color:var(--accent-ink); background:var(--accent-wash); }
   .pipe-col .pc-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:9px; padding:0 3px; }
   .pipe-col .pc-title{ font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink); }
   .pipe-col .pc-count{ font-size:10px; font-weight:800; color:#fff; background:var(--accent-ink); border-radius:10px; padding:2px 8px; }
   .pipe-col .pc-bar{ height:3px; border-radius:2px; margin-bottom:9px; }
-  .pipe-card{ background:var(--paper); border:1px solid var(--rule); border-radius:7px; padding:9px 11px; margin-bottom:8px; cursor:grab; }
+  .pipe-card{ background:var(--paper); border:1px solid var(--rule); border-radius:10px; padding:11px 13px; margin-bottom:12px; cursor:grab; }
   .pipe-card:last-child{ margin-bottom:0; }
-  .pipe-card:hover{ border-color:var(--accent-ink); }
+  .pipe-card:hover{ border-color:var(--accent-ink); box-shadow:0 4px 12px rgba(0,0,0,.08); }
   .pipe-card.dragging{ opacity:.5; }
   .pipe-card.stalled{ border-color:#e0b4b4; }
   .pipe-card .pk-stall{ font-size:9px; font-weight:800; letter-spacing:.03em; color:#c0392b; background:#fdeaea; border-radius:4px; padding:2px 6px; margin-bottom:6px; display:inline-block; }
@@ -1116,7 +1116,7 @@
 
     // ---------- One-time contact seed (local Cambridge ring + national/regional leaders) ----------
     (async function seedContacts(){
-      if (localStorage.getItem('otos_contacts_seeded_v1')) return;
+      if (localStorage.getItem('otos_contacts_seeded_v3')) return;
       const now = new Date().toISOString();
       const L = (id,name,org,tags,status)=>({id,name,organisation:org,status:status||'not-contacted',tags,owner:'Dean',updated_at:now});
       const N = (id,name,org,tags)=>({id,name,organisation:org,status:'not-contacted',tags,owner:null,updated_at:now});
@@ -1144,7 +1144,12 @@
         N('nenc-allen','Sam Allen','North East & North Cumbria ICB','National · future — no action · Chief Executive'),
         N('gm-fisher','Mark Fisher CBE','Greater Manchester ICB','National · future — no action · Chief Executive'),
         N('wy-webster','Rob Webster CBE','NHS West Yorkshire ICB','National · future — no action · Chief Executive'),
-        N('bsol-melbourne','David Melbourne','NHS Birmingham & Solihull ICB','National · future — no action · Chief Executive')
+        N('bsol-melbourne','David Melbourne','NHS Birmingham & Solihull ICB','National · future — no action · Chief Executive'),
+        N('gov-pm','The Prime Minister','UK Government','Government · future — no action · winner target (Andy Burnham shortly)'),
+        N('gov-health','Secretary of State for Health','UK Government · DHSC','Government · future — no action · winner target'),
+        N('gov-ai','Minister for AI','UK Government','Government · future — no action · winner target'),
+        N('gov-chancellor','The Chancellor of the Exchequer','UK Government · HM Treasury','Government · future — no action · winner target'),
+        N('clive-lewis-mp','Clive Lewis MP','UK Parliament','Government · advisory-board target · warm intro — social-justice champion, could back OTOS inside Parliament')
       ];
       try {
         const res = await fetch(SB_URL + '/rest/v1/tracker_targets?on_conflict=id', {
@@ -1153,7 +1158,7 @@
           body: JSON.stringify(seed)
         });
         if (res && res.ok) {
-          localStorage.setItem('otos_contacts_seeded_v1', '1');
+          localStorage.setItem('otos_contacts_seeded_v3', '1');
           if (typeof loadContactsList === 'function' && location.hash.startsWith('#contacts')) loadContactsList();
         }
       } catch (e) { /* offline — will retry next load */ }
