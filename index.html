@@ -1065,7 +1065,7 @@
 
         <div class="steps-guide">
           <div class="sg-item"><span class="brain-bullet"></span><div><b>Today</b><span>Your landing screen. The next actions that matter, overdue and stalled items, and a one-click daily digest. Start here each morning.</span></div></div>
-          <div class="sg-item"><span class="brain-bullet"></span><div><b>Tasks</b><span>The shared job list. Add anything, assign an owner, set a due date &amp; time — you'll get a reminder toast when it's due. Board and list views.</span></div></div>
+          <div class="sg-item"><span class="brain-bullet"></span><div><b>Tasks</b><span>The shared job list. Add anything, assign an owner, set a due date &amp; time — you'll get a reminder toast when it's due. Board and list views. <b>No Save button needed</b> — open a task and every change (owner, status, priority, due date, notes) saves automatically the moment you make it; you'll see a "Saved ✓" flash. Just close the card (click the ✕ or anywhere outside it) when you're done. "Mark complete" ticks it off (you can reopen it) — it doesn't delete; use "Delete task" for that.</span></div></div>
           <div class="sg-item"><span class="brain-bullet"></span><div><b>Contacts</b><span>Everyone in the plan — academic, local NHS/partner, national. Open a record for its history, tasks, notes and next action. Search, tag and filter.</span></div></div>
           <div class="sg-item"><span class="brain-bullet"></span><div><b>Pipeline</b><span>Contacts as a board by stage, so you can see who's where and what's stalled at a glance.</span></div></div>
           <div class="sg-item"><span class="brain-bullet"></span><div><b>Aerial view</b><span>The send-sequence map — who's first, what's gated behind what, and how much each contact is shown. The planning tool before any send.</span></div></div>
@@ -1116,21 +1116,38 @@
 
     // ---------- One-time contact seed (local Cambridge ring + national/regional leaders) ----------
     (async function seedContacts(){
-      if (localStorage.getItem('otos_contacts_seeded_v3')) return;
+      if (localStorage.getItem('otos_contacts_seeded_v5')) return;
       const now = new Date().toISOString();
-      const L = (id,name,org,tags,status)=>({id,name,organisation:org,status:status||'not-contacted',tags,owner:'Dean',updated_at:now});
-      const N = (id,name,org,tags)=>({id,name,organisation:org,status:'not-contacted',tags,owner:null,updated_at:now});
+      const L = (id,name,org,tags,status,next_action)=>({id,name,organisation:org,status:status||'not-contacted',tags,owner:'Dean',next_action:next_action||null,updated_at:now});
+      const N = (id,name,org,tags,next_action)=>({id,name,organisation:org,status:'not-contacted',tags,owner:null,next_action:next_action||null,updated_at:now});
+      const A = (id,name,org,tags,next_action,email)=>({id,name,organisation:org,status:'not-contacted',tags,owner:'Dean',next_action:next_action||null,email:email||null,updated_at:now});
       const seed = [
-        L('paula-baker','Paula Baker','CPFT Adult ADHD Service','Local · ADHD Team gateway (admin — route to Services Manager + Teams Manager)'),
-        L('dr-claire-gillvray','Dr Claire Gillvray','RCE / LAMP (also a GP)','Local · Strategic ally · advisory-board candidate · flag GP angle','called-no-answer'),
-        L('sally-cgl','Sally','CGL','Local · CGL gateway (quiet word first)'),
+        A('sahakian','Prof. Barbara Sahakian','Cambridge Psychiatry / BCNI','Academic · topic fit · PHASE 1 — send FIRST','THE first send of the whole plan: Outreach Email 1 + Concept Note (02) only. Strongest topic fit (ADHD, addiction, cognitive psychopharmacology).'),
+        A('ford','Prof. Tamsin Ford / Psychiatry office','Cambridge Psychiatry','Academic · dept gateway · Phase 2','Concept Note (02). Department gateway — route to the right adult ADHD/addiction academic.','HoDPsychiatry@medschl.cam.ac.uk'),
+        A('dixonwoods','Prof. Mary Dixon-Woods / THIS','THIS Institute, Cambridge','Academic · implementation science · Phase 2','02 + First-50 outline (04). Implementation science / NHS improvement route.'),
+        A('bowdenjones','Prof. Henrietta Bowden-Jones','Cambridge Psychiatry (hon.) / UCL / CNWL','Academic · addiction credibility · Phase 2','02 — Concept Note. Addiction psychiatry credibility / adviser route.'),
+        A('cph_network','Cambridge Public Health network','Public Health & Primary Care, Cambridge','Academic · PH / health econ · Phase 2','02 + short Funding Route Summary (01). Health-economics / evaluation angle.'),
+        A('robbins','Prof. Trevor Robbins','Cambridge BCNI / Psychology','Academic · senior steer · Phase 2','Verify status, then send 02. Senior scientific steer / route to right PI.'),
+        A('nihr_arc_eoe','NIHR ARC East of England','NIHR ARC EoE','Academic · feasibility design · Phase 2','02 + 04. Applied health research / feasibility design advice.'),
+        A('nihr_brc','NIHR Cambridge BRC','Cambridge Biomedical Campus','Academic · clinical routing · Phase 2','02 — Concept Note. Routes to clinical-academic theme lead.'),
+        A('cam_enterprise','Cambridge Enterprise','University of Cambridge','Academic · Route 4 / translational · priority','01 + Role as Project Partner (03). Route 4 (Impact Acceleration / Gap-fund) — can run parallel to Phase 2, low drift risk.','enquiries@enterprise.cam.ac.uk'),
+        A('brayne','Prof. Carol Brayne','Public Health & Primary Care, Cambridge','Academic · PH / epidemiology · Phase 2','Verify focus, then 02 + cost/evaluation angle. Public-health / epidemiology gateway.'),
+        A('phpc_gateway','Public Health & Primary Care gateway','University of Cambridge','Academic · dept gateway · Phase 2','02 + 01. Health-economics gateway.'),
+        A('nord','Prof. Camilla Nord','University of Cambridge','Academic · mechanism / Wellcome fit · Phase 2','02 — Concept Note. Mechanism / engagement — potential Wellcome co-I.'),
+        A('dalgleish','Prof. Tim Dalgleish','MRC CBU, Cambridge','Academic · clinical psychology · Phase 2','02 — Concept Note. Clinical psychology / mechanism adviser.'),
+        A('baroncohen','Prof. Simon Baron-Cohen / ARC','Autism Research Centre, Cambridge','Academic · adjacent, low priority','02 only, and only if relevant. Adjacent adviser, not primary PI candidate.'),
+        A('psych_office','Dept of Psychiatry research office','University of Cambridge','Academic · dept gateway · Phase 2','02 + short covering note. Gateway target.','HoDPsychiatry@medschl.cam.ac.uk'),
+        A('cpft_rd','CPFT Research & Development','CPFT','Academic · governance / local site · Phase 2','02 + Governance Boundary note (05). NOT cold — route via existing relationship; frame as governance conversation.'),
+        L('paula-baker','Paula Baker','CPFT Adult ADHD Service','Local · ADHD Team gateway (admin — route to Services Manager + Teams Manager)',null,'HOLD: send the personal psychiatrist letter FIRST, alone, as a patient. Only after it lands does the ADHD Team Project Brief go to Paula (Wave 3).'),
+        L('dr-claire-gillvray','Dr Claire Gillvray','RCE / LAMP (also a GP)','Local · Strategic ally · advisory-board candidate · flag GP angle','called-no-answer','Informal sounding first — LAMP pressure-test, take her honest critique as a CRITIC (lead with GP angle). Only if warm: offer advisory board + ~1% shares (step 2, terms pre-agreed).'),
+        L('sally-cgl','Sally','CGL','Local · CGL gateway (quiet word first)',null,'Informal sounding — quiet word to test appetite. No full-pack send.'),
         L('rak-cgl','Rak','CGL','Local · CGL Team Leader'),
         L('andrea-crs','Andrea','CRS','Local · CRS Keyworker'),
         L('inertiia-crown','Inertiia Crown','CGL & CRS','Local · Business Development (CGL + CRS)'),
-        L('franceska-rce','Franceska','RCE (Recovery College East)','Local · RCE contact'),
-        L('scott-davidson','Scott Davidson','Public Health — Drugs & Alcohol, Cambridgeshire (Insight)','Local · PH commissioning · wants 60s intro + demo'),
+        L('franceska-rce','Franceska','RCE (Recovery College East)','Local · RCE contact',null,'Formal RCE approach only AFTER the Dr Claire pressure-test.'),
+        L('scott-davidson','Scott Davidson','Public Health — Drugs & Alcohol, Cambridgeshire (Insight)','Local · PH commissioning · winner offer',null,'Offer him a WINNER — his LinkedIn buzzword is "upstream" (= OTOS). Help him tap the £20m fund; frame as helping him help us get funded. Rung-3 gated demo once warmed.'),
         L('mind-workwell','Mind (+ WorkWell)','Mind / WorkWell','Local · NEW full outreach target'),
-        L('jo-fenton','Jo Fenton','Therapist (via Mind / WorkWell)','Local · Supporter — backing lines + continuity quote'),
+        L('jo-fenton','Jo Fenton','Therapist (via Mind / WorkWell)','Local · Supporter — backing lines + continuity quote',null,'Bank as a supporter — send the written prompt for backing lines + a continuity quote. Not a first mover.'),
         L('kc-su-network','KC','Su Network','Local · reviewed pack — no further action'),
         N('nhse-mackey','Sir James (Jim) Mackey','NHS England','National · future — no action · Chief Executive'),
         N('nhse-docherty','Dr Mary Docherty','NHS England','National · future — no action · Nat. Clinical Director, Adult Mental Health'),
@@ -1149,7 +1166,7 @@
         N('gov-health','Secretary of State for Health','UK Government · DHSC','Government · future — no action · winner target'),
         N('gov-ai','Minister for AI','UK Government','Government · future — no action · winner target'),
         N('gov-chancellor','The Chancellor of the Exchequer','UK Government · HM Treasury','Government · future — no action · winner target'),
-        N('clive-lewis-mp','Clive Lewis MP','UK Parliament','Government · advisory-board target · warm intro — social-justice champion, could back OTOS inside Parliament')
+        N('clive-lewis-mp','Clive Lewis MP','UK Parliament','Government · advisory-board target · warm intro — social-justice champion, could back OTOS inside Parliament','Use the warm intro — sequence AHEAD of the cold ministerial letters. If he hears it and backs it, he could champion OTOS in the House. Advisory-board candidate.')
       ];
       try {
         const res = await fetch(SB_URL + '/rest/v1/tracker_targets?on_conflict=id', {
@@ -1158,10 +1175,48 @@
           body: JSON.stringify(seed)
         });
         if (res && res.ok) {
-          localStorage.setItem('otos_contacts_seeded_v3', '1');
+          localStorage.setItem('otos_contacts_seeded_v5', '1');
           if (typeof loadContactsList === 'function' && location.hash.startsWith('#contacts')) loadContactsList();
         }
       } catch (e) { /* offline — will retry next load */ }
+    })();
+
+    // ---------- One-time first-task seed (key partners into the sending queue) ----------
+    (async function seedTasks(){
+      if (localStorage.getItem('otos_tasks_seeded_v1')) return;
+      // next Wednesday
+      const d = new Date(); const dow = d.getDay(); const add = ((3 - dow + 7) % 7) || 7;
+      const wed = new Date(d.getTime() + add * 86400000);
+      const iso = n => new Date(wed.getTime() + n * 86400000).toISOString().slice(0,10);
+      const T = (linked_id,title,owner,due,priority)=>({title,owner,due_date:due,done:false,status:'open',priority:priority||'normal',linked_id});
+      const tasks = [
+        T('paula-baker','Send Dean\u2019s psychiatrist letter to CPFT ADHD Team \u2014 ALONE, as a patient (NOT the OTOS brief)','Dean',iso(0),'high'),
+        T('sahakian','Send FIRST \u2014 Outreach Email 1 + Concept Note (02) to Prof. Sahakian','Dean',iso(0),'high'),
+        T('dr-claire-gillvray','Informal LAMP pressure-test with Dr Claire (lead with GP angle) \u2014 take her critique as a critic','Dean',iso(1),'high'),
+        T('sally-cgl','Quiet word with Sally (CGL) \u2014 test appetite, no pack yet','Dean',iso(2),'normal'),
+        T('scott-davidson','Offer Scott Davidson a WINNER \u2014 his \u201cupstream\u201d \u00a320m fund angle','Dean',iso(2),'high'),
+        T('clive-lewis-mp','Use the warm intro to Clive Lewis MP \u2014 advisory-board approach, ahead of ministerial letters','Dean',iso(3),'normal'),
+        T('mind-workwell','Approach Mind / WorkWell \u2014 new full outreach target','Gareth',iso(1),'normal'),
+        T('jo-fenton','Send Jo Fenton the prompt for backing lines + a continuity quote','Gareth',iso(2),'normal'),
+        T('franceska-rce','Prep RCE (Franceska) approach \u2014 hold until after Dr Claire pressure-test','Gareth',iso(4),'normal'),
+        T('rak-cgl','Line up Rak (CGL Team Leader) \u2014 follows the Sally sounding','Gareth',iso(3),'normal'),
+        T('andrea-crs','Line up Andrea (CRS Keyworker) for the CRS partner-brief stage','Gareth',iso(3),'low'),
+        T('inertiia-crown','Line up Inertiia Crown (CGL & CRS biz-dev) as the cross-service route','Gareth',iso(4),'low')
+      ];
+      try {
+        const existing = await fetch(SB_URL + '/rest/v1/todos?select=linked_id', { headers: SB_HEADERS }).then(r => r.ok ? r.json() : null);
+        if (!existing) return; // offline — retry next load, flag not set
+        const have = new Set(existing.map(x => x.linked_id).filter(Boolean));
+        const toAdd = tasks.filter(t => !have.has(t.linked_id));
+        if (toAdd.length) {
+          const res = await fetch(SB_URL + '/rest/v1/todos', {
+            method: 'POST', headers: Object.assign({}, SB_HEADERS, { Prefer: 'return=minimal' }),
+            body: JSON.stringify(toAdd)
+          });
+          if (!res.ok) return;
+        }
+        localStorage.setItem('otos_tasks_seeded_v1', '1');
+      } catch (e) { /* offline — retry next load */ }
     })();
 
     function sbGet(table, query){
@@ -2313,8 +2368,8 @@
       q('.tm-metaline').textContent = (t.created_at ? 'Created ' + new Date(t.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '') +
         (t.updated_at ? ' · updated ' + new Date(t.updated_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : '');
       q('.tm-title').onchange = () => { const v = q('.tm-title').value.trim(); if (!v) { q('.tm-title').value = t.title; return; } t.title = v; sbPatch('todos', 'id', t.id, { title: v, updated_at: new Date().toISOString() }); logActivity('To-do', 'renamed to "' + v + '"'); };
-      q('.tm-owner').onchange = () => { t.owner = q('.tm-owner').value; sbPatch('todos', 'id', t.id, { owner: t.owner, updated_at: new Date().toISOString() }); logActivity('To-do', 'assigned "' + t.title + '" to ' + t.owner); };
-      q('.tm-prio').onchange = () => { t.priority = q('.tm-prio').value; sbPatch('todos', 'id', t.id, { priority: t.priority, updated_at: new Date().toISOString() }); logActivity('To-do', 'priority → ' + t.priority + ' for "' + t.title + '"'); };
+      q('.tm-owner').onchange = () => { t.owner = q('.tm-owner').value; sbPatch('todos', 'id', t.id, { owner: t.owner, updated_at: new Date().toISOString() }); logActivity('To-do', 'assigned "' + t.title + '" to ' + t.owner); showConfirm('Saved ✓ — owner set to ' + t.owner); };
+      q('.tm-prio').onchange = () => { t.priority = q('.tm-prio').value; sbPatch('todos', 'id', t.id, { priority: t.priority, updated_at: new Date().toISOString() }); logActivity('To-do', 'priority → ' + t.priority + ' for "' + t.title + '"'); showConfirm('Saved ✓'); };
       q('.tm-status-sel').onchange = () => {
         t.status = q('.tm-status-sel').value; t.done = (t.status === 'done');
         sbPatch('todos', 'id', t.id, { status: t.status, done: t.done, updated_at: new Date().toISOString() });
@@ -2322,9 +2377,10 @@
         if (t.done) autoLogTaskToContact(recId, t.title);
         setStatus(); refreshTaskBadge();
       };
-      q('.tm-notes').oninput = debounce(() => { t.notes = q('.tm-notes').value; sbPatch('todos', 'id', t.id, { notes: t.notes, updated_at: new Date().toISOString() }); }, 900);
+      q('.tm-notes').oninput = debounce(() => { t.notes = q('.tm-notes').value; sbPatch('todos', 'id', t.id, { notes: t.notes, updated_at: new Date().toISOString() }); showConfirm('Notes saved ✓'); }, 900);
       const pushDue = () => { t.due_date = q('.tm-due').value || null; t.due_time = q('.tm-due-time').value ? q('.tm-due-time').value + ':00' : null; sbPatch('todos', 'id', t.id, { due_date: t.due_date, due_time: t.due_time, updated_at: new Date().toISOString() }); clearReminded(t.id); logActivity('To-do', 'due date set to ' + (t.due_date || '(cleared)') + ' for "' + t.title + '"'); };
-      q('.tm-due').onchange = pushDue; q('.tm-due-time').onchange = pushDue;
+      q('.tm-due').onchange = pushDue; q('.tm-due-time').onchange = () => { pushDue(); }; q('.tm-status-sel').addEventListener('change', () => showConfirm('Saved ✓'));
+      q('.tm-due').addEventListener('change', () => showConfirm('Saved ✓ — due date updated'));
       q('.tm-complete').onclick = () => { t.status = (t.status === 'done') ? 'open' : 'done'; t.done = (t.status === 'done'); sbPatch('todos', 'id', t.id, { status: t.status, done: t.done, updated_at: new Date().toISOString() }); logActivity('To-do', (t.done ? 'completed: "' : 'reopened: "') + t.title + '"'); if (t.done) autoLogTaskToContact(recId, t.title); markReminded(t.id); setStatus(); refreshTaskBadge(); showConfirm(t.done ? 'Task completed' : 'Task reopened'); };
       q('.tm-delete').onclick = () => {
         if (!confirm('Delete this task permanently?')) return;
