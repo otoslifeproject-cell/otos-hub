@@ -861,10 +861,10 @@
         <div class="panel-head">
           <h1>Contacts</h1>
           <div class="ph-sub">Every contact, route and organisation — who's been contacted, what's overdue, and where to open the full record.</div>
-          <div style="margin-top:10px;"><button type="button" id="contactImportBtn" class="tf-export">⇪ Import contacts (CSV)</button><input type="file" id="contactImportInput" accept=".csv,text/csv" hidden><span class="tf-count" id="contactImportMsg" style="margin-left:10px;"></span></div>
         </div>
 
         <div id="contactsMaster">
+        <div style="margin:0 0 14px;"><button type="button" id="contactImportBtn" class="tf-export">⇪ Import contacts (CSV)</button><input type="file" id="contactImportInput" accept=".csv,text/csv" hidden><span class="tf-count" id="contactImportMsg" style="margin-left:10px;"></span></div>
         <div class="overdue">
           <div class="lbl">Overdue follow-ups</div>
           <div id="overdueList"><div class="overdue-empty">Loading…</div></div>
@@ -1127,14 +1127,13 @@
     const SB_KEY = 'sb_publishable_WltftZWjHemFq1FNOFOFVQ_X-hgvSGI';
     const SB_HEADERS = { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json' };
 
-    // ---------- One-time contact seed (local Cambridge ring + national/regional leaders) ----------
+    // ---------- Self-healing contact seed (inserts anyone missing, every load) ----------
     (async function seedContacts(){
-      if (localStorage.getItem('otos_contacts_seeded_v6')) return;
       const now = new Date().toISOString();
       const cat = s => (s || '').split('·')[0].trim();
-      const L = (id,name,org,tags,status,next_action)=>({id,name,organisation:org,status:status||'not-contacted',tags:cat(tags),role_fit:tags,owner:'Dean',next_action:next_action||null,updated_at:now});
-      const N = (id,name,org,tags,next_action)=>({id,name,organisation:org,status:'not-contacted',tags:cat(tags),role_fit:tags,owner:null,next_action:next_action||null,updated_at:now});
-      const A = (id,name,org,tags,next_action,email)=>({id,name,organisation:org,status:'not-contacted',tags:cat(tags),role_fit:tags,owner:'Dean',next_action:next_action||null,email:email||null,updated_at:now});
+      const L = (id,name,org,tags,status,next_action)=>({id,name,organisation:org,status:status||'not-contacted',role_fit:tags,owner:'Dean',next_action:next_action||null,updated_at:now});
+      const N = (id,name,org,tags,next_action)=>({id,name,organisation:org,status:'not-contacted',role_fit:tags,owner:null,next_action:next_action||null,updated_at:now});
+      const A = (id,name,org,tags,next_action,email)=>({id,name,organisation:org,status:'not-contacted',role_fit:tags,owner:'Dean',next_action:next_action||null,email:email||null,updated_at:now});
       const seed = [
         A('sahakian','Prof. Barbara Sahakian','Cambridge Psychiatry / BCNI','Academic · topic fit · PHASE 1 — send FIRST','THE first send of the whole plan: Outreach Email 1 + Concept Note (02) only. Strongest topic fit (ADHD, addiction, cognitive psychopharmacology).'),
         A('ford','Prof. Tamsin Ford / Psychiatry office','Cambridge Psychiatry','Academic · dept gateway · Phase 2','Concept Note (02). Department gateway — route to the right adult ADHD/addiction academic.','HoDPsychiatry@medschl.cam.ac.uk'),
@@ -1183,15 +1182,17 @@
         N('clive-lewis-mp','Clive Lewis MP','UK Parliament','Government · advisory-board target · warm intro — social-justice champion, could back OTOS inside Parliament','Use the warm intro — sequence AHEAD of the cold ministerial letters. If he hears it and backs it, he could champion OTOS in the House. Advisory-board candidate.')
       ];
       try {
-        const res = await fetch(SB_URL + '/rest/v1/tracker_targets?on_conflict=id', {
+        const existing = await fetch(SB_URL + '/rest/v1/tracker_targets?select=id', { headers: SB_HEADERS }).then(r => r.ok ? r.json() : null);
+        if (!existing) return; // offline — retry next load
+        const have = new Set(existing.map(x => x.id));
+        const missing = seed.filter(s => !have.has(s.id));
+        if (!missing.length) return;
+        const res = await fetch(SB_URL + '/rest/v1/tracker_targets', {
           method: 'POST',
-          headers: Object.assign({}, SB_HEADERS, { Prefer: 'resolution=ignore-duplicates,return=minimal' }),
-          body: JSON.stringify(seed)
+          headers: Object.assign({}, SB_HEADERS, { Prefer: 'return=minimal' }),
+          body: JSON.stringify(missing)
         });
-        if (res && res.ok) {
-          localStorage.setItem('otos_contacts_seeded_v6', '1');
-          if (typeof loadContactsList === 'function' && location.hash.startsWith('#contacts')) loadContactsList();
-        }
+        if (res && res.ok && typeof loadContactsList === 'function' && location.hash.startsWith('#contacts')) loadContactsList();
       } catch (e) { /* offline — will retry next load */ }
     })();
 
@@ -1931,6 +1932,9 @@
       const master = document.getElementById('contactsMaster');
       const FIELDS_HTML =
         '<div class="cd-grid">' +
+          '<div class="cd-field"><label>Contact name (person)</label><input type="text" class="cd-person" placeholder="e.g. first name at the org"></div>' +
+          '<div class="cd-field"><label>Phone <a class="cd-phone-call" href="#" style="display:none;margin-left:8px;font-size:11px;font-weight:700;color:var(--accent-ink);text-decoration:none;">Call ☎</a></label><input type="tel" class="cd-phone" placeholder="+44 …"></div>' +
+          '<div class="cd-field" style="grid-column:1/-1;"><label>Email <a class="cd-email-open" href="#" style="display:none;margin-left:8px;font-size:11px;font-weight:700;color:var(--accent-ink);text-decoration:none;">Email ✉</a></label><input type="email" class="cd-email" placeholder="name@…"></div>' +
           '<div class="cd-field"><label>Status</label><select class="cd-status">' + STATUS_OPTIONS_HTML + '</select></div>' +
           '<div class="cd-field"><label>Owner</label><select class="cd-owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div>' +
           '<div class="cd-field"><label>Date contacted</label><input type="date" class="cd-date-contacted"></div>' +
@@ -1938,6 +1942,7 @@
           '<div class="cd-field" style="grid-column:1/-1;"><label>Sent material</label><input type="text" class="cd-sent"></div>' +
           '<div class="cd-field" style="grid-column:1/-1;"><label>Response</label><input type="text" class="cd-response"></div>' +
           '<div class="cd-field" style="grid-column:1/-1;"><label>Next action</label><input type="text" class="cd-next"></div>' +
+          '<div class="cd-field" style="grid-column:1/-1;"><label>LinkedIn / profile URL <a class="cd-linkedin-open" href="#" target="_blank" rel="noopener" style="display:none;margin-left:8px;font-size:11px;font-weight:700;color:var(--accent-ink);text-decoration:none;">Open ↗</a></label><input type="url" class="cd-linkedin" placeholder="https://www.linkedin.com/in/…"></div>' +
         '</div>' +
         '<div class="cd-field"><label>Communication log</label><div class="cd-log-history" contenteditable="true"></div>' +
         '<input type="text" class="cd-log-quick" placeholder="Log this attempt, press Enter…"></div>';
@@ -2151,6 +2156,15 @@
         q('.cd-sent').value = r.sent_material || '';
         q('.cd-response').value = r.response || '';
         q('.cd-next').value = r.next_action || '';
+        const liInput = q('.cd-linkedin'), liOpen = q('.cd-linkedin-open');
+        const syncLi = () => { const v = (liInput.value || '').trim(); if (v) { liOpen.href = v; liOpen.style.display = ''; } else { liOpen.style.display = 'none'; } };
+        liInput.value = r.contact_url || ''; syncLi();
+        const emInput = q('.cd-email'), emOpen = q('.cd-email-open'), phInput = q('.cd-phone'), phCall = q('.cd-phone-call'), personInput = q('.cd-person');
+        const syncContact = () => {
+          const em = (emInput.value || '').trim(); if (em) { emOpen.href = 'mailto:' + em; emOpen.style.display = ''; } else { emOpen.style.display = 'none'; }
+          const ph = (phInput.value || '').trim(); if (ph) { phCall.href = 'tel:' + ph.replace(/\s+/g, ''); phCall.style.display = ''; } else { phCall.style.display = 'none'; }
+        };
+        emInput.value = r.email || ''; phInput.value = r.phone || ''; personInput.value = r.contact_person || ''; syncContact();
         q('.cd-log-history').textContent = r.comm_log || '';
         const refreshTags = () => {
           q('.rh-status').textContent = q('.cd-status').selectedOptions[0].text;
@@ -2163,9 +2177,11 @@
           r.status = q('.cd-status').value; r.owner = q('.cd-owner').value !== 'Unassigned' ? q('.cd-owner').value : null;
           r.date_contacted = q('.cd-date-contacted').value || null; r.followup_date = q('.cd-followup').value || null;
           r.sent_material = q('.cd-sent').value; r.response = q('.cd-response').value; r.next_action = q('.cd-next').value; r.comm_log = q('.cd-log-history').textContent;
+          r.contact_url = q('.cd-linkedin').value.trim() || null;
+          r.email = q('.cd-email').value.trim() || null;
           sbPatch('tracker_targets', 'id', r.id, {
             status: r.status, owner: r.owner, date_contacted: r.date_contacted, followup_date: r.followup_date,
-            sent_material: r.sent_material, response: r.response, next_action: r.next_action, comm_log: r.comm_log, updated_at: new Date().toISOString()
+            sent_material: r.sent_material, response: r.response, next_action: r.next_action, comm_log: r.comm_log, contact_url: r.contact_url, email: r.email, updated_at: new Date().toISOString()
           });
           refreshTags();
           const snapEl = record.querySelector('.rec-snap'); if (snapEl) renderRecSnapshot(snapEl, r, ROUTE_BACKGROUND[r.id]);
@@ -2177,6 +2193,15 @@
         q('.cd-sent').addEventListener('input', debounce(push, 900));
         q('.cd-response').addEventListener('input', debounce(push, 900));
         q('.cd-next').addEventListener('input', debounce(push, 900));
+        q('.cd-linkedin').addEventListener('input', () => { syncLi(); });
+        q('.cd-linkedin').addEventListener('input', debounce(push, 900));
+        // phone + contact_person live in their own columns (run add-phone-fields.sql once); saved in an isolated call so a missing column never blocks the rest
+        const pushExtra = () => { r.phone = phInput.value.trim() || null; r.contact_person = personInput.value.trim() || null; sbPatch('tracker_targets', 'id', r.id, { phone: r.phone, contact_person: r.contact_person, updated_at: new Date().toISOString() }); };
+        q('.cd-email').addEventListener('input', () => { syncContact(); });
+        q('.cd-email').addEventListener('input', debounce(push, 900));
+        q('.cd-phone').addEventListener('input', () => { syncContact(); });
+        q('.cd-phone').addEventListener('input', debounce(pushExtra, 900));
+        q('.cd-person').addEventListener('input', debounce(pushExtra, 900));
         q('.cd-log-history').addEventListener('input', debounce(push, 900));
         q('.cd-log-quick').addEventListener('keydown', (e) => {
           if (e.key !== 'Enter' || !e.target.value.trim()) return;
