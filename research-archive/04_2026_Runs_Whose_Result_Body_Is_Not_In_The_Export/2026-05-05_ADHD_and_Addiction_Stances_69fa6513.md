@@ -1,0 +1,355 @@
+# ADHD and Addiction Stances
+
+- First Deep Research prompt: 2026-05-05T21:48:47.863000+00:00
+- Last Deep Research prompt: 2026-05-06T18:16:10.484000+00:00
+- Conversation ID: `69fa6513-4bb0-8392-b000-e3f8833bde4b`
+- Deep Research prompt messages: 3
+- Ordinary assistant text outputs in conversation: 0
+
+## Export status
+
+Prompt marker(s) are present, but no assistant Deep Research result message is present in the export. The export contains no assistant response body in this conversation.
+
+> This is not proof that the research never completed. It means the completed Deep Research result body is not stored as an export-tagged result message in this JSON archive.
+
+## Deep Research prompt messages
+
+### Prompt 1 — 2026-05-05T21:48:47.863000+00:00
+
+I need the International, publicly stated, official stances/lines on ADHD being the key driver in Addiction and how medicating ADHD reduces Addiction cases/aids Addiction recovery. 
+
+### Prompt 2 — 2026-05-05T23:20:23.179000+00:00
+
+can you extract any great success quote for the postive? Medicate the ADHD, improve the Addiction work/outcomes is what i need for my website. 
+
+home page togive you an idea:<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OTOS Continuity™ — When ADHD is left waiting, addiction steps in.</title>
+  <meta name="description" content="A private partner briefing for NHS, local authority, addiction, recovery and community partners in Cambridge and Peterborough.">
+  <link rel="stylesheet" href="css/otos.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-shell">
+    <a class="brand" href="index.html">
+      <span class="brand-icon"></span>OTOS Continuity™
+    </a>
+    <nav class="nav-links">
+      <a href="partners.html">Partners</a>
+      <a href="founder-story.html">The Story</a>
+      <a href="numbers.html">Numbers</a>
+      <a href="evidence-sources.html">Evidence</a>
+      <a href="how-it-works-visuals.html">Visuals</a>
+      <a class="cta" href="mailto:info@otos.life">Get involved</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ HERO ══════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container">
+      <!-- Contained image card — NOT full bleed -->
+      <div class="hero-image-card" style="margin-bottom:32px;min-height:600px">
+        <img src="images/02-chaos-tunnel.png" alt="A man in distress in a tunnel — the experience of untreated ADHD and addiction" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%">
+        <div class="hero-image-card-overlay"></div>
+        <div class="hero-image-card-content">
+          <h1>When ADHD is left waiting,<br><span class="accent">addiction steps in.</span><br>And it doesn't come quietly.</h1>
+          <p class="lede">A targeted ADHD + addiction continuity intervention: 12 weeks, 50 people, adults already visible to services — where unresolved ADHD may be the underlying cause of their addiction.</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#partner-routes">Find your page</a>
+            <a class="btn" href="founder-story.html">The story behind this</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5-stat strip -->
+      <div class="stat-strip">
+        <div class="stat-card">
+          <strong class="stat-num">34%*</strong>
+          <span class="stat-label">Median ADHD prevalence across addiction-treatment cohorts<br><em class="stat-source">Royal College of Psychiatrists</em></span>
+        </div>
+        <div class="stat-card">
+          <strong class="stat-num">61%*</strong>
+          <span class="stat-label">Improved addictive-disorder outcomes after ADHD diagnosis &amp; treatment<br><em class="stat-source">START study, France</em></span>
+        </div>
+        <div class="stat-card">
+          <strong class="stat-num">30%*</strong>
+          <span class="stat-label">Trial-end abstinence in ADHD + cocaine dependence<br><em class="stat-source">JAMA Psychiatry</em></span>
+        </div>
+        <div class="stat-card">
+          <strong class="stat-num">86%*</strong>
+          <span class="stat-label">Alcohol users also have mental-health problems<br><em class="stat-source">Sun Network public figure</em></span>
+        </div>
+        <div class="stat-card">
+          <strong class="stat-num">850*</strong>
+          <span class="stat-label">Estimated local Cambridge &amp; Peterborough overlap cohort<br><em class="stat-source">Local planning estimate</em></span>
+        </div>
+      </div>
+      <p class="stat-foot">*Sourced / median planning figures. Sources and caveats: <a href="evidence-sources.html">Evidence &amp; Sources →</a></p>
+    </div>
+  </section>
+
+  <!-- ══ THE NOTE — short, with partner pathway image ══════ -->
+  <section class="paper-section" id="letter" style="padding-top:80px;padding-bottom:64px">
+    <div class="container">
+
+      <div class="note-grid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:64px;align-items:center;max-width:1200px;margin:0 auto">
+
+        <!-- LEFT: short note from Dean -->
+        <div class="note-body">
+          <span class="kicker" style="margin-bottom:20px"><span class="kicker-icon"></span>From Dean — directly to you</span>
+
+          <h2 style="font-size:clamp(36px,4.5vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1.05;margin:0 0 28px;color:var(--paper-ink);font-family:var(--font-serif,Georgia,serif)">I told you I'd come back. <span class="accent">I built it.</span><br>Here it is.</h2>
+
+          <p style="font-size:18px;line-height:1.65;color:var(--paper-ink);margin:0 0 18px">This is a private briefing for the people who helped me through the system — and who I promised I would return to with something that could help the next person get there faster, and with less damage along the way.</p>
+
+          <p style="font-size:18px;line-height:1.65;color:var(--paper-ink);margin:0 0 18px">Some of you know me quite new, some met me back in the thick of it. You've allwitnessed every stage. Individual pages explain more around your service/role and hopefully, involvement.</p>
+
+          <p style="font-size:18px;line-height:1.65;color:var(--paper-ink);margin:0 0 32px">Hope it makes sense, I'm simply asking for an open conversation about what's possible and a short note of support I can take into my next meeting with the local Public Health Drugs &amp; Alcohol team.</p>
+
+          <div class="note-actions" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:18px">
+            <a class="btn-primary" href="#partner-routes" style="font-size:16px">Find your page below →</a>
+            <a class="btn outline" href="founder-story.html">Read the letter</a>
+          </div>
+
+          <p style="font-size:14px;line-height:1.55;color:var(--paper-muted);margin:0;font-style:italic">Read the full briefing → or click below</p>
+        </div>
+
+        <!-- RIGHT: partner pathway image -->
+        <aside class="note-image">
+          <figure style="margin:0">
+            <img src="images/partner-pathway.png" alt="Partner pathway diagram — the connected partner network across the cohort journey, from first contact to held thread." style="display:block;width:100%;height:auto;border-radius:8px">
+            <figcaption style="margin-top:14px;text-align:center;font-size:13px;color:var(--paper-muted);font-style:italic;letter-spacing:.01em">Every partner. Every pathway. One connected thread.</figcaption>
+          </figure>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile stack rule for note grid -->
+  <style>
+    @media (max-width: 880px) {
+      .note-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .note-image { max-width: 600px; margin: 0 auto; }
+    }
+  </style>
+
+
+  <!-- ══ PARTNER ROUTE CARDS ═══════════════════════════════ -->
+  <section class="paper-section" id="partner-routes" style="padding-top:56px">
+    <div class="container">
+      <div class="section-head center">
+        <span class="kicker"><span class="kicker-icon"></span>You have a page written specifically for you</span>
+        <h2>Choose your route.<br><span class="accent">Open your draft note.</span></h2>
+        <p>Each page explains your specific role, what we're asking, what you don't need to do — and has a 2–3 sentence support note ready to edit and send.</p>
+      </div>
+      <div class="route-grid">
+        <a class="route-card" href="partners-addenbrookes.html">
+          <div class="route-card-logo"><img src="images/Addenbrookes_Logo.png" alt="Addenbrooke's NHS Trust"></div>
+          <div class="route-card-body">You were my last detox. OTOS means the next person doesn't have to blag their way in. The handoff is logged before they leave the ward.</div>
+          <div class="route-card-footer">Open your page →</div>
+        </a>
+        <a class="route-card" href="partners-cgl-crs.html">
+          <div class="route-card-logo">
+            <img src="images/CGL_Logo.png" alt="Change Grow Live">
+            <img src="images/CRS_Logo.png" alt="Cambridgeshire Recovery Service">
+          </div>
+          <div class="route-card-body">You signed me up in an emergency. You know how often people cycle back without the thread ever holding. Here is how OTOS changes that.</div>
+          <div class="route-card-footer">Open your page →</div>
+        </a>
+        <a class="route-card" href="partners-cpft-adhd.html">
+          <div class="route-card-logo"><img src="images/ADHD_Team_Logo.png" alt="CPFT ADHD Team"></div>
+          <div class="route-card-body">I'm still on your waiting list. OTOS doesn't solve that — it stops people falling out of contact while they wait for you.</div>
+          <div class="route-card-footer">Open your page →</div>
+        </a>
+        <a class="route-card" href="partners-rce.html">
+          <div class="route-card-logo"><img src="images/rce.png" alt="RCE Wellbeing Hub" style="max-height:38px"></div>
+          <div class="route-card-body">You held me while I waited. OTOS gives that holding support a receipted thread — so when someone moves on, the continuity moves with them.</div>
+          <div class="route-card-footer">Open your page →</div>
+        </a>
+        <a class="route-card" href="partners-gp-rtc-qbtech.html">
+          <div class="route-card-logo">
+            <img src="images/nhs-rtc.png" alt="NHS Right to Choose">
+            <img src="images/qbtech.png" alt="QbTech">
+          </div>
+          <div class="route-card-body">Right to Choose was the route that finally worked. OTOS makes it visible and receipted from first contact — without adding clinical burden.</div>
+          <div class="route-card-footer">Open your page →</div>
+        </a>
+        <a class="route-card" href="partners-mind-workwell-jo-fenton.html">
+          <div class="route-card-logo">
+            <img src="images/MIND_Logo.png" alt="Mind">
+            <img src="images/WorkWell_Logo.png" alt="WorkWell">
+            <img src="images/Jo_Fenton_Logo.png" alt="Jo Fenton Consultancy">
+          </div>
+          <div class="route-card-body">GP-referred social prescribing — WorkWell referred me to Mind, who funded Jo Fenton therapy while I waited for my GP to take on a Shared Care Arrangement. OTOS makes that thread visible and receipted.</div>
+          <div class="route-card-footer">Open your page →</div>
+        </a>
+      </div>
+      <p style="text-align:center;font-size:14px;font-weight:600;color:var(--paper-muted);margin-top:20px">
+        Cambridgeshire County Council / public health lead? <a href="local-authority-public-health.html" style="color:var(--orange);font-weight:800">Open the Local Authority briefing →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ DEAN IN FOUR LINES ════════════════════════════════ -->
+  <section class="paper-section paper-section--alt">
+    <div class="container">
+      <div class="split split-wide align-center">
+        <div>
+          <span class="kicker"><span class="kicker-icon"></span>Why this exists</span>
+          <h2>I was your patient.<br><span class="accent">I built the fix.</span></h2>
+          <p style="font-size:17px;color:var(--paper-muted);margin-top:16px">35 years of self-medication. Six A&amp;E presentations. Three detoxes at Addenbrooke's. £90,000 of residential rehab with my ADHD medication removed on arrival.</p>
+          <p style="font-size:17px;color:var(--paper-muted)">Then a private diagnosis. Three days on Elvanse. Everything made sense. The chaos wasn't a character defect. The addiction wasn't a failure of treatment. It was what happens when the underlying neurological condition stays unresolved while the system treats the visible damage.</p>
+          <p style="font-size:17px;font-weight:800;color:var(--paper-ink)">OTOS is the thread that should have held between the services I moved through.</p>
+          <a href="founder-story.html" style="display:inline-block;margin-top:18px;font-size:14px;font-weight:800;color:var(--orange);text-decoration:none">Read the full story →</a>
+        </div>
+        <div class="image-contained" style="max-width:380px;margin-left:auto">
+          <img src="images/06-close-nurse-bedside.png" alt="The bedside moment — Addenbrooke's Alcohol Care">
+          <div style="background:var(--brown);padding:16px 20px">
+            <p style="font-family:Georgia,'Times New Roman',serif;font-size:15px;font-style:italic;font-weight:400;color:rgba(251,247,238,.82);margin:0;line-height:1.6">"Next time we meet, I won't be your patient. I'll be your partner."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EVIDENCE + GUARDRAILS (ONE dark section) ══════════ -->
+  <section class="dark-section">
+    <div class="container">
+      <div class="split">
+
+        <!-- Three evidence facts -->
+        <div>
+          <span class="kicker"><span class="kicker-icon"></span>The evidence in three facts</span>
+          <div class="stack" style="margin-top:4px">
+            <div style="padding:22px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)">
+              <div class="stat">61.3%</div>
+              <p style="font-size:14px;font-weight:700;color:var(--muted);margin:0;line-height:1.6">Improvement in addictive disorders after ADHD diagnosis and treatment. START study, France 2025. This is the comparator the pre-pilot is designed to test locally.</p>
+            </div>
+            <div style="padding:22px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)">
+              <div class="stat">23–45%</div>
+              <p style="font-size:14px;font-weight:700;color:var(--muted);margin:0;line-height:1.6">Of people in addiction treatment have undiagnosed ADHD. Royal College of Psychiatrists. In the CPFT footprint: an estimated 800–900 adults in this overlap.</p>
+            </div>
+            <div style="padding:22px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)">
+              <div class="stat" style="font-size:clamp(22px,2.2vw,32px)">£90k&nbsp;<span style="font-size:16px;opacity:.4">=</span>&nbsp;£91k</div>
+              <p style="font-size:14px;font-weight:700;color:var(--muted);margin:0;line-height:1.6">Three-month residential rehab for one person costs roughly what a 12-week OTOS pre-pilot costs for 50. This is the cost-redirection question the pilot is designed to answer.</p>
+            </div>
+          </div>
+          <a href="evidence-sources.html" style="display:inline-block;margin-top:16px;font-size:13px;font-weight:800;color:var(--orange-2);text-decoration:none">Full evidence register →</a>
+        </div>
+
+        <!-- Guardrails -->
+        <div>
+          <span class="kicker"><span class="kicker-icon"></span>What OTOS will never do</span>
+          <ul class="guardrail-list" style="margin-top:4px">
+            <li><span class="icon no">✕</span>Diagnose, prescribe or make any clinical decision</li>
+            <li><span class="icon no">✕</span>Replace, access or write back to any EPR system</li>
+            <li><span class="icon no">✕</span>Create a new clinical record or share identifiable data</li>
+            <li><span class="icon no">✕</span>Automate any decision that should have a human in it</li>
+            <li><span class="icon no">✕</span>Commit you to a full rollout by joining a scoping call</li>
+          </ul>
+          <div style="margin-top:20px;padding:20px 22px;border-radius:16px;background:rgba(242,108,13,.09);border:1px solid rgba(242,108,13,.22)">
+            <div class="label" style="margin-bottom:8px">The bounded pre-pilot</div>
+            <p style="font-size:15px;font-weight:700;color:rgba(251,247,238,.82);margin:0;line-height:1.65"><strong style="color:#fff">50 people. 12 weeks. Cambridge &amp; Peterborough.</strong> One continuity thread. Zero clinical record merge. One named contact per partner. One 30-minute scoping call to start.</p>
+          </div>
+          <div class="callout" style="margin-top:16px">"OTOS surfaces signals. The partner teams make the decisions."</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ HOW IT WORKS — four steps ════════════════════════ -->
+  <section class="paper-section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="kicker"><span class="kicker-icon"></span>How it works</span>
+        <h2>Four steps. One connected pathway.</h2>
+        <p>OTOS holds the continuity thread across services so each partner can see the relevant continuity status — not another service's clinical notes.</p>
+      </div>
+      <div class="cards four">
+        <article class="card">
+          <div class="label">01 — Identify</div>
+          <h3>People already visible</h3>
+          <p>Adults already touching addiction, recovery, crisis, hospital, GP, ADHD or community support — where co-occurring ADHD may be clinically relevant.</p>
+        </article>
+        <article class="card">
+          <div class="label">02 — Connect</div>
+          <h3>The next step is named</h3>
+          <p>The next appropriate route is named: ADHD assessment, Right to Choose, CPFT, GP, recovery or community support. The referral is logged and visible.</p>
+        </article>
+        <article class="card">
+          <div class="label">03 — Co-ordinate</div>
+          <h3>Thread stays visible</h3>
+          <p>The continuity thread shows whether the next step landed, stalled or needs human review. No extra clinical record is shared between services.</p>
+        </article>
+        <article class="card">
+          <div class="label">04 — Sustain</div>
+          <h3>Drift becomes visible</h3>
+          <p>Silence and missed follow-through become visible early enough for partner-led review, safe re-engagement and measurable learning.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DASHBOARD THUMBNAIL ════════════════════════════════ -->
+  <section class="paper-section paper-section--alt" style="padding-top:0;padding-bottom:56px">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:44px;align-items:center">
+        <div>
+          <span class="kicker"><span class="kicker-icon"></span>What it looks like in practice</span>
+          <h2>The overview a commissioner sees at Week 7.</h2>
+          <p style="margin-top:14px;color:var(--paper-muted)">Real pilot data structure. Anonymous threads. No identifying details. 89% continuity held. 94% handoff receipt rate.</p>
+          <div class="cta-row mt">
+            <a class="btn-primary" href="how-it-works-visuals.html">See all diagrams &amp; mockups</a>
+            <a class="btn outline" href="numbers.html">Full numbers &amp; model</a>
+          </div>
+        </div>
+        <div class="image-thumbnail">
+          <img src="images/OTOS_continuity_pilot_dashboard.png" alt="OTOS Continuity pilot overview dashboard — Week 7">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FINAL CTA ══════════════════════════════════════════ -->
+  <section class="brown-section">
+    <div class="container" style="text-align:center">
+      <div class="quote-block" style="padding:0 0 32px">
+        <blockquote>"ADHD, when unsupported, is a potent route into educational failure, long-term unemployment, crime, substance misuse, suicide, mental and physical illness. Economic costs of at least £17 billion are avoidable."</blockquote>
+        <div class="quote-attr">Independent NHS ADHD Taskforce — April 2025</div>
+      </div>
+      <p style="font-size:16px;font-weight:600;color:rgba(251,247,238,.6);margin-bottom:24px">The next step is not a purchase decision. It is a partner conversation.</p>
+      <div class="cta-row center">
+        <a class="btn-primary" href="partners.html">Partner routes</a>
+        <a class="btn" href="local-authority-public-health.html">Local Authority briefing</a>
+        <a class="btn" href="evidence-sources.html">Evidence</a>
+        <a class="btn" href="mailto:info@otos.life">Get involved →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <div class="page-footer-inner">
+    <img src="images/otos-logo.png" alt="OTOS Continuity">
+    <span class="page-footer-meta">OTOS Digital Ltd &middot; Co. No. 17084455 &middot; Founder: Dean Butler &middot; Clinical governance: discussed at scoping stage</span>
+    <a href="mailto:info@otos.life">info@otos.life</a>
+  </div>
+</footer>
+
+</body>
+</html>
+
+
+### Prompt 3 — 2026-05-06T18:16:10.484000+00:00
+
+you need to reduce ther noise i cant see a list of the fullquotes,said by who whenn, source.i nedd a full list, no waffle
