@@ -253,6 +253,12 @@
   .overdue-empty{ font-size:12.5px; color:var(--muted); font-style:italic; }
 
   /* ---------- Contacts list + inline detail ---------- */
+  .contact-sortbar{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:2px 0 14px; }
+  .contact-sortbar .cs-lbl{ font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-right:2px; }
+  .contact-sortbar .cs-btn, .contact-sortbar .cs-dir{ font-family:var(--sans); font-size:12px; font-weight:700; color:var(--ink-soft); background:var(--paper); border:1px solid var(--rule); border-radius:999px; padding:6px 13px; cursor:pointer; }
+  .contact-sortbar .cs-btn:hover, .contact-sortbar .cs-dir:hover{ border-color:var(--accent); color:var(--accent-ink); }
+  .contact-sortbar .cs-btn.active{ background:var(--accent-ink); border-color:var(--accent-ink); color:#fff; }
+  .contact-sortbar .cs-dir{ margin-left:4px; }
   .list-shell{ padding:16px; border-radius:12px; background:oklch(97% 0.005 90); border:1px solid var(--rule); margin-bottom:32px; }
   .list-shell .contact-list{ margin-bottom:0; border:none; border-radius:0; overflow:visible; gap:12px; }
   .contact-list{ display:flex; flex-direction:column; gap:12px; margin-bottom:32px; }
@@ -872,6 +878,13 @@
           </div>
           <div class="search-meta" id="contactSearchMeta"></div>
         </div>
+        <div class="contact-sortbar" id="contactSortBar">
+          <span class="cs-lbl">Sort by</span>
+          <button type="button" class="cs-btn active" data-sort="name">Name</button>
+          <button type="button" class="cs-btn" data-sort="org">Company</button>
+          <button type="button" class="cs-btn" data-sort="status">Status</button>
+          <button type="button" class="cs-dir" id="contactSortDir" title="Toggle A–Z / Z–A">A → Z ↓</button>
+        </div>
         <div id="tagFilterBar" class="tag-filter-bar" style="display:none;"></div>
         <div id="bulkBar" class="bulk-bar" hidden><span class="bb-count">0 selected</span><select class="bb-status"><option value="">Set status…</option></select><select class="bb-owner"><option value="">Set owner…</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option><option value="Unassigned">Unassigned</option></select><button type="button" class="bb-apply">Apply</button><button type="button" class="bb-clear">Clear</button></div>
         <div class="list-shell"><div class="contact-list" id="contactList"><div style="padding:16px;font-size:12.5px;color:var(--faint);font-style:italic;">Loading…</div></div></div>
@@ -1116,11 +1129,12 @@
 
     // ---------- One-time contact seed (local Cambridge ring + national/regional leaders) ----------
     (async function seedContacts(){
-      if (localStorage.getItem('otos_contacts_seeded_v5')) return;
+      if (localStorage.getItem('otos_contacts_seeded_v6')) return;
       const now = new Date().toISOString();
-      const L = (id,name,org,tags,status,next_action)=>({id,name,organisation:org,status:status||'not-contacted',tags,owner:'Dean',next_action:next_action||null,updated_at:now});
-      const N = (id,name,org,tags,next_action)=>({id,name,organisation:org,status:'not-contacted',tags,owner:null,next_action:next_action||null,updated_at:now});
-      const A = (id,name,org,tags,next_action,email)=>({id,name,organisation:org,status:'not-contacted',tags,owner:'Dean',next_action:next_action||null,email:email||null,updated_at:now});
+      const cat = s => (s || '').split('·')[0].trim();
+      const L = (id,name,org,tags,status,next_action)=>({id,name,organisation:org,status:status||'not-contacted',tags:cat(tags),role_fit:tags,owner:'Dean',next_action:next_action||null,updated_at:now});
+      const N = (id,name,org,tags,next_action)=>({id,name,organisation:org,status:'not-contacted',tags:cat(tags),role_fit:tags,owner:null,next_action:next_action||null,updated_at:now});
+      const A = (id,name,org,tags,next_action,email)=>({id,name,organisation:org,status:'not-contacted',tags:cat(tags),role_fit:tags,owner:'Dean',next_action:next_action||null,email:email||null,updated_at:now});
       const seed = [
         A('sahakian','Prof. Barbara Sahakian','Cambridge Psychiatry / BCNI','Academic · topic fit · PHASE 1 — send FIRST','THE first send of the whole plan: Outreach Email 1 + Concept Note (02) only. Strongest topic fit (ADHD, addiction, cognitive psychopharmacology).'),
         A('ford','Prof. Tamsin Ford / Psychiatry office','Cambridge Psychiatry','Academic · dept gateway · Phase 2','Concept Note (02). Department gateway — route to the right adult ADHD/addiction academic.','HoDPsychiatry@medschl.cam.ac.uk'),
@@ -1171,11 +1185,11 @@
       try {
         const res = await fetch(SB_URL + '/rest/v1/tracker_targets?on_conflict=id', {
           method: 'POST',
-          headers: Object.assign({}, SB_HEADERS, { Prefer: 'resolution=merge-duplicates,return=minimal' }),
+          headers: Object.assign({}, SB_HEADERS, { Prefer: 'resolution=ignore-duplicates,return=minimal' }),
           body: JSON.stringify(seed)
         });
         if (res && res.ok) {
-          localStorage.setItem('otos_contacts_seeded_v5', '1');
+          localStorage.setItem('otos_contacts_seeded_v6', '1');
           if (typeof loadContactsList === 'function' && location.hash.startsWith('#contacts')) loadContactsList();
         }
       } catch (e) { /* offline — will retry next load */ }
@@ -1183,7 +1197,7 @@
 
     // ---------- One-time first-task seed (key partners into the sending queue) ----------
     (async function seedTasks(){
-      if (localStorage.getItem('otos_tasks_seeded_v1')) return;
+      if (localStorage.getItem('otos_tasks_seeded_v2')) return;
       // next Wednesday
       const d = new Date(); const dow = d.getDay(); const add = ((3 - dow + 7) % 7) || 7;
       const wed = new Date(d.getTime() + add * 86400000);
@@ -1204,8 +1218,18 @@
         T('inertiia-crown','Line up Inertiia Crown (CGL & CRS biz-dev) as the cross-service route','Gareth',iso(4),'low')
       ];
       try {
-        const existing = await fetch(SB_URL + '/rest/v1/todos?select=linked_id', { headers: SB_HEADERS }).then(r => r.ok ? r.json() : null);
+        const existing = await fetch(SB_URL + '/rest/v1/todos?select=id,title,linked_id', { headers: SB_HEADERS }).then(r => r.ok ? r.json() : null);
         if (!existing) return; // offline — retry next load, flag not set
+        // 1) remove duplicate rows (same title + linked_id), keeping the earliest (lowest id)
+        const seen = {}; const dupeIds = [];
+        existing.slice().sort((a,b) => a.id - b.id).forEach(t => {
+          const k = (t.title || '') + '||' + (t.linked_id || '');
+          if (seen[k]) dupeIds.push(t.id); else seen[k] = true;
+        });
+        for (const id of dupeIds) {
+          await fetch(SB_URL + '/rest/v1/todos?id=eq.' + id, { method: 'DELETE', headers: SB_HEADERS });
+        }
+        // 2) add any seed task whose linked contact has no task yet
         const have = new Set(existing.map(x => x.linked_id).filter(Boolean));
         const toAdd = tasks.filter(t => !have.has(t.linked_id));
         if (toAdd.length) {
@@ -1215,7 +1239,8 @@
           });
           if (!res.ok) return;
         }
-        localStorage.setItem('otos_tasks_seeded_v1', '1');
+        localStorage.setItem('otos_tasks_seeded_v2', '1');
+        if (typeof loadTodos === 'function' && location.hash.startsWith('#tasks')) loadTodos();
       } catch (e) { /* offline — retry next load */ }
     })();
 
@@ -1438,6 +1463,30 @@
         box.appendChild(el);
       });
     }
+
+    window.__contactSort = { key: 'name', dir: 1 };
+    function applyContactSort(){
+      const container = document.getElementById('contactList'); if (!container) return;
+      const { key, dir } = window.__contactSort;
+      const rows = [...container.querySelectorAll('.contact-row')];
+      const val = (row, k) => {
+        if (k === 'name') return (row.querySelector('.cr-name')?.textContent || '').toLowerCase();
+        if (k === 'org') return (row.querySelector('.cr-org')?.textContent || '').toLowerCase();
+        if (k === 'status') return (row.querySelector('.cr-status')?.textContent || '').toLowerCase();
+        return '';
+      };
+      rows.sort((a, b) => { const av = val(a, key), bv = val(b, key); if (av < bv) return -1 * dir; if (av > bv) return 1 * dir; return 0; });
+      rows.forEach(r => container.appendChild(r));
+    }
+    (function wireContactSort(){
+      const bar = document.getElementById('contactSortBar'); if (!bar) return;
+      const dirBtn = document.getElementById('contactSortDir');
+      bar.addEventListener('click', e => {
+        const b = e.target.closest('.cs-btn');
+        if (b) { window.__contactSort.key = b.dataset.sort; bar.querySelectorAll('.cs-btn').forEach(x => x.classList.toggle('active', x === b)); applyContactSort(); return; }
+        if (e.target.closest('.cs-dir')) { window.__contactSort.dir *= -1; dirBtn.textContent = window.__contactSort.dir === 1 ? 'A → Z ↓' : 'Z → A ↑'; applyContactSort(); }
+      });
+    })();
 
     window.__activeTagFilters = new Set();
     function applyContactFilters(){
@@ -2250,6 +2299,7 @@
       });
       buildTagFilterBar();
       applyContactFilters();
+      applyContactSort();
       setupBulkBar(rows);
 
       // If arriving via a #row-<id> hash from elsewhere, open that contact's record
