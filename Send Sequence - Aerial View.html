@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Send Sequence — Aerial View · OTOS Continuity™</title>
+<style>
+  :root{
+    --ink:#20242b; --ink-soft:#454b54; --muted:#6b7280; --faint:#9aa1ab;
+    --paper:#ffffff; --bg:#f4f1ec; --rule:#e4ddd1; --rule-soft:#efe9df;
+    --accent:#b5651d; --accent-ink:#9a5316; --accent-wash:#f6ecdf;
+    --serif:'Iowan Old Style','Palatino Linotype','Georgia',serif;
+    --sans:'Inter','Helvetica Neue',system-ui,-apple-system,sans-serif;
+    /* disclosure ramp */
+    --d0:#e7e9ee; --d0t:#54606f;
+    --d1:#faf1e2; --d1t:#8a6a2f;
+    --d2:#f1d9b4; --d2t:#7c561d;
+    --d3:#e3a45f; --d3t:#5b330c;
+    --d4:#6f3d12; --d4t:#fbeede;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.5;}
+  a{color:var(--accent-ink);}
+  .backlink{position:fixed;top:14px;left:16px;z-index:40;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:6px 13px;}
+  .backlink:hover{color:var(--accent-ink);border-color:var(--accent);}
+
+  header.page-head{padding:56px 34px 22px;max-width:1180px;}
+  .eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:8px;}
+  h1{font-family:var(--serif);font-size:32px;font-weight:600;margin:0 0 8px;letter-spacing:-.01em;}
+  .dek{font-size:14.5px;color:var(--ink-soft);max-width:76ch;margin:0;text-wrap:pretty;}
+
+  /* legends */
+  .legends{display:flex;flex-wrap:wrap;gap:26px;padding:0 34px 20px;align-items:flex-start;}
+  .leg{font-size:11px;}
+  .leg .lt{font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-size:9.5px;margin-bottom:7px;}
+  .leg-row{display:flex;flex-wrap:wrap;gap:6px 14px;}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);}
+  .sw{width:22px;height:13px;border-radius:3px;border:1px solid rgba(0,0,0,.14);display:inline-block;}
+  .conf-key{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);}
+  .cbar{width:22px;height:13px;border-radius:3px;background:#f1d9b4;}
+  .cbar.decided{border:1.5px solid var(--accent-ink);}
+  .cbar.proposed{border:1.5px dashed var(--accent);}
+  .cbar.undecided{border:1.5px dotted var(--muted);background:repeating-linear-gradient(45deg,#eee,#eee 3px,#f7f7f7 3px,#f7f7f7 6px);}
+
+  /* chart */
+  .scroll{overflow-x:auto;padding:0 34px 40px;}
+  .chart{min-width:1080px;border:1px solid var(--rule);border-radius:12px;background:var(--paper);overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+  .grid{display:grid;grid-template-columns:170px repeat(5,1fr);}
+  /* wave header */
+  .wh{padding:13px 14px 12px;border-bottom:1px solid var(--rule);border-left:1px solid var(--rule-soft);background:var(--paper);position:relative;}
+  .wh:first-child{border-left:none;background:var(--bg);}
+  .wh .wn{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);}
+  .wh .wt{font-family:var(--serif);font-size:15px;font-weight:600;margin-top:2px;line-height:1.2;}
+  .wh .wg{font-size:10.5px;color:var(--muted);margin-top:6px;line-height:1.35;font-style:italic;}
+  .wh .wg b{color:var(--accent-ink);font-style:normal;}
+  .corner{background:var(--bg);border-bottom:1px solid var(--rule);}
+  /* lane row */
+  .lane-lbl{padding:14px 12px 14px 14px;border-top:1px solid var(--rule);background:var(--bg);display:flex;flex-direction:column;justify-content:center;}
+  .lane-lbl .ll{font-family:var(--serif);font-size:13.5px;font-weight:600;line-height:1.2;}
+  .lane-lbl .ls{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.3;}
+  .cell{border-top:1px solid var(--rule);border-left:1px solid var(--rule-soft);padding:10px 9px;min-height:64px;display:flex;flex-direction:column;gap:7px;}
+  .cell.first{border-left:none;}
+  .lane-row.personal .cell,.lane-row.personal .lane-lbl{background:#f7f8fa;}
+
+  /* bars */
+  .bar{position:relative;border-radius:7px;padding:8px 10px 8px 13px;cursor:pointer;background:var(--d2);color:var(--d2t);border:1.5px solid transparent;transition:transform .08s,box-shadow .12s;}
+  .bar:hover{transform:translateY(-1px);box-shadow:0 3px 9px rgba(0,0,0,.12);}
+  .bar::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;border-radius:7px 0 0 7px;background:rgba(0,0,0,.16);}
+  .bar .bn{font-size:12px;font-weight:700;line-height:1.22;}
+  .bar .bw{font-size:10.5px;opacity:.85;margin-top:2px;line-height:1.3;}
+  .bar.d0{background:var(--d0);color:var(--d0t);}
+  .bar.d1{background:var(--d1);color:var(--d1t);}
+  .bar.d2{background:var(--d2);color:var(--d2t);}
+  .bar.d3{background:var(--d3);color:var(--d3t);}
+  .bar.d4{background:var(--d4);color:var(--d4t);}
+  .bar.decided{border-style:solid;border-color:rgba(0,0,0,.28);}
+  .bar.proposed{border-style:dashed;border-color:rgba(0,0,0,.3);}
+  .bar.undecided{border-style:dotted;border-color:rgba(0,0,0,.32);}
+  .bar .tag{position:absolute;top:-7px;right:8px;font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--paper);border:1px solid currentColor;border-radius:999px;padding:1px 6px;}
+
+  /* unplaced tray */
+  .tray{max-width:1180px;margin:8px 34px 30px;border:1px dashed var(--rule);border-radius:12px;background:var(--paper);padding:16px 18px;}
+  .tray h3{font-family:var(--serif);font-size:16px;font-weight:600;margin:0 0 3px;}
+  .tray p{font-size:12px;color:var(--muted);margin:0 0 12px;max-width:80ch;}
+  .tray-grid{display:flex;flex-wrap:wrap;gap:8px;}
+  .tray .bar{width:220px;}
+
+  /* disclosure ladder */
+  .ladder{max-width:1180px;margin:0 34px 44px;border:1px solid var(--rule);border-radius:12px;background:var(--paper);padding:18px 20px;}
+  .ladder h3{font-family:var(--serif);font-size:16px;font-weight:600;margin:0 0 3px;}
+  .ladder p{font-size:12px;color:var(--muted);margin:0 0 14px;max-width:82ch;}
+  .rungs{display:flex;gap:0;border-radius:8px;overflow:hidden;border:1px solid var(--rule);}
+  .rung{flex:1;padding:12px 13px;border-right:1px solid rgba(255,255,255,.35);}
+  .rung:last-child{border-right:none;}
+  .rung .rl{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.8;}
+  .rung .rt{font-size:12.5px;font-weight:700;margin:3px 0 2px;line-height:1.2;}
+  .rung .rd{font-size:10.5px;line-height:1.35;opacity:.92;}
+
+  /* detail panel */
+  .panel{position:fixed;top:0;right:0;height:100%;width:340px;background:var(--paper);border-left:1px solid var(--rule);box-shadow:-8px 0 30px rgba(0,0,0,.1);transform:translateX(100%);transition:transform .22s ease;z-index:50;padding:26px 24px;overflow-y:auto;}
+  .panel.open{transform:translateX(0);}
+  .panel .close{position:absolute;top:14px;right:16px;border:none;background:none;font-size:22px;color:var(--faint);cursor:pointer;line-height:1;}
+  .panel .p-lane{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);}
+  .panel h2{font-family:var(--serif);font-size:22px;font-weight:600;margin:4px 0 2px;line-height:1.15;}
+  .panel .p-org{font-size:13px;color:var(--muted);margin-bottom:16px;}
+  .panel .prow{margin-bottom:14px;}
+  .panel .pl{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:3px;}
+  .panel .pv{font-size:13px;color:var(--ink);line-height:1.5;}
+  .panel .badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;}
+  .badge.decided{background:var(--accent-wash);color:var(--accent-ink);}
+  .badge.proposed{background:#fef3e4;color:#9a5316;border:1px dashed var(--accent);}
+  .badge.undecided{background:#eef0f3;color:var(--muted);border:1px dotted var(--muted);}
+  .scrim{position:fixed;inset:0;background:rgba(20,20,20,.18);opacity:0;pointer-events:none;transition:opacity .2s;z-index:45;}
+  .scrim.on{opacity:1;pointer-events:auto;}
+  .foot{max-width:1180px;margin:0 34px 60px;font-size:11.5px;color:var(--faint);line-height:1.5;}
+</style>
+</head>
+<body>
+<a href="index.html" class="backlink">← OTOS Hub</a>
+
+<header class="page-head">
+  <div class="eyebrow">OTOS Continuity™ · Outreach cockpit</div>
+  <h1>Send sequence — aerial view</h1>
+  <p class="dek">Everyone in the plan on one canvas. Left → right is <b>time / drip order</b> (gated waves, not fixed dates). Colour depth is <b>how much each contact is shown</b> — the Cloudflare-gate drip feed, from a bare impression to the post-NDA pack. Border style is how firm the placement is. Click any bar to inspect it. Nothing here is a committed send — it's the map to analyse before deciding.</p>
+</header>
+
+<div class="legends">
+  <div class="leg">
+    <div class="lt">Disclosure depth — how far past the gate they see</div>
+    <div class="leg-row">
+      <span class="chip"><span class="sw" style="background:var(--d0)"></span>Personal — not an OTOS send</span>
+      <span class="chip"><span class="sw" style="background:var(--d1)"></span>1 · Impression only</span>
+      <span class="chip"><span class="sw" style="background:var(--d2)"></span>2 · Concept note (pre-NDA)</span>
+      <span class="chip"><span class="sw" style="background:var(--d3)"></span>3 · Gated site / demo access</span>
+      <span class="chip"><span class="sw" style="background:var(--d4)"></span>4 · Post-NDA full pack</span>
+    </div>
+  </div>
+  <div class="leg">
+    <div class="lt">How firm is the placement</div>
+    <div class="leg-row">
+      <span class="conf-key"><span class="cbar decided"></span>Decided (locked schedule)</span>
+      <span class="conf-key"><span class="cbar proposed"></span>Proposed (my recommendation)</span>
+      <span class="conf-key"><span class="cbar undecided"></span>Undecided — to analyse</span>
+    </div>
+  </div>
+</div>
+
+<div class="scroll">
+  <div class="chart"><div class="grid" id="grid"></div></div>
+</div>
+
+<div class="tray">
+  <h3>Unplaced — to sequence together</h3>
+  <p>Real people from the Cambridge Actions list whose role or timing isn't yet confirmed. Deliberately parked here rather than guessed into a wave — this is the set to work through and place.</p>
+  <div class="tray-grid" id="tray"></div>
+</div>
+
+<div class="ladder">
+  <h3>The drip feed — what "opening up bit by bit" means</h3>
+  <p>The same person can move rightward through these rungs as trust builds. The Cloudflare gate is the hinge between rung 2 and rung 3: it lets you grant a warmed academic a real look at the working site without putting anything in front of the world — you open the gate one visitor at a time.</p>
+  <div class="rungs">
+    <div class="rung" style="background:var(--d1);color:var(--d1t);"><div class="rl">Rung 1</div><div class="rt">Impression</div><div class="rd">Holding page, one-line exec teaser. Credibility, no substance. Public.</div></div>
+    <div class="rung" style="background:var(--d2);color:var(--d2t);"><div class="rl">Rung 2</div><div class="rt">Concept note</div><div class="rd">The idea, the boundary, the ask. Pre-NDA. Enough to earn a reply — not the how.</div></div>
+    <div class="rung" style="background:var(--d3);color:var(--d3t);"><div class="rl">Rung 3 · past the gate</div><div class="rt">Site / demo access</div><div class="rd">Granted individually through the Cloudflare gate. Shows it's real and working — still holds the crown jewels back.</div></div>
+    <div class="rung" style="background:var(--d4);color:var(--d4t);"><div class="rl">Rung 4</div><div class="rt">Post-NDA full pack</div><div class="rd">Operating model, masters, evidence dossier. Only after an NDA and a real relationship.</div></div>
+  </div>
+</div>
+
+<div class="foot" id="foot"></div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel">
+  <button class="close" id="panelClose" aria-label="Close">×</button>
+  <div class="p-lane" id="pLane"></div>
+  <h2 id="pName"></h2>
+  <div class="p-org" id="pOrg"></div>
+  <div class="prow"><div class="pl">Placement</div><div class="pv"><span class="badge" id="pConf"></span> · <span id="pWave"></span></div></div>
+  <div class="prow"><div class="pl">What they get first</div><div class="pv" id="pWhat"></div></div>
+  <div class="prow"><div class="pl">Disclosure depth</div><div class="pv" id="pDisc"></div></div>
+  <div class="prow"><div class="pl">Gate / trigger</div><div class="pv" id="pGate"></div></div>
+  <div class="prow"><div class="pl">Why here / caution</div><div class="pv" id="pNote"></div></div>
+</aside>
+
+<script>
+const WAVES=[
+  {id:0,name:'Wave 0',title:'Internal lock',gate:'<b>Before anything leaves.</b> G / D / Ready sign-off complete on the hub.'},
+  {id:1,name:'Wave 1',title:'One narrow send',gate:'Opens the moment site is live. <b>One contact only.</b>'},
+  {id:2,name:'Wave 2',title:'Widen the academic ring',gate:'Opens on a clean or positive <b>Wave-1 reply</b> (or 10 working days).'},
+  {id:3,name:'Wave 3',title:'Funding routes + close local',gate:'Opens once an <b>academic sponsor is engaged</b>.'},
+  {id:4,name:'Wave 4',title:'Partners · pharma · angel',gate:'Paused until the <b>academic story is proven</b>.'}
+];
+const LANES=[
+  {id:'personal',ll:'Personal / care',ls:'Dean as patient — never an OTOS send'},
+  {id:'infra',ll:'Site & infrastructure',ls:'The gate that enables the drip'},
+  {id:'academic',ll:'Academic ring',ls:'Cambridge — the spine of the plan'},
+  {id:'local',ll:'Local NHS / partners',ls:'Existing relationships'},
+  {id:'funding',ll:'Funding routes',ls:'MRC / Wellcome'},
+  {id:'pharma',ll:'Pharma',ls:'Own register'},
+  {id:'angel',ll:'Angel / strategic',ls:'Staged'}
+];
+const DISC={0:'Personal — not a send',1:'1 · Impression only',2:'2 · Concept note (pre-NDA)',3:'3 · Gated site / demo',4:'4 · Post-NDA full pack'};
+const ITEMS=[
+  {lane:'personal',wave:0,disc:0,conf:'decided',name:'Psychiatrist letter → ADHD Team',org:'CPFT ADHD Medication Review',what:'The personal clinical letter, sent alone, as a patient — not as OTOS.',gate:'Send first. Resolves Shared Care / the medication review.',note:'The highest-risk bundling to avoid: the letter must never read as a pitch (§5 lock). Sending it alone lets the ADHD Team meet Dean-the-person before Dean-the-founder — and protects both.'},
+  {lane:'infra',wave:0,disc:1,conf:'decided',name:'Holding page + Cloudflare gate live',org:'otos.network',what:'Credibility card only — not a product launch.',gate:'Must be live before Wave 1 sends.',note:'The gate is what makes the whole drip possible: it lets you grant site access one visitor at a time later on.'},
+  {lane:'infra',wave:1,disc:3,conf:'proposed',name:'Small working website (behind gate)',org:'Dean building outside the hub',what:'A real, working look — access granted individually.',gate:'Ready when you want to move a warmed academic to rung 3.',note:'This is your "let them see past the gate without giving the game away" tool. Keep it rung-3: shows it works, still holds the operating detail back.'},
+  {lane:'academic',wave:1,disc:2,conf:'decided',name:'Prof. Barbara Sahakian',org:'Cambridge Psychiatry / BCNI',what:'Outreach Email 1 + Concept Note (02) only.',gate:'THE first send of the whole plan.',note:'Strongest topic fit — ADHD, addiction, cognitive psychopharmacology. Everything else waits on her reply.'},
+  {lane:'academic',wave:2,disc:2,conf:'decided',name:'The academic ring (15 targets)',org:'Ford · Dixon-Woods · Bowden-Jones · Robbins · Nord · Dalgleish · Brayne + dept gateways',what:'Concept Note (02); a few also get 01 or 04.',gate:'Spaced a few days apart.',note:'Only opens on a clean Wave-1 response. Full per-target detail lives in doc 18 / the tracker (19).'},
+  {lane:'academic',wave:2,disc:2,conf:'proposed',name:'Cambridge Enterprise (Route 4)',org:'University tech-transfer',what:'01 + 03 (Role as Project Partner).',gate:'Low drift risk — can run parallel to Wave 2.',note:'Translational / IAA funding route. Safe to run alongside the ring.'},
+  {lane:'local',wave:2,disc:2,conf:'proposed',name:'Dr Claire Gillvray',org:'RCE / LAMP · also a GP',what:'Advice / pressure-test conversation (LAMP brief).',gate:'Informal sounding — no pack sent.',note:'Take her honest critique as a CRITIC first. Advisory-board invite only if she\u2019s warm (step 2), with terms pre-agreed. Lead with the GP angle — she can call, no answer yet.'},
+  {lane:'local',wave:2,disc:2,conf:'proposed',name:'Sally — CGL',org:'CGL',what:'Quiet word — test appetite.',gate:'Informal, existing relationship.',note:'Not a full-pack send. A relationship sounding to gauge the addiction-side appetite before CPFT.'},
+  {lane:'local',wave:3,disc:2,conf:'proposed',name:'Paula Baker → CPFT ADHD Team',org:'CPFT Adult ADHD Service',what:'ADHD Team Project Brief (the OTOS ask).',gate:'AFTER the personal letter lands.',note:'Paula is the admin gateway — the real decision owners are the Services Manager + Teams Manager she forwards to. Keep this strictly separate from the personal letter.'},
+  {lane:'local',wave:4,disc:2,conf:'proposed',name:'RCE Wellbeing Hub (Franceska)',org:'Recovery College East · contact: Franceska',what:'RCE Wellbeing Hub Partner Brief.',gate:'Formal approach only after Dr Claire pressure-test.',note:'Franceska is the RCE contact. "Digital waiting room" framing — CPFT-signposted, voluntary, course-based. OTOS does not make RCE clinical.'},
+  {lane:'local',wave:4,disc:2,conf:'proposed',name:'Scott Davidson',org:'Public Health — Drugs & Alcohol, Cambridgeshire (Insight)',what:'Wants a 60s intro + a working demo.',gate:'Public-health commissioning route.',note:'Asked for a demo \u2014 a rung-3 (gated site) candidate once warmed. Confirm City vs County Council. Public Health is a step ahead (a first meeting already happened); cost-case brief is the follow-up.'},
+  {lane:'local',wave:4,disc:2,conf:'proposed',name:'Mind (+ WorkWell)',org:'Mind · WorkWell — new active target',what:'Mind · WorkWell · Therapy Partner Brief.',gate:'Approach directly — now a full outreach target.',note:'Dean recommended to approach Mind with this too. Full outreach status, not just Jo\u2019s referral route.'},
+  {lane:'local',wave:4,disc:2,conf:'proposed',name:'Rak — CGL Team Leader',org:'CGL',what:'Part of the CGL partner-brief stage.',gate:'Sits behind the Sally sounding.',note:'Team-leader level CGL contact.'},
+  {lane:'local',wave:4,disc:2,conf:'proposed',name:'Andrea — CRS Keyworker',org:'CRS',what:'Part of the CRS partner-brief stage.',gate:'Paused until academic traction.',note:'Keyworker-level CRS contact.'},
+  {lane:'local',wave:4,disc:2,conf:'proposed',name:'Inertiia Crown',org:'CGL & CRS — Business Development',what:'Biz-dev route into both services.',gate:'Paused until academic traction.',note:'Business-development contact spanning CGL and CRS.'},
+  {lane:'local',wave:4,disc:1,conf:'proposed',name:'Jo Fenton',org:'Therapist — via Mind / WorkWell',what:'Backing lines + a continuity quote.',gate:'Bank as a supporter — not a first mover.',note:'Came to Dean via Mind & WorkWell (not private). Social proof once conversations are live. Send her the written prompt.'},
+  {lane:'local',wave:4,disc:2,conf:'proposed',name:'Alcohol Liaison · Champion',org:'Bedside brief · general advocate',what:'Each own brief.',gate:'Paused until academic traction.',note:'The remaining partner-brief sends.'},
+  {lane:'funding',wave:3,disc:2,conf:'decided',name:'MRC IAA / Route 4',org:'Impact Acceleration',what:'24 (readiness) + 01 + 03.',gate:'When an academic sponsor is willing.',note:'The earliest, most practical funding entry point.'},
+  {lane:'funding',wave:3,disc:4,conf:'decided',name:'MRC Stage One',org:'Pre-pilot / First-50',what:'Stage One skeleton (13).',gate:'After Route 4 shapes a protocol + sponsor.',note:'Feasibility design — before a PI is formally attached.'},
+  {lane:'funding',wave:4,disc:4,conf:'decided',name:'MRC Stage Two / Wellcome MH',org:'Follow-on',what:'14 / 15 skeletons.',gate:'Stage Two needs First-50 data first.',note:'Wellcome is a mechanism-research route, not a build-funding substitute.'},
+  {lane:'pharma',wave:4,disc:1,conf:'decided',name:'AstraZeneca',org:'Own register',what:'Exec Summary — AZ only → (post-NDA) AZ NIA Master.',gate:'Never alongside an unproven academic pitch.',note:'Category / medicine-plus-continuity / patient-support / RWE framing.'},
+  {lane:'pharma',wave:4,disc:1,conf:'proposed',name:'Roche',org:'Own register',what:'Exec Summary — Roche only.',gate:'Post-NDA master does not exist yet.',note:'Distinct from AZ — diagnostics / identification / data / RWE. Never copy the AZ master.'},
+  {lane:'angel',wave:4,disc:1,conf:'proposed',name:'Angel / strategic funder',org:'Staged',what:'OTOS Angel First-Look → Prospectus.',gate:'No angel talk during an unproven academic pitch.',note:'First-Look is pre-NDA by selection; the fuller brief is the Prospectus stage.'}
+];
+const UNPLACED=[
+  {lane:'local',disc:0,conf:'undecided',name:'KC — Su Network',org:'Su Network',what:'No further action.',gate:'Closed — parked for reference.',note:'Reviewed the pack via Su Network; no further action agreed. Kept here so the name isn\u2019t lost, not an active target.'}
+];
+
+const grid=document.getElementById('grid');
+// header row
+grid.insertAdjacentHTML('beforeend','<div class="corner"></div>');
+WAVES.forEach(w=>{grid.insertAdjacentHTML('beforeend',
+  '<div class="wh"><div class="wn">'+w.name+'</div><div class="wt">'+w.title+'</div><div class="wg">'+w.gate+'</div></div>');});
+// lane rows
+LANES.forEach(l=>{
+  grid.insertAdjacentHTML('beforeend','<div class="lane-lbl lane-row '+l.id+'"><div class="ll">'+l.ll+'</div><div class="ls">'+l.ls+'</div></div>');
+  WAVES.forEach((w,wi)=>{
+    const cell=document.createElement('div');
+    cell.className='cell'+(wi===0?' first':'');
+    ITEMS.filter(it=>it.lane===l.id&&it.wave===w.id).forEach(it=>cell.appendChild(makeBar(it)));
+    grid.appendChild(cell);
+  });
+});
+// tray
+const tray=document.getElementById('tray');
+UNPLACED.forEach(it=>tray.appendChild(makeBar(it)));
+
+function makeBar(it){
+  const b=document.createElement('div');
+  const dcls=(it.disc==='?')?'undec-d':'d'+it.disc;
+  b.className='bar '+dcls+' '+it.conf;
+  b.innerHTML='<div class="bn">'+it.name+'</div>'+(it.org?'<div class="bw">'+it.org+'</div>':'')
+    +(it.conf==='undecided'?'<span class="tag">?</span>':'');
+  if(it.disc==='?'){b.classList.remove('undec-d');b.classList.add('d0');}
+  b.addEventListener('click',()=>openPanel(it));
+  return b;
+}
+
+const panel=document.getElementById('panel'),scrim=document.getElementById('scrim');
+function openPanel(it){
+  const lane=LANES.find(l=>l.id===it.lane)||{ll:''};
+  document.getElementById('pLane').textContent=lane.ll;
+  document.getElementById('pName').textContent=it.name;
+  document.getElementById('pOrg').textContent=it.org||'';
+  const cf=document.getElementById('pConf');cf.textContent=it.conf;cf.className='badge '+it.conf;
+  document.getElementById('pWave').textContent=(it.wave!==undefined?('Wave '+it.wave):'Unplaced — to sequence');
+  document.getElementById('pWhat').textContent=it.what||'—';
+  document.getElementById('pDisc').textContent=DISC[it.disc]||'To decide';
+  document.getElementById('pGate').textContent=it.gate||'—';
+  document.getElementById('pNote').textContent=it.note||'—';
+  panel.classList.add('open');scrim.classList.add('on');
+}
+function closePanel(){panel.classList.remove('open');scrim.classList.remove('on');}
+document.getElementById('panelClose').addEventListener('click',closePanel);
+scrim.addEventListener('click',closePanel);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel();});
+
+document.getElementById('foot').innerHTML='Reads with the locked Master Rollout &amp; Send Schedule (doc 27) and the Cambridge Actions list. '
+  +'<b>Decided</b> placements come from that schedule; <b>proposed</b> are my recommendation from our strategy conversation; <b>undecided</b> are yours to resolve. '
+  +'This is a planning canvas — no send is committed here.';
+</script>
+</body>
+</html>

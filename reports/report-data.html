@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NHS Data Integration & Reporting Standards — OTOS Continuity™</title>
+<style>
+  doc-page:not(:defined){visibility:hidden}
+  :root{--ink:#1a1d21;--ink-soft:#3c4249;--faint:#6b7280;--paper:#fff;--rule:#e4e2dc;--accent:#e8a33d;--accent-ink:#b9741a;--wash:#faf7f1;--serif:Georgia,'Times New Roman',serif;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+  doc-page{font-family:var(--sans);color:var(--ink-soft);font-size:15px;line-height:1.62}
+  h1,h2,h3{font-family:var(--serif);color:var(--ink);line-height:1.2}
+  h1{font-size:29px;margin:0 0 6px;letter-spacing:-.01em}
+  h2{font-size:20px;margin:30px 0 10px;padding-top:14px;border-top:1px solid var(--rule)}
+  h3{font-size:15px;font-family:var(--sans);font-weight:700;color:var(--accent-ink);margin:16px 0 4px}
+  p{margin:0 0 11px}
+  a{color:var(--accent-ink)}a:hover{color:var(--ink)}
+  .eyebrow{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 8px}
+  .lede{font-size:16.5px;color:var(--ink);line-height:1.5;margin:0 0 14px}
+  .dlbar{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--wash);border:1px solid var(--rule);border-radius:8px;padding:12px 16px;margin:16px 0 22px;flex-wrap:wrap}
+  .dlbar .dl-t{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+  .dlbtn{display:inline-flex;align-items:center;gap:7px;background:var(--accent-ink);color:#fff;text-decoration:none;font-family:var(--sans);font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;white-space:nowrap}
+  .dlbtn:hover{background:var(--ink);color:#fff}
+  table{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:13.5px}
+  thead th{text-align:left;background:var(--wash);color:var(--ink);font-family:var(--sans);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;padding:8px 10px;border-bottom:2px solid var(--rule)}
+  td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5}
+  tbody tr:last-child td{border-bottom:none}
+  ul{margin:0 0 12px;padding-left:20px}li{margin:0 0 6px}
+  .callout{background:var(--wash);border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:14px 18px;margin:14px 0;break-inside:avoid}
+  .callout p:last-child{margin-bottom:0}
+  .tag{display:inline-block;font-family:var(--sans);font-size:10px;font-weight:800;letter-spacing:.05em;padding:2px 8px;border-radius:4px;margin-right:6px;vertical-align:middle}
+  .tag.do{background:#1f6a3a;color:#fff}.tag.should{background:var(--accent-ink);color:#fff}.tag.could{background:#6b7280;color:#fff}
+  .rec{break-inside:avoid;margin:0 0 12px}
+  .foot-note{font-size:11.5px;color:var(--faint);border-top:1px solid var(--rule);margin-top:26px;padding-top:12px}
+</style></head><body>
+<doc-page size="a4" margin="0.8in">
+  <p class="eyebrow">OTOS Continuity™ · Research Report</p>
+  <h1>NHS Data Integration & Reporting Standards for Digital Therapy Tools</h1>
+  <p class="lede">The integration points, data-security frameworks and reporting standards a third-party tool like OTOS must meet to operate within NHS and justice settings — plus how to structure dashboards for NHS England and Probation KPIs.</p>
+
+  <div class="dlbar"><span class="dl-t">Read on this page, or take the original PDF.</span><a class="dlbtn" href="NHS Data Integration and Reporting Standards.pdf" download>⬇ Download PDF</a></div>
+
+  <h2>Integration with NHS systems (APIs & interoperability)</h2>
+  <h3>GP clinical systems (IM1)</h3>
+  <p>Primary-care systems such as <b>EMIS Web</b> and <b>TPP SystmOne</b> offer integration interfaces for approved third-party apps. Through NHS England's <b>IM1 API programme</b>, a tool can read patient information, extract data in bulk and write back to GP records. To gain access, OTOS would undergo the IM1 Pairing onboarding — completing clinical and IG prerequisites and a Solution Conformance Assessment List (SCAL) — then sign the interface licence to connect to live GP systems.</p>
+  <h3>Open standards (FHIR)</h3>
+  <p>The NHS uses <b>FHIR</b> (Fast Healthcare Interoperability Resources) as the core standard for health-data exchange. New NHS APIs (e.g. GP Connect) are built on FHIR, so OTOS should be designed to consume and produce FHIR-formatted data for future-proof integration. This also aligns with DTAC interoperability requirements.</p>
+  <h3>NHS Login & NHS App</h3>
+  <p>To reach patients via the NHS App, third-party services integrate using <b>NHS Login</b> (secure OAuth2/OpenID Connect) and embed within the App. For example, eConsult runs inside the NHS App via a standard NHS FHIR API. OTOS would undergo NHS App partner onboarding, provide single sign-on via NHS Login, and meet technical requirements for secure data exchange.</p>
+  <h3>Other mechanisms (MESH)</h3>
+  <p>Where real-time API write-back isn't available, tools use <b>MESH</b> (Message Exchange for Social Care and Health) to send documents/extracts into NHS workflows — e.g. eConsult delivers consultation summaries into EMIS/SystmOne via MESH. OTOS should support such transfers for outcome reports or clinician alerts.</p>
+
+  <h2>Data security & compliance frameworks</h2>
+  <table><thead><tr><th>Framework</th><th>What it requires</th></tr></thead><tbody>
+  <tr><td><b>DSP Toolkit</b> (Data Security & Protection)</td><td>Annual online self-assessment mandatory for any organisation handling NHS patient data; measures compliance against the National Data Guardian's 10 standards. Required to sign an NHS data-sharing agreement.</td></tr>
+  <tr><td><b>ISO 27001</b></td><td>International standard for Information Security Management. Highly recommended and often expected; viewed as a gold standard for protecting patient data and streamlines DSPT (overlapping controls).</td></tr>
+  <tr><td><b>DTAC</b> (Digital Technology Assessment Criteria)</td><td>NHS baseline (launched 2021) covering clinical safety, data protection, technical security, interoperability and usability/accessibility. Requires evidence such as DCB0129 clinical-safety compliance, GDPR privacy-by-design, cybersecurity (encryption, pen-testing), FHIR/open APIs and WCAG accessibility. A DTAC “pass” is an NHS stamp of approval.</td></tr>
+  <tr><td>Other IG expectations</td><td>UK GDPR/DPA 2018, Caldicott principles, records-management standards. Working with Probation adds MoJ data rules and safeguarding obligations. Cyber Essentials Plus is required by many public-sector contracts.</td></tr>
+  </tbody></table>
+  <div class="callout"><p>Demonstrable compliance is not just best practice but often a <b>prerequisite</b> for NHS partnerships — DSPT compliance is required to sign a data-sharing agreement, and commissioners increasingly ask for ISO 27001 and DTAC during procurement.</p></div>
+
+  <h2>Dashboard & reporting design for KPIs</h2>
+  <h3>User engagement metrics</h3>
+  <p>Track users enrolled, active-usage rates, session counts and duration, module-completion rates and drop-off points. Allow drill-down by cohort (probation region or NHS clinic). Example KPIs: “% of users completing at least X sessions”, “average days of use per user per month.” High engagement is linked to better outcomes, so these are closely watched.</p>
+  <h3>Clinical & rehabilitative outcomes</h3>
+  <p>Capture outcome measures relevant to the intervention — clinical assessments (PHQ-9, GAD-7) measured before/after, and in a probation context behavioural/social metrics (reduced re-offending, improved compliance). Link engagement to outcomes; align data collection with NICE's Evidence Standards Framework so the evidence proves effectiveness and value.</p>
+  <h3>Safeguarding & risk reporting</h3>
+  <p>Given vulnerable users, safeguarding is a top priority. Features should detect and act on concerns (e.g. flags for suicidal ideation). Safeguarding KPIs: number of alerts, issue types, response times/outcomes (“85% of high-risk alerts reviewed by a clinician within 1 hour”). A dedicated dashboard section with real-time alerts and an audit trail of actions taken supports both compliance and service improvement.</p>
+  <h3>Reporting format & frequency</h3>
+  <p>Offer a live dashboard with role-based access plus regular summary reports (monthly/quarterly) mapped to contractual KPIs. Use red/amber/green status against targets (e.g. “75% of users complete the 12-week programme”). Include benchmarking where possible, and feed into NHS England outcomes frameworks and Probation performance metrics.</p>
+
+  <h2>Recommendations for OTOS</h2>
+  <div class="rec"><p><span class="tag do">DO IT</span><b>Integrate with NHS clinical systems via IM1 / GP Connect.</b> Complete IM1 pairing to connect OTOS with EMIS and SystmOne for two-way data sharing, fulfilling all clinical-safety and IG prerequisites and obtaining partner API licences.</p></div>
+  <div class="rec"><p><span class="tag do">DO IT</span><b>Achieve NHS data-security compliance.</b> Complete the DSP Toolkit (mandatory, annual) and obtain ISO 27001 certification for information-security management.</p></div>
+  <div class="rec"><p><span class="tag do">DO IT</span><b>Complete a DTAC assessment.</b> Meet all five criteria; allocate resources to produce a clinical-safety case, penetration-test results and accessibility compliance.</p></div>
+  <div class="rec"><p><span class="tag should">SHOULD</span><b>Use NHS-standard APIs and identity services.</b> Architect OTOS on FHIR-based APIs and integrate NHS Login so it can plug into the NHS App ecosystem.</p></div>
+  <div class="rec"><p><span class="tag should">SHOULD</span><b>Implement comprehensive KPI dashboards.</b> Track enrollment, active usage, completion and outcomes; surface engagement, clinical outcomes and safeguarding alerts; make it accessible to authorised NHS and Probation officials.</p></div>
+  <div class="rec"><p><span class="tag should">SHOULD</span><b>Align outcomes with NHS & Probation targets.</b> Map reporting to commissioner KPIs — health outcomes and satisfaction for NHS England; compliance and reduced-reoffending indicators for Probation.</p></div>
+  <div class="rec"><p><span class="tag could">COULD</span><b>Enhance safeguarding integration.</b> Automatically share high-risk alerts with local NHS crisis teams or probation officers (with consent and governance).</p></div>
+  <div class="rec"><p><span class="tag could">COULD</span><b>Leverage advanced analytics.</b> Identify which engagement patterns predict best outcomes, or flag individuals likely to disengage or deteriorate, to help partners target resources.</p></div>
+  <div class="rec"><p><span class="tag could">COULD</span><b>Pursue broader integrations.</b> Longer term, integrate with HMPPS case-management systems and NHS England population-health platforms (de-identified outcome data) to embed OTOS in the service landscape.</p></div>
+
+  <div class="dlbar"><span class="dl-t">End of report · NHS Data Integration & Reporting Standards</span><a class="dlbtn" href="NHS Data Integration and Reporting Standards.pdf" download>⬇ Download PDF</a></div>
+  <p class="foot-note">Sources: NHS England Digital (IM1, FHIR, DSP Toolkit, NHS App), eConsult integrations, NHS Transformation Directorate (DTAC), BMC Digital Health (engagement & retention). Verify all technical and compliance claims before external use.</p>
+</doc-page>
+<script src="doc-page.js"></script>
+</body></html>

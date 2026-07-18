@@ -10,9 +10,13 @@
   /* ---------- App shell: left nav + main panel ---------- */
   .shell{ display:flex; min-height:100vh; }
   .sidenav{ width:220px; flex:none; background:var(--ink); color:var(--paper); display:flex; flex-direction:column; padding:26px 14px; position:fixed; top:0; left:0; bottom:0; overflow-y:auto; box-sizing:border-box; }
-  .sn-brand{ display:flex; align-items:center; gap:11px; margin:0 0 30px; padding:0 8px; }
-  .sn-brand img{ height:38px; width:auto; display:block; flex:none; }
+  .sn-brand{ display:flex; align-items:center; gap:11px; margin:0 0 30px; padding:0 6px; }
+  .sn-brand img{ width:100%; max-width:170px; height:auto; display:block; }
   .sn-brand-txt{ font-family:var(--serif); font-size:21px; font-weight:600; color:#fff; letter-spacing:-.01em; }
+  a.sn-item{ text-decoration:none; }
+  a.sn-item[href*="Aerial"]{ color:var(--accent); font-weight:700; }
+  a.sn-item[href*="Aerial"] .sn-icon{ filter:none; }
+  a.sn-item[href*="Aerial"]:hover{ color:#fff; background:var(--accent); border-radius:8px; }
   .sn-item{ display:flex; align-items:center; gap:10px; text-align:left; background:none; border:none; width:100%; color:rgba(255,255,255,.66); font-family:var(--sans); font-size:13.5px; font-weight:600; padding:11px 12px; border-radius:6px; cursor:pointer; margin-bottom:2px; }
   .sn-item .sn-icon{ font-size:15px; width:18px; text-align:center; flex:none; }
   .sn-item .sn-badge{ margin-left:auto; background:var(--accent); color:var(--ink); font-size:10px; font-weight:800; border-radius:10px; padding:1px 7px; }
@@ -394,6 +398,32 @@
   .rec-bg .bg-field span a:hover{ text-decoration:underline; }
   @media (max-width:820px){ .rec-cols{ grid-template-columns:1fr; } }
   .snap-tpl{ cursor:pointer; }
+  /* ---------- Reports ---------- */
+  .rpt-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-top:6px; }
+  .rpt-card{ display:flex; flex-direction:column; background:var(--paper); border:1px solid var(--rule); border-radius:10px; padding:0; overflow:hidden; font-family:var(--sans); }
+  .rpt-card:hover{ border-color:var(--accent-ink); }
+  .rpt-card .rc-top{ padding:16px 18px 14px; cursor:pointer; flex:1; }
+  .rpt-card .rc-kicker{ font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .rc-badge{ text-transform:none; letter-spacing:0; font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; white-space:nowrap; }
+  .rc-badge-draft{ background:#fde7cf; color:#8a5a12; }
+  .rc-badge-research{ background:var(--accent-wash); color:var(--accent-ink); }
+  .rc-badge-final{ background:#dff0e2; color:#1f6b3a; }
+  .rc-badge-reference{ background:#e6eef6; color:#2b567e; }
+  .rpt-card .rc-name{ font-family:var(--serif); font-size:17px; color:var(--ink); line-height:1.25; margin:6px 0 8px; }
+  .rpt-card .rc-desc{ font-size:12.5px; color:var(--ink-soft); line-height:1.5; }
+  .rpt-card .rc-meta{ font-size:11px; color:var(--faint); margin-top:10px; }
+  .rpt-card .rc-read{ float:right; font-weight:700; color:var(--accent-ink); }
+  .rpt-card .rc-foot{ display:flex; border-top:1px solid var(--rule); }
+  .rpt-card .rc-foot a, .rpt-card .rc-foot button{ flex:1; text-align:center; padding:11px 8px; font-family:var(--sans); font-size:12.5px; font-weight:700; background:none; border:none; cursor:pointer; text-decoration:none; color:var(--accent-ink); }
+  .rpt-card .rc-foot a:hover, .rpt-card .rc-foot button:hover{ background:var(--accent-wash); }
+  .rpt-card .rc-foot .rc-sep{ flex:none; width:1px; background:var(--rule); }
+  .rpt-reader-bar{ display:flex; align-items:center; gap:14px; margin-bottom:14px; flex-wrap:wrap; }
+  .rpt-back{ background:none; border:1px solid var(--rule); border-radius:7px; padding:8px 14px; font-family:var(--sans); font-size:13px; font-weight:700; color:var(--ink); cursor:pointer; }
+  .rpt-back:hover{ border-color:var(--accent-ink); color:var(--accent-ink); }
+  .rpt-reader-title{ font-family:var(--serif); font-size:17px; color:var(--ink); flex:1; min-width:160px; }
+  .rpt-dl{ background:var(--accent-ink); color:#fff; text-decoration:none; font-family:var(--sans); font-size:13px; font-weight:700; padding:9px 16px; border-radius:7px; white-space:nowrap; }
+  .rpt-dl:hover{ background:var(--ink); color:#fff; }
+  .rpt-frame{ width:100%; height:calc(100vh - 150px); min-height:520px; border:1px solid var(--rule); border-radius:10px; background:#f3f1ec; }
   /* ---------- Templates grid ---------- */
   .tpl-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
   .tpl-card{ text-align:left; background:var(--paper); border:1px solid var(--rule); border-radius:9px; padding:16px 18px; cursor:pointer; font-family:var(--sans); display:flex; flex-direction:column; gap:6px; }
@@ -685,12 +715,14 @@
 <body class="afp-index">
   <div class="shell">
     <nav class="sidenav">
-      <div class="sn-brand"><img src="assets/otos-brain-icon.png" alt="OTOS"><span class="sn-brand-txt">OTOS Hub</span></div>
+      <div class="sn-brand"><img src="assets/otos-hub-logo-light.png" alt="OTOS Hub"></div>
       <button class="sn-item" data-view="home"><span class="sn-icon">☀️</span>Today</button>
       <button class="sn-item" data-view="tasks"><span class="sn-icon">✅</span>Tasks<span class="sn-badge" id="navTaskBadge" style="display:none;"></span></button>
       <button class="sn-item" data-view="contacts"><span class="sn-icon">👤</span>Contacts<span class="sn-badge" id="navPinBadge" style="display:none;"></span></button>
       <button class="sn-item" data-view="pipeline"><span class="sn-icon">📊</span>Pipeline</button>
+      <a class="sn-item" href="Send Sequence - Aerial View.html"><span class="sn-icon">🗺️</span>Aerial view</a>
       <button class="sn-item" data-view="documents"><span class="sn-icon">📄</span>Documents</button>
+      <button class="sn-item" data-view="reports"><span class="sn-icon">📑</span>Reports</button>
       <button class="sn-item" data-view="templates"><span class="sn-icon">✉️</span>Templates</button>
       <button class="sn-item" data-view="activity"><span class="sn-icon">🕒</span>Activity</button>
       <button class="sn-item" data-view="about"><span class="sn-icon">ℹ️</span>About</button>
@@ -843,6 +875,26 @@
           <div class="search-box" style="margin-top:12px;max-width:360px;"><span class="icon">🔍</span><input type="text" id="templateSearch" placeholder="Search templates…" autocomplete="off"></div>
         </div>
         <div class="tpl-grid" id="templateGrid"></div>
+      </section>
+
+      <!-- ============ REPORTS ============ -->
+      <section data-view-panel="reports" hidden>
+        <div data-reports-list>
+          <div class="panel-head">
+            <h1>Reports</h1>
+            <div class="ph-sub">Research and positioning reports — read in full on the page, or download the original PDF.</div>
+            <div class="search-box" style="margin-top:12px;max-width:360px;"><span class="icon">🔍</span><input type="text" id="reportSearch" placeholder="Search reports…" autocomplete="off"></div>
+          </div>
+          <div class="rpt-grid" id="reportGrid"></div>
+        </div>
+        <div data-reports-reader hidden>
+          <div class="rpt-reader-bar">
+            <button type="button" class="rpt-back" id="rptBack">← All reports</button>
+            <span class="rpt-reader-title" id="rptReaderTitle"></span>
+            <a class="rpt-dl" id="rptReaderDl" href="#" download>⬇ Download PDF</a>
+          </div>
+          <iframe class="rpt-frame" id="rptFrame" title="Report"></iframe>
+        </div>
       </section>
 
       <!-- ============ DOCUMENTS ============ -->
@@ -1042,6 +1094,51 @@
     const SB_KEY = 'sb_publishable_WltftZWjHemFq1FNOFOFVQ_X-hgvSGI';
     const SB_HEADERS = { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json' };
 
+    // ---------- One-time contact seed (local Cambridge ring + national/regional leaders) ----------
+    (async function seedContacts(){
+      if (localStorage.getItem('otos_contacts_seeded_v1')) return;
+      const now = new Date().toISOString();
+      const L = (id,name,org,tags,status)=>({id,name,organisation:org,status:status||'not-contacted',tags,owner:'Dean',updated_at:now});
+      const N = (id,name,org,tags)=>({id,name,organisation:org,status:'not-contacted',tags,owner:null,updated_at:now});
+      const seed = [
+        L('paula-baker','Paula Baker','CPFT Adult ADHD Service','Local · ADHD Team gateway (admin — route to Services Manager + Teams Manager)'),
+        L('dr-claire-gillvray','Dr Claire Gillvray','RCE / LAMP (also a GP)','Local · Strategic ally · advisory-board candidate · flag GP angle','called-no-answer'),
+        L('sally-cgl','Sally','CGL','Local · CGL gateway (quiet word first)'),
+        L('rak-cgl','Rak','CGL','Local · CGL Team Leader'),
+        L('andrea-crs','Andrea','CRS','Local · CRS Keyworker'),
+        L('inertiia-crown','Inertiia Crown','CGL & CRS','Local · Business Development (CGL + CRS)'),
+        L('franceska-rce','Franceska','RCE (Recovery College East)','Local · RCE contact'),
+        L('scott-davidson','Scott Davidson','Public Health — Drugs & Alcohol, Cambridgeshire (Insight)','Local · PH commissioning · wants 60s intro + demo'),
+        L('mind-workwell','Mind (+ WorkWell)','Mind / WorkWell','Local · NEW full outreach target'),
+        L('jo-fenton','Jo Fenton','Therapist (via Mind / WorkWell)','Local · Supporter — backing lines + continuity quote'),
+        L('kc-su-network','KC','Su Network','Local · reviewed pack — no further action'),
+        N('nhse-mackey','Sir James (Jim) Mackey','NHS England','National · future — no action · Chief Executive'),
+        N('nhse-docherty','Dr Mary Docherty','NHS England','National · future — no action · Nat. Clinical Director, Adult Mental Health'),
+        N('nhse-chitsabesan','Prof Prathiba Chitsabesan','NHS England','National · future — no action · Nat. Clinical Director, CYP Mental Health'),
+        N('nhse-thapar','Prof Anita Thapar','NHS England','National · future — no action · Chair, NHS England ADHD Taskforce'),
+        N('icb-jan-thomas','Jan Thomas','NHS Cambridgeshire & Peterborough ICB','Regional · future — no action · Chief Executive'),
+        N('cpft-grange','Steve Grange','CPFT (Cambridgeshire & Peterborough NHS FT)','Regional · future — no action · Chief Executive'),
+        N('cpft-walsh','Dr Cathy Walsh','CPFT (Cambridgeshire & Peterborough NHS FT)','Regional · future — no action · Chief Medical Officer'),
+        N('tewv-smith','Alison Smith','Tees, Esk & Wear Valleys NHS FT','National · future — no action · Chief Executive'),
+        N('gmmh-howell','Karen Howell OBE','Greater Manchester Mental Health NHS FT','National · future — no action · Chief Executive'),
+        N('nenc-allen','Sam Allen','North East & North Cumbria ICB','National · future — no action · Chief Executive'),
+        N('gm-fisher','Mark Fisher CBE','Greater Manchester ICB','National · future — no action · Chief Executive'),
+        N('wy-webster','Rob Webster CBE','NHS West Yorkshire ICB','National · future — no action · Chief Executive'),
+        N('bsol-melbourne','David Melbourne','NHS Birmingham & Solihull ICB','National · future — no action · Chief Executive')
+      ];
+      try {
+        const res = await fetch(SB_URL + '/rest/v1/tracker_targets?on_conflict=id', {
+          method: 'POST',
+          headers: Object.assign({}, SB_HEADERS, { Prefer: 'resolution=merge-duplicates,return=minimal' }),
+          body: JSON.stringify(seed)
+        });
+        if (res && res.ok) {
+          localStorage.setItem('otos_contacts_seeded_v1', '1');
+          if (typeof loadContactsList === 'function' && location.hash.startsWith('#contacts')) loadContactsList();
+        }
+      } catch (e) { /* offline — will retry next load */ }
+    })();
+
     function sbGet(table, query){
       return fetch(SB_URL + '/rest/v1/' + table + (query || '?select=*'), { headers: SB_HEADERS })
         .then(r => r.ok ? r.json() : []).catch(() => []);
@@ -1080,10 +1177,12 @@
       window.scrollTo(0, 0);
       if (view === 'pipeline') loadPipeline();
       if (view === 'templates') loadTemplates();
+      if (view === 'reports') loadReports();
     }
     document.querySelectorAll('.sn-item[data-view]').forEach(btn => {
       btn.addEventListener('click', () => goToView(btn.dataset.view));
     });
+    document.getElementById('rptBack').addEventListener('click', loadReports);
     document.querySelectorAll('.sn-jump[data-view]').forEach(btn => {
       btn.addEventListener('click', () => goToView(btn.dataset.view));
     });
@@ -1534,6 +1633,47 @@
         .replace(/\{\{org\}\}/g, c.organisation || 'your team')
         .replace(/\{\{owner\}\}/g, c.owner || 'Dean');
     }
+    const REPORTS = [
+      { id:'procurement', kicker:'Procurement · v0.1', name:'NHS Procurement Route Response Pack', desc:'A source-led positioning pack built from the HCI / P4H NHS supplier guidance — how OTOS answers the procurement route before the buyer asks.', meta:'13 sections · working draft', mins:9, status:'draft', file:'reports/report-procurement.html', pdf:'reports/OTOS Continuity - NHS Procurement Route Response Pack.pdf' },
+      { id:'roi', kicker:'Research · Economics', name:'Economic Justification & ROI in NHS Commissioning', desc:'How digital mental-health and addiction tools are justified on cost-per-user and ROI — and what a funding-ready CPICS pilot must build in.', meta:'Case studies · cost benchmarks', mins:7, status:'research', file:'reports/report-roi.html', pdf:'reports/Economic Justification and ROI in NHS Commissioning.pdf' },
+      { id:'data', kicker:'Research · Standards', name:'NHS Data Integration & Reporting Standards', desc:'The integration points, data-security frameworks and KPI reporting a tool like OTOS must meet across NHS and justice settings.', meta:'IM1 · FHIR · DTAC · DSPT', mins:7, status:'research', file:'reports/report-data.html', pdf:'reports/NHS Data Integration and Reporting Standards.pdf' },
+      { id:'comorbidity', kicker:'Research · Co-morbidity', name:'ADHD & Addiction Co-Morbidity — Digital Interventions & NHS Outcomes (2020–2025)', desc:'The evidence base on ADHD–addiction co-morbidity and where digital interventions have (and have not) shifted NHS-focused outcomes over the last five years.', meta:'Deep research · 2020–2025', mins:14, status:'research', file:'reports/ADHD-Addiction Co-Morbidity - Digital Interventions and NHS Outcomes 2020-2025.pdf', pdf:'reports/ADHD-Addiction Co-Morbidity - Digital Interventions and NHS Outcomes 2020-2025.pdf' },
+      { id:'start', kicker:'Evidence · START study', name:'French START Study & Stimulant Treatment of ADHD with Co-occurring Addiction', desc:'Deep-research reading of the French START study and the wider evidence on stimulant treatment where ADHD co-occurs with addiction. Context for the mechanism — never an OTOS promise.', meta:'Deep research · pathway signal', mins:12, status:'research', file:'reports/Deep Research - French START Study and Stimulant Treatment.pdf', pdf:'reports/Deep Research - French START Study and Stimulant Treatment.pdf' },
+      { id:'quotebank', kicker:'Evidence · Quote bank', name:'Quotes & Evidence Linking ADHD and Addiction', desc:'A sourced quote-and-evidence bank linking ADHD and addiction, assembled for OTOS Continuity. Read alongside the Evidence Dossier — claims travel with their caveats.', meta:'Deep research · sourced quotes', mins:10, status:'research', file:'reports/Deep Research - Quotes and Evidence Linking ADHD and Addiction.pdf', pdf:'reports/Deep Research - Quotes and Evidence Linking ADHD and Addiction.pdf' },
+      { id:'servicesmap', kicker:'Research · Services map', name:"NHS Trusts' ADHD, Addiction & Dual-Diagnosis Services by Region", desc:'A regional map of how NHS trusts organise ADHD, addiction and dual-diagnosis provision — where the gaps at the interface sit, trust by trust.', meta:'Deep research · by region', mins:11, status:'research', file:'reports/NHS Trusts - ADHD Addiction and Dual Diagnosis by Region.pdf', pdf:'reports/NHS Trusts - ADHD Addiction and Dual Diagnosis by Region.pdf' },
+      { id:'procecon', kicker:'Research · Procurement', name:'NHS Digital-Therapy Procurement & Economics', desc:'How digital-therapy tools are actually bought and paid for in the NHS — the procurement routes and the economics behind them.', meta:'Deep research · buying routes', mins:9, status:'research', file:'reports/NHS Digital-Therapy Procurement and Economics.pdf', pdf:'reports/NHS Digital-Therapy Procurement and Economics.pdf' },
+      { id:'adhdmi', kicker:'Reference · NHS data', name:'ADHD Management Information — May 2025 (NHS England Digital)', desc:'Official NHS England Digital management information on ADHD — the national numbers behind the waiting-list and demand picture.', meta:'Official source · May 2025', mins:6, status:'reference', file:'reports/ADHD Management Information - May 2025 (NHS England Digital).pdf', pdf:'reports/ADHD Management Information - May 2025 (NHS England Digital).pdf' },
+      { id:'tenyear', kicker:'Reference · Policy', name:'NHS 10 Year Plan — Guide (2025)', desc:'A working guide to the NHS 10 Year Plan (2025) — the policy backdrop OTOS has to sit inside: prevention, digital, and shifting care out of hospital.', meta:'Official source · policy', mins:8, status:'reference', file:'reports/NHS 10 Year Plan Guide 2025.pdf', pdf:'reports/NHS 10 Year Plan Guide 2025.pdf' }
+    ];
+    function openReport(id){
+      const r = REPORTS.find(x => x.id === id); if (!r) return;
+      const panel = document.querySelector('[data-view-panel="reports"]');
+      panel.querySelector('[data-reports-list]').hidden = true;
+      const reader = panel.querySelector('[data-reports-reader]'); reader.hidden = false;
+      document.getElementById('rptReaderTitle').textContent = r.name;
+      const dl = document.getElementById('rptReaderDl'); dl.href = r.pdf;
+      document.getElementById('rptFrame').src = r.file;
+      panel.scrollIntoView({ block:'start' });
+    }
+    function loadReports(){
+      const grid = document.getElementById('reportGrid'); if (!grid) return;
+      const panel = document.querySelector('[data-view-panel="reports"]');
+      panel.querySelector('[data-reports-list]').hidden = false;
+      panel.querySelector('[data-reports-reader]').hidden = true;
+      const search = document.getElementById('reportSearch');
+      const render = () => {
+        const q = (search && search.value.trim().toLowerCase()) || '';
+        const matches = REPORTS.filter(r => !q || (r.name + ' ' + r.desc + ' ' + r.kicker + ' ' + r.meta).toLowerCase().includes(q));
+        grid.innerHTML = matches.length ? matches.map(r =>
+          '<div class="rpt-card"><div class="rc-top" data-open="' + r.id + '"><div class="rc-kicker">' + r.kicker + '<span class="rc-badge rc-badge-' + r.status + '">' + ({draft:'Working draft', research:'Research', final:'Final', reference:'Reference'}[r.status] || r.status) + '</span></div><div class="rc-name">' + r.name + '</div><div class="rc-desc">' + r.desc + '</div><div class="rc-meta">' + r.meta + '<span class="rc-read">○ ' + r.mins + ' min read</span></div></div>' +
+          '<div class="rc-foot"><button type="button" data-open="' + r.id + '">Read report →</button><span class="rc-sep"></span><a href="' + r.pdf + '" download>⬇ PDF</a></div></div>'
+        ).join('') : '<div style="font-size:13px;color:var(--faint);font-style:italic;padding:8px 2px;">No reports match “' + q + '”.</div>';
+        grid.querySelectorAll('[data-open]').forEach(el => el.addEventListener('click', () => openReport(el.dataset.open)));
+      };
+      if (search && !search._wired) { search._wired = true; search.addEventListener('input', render); }
+      render();
+    }
+
     function loadTemplates(){
       const grid = document.getElementById('templateGrid'); if (!grid) return;
       const search = document.getElementById('templateSearch');
@@ -3205,7 +3345,7 @@
   </script>
   <script>
     (function setupShortcuts(){
-      const views = { t: 'tasks', c: 'contacts', p: 'pipeline', d: 'documents', a: 'activity', h: 'home' };
+      const views = { t: 'tasks', c: 'contacts', p: 'pipeline', d: 'documents', r: 'reports', a: 'activity', h: 'home' };
       let gArmed = false, gTimer = null;
       const typing = e => { const el = e.target; return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || el.isContentEditable); };
       document.addEventListener('keydown', e => {
@@ -3252,7 +3392,9 @@
         { label: 'Go to Tasks', icon: '✅', run: () => goToView('tasks') },
         { label: 'Go to Contacts', icon: '👤', run: () => goToView('contacts') },
         { label: 'Go to Pipeline', icon: '📊', run: () => goToView('pipeline') },
+        { label: 'Open Aerial view (send sequence)', icon: '🗺️', kw: 'gantt timeline sequence sending waves map', run: () => { location.href = 'Send Sequence - Aerial View.html'; } },
         { label: 'Go to Documents', icon: '📄', run: () => goToView('documents') },
+        { label: 'Go to Reports', icon: '📑', run: () => goToView('reports') },
         { label: 'Go to Activity', icon: '🕒', run: () => goToView('activity') },
         { label: 'Go to About / setup', icon: 'ℹ️', run: () => goToView('about') },
         { label: 'New task', icon: '✅', kw: 'add create', run: () => quickAdd('task') },
