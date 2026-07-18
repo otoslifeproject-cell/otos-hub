@@ -253,6 +253,8 @@
   .overdue-empty{ font-size:12.5px; color:var(--muted); font-style:italic; }
 
   /* ---------- Contacts list + inline detail ---------- */
+  .list-shell{ padding:16px; border-radius:12px; background:oklch(97% 0.005 90); border:1px solid var(--rule); margin-bottom:32px; }
+  .list-shell .contact-list{ margin-bottom:0; border:1px solid var(--rule); border-radius:10px; }
   .contact-list{ display:flex; flex-direction:column; border:1px solid var(--rule); border-radius:6px; overflow:hidden; margin-bottom:32px; }
   .contact-row{ display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:1px solid var(--rule-soft); cursor:pointer; background:var(--paper); }
   .contact-row:last-child{ border-bottom:none; }
@@ -399,9 +401,9 @@
   @media (max-width:820px){ .rec-cols{ grid-template-columns:1fr; } }
   .snap-tpl{ cursor:pointer; }
   /* ---------- Reports ---------- */
-  .rpt-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-top:6px; }
-  .rpt-card{ display:flex; flex-direction:column; background:var(--paper); border:1px solid var(--rule); border-radius:10px; padding:0; overflow:hidden; font-family:var(--sans); }
-  .rpt-card:hover{ border-color:var(--accent-ink); }
+  .rpt-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-top:12px; padding:16px; border-radius:12px; background:oklch(97% 0.005 90); border:1px solid var(--rule); }
+  .rpt-card{ display:flex; flex-direction:column; background:var(--paper); border:1px solid var(--rule); border-radius:10px; padding:0; overflow:hidden; font-family:var(--sans); transition:border-color .12s ease, box-shadow .12s ease; }
+  .rpt-card:hover{ border-color:var(--accent-ink); box-shadow:0 4px 12px rgba(0,0,0,.08); }
   .rpt-card .rc-top{ padding:16px 18px 14px; cursor:pointer; flex:1; }
   .rpt-card .rc-kicker{ font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); display:flex; align-items:center; justify-content:space-between; gap:8px; }
   .rc-badge{ text-transform:none; letter-spacing:0; font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; white-space:nowrap; }
@@ -509,7 +511,7 @@
   .cmdp-foot kbd{ font-family:ui-monospace,Menlo,monospace; font-size:10px; background:oklch(95% 0.01 90); border:1px solid var(--rule); border-radius:3px; padding:1px 5px; }
 
   /* ---------- To-do list (ad-hoc jobs, owned by Dean or Gareth) ---------- */
-  .todo-panel{ border:1px solid var(--rule); border-radius:6px; padding:20px 24px; }
+  .todo-panel{ border:1px solid var(--rule); border-radius:12px; padding:16px; background:oklch(97% 0.005 90); }
   .todo-panel .lbl{ font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:14px; }
   .todo-add{ display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
   .todo-add input[type=text]{ flex:1; min-width:180px; font-family:var(--sans); font-size:13.5px; color:var(--ink); border:1px solid var(--rule); border-radius:4px; padding:9px 12px; outline:none; }
@@ -517,7 +519,11 @@
   .todo-add select{ font-family:var(--sans); font-size:12px; font-weight:700; border:1px solid var(--rule); border-radius:4px; padding:9px 10px; background:var(--paper); color:var(--ink-soft); }
   .todo-add button{ font-family:var(--sans); font-size:12.5px; font-weight:700; background:var(--ink); color:var(--paper); border:none; border-radius:4px; padding:9px 18px; cursor:pointer; }
   .todo-add button:hover{ background:var(--accent-ink); }
-  .todo-list{ display:flex; flex-direction:column; }
+  .todo-add .td-icon-btn{ font-size:15px; line-height:1; border:1px solid var(--rule); border-radius:4px; background:var(--paper); color:var(--ink-soft); padding:8px 12px; cursor:pointer; }
+  .todo-add .td-icon-btn:hover{ border-color:var(--accent-ink); background:var(--paper); }
+  .todo-add .td-icon-btn.set{ border-color:var(--accent-ink); background:var(--accent-wash); }
+  .td-hidden-input{ position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }
+  .todo-list{ display:flex; flex-direction:column; gap:12px; padding:16px; border-radius:12px; background:oklch(97% 0.005 90); border:1px solid var(--rule); }
   .week-panel{ border:1px solid var(--rule); border-radius:6px; padding:18px 22px; margin-bottom:26px; }
   .task-view-toggle{ display:inline-flex; border:1px solid var(--rule); border-radius:6px; overflow:hidden; margin-bottom:18px; }
   .tvt-btn{ font-family:var(--sans); font-size:12px; font-weight:700; color:var(--muted); background:var(--paper); border:none; padding:7px 16px; cursor:pointer; }
@@ -557,8 +563,8 @@
   .task-filters .tf-count{ margin-left:auto; font-size:11px; color:var(--faint); }
   .task-filters .tf-export{ font-family:var(--sans); font-size:11px; font-weight:700; color:var(--accent-ink); background:var(--paper); border:1px solid var(--accent); border-radius:5px; padding:5px 11px; cursor:pointer; }
   .task-filters .tf-export:hover{ background:var(--accent-ink); color:#fff; border-color:var(--accent-ink); }
-  .todo-item{ display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid var(--rule-soft); flex-wrap:wrap; }
-  .todo-item:last-child{ border-bottom:none; }
+  .todo-item{ display:flex; align-items:center; gap:12px; padding:14px 16px; border:1px solid var(--rule); border-radius:10px; background:var(--paper); flex-wrap:wrap; }
+  .todo-item:last-child{ border-bottom:1px solid var(--rule); }
   .todo-item input[type=checkbox]{ width:15px; height:15px; accent-color:var(--accent-ink); cursor:pointer; flex:none; }
   .todo-item .ti-title{ flex:1; min-width:120px; font-size:13.5px; color:var(--ink); }
   .todo-item.is-done .ti-title{ text-decoration:line-through; color:var(--faint); }
@@ -580,9 +586,9 @@
   .todo-item .ti-open{ flex:none; font-size:11px; font-weight:700; color:var(--accent-ink); }
   .todo-item.is-linked:hover .ti-open{ color:var(--ink); }
   .todo-item{ cursor:pointer; }
-  .todo-item:hover{ background:var(--accent-wash); }
-  .todo-item .ti-dot{ flex:none; width:9px; height:9px; border-radius:50%; border:2px solid var(--accent); background:transparent; box-sizing:border-box; }
-  .todo-item.is-done .ti-dot{ background:var(--accent-ink); border-color:var(--accent-ink); }
+  .todo-item:hover{ background:var(--paper); border-color:var(--accent-ink); box-shadow:0 4px 12px rgba(0,0,0,.08); }
+  .todo-item .ti-dot{ flex:none; width:15px; height:15px; background:url('assets/otos-brain-icon.png') center/contain no-repeat; opacity:.85; box-sizing:border-box; }
+  .todo-item.is-done .ti-dot{ opacity:.4; }
   .todo-item .ti-chev{ flex:none; color:var(--faint); font-size:17px; line-height:1; }
   .todo-item:hover .ti-chev{ color:var(--accent-ink); }
   .todo-item .ti-linktag{ flex:none; font-size:8px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); border:1px solid var(--accent); border-radius:10px; padding:1px 7px; }
@@ -667,6 +673,19 @@
   details.grp summary .chev{ font-size:11px; color:var(--faint); transition: transform .15s; flex:none; }
   details.grp[open] summary .chev{ transform: rotate(90deg); }
   details.grp summary:hover .glbl{ color:var(--ink); }
+  .grp summary .glbl::before{ content:""; display:inline-block; width:15px; height:15px; margin-right:9px; vertical-align:-2px; background:url('assets/otos-brain-icon.png') center/contain no-repeat; opacity:.92; }
+  /* Documents: type filter + dark glass shell (consistent with Reports) */
+  .doc-typebar{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px; }
+  .doc-typebar .tchip{ font-family:var(--sans); font-size:12px; font-weight:700; color:var(--ink-soft); background:var(--paper); border:1px solid var(--rule); border-radius:999px; padding:7px 15px; cursor:pointer; }
+  .doc-typebar .tchip:hover{ border-color:var(--accent); color:var(--accent-ink); }
+  .doc-typebar .tchip.active{ background:var(--accent-ink); border-color:var(--accent-ink); color:#fff; }
+  .docs-shell{ padding:16px; border-radius:12px; background:oklch(97% 0.005 90); border:1px solid var(--rule); display:flex; flex-direction:column; gap:12px; }
+  .docs-shell details.grp{ border:1px solid var(--rule); border-radius:10px; margin:0; background:var(--paper); overflow:hidden; scroll-margin-top:20px; }
+  .docs-shell details.grp:hover{ border-color:var(--accent-ink); }
+  .docs-shell details.grp[open]{ box-shadow:0 4px 12px rgba(0,0,0,.08); }
+  .docs-shell details.grp summary{ padding:15px 18px; }
+  .docs-shell ol.docs{ padding:0 16px 10px; }
+  .docs-shell details.grp.tf-hidden{ display:none; }
 
   ol.docs{ list-style:none; margin:0; padding:0 0 10px; counter-reset: doc; }
   ol.docs li{ counter-increment: doc; border-bottom:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; align-items:center; gap:16px; padding: 13px 4px; }
@@ -784,8 +803,10 @@
           <div class="lbl">To-do</div>
           <div class="todo-add">
             <input type="text" id="todoInput" placeholder="Add a job or reminder…" autocomplete="off">
-            <input type="date" id="todoDue" title="Due date">
-            <input type="time" id="todoDueTime" title="Due time (optional)">
+            <button type="button" class="td-icon-btn" id="todoDueBtn" title="Set due date">📅</button>
+            <input type="date" id="todoDue" class="td-hidden-input" title="Due date">
+            <button type="button" class="td-icon-btn" id="todoTimeBtn" title="Set due time">🕐</button>
+            <input type="time" id="todoDueTime" class="td-hidden-input" title="Due time (optional)">
             <select id="todoOwner">
               <option value="Unassigned">Unassigned</option>
               <option value="Dean">Dean</option>
@@ -853,7 +874,7 @@
         </div>
         <div id="tagFilterBar" class="tag-filter-bar" style="display:none;"></div>
         <div id="bulkBar" class="bulk-bar" hidden><span class="bb-count">0 selected</span><select class="bb-status"><option value="">Set status…</option></select><select class="bb-owner"><option value="">Set owner…</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option><option value="Unassigned">Unassigned</option></select><button type="button" class="bb-apply">Apply</button><button type="button" class="bb-clear">Clear</button></div>
-        <div class="contact-list" id="contactList"><div style="padding:16px;font-size:12.5px;color:var(--faint);font-style:italic;">Loading…</div></div>
+        <div class="list-shell"><div class="contact-list" id="contactList"><div style="padding:16px;font-size:12.5px;color:var(--faint);font-style:italic;">Loading…</div></div></div>
         </div>
         <div class="contact-record" id="contactRecord" hidden></div>
       </section>
@@ -912,22 +933,16 @@
           <div class="search-meta" id="searchMeta"></div>
         </div>
 
-        <div class="dash">
-          <div class="dash-head"><span class="lbl">Hub status</span><span class="upd">Live snapshot</span></div>
-          <div class="dash-grid">
-            <div class="dcard"><div class="dn" id="dashReady">–</div><div class="dd">of 25 funding-pack docs ready to send</div></div>
-            <div class="dcard"><div class="dn" id="dashGareth">–</div><div class="dd">Gareth-reviewed, across the whole hub</div></div>
-            <div class="dcard"><div class="dn" id="dashDean">–</div><div class="dd">Dean-reviewed, across the whole hub</div></div>
-            <div class="dcard"><div class="dn warn" id="dashMasters">–</div><div class="dd">of 8 operating masters signed off</div></div>
-            <div class="dcard"><div class="dn" id="dashOutreach">–</div><div class="dd">outreach targets contacted (of tracked)</div></div>
-          </div>
-          <div class="dash-groups" id="dashGroups"></div>
+        <div class="doc-typebar" id="docTypeBar">
+          <button type="button" class="tchip active" data-type="all">All documents</button>
+          <button type="button" class="tchip" data-type="core">Core briefs</button>
+          <button type="button" class="tchip" data-type="outreach">Outreach &amp; targets</button>
+          <button type="button" class="tchip" data-type="applications">Applications</button>
+          <button type="button" class="tchip" data-type="masters">Masters · PDF</button>
         </div>
 
-        <div class="sect-lbl">Browse by area</div>
-        <div class="tile-grid" id="tileGrid"></div>
-
-        <details class="grp" id="grp-route" data-desc="Start here — the funding logic and who leads.">
+        <div class="docs-shell" id="docsShell">
+        <details class="grp" id="grp-route" data-doctype="core" data-desc="Start here — the funding logic and who leads.">
           <summary><span class="glbl">Route &amp; positioning</span><span class="chev">▸</span></summary>
           <ol class="docs">
             <li><a href="01-funding-route-summary.html"><span class="no">01</span><span class="tt"><span class="t">Funding Route Summary</span><span class="d">Job: one-page map of all three routes and where OTOS sits in each</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
@@ -936,7 +951,7 @@
           </ol>
         </details>
 
-        <details class="grp" id="grp-study" data-desc="The pre-pilot design and the clinical boundary line.">
+        <details class="grp" id="grp-study" data-doctype="core" data-desc="The pre-pilot design and the clinical boundary line.">
           <summary><span class="glbl">Study &amp; governance</span><span class="chev">▸</span></summary>
           <ol class="docs">
             <li><a href="04-first-50-feasibility-outline.html"><span class="no">04</span><span class="tt"><span class="t">First-50 Feasibility Study Outline</span><span class="d">Job: the pre-pilot study design behind the Stage One application</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
@@ -947,7 +962,7 @@
           </ol>
         </details>
 
-        <details class="grp" id="grp-outreach-templates" data-desc="Letters and quote requests, ready to send.">
+        <details class="grp" id="grp-outreach-templates" data-doctype="outreach" data-desc="Letters and quote requests, ready to send.">
           <summary><span class="glbl">Outreach templates</span><span class="chev">▸</span></summary>
           <ol class="docs">
             <li><a href="09-cambridge-outreach-email.html"><span class="no">09</span><span class="tt"><span class="t">Cambridge Academic Outreach Email</span><span class="d">Job: first-contact email to send a prospective PI</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
@@ -957,7 +972,7 @@
           </ol>
         </details>
 
-        <details class="grp" id="grp-app-skeletons" data-desc="Section-by-section shells for each funding route.">
+        <details class="grp" id="grp-app-skeletons" data-doctype="applications" data-desc="Section-by-section shells for each funding route.">
           <summary><span class="glbl">Application skeletons</span><span class="chev">▸</span></summary>
           <ol class="docs">
             <li><a href="13-mrc-stage-one-skeleton.html"><span class="no">13</span><span class="tt"><span class="t">MRC Stage One — Application Skeleton</span><span class="d">Job: section-by-section shell to hand to the lead applicant's research office</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
@@ -966,7 +981,7 @@
           </ol>
         </details>
 
-        <details class="grp" id="grp-outreach-targets" data-desc="Who to contact, first-send rules, and the CRM tracker.">
+        <details class="grp" id="grp-outreach-targets" data-doctype="outreach" data-desc="Who to contact, first-send rules, and the CRM tracker.">
           <summary><span class="glbl">Outreach &amp; Cambridge targets</span><span class="chev">▸</span></summary>
           <ol class="docs">
             <li><a href="27-master-rollout-schedule.html"><span class="no">27</span><span class="tt"><span class="t">Master Rollout &amp; Send Schedule</span><span class="d">Job: everyone, in one wide view — every audience, exact docs, and the order to send in</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
@@ -986,7 +1001,7 @@
           </ol>
         </details>
 
-        <details class="grp" id="grp-masters" data-desc="Post-NDA only — operating model, build spec, evidence register.">
+        <details class="grp" id="grp-masters" data-doctype="masters" data-desc="Post-NDA only — operating model, build spec, evidence register.">
           <summary><span class="glbl">Operating &amp; governance masters <span class="draft-tag">Draft — Dean review pending</span></span><span class="chev">▸</span></summary>
           <ol class="docs">
             <li><a href="masters/Master 01 - Narrative Companion ICB Submission.pdf"><span class="no">M1</span><span class="tt"><span class="t">Narrative Companion / ICB Submission</span><span class="d">Job: the human/system logic behind the proposal, for ICB and commissioner readers</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
@@ -999,14 +1014,23 @@
             <li><a href="masters/Master 09 - Evidence Dossier Sources Claims Register.pdf"><span class="no">M9</span><span class="tt"><span class="t">Evidence Dossier, Sources, Claims Register &amp; Caveats</span><span class="d">Job: claims-control source for the wider copy family — cross-check against 06 before quoting</span></span></a><div class="task"><label title="Gareth reviewed"><input type="checkbox"><span>G</span></label><label title="Dean reviewed"><input type="checkbox"><span>D</span></label><label class="ready" title="Ready to send"><input type="checkbox"><span>Ready</span></label><select class="owner-select" title="Owner"><option value="Unassigned">Unassigned</option><option value="Dean">Dean</option><option value="Gareth">Gareth</option></select></div><span class="note" contenteditable="true" data-placeholder="Add a note…"></span></li>
           </ol>
         </details>
+        </div><!-- /docs-shell -->
 
-        <div class="masters-note">
-          <div class="lbl">Read before using the masters above</div>
-          <p>These eight documents are a <b>Notion export, brought in as-is</b> — each is individually marked DRAFT / PENDING REVIEW inside the PDF and still needs Dean's sign-off. They are the Developer / Technical / Operating pack referenced in the project's truth file: real, but not yet locked.</p>
-          <p>They sit firmly <b>post-NDA</b> — operating model, developer RFP and technical architecture never go out pre-NDA or alongside any academic first-contact material above. Cross-check any number or claim against Master 09 and against <a href="06-evidence-anchors.html">06 — Evidence Anchors</a> before reusing it elsewhere; where the two differ, the more recent, Dean-approved wording wins.</p>
+        <div class="dash" style="margin-top:26px;">
+          <div class="dash-head"><span class="lbl">Hub status</span><span class="upd">Live snapshot</span></div>
+          <div class="dash-grid">
+            <div class="dcard"><div class="dn" id="dashReady">–</div><div class="dd">of 25 funding-pack docs ready to send</div></div>
+            <div class="dcard"><div class="dn" id="dashGareth">–</div><div class="dd">Gareth-reviewed, across the whole hub</div></div>
+            <div class="dcard"><div class="dn" id="dashDean">–</div><div class="dd">Dean-reviewed, across the whole hub</div></div>
+            <div class="dcard"><div class="dn warn" id="dashMasters">–</div><div class="dd">of 8 operating masters signed off</div></div>
+            <div class="dcard"><div class="dn" id="dashOutreach">–</div><div class="dd">outreach targets contacted (of tracked)</div></div>
+          </div>
         </div>
 
-        <footer class="note">Draft for internal discussion only. Names, departments and dates throughout are placeholders pending a confirmed academic lead. Cambridge target-list contact details are a starting map — verify before use. Not for external circulation until reviewed.</footer>
+        <div class="masters-note">
+          <div class="lbl">Masters — post-NDA, draft</div>
+          <p>The eight masters are a Notion export, brought in as-is: each is marked DRAFT / PENDING REVIEW and awaits Dean's sign-off. They stay <b>post-NDA</b> — never sent pre-NDA or alongside academic first-contact material. Cross-check claims against Master 09 and <a href="06-evidence-anchors.html">06 — Evidence Anchors</a> before reuse.</p>
+        </div>
       </section>
 
       <!-- ============ ACTIVITY ============ -->
@@ -1201,6 +1225,21 @@
     renderActorPicker();
 
     function debounce(fn, ms){ let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+
+    (function docTypeFilter(){
+      const bar = document.getElementById('docTypeBar'); if(!bar) return;
+      const groups = [...document.querySelectorAll('#docsShell details.grp')];
+      bar.addEventListener('click', e => {
+        const btn = e.target.closest('.tchip'); if(!btn) return;
+        const type = btn.dataset.type;
+        bar.querySelectorAll('.tchip').forEach(c => c.classList.toggle('active', c === btn));
+        groups.forEach(g => {
+          const show = type === 'all' || g.dataset.doctype === type;
+          g.classList.toggle('tf-hidden', !show);
+          g.open = (type !== 'all') && show;
+        });
+      });
+    })();
 
     document.querySelectorAll('ol.docs li').forEach(li => {
       const ready = li.querySelector('.task label.ready input');
@@ -1424,6 +1463,7 @@
       document.getElementById('qcReady').textContent = readyCount + '/' + readyTotal;
 
       const dashGroups = document.getElementById('dashGroups');
+      if (dashGroups) {
       dashGroups.innerHTML = '';
       groupStats.forEach(gs => {
         const pct = gs.total ? Math.round((gs.ready / gs.total) * 100) : 0;
@@ -1432,9 +1472,11 @@
         row.innerHTML = '<span class="gn">' + gs.label + '</span><span class="bar"><span style="width:' + pct + '%"></span></span><span class="gv">' + gs.ready + ' / ' + gs.total + '</span>';
         dashGroups.appendChild(row);
       });
+      }
 
       // Area tiles — buttons replacing the long menu, one per group
       const tileGrid = document.getElementById('tileGrid');
+      if (tileGrid) {
       tileGrid.innerHTML = '';
       groupStats.forEach(gs => {
         const pct = gs.total ? Math.round((gs.ready / gs.total) * 100) : 0;
@@ -1451,6 +1493,7 @@
         });
         tileGrid.appendChild(a);
       });
+      }
 
       // Outreach snapshot — live from Supabase
       sbGet('tracker_targets', '?select=status').then(rows => {
@@ -1641,7 +1684,23 @@
       { id:'adhdmi', kicker:'Reference · NHS data', name:'ADHD Management Information — May 2025 (NHS England Digital)', desc:'Official NHS England Digital management information on ADHD — the national numbers behind the waiting-list and demand picture.', meta:'Official source · May 2025', mins:6, status:'reference', file:'reports/ADHD Management Information - May 2025 (NHS England Digital).pdf', pdf:'reports/ADHD Management Information - May 2025 (NHS England Digital).pdf' },
       { id:'tenyear', kicker:'Reference · Policy', name:'NHS 10 Year Plan — Guide (2025)', desc:'A working guide to the NHS 10 Year Plan (2025) — the policy backdrop OTOS has to sit inside: prevention, digital, and shifting care out of hospital.', meta:'Official source · policy', mins:8, status:'reference', file:'reports/NHS 10 Year Plan Guide 2025.pdf', pdf:'reports/NHS 10 Year Plan Guide 2025.pdf' },
       { id:'taskforce1', kicker:'Reference · ADHD Taskforce', name:'Independent ADHD Taskforce — Interim Report (Part 1)', desc:'The interim report of the NHS England Independent ADHD Taskforce — the national picture on ADHD demand, waits and the case for change.', meta:'Official source · Part 1', mins:20, status:'reference', file:'reports/Independent ADHD Taskforce - Interim Report (Part 1).pdf', pdf:'reports/Independent ADHD Taskforce - Interim Report (Part 1).pdf' },
-      { id:'taskforce2', kicker:'Reference · ADHD Taskforce', name:'Independent ADHD Taskforce — Report (Part 2)', desc:'The full report of the NHS England Independent ADHD Taskforce — findings and recommendations across the ADHD pathway.', meta:'Official source · Part 2', mins:24, status:'reference', file:'reports/Independent ADHD Taskforce - Report (Part 2).pdf', pdf:'reports/Independent ADHD Taskforce - Report (Part 2).pdf' }
+      { id:'taskforce2', kicker:'Reference · ADHD Taskforce', name:'Independent ADHD Taskforce — Report (Part 2)', desc:'The full report of the NHS England Independent ADHD Taskforce — findings and recommendations across the ADHD pathway.', meta:'Official source · Part 2', mins:24, status:'reference', file:'reports/Independent ADHD Taskforce - Report (Part 2).pdf', pdf:'reports/Independent ADHD Taskforce - Report (Part 2).pdf' },
+      { id:'ra-market', kicker:'Deep research · Market', name:'ADHD & Addiction Recovery — Competitive Market Report', desc:'The competitive landscape for ADHD and addiction-recovery products and services — who is in the market, where the white space sits.', meta:'Deep research · Oct 2025', mins:46, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/01_2025-10-14_ADHD_and_Addiction_Recovery_Competitive_Market_Report.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/01_2025-10-14_ADHD_and_Addiction_Recovery_Competitive_Market_Report.md' },
+      { id:'ra-dualdx', kicker:'Deep research · Systems', name:'Dual-Diagnosis Systems Across English-Speaking Countries', desc:'How different English-speaking health systems handle co-occurring mental-health and addiction (dual diagnosis) — models, gaps and lessons for the UK.', meta:'Deep research · Oct 2025', mins:69, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/02_2025-10-15_Dual_Diagnosis_Systems_Across_English-Speaking_Countries.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/02_2025-10-15_Dual_Diagnosis_Systems_Across_English-Speaking_Countries.md' },
+      { id:'ra-econ', kicker:'Deep research · Economics', name:'Economic Impact of Untreated Adult Dual Diagnosis (ADHD + Comorbidity)', desc:'The cost of leaving adult dual diagnosis untreated — the economic case that sits under the OTOS opportunity.', meta:'Deep research · Oct 2025', mins:7, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/03_2025-10-15_Economic_Impact_of_Untreated_Adult_Dual_Diagnosis_ADHD_Comorbidity.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/03_2025-10-15_Economic_Impact_of_Untreated_Adult_Dual_Diagnosis_ADHD_Comorbidity.md' },
+      { id:'ra-digitalrecovery', kicker:'Deep research · Outcomes', name:'Digital & Hybrid Addiction-Recovery Outcomes Since the 1930s', desc:'A long-view read of what has and hasn\u2019t worked in addiction recovery — from the 1930s to digital and hybrid models today.', meta:'Deep research · Oct 2025', mins:25, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/04_2025-10-15_Digital_and_Hybrid_Addiction_Recovery_Outcomes_Since_1930s.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/04_2025-10-15_Digital_and_Hybrid_Addiction_Recovery_Outcomes_Since_1930s.md' },
+      { id:'ra-insurance', kicker:'Deep research · Funding', name:'Insurance & Corporate-Wellbeing Coverage of Recovery & Mentoring', desc:'Where insurance and employer wellbeing budgets do (and don\u2019t) pay for recovery and mentoring services — a potential non-NHS route.', meta:'Deep research · Oct 2025', mins:26, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/05_2025-10-15_Insurance_and_Corporate_Wellbeing_Coverage_of_Recovery_and_Mentoring_Services.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/05_2025-10-15_Insurance_and_Corporate_Wellbeing_Coverage_of_Recovery_and_Mentoring_Services.md' },
+      { id:'ra-failure', kicker:'Deep research · Risk', name:'Failure Factors in Digital Mental-Health & Recovery Start-Ups', desc:'Why digital mental-health and recovery start-ups fail — the traps to design OTOS around.', meta:'Deep research · Oct 2025', mins:10, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/06_2025-10-15_Failure_Factors_in_Digital_Mental_Health_and_Recovery_Start-Ups.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/06_2025-10-15_Failure_Factors_in_Digital_Mental_Health_and_Recovery_Start-Ups.md' },
+      { id:'ra-ukgrants', kicker:'Deep research · Funding', name:'UK & Ireland Grants Supporting Digital Mental-Health Innovation', desc:'The grant landscape for digital mental-health innovation across the UK and Ireland — routes worth mapping against the funding plan.', meta:'Deep research · Oct 2025', mins:19, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/07_2025-10-15_UK_and_Ireland_Grants_Supporting_Digital_Mental_Health_Innovation.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/07_2025-10-15_UK_and_Ireland_Grants_Supporting_Digital_Mental_Health_Innovation.md' },
+      { id:'ra-crossborder', kicker:'Deep research · Funding', name:'Cross-Border Funding Models for Mental-Health & Addiction Treatment', desc:'How mental-health and addiction treatment gets funded across borders — models that could apply beyond a single NHS commissioner.', meta:'Deep research · Oct 2025', mins:58, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/08_2025-10-15_Cross-Border_Funding_Models_for_Mental_Health_and_Addiction_Treatment.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/08_2025-10-15_Cross-Border_Funding_Models_for_Mental_Health_and_Addiction_Treatment.md' },
+      { id:'ra-probation', kicker:'Deep research · Justice', name:'UK Digital Innovation in Probation & Prison for Rehabilitation', desc:'Where digital tools are already used in UK probation and prison rehabilitation — the justice-system adjacency for OTOS.', meta:'Deep research · Oct 2025', mins:21, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/12_2025-10-28_UK_Digital_Innovation_in_Probation_and_Prison_for_Rehabilitation.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/12_2025-10-28_UK_Digital_Innovation_in_Probation_and_Prison_for_Rehabilitation.md' },
+      { id:'ra-justice', kicker:'Deep research · Prevalence', name:'UK ADHD Prevalence, Dual Diagnosis & Justice-System Overlap (2020\u20132025)', desc:'UK ADHD prevalence, its overlap with addiction and with the justice system — the scale behind the interface OTOS addresses.', meta:'Deep research · Oct 2025', mins:29, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/14_2025-10-28_UK_ADHD_Prevalence_Dual_Diagnosis_and_Justice_System_Overlap_20202025.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/14_2025-10-28_UK_ADHD_Prevalence_Dual_Diagnosis_and_Justice_System_Overlap_20202025.md' },
+      { id:'ra-fundingintl', kicker:'Deep research · Funding', name:'Expanded UK & International Funding Strategies for Digital Mental Health', desc:'A wider sweep of UK and international funding strategies for digital mental health — beyond the core MRC/Wellcome routes.', meta:'Deep research · Oct 2025', mins:32, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/15_2025-10-28_Expanded_UK_and_International_Funding_Strategies_for_Digital_Mental_Health.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/15_2025-10-28_Expanded_UK_and_International_Funding_Strategies_for_Digital_Mental_Health.md' },
+      { id:'ra-oppmap', kicker:'Deep research · Opportunity', name:'OTOS Opportunity Map — ADHD, Dual Diagnosis & NHS Cost Offsets (2023\u20132025)', desc:'The opportunity map tying ADHD/dual-diagnosis need to NHS cost offsets — where OTOS could demonstrably save money.', meta:'Deep research · Oct 2025', mins:17, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/16_2025-10-29_OTOS_Opportunity_Map_ADHD_Dual-Diagnosis_and_NHS_Cost_Offsets_UK_20232025.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/16_2025-10-29_OTOS_Opportunity_Map_ADHD_Dual-Diagnosis_and_NHS_Cost_Offsets_UK_20232025.md' },
+      { id:'ra-dopamine', kicker:'Deep research · Mechanism', name:'Dopamine Reset & Best Practice for DTD (ADHD + Addiction)', desc:'The mechanism reading behind the intervention — dopamine, the ADHD\u2013addiction loop, and what best practice looks like. Context only, never an OTOS promise.', meta:'Deep research · Oct 2025', mins:41, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/17_2025-10-30_Dopamine_Reset_and_Best_Practices_for_DTD_ADHD_Addiction.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/17_2025-10-30_Dopamine_Reset_and_Best_Practices_for_DTD_ADHD_Addiction.md' },
+      { id:'ra-commissioning', kicker:'Deep research · Commissioning', name:'NHS Commissioning Strategy for OTOS (with Historical Context)', desc:'How OTOS could be commissioned within the NHS, with the historical context of how digital tools have been bought before.', meta:'Deep research · Oct 2025', mins:12, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/18_2025-10-30_NHS_Commissioning_Strategy_for_OTOS_with_Full_Historical_Context.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/18_2025-10-30_NHS_Commissioning_Strategy_for_OTOS_with_Full_Historical_Context.md' },
+      { id:'ra-platform', kicker:'Deep research · Build', name:'Platform Comparison for OTOS Website, Course & Automation Stack', desc:'A comparison of platforms for the OTOS website, course delivery and automation — the practical build-stack question.', meta:'Deep research · Nov 2025', mins:11, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/20_2025-11-01_Platform_Comparison_for_OTOS_Website_Course_and_Automation_Stack.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/20_2025-11-01_Platform_Comparison_for_OTOS_Website_Course_and_Automation_Stack.md' },
+      { id:'ra-globalmap', kicker:'Deep research · Landscape', name:'Global Map of DTD-Aligned ADHD + Addiction Research & Care Models', desc:'A global scan of research and care models aligned to the ADHD\u2013addiction (DTD) approach — who else is working on this.', meta:'Deep research · Nov 2025', mins:5, status:'research', file:'reports/research-report.html?f=../research-archive/01_Substantive_Deep_Research_Reports/21_2025-11-02_Global_Map_of_DTD-Aligned_ADHD_Addiction_Research_and_Care_Models.md', pdf:'research-archive/01_Substantive_Deep_Research_Reports/21_2025-11-02_Global_Map_of_DTD-Aligned_ADHD_Addiction_Research_and_Care_Models.md' }
     ];
     function openReport(id){
       const r = REPORTS.find(x => x.id === id); if (!r) return;
@@ -2716,6 +2775,15 @@
 
     document.getElementById('todoAddBtn').addEventListener('click', addTodo);
     document.getElementById('todoInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') addTodo(); });
+
+    (function wireTodoPickers(){
+      [['todoDueBtn','todoDue'],['todoTimeBtn','todoDueTime']].forEach(([b,i]) => {
+        const btn = document.getElementById(b), inp = document.getElementById(i);
+        if(!btn || !inp) return;
+        btn.addEventListener('click', () => { try { inp.showPicker(); } catch(e){ inp.focus(); } });
+        inp.addEventListener('change', () => btn.classList.toggle('set', !!inp.value));
+      });
+    })();
 
     function addTodo(){
       const input = document.getElementById('todoInput');
