@@ -1029,15 +1029,31 @@
       <!-- ============ ABOUT ============ -->
       <section data-view-panel="about" hidden class="wm-brain">
         <div class="panel-head">
-          <h1>About this hub</h1>
-          <div class="ph-sub">What lives where, how live sync works, and the one thing every route shares.</div>
+          <h1>About the Hub</h1>
+          <div class="ph-sub">What the OTOS Hub is, what lives where, and how to use it day to day.</div>
+        </div>
+
+        <div class="explainer">
+          <div class="lbl">What this is</div>
+          <p>The OTOS Hub is the shared internal workspace for Dean and Gareth — the single place all OTOS documents, contacts and outreach are tracked. It lives behind the Cloudflare gate at <b>hub.otos.network</b>; nothing here is public.</p>
+          <p><b>Everything you change saves automatically for both of you.</b> Add a contact, tick a document, complete a task, leave a note — it writes live to the shared database and the other person sees it on their next refresh. There is nothing to "push" or "save to GitHub" for any of it.</p>
         </div>
 
         <div class="steps-guide">
-          <div class="sg-item"><span class="brain-bullet"></span><div><b>Tasks</b><span>Your personal/shared job list. Add anything, assign an owner, set a due date — you'll get a reminder toast when it's due.</span></div></div>
-          <div class="sg-item"><span class="brain-bullet"></span><div><b>Contacts</b><span>Overdue follow-ups, the full contact list with inline detail, and links to the outreach tracker (19) and Cambridge target list (18).</span></div></div>
+          <div class="sg-item"><span class="brain-bullet"></span><div><b>Today</b><span>Your landing screen. The next actions that matter, overdue and stalled items, and a one-click daily digest. Start here each morning.</span></div></div>
+          <div class="sg-item"><span class="brain-bullet"></span><div><b>Tasks</b><span>The shared job list. Add anything, assign an owner, set a due date &amp; time — you'll get a reminder toast when it's due. Board and list views.</span></div></div>
+          <div class="sg-item"><span class="brain-bullet"></span><div><b>Contacts</b><span>Everyone in the plan — academic, local NHS/partner, national. Open a record for its history, tasks, notes and next action. Search, tag and filter.</span></div></div>
+          <div class="sg-item"><span class="brain-bullet"></span><div><b>Pipeline</b><span>Contacts as a board by stage, so you can see who's where and what's stalled at a glance.</span></div></div>
+          <div class="sg-item"><span class="brain-bullet"></span><div><b>Aerial view</b><span>The send-sequence map — who's first, what's gated behind what, and how much each contact is shown. The planning tool before any send.</span></div></div>
           <div class="sg-item"><span class="brain-bullet"></span><div><b>Documents</b><span>All 25 funding-pack docs + 8 draft masters. Search, browse by area, tick G/D/Ready, assign an owner, leave a note.</span></div></div>
-          <div class="sg-item"><span class="brain-bullet"></span><div><b>Activity</b><span>A live log of every tick, note, status change and to-do action, filterable by Dean/Gareth.</span></div></div>
+          <div class="sg-item"><span class="brain-bullet"></span><div><b>Reports</b><span>Background research &amp; reference reports — read on-page or download as PDF.</span></div></div>
+          <div class="sg-item"><span class="brain-bullet"></span><div><b>Templates</b><span>Ready email drafts with the contact's details merged in. Copy, tweak, send.</span></div></div>
+          <div class="sg-item"><span class="brain-bullet"></span><div><b>Activity</b><span>A live log of every tick, note, status change and task action, filterable by Dean/Gareth.</span></div></div>
+        </div>
+
+        <div class="explainer">
+          <div class="lbl">Getting things done — the quick way</div>
+          <p>Press <b>⌘K</b> (or Ctrl-K) anywhere to jump to any screen or contact. The <b>＋</b> button (bottom-right) quick-adds a task or contact from anywhere. On the phone, swipe a task right to mark it done, and tap any phone number to call.</p>
         </div>
 
         <div class="explainer">
@@ -1047,37 +1063,17 @@
           <p>This holds on the fourth, earlier route too: on any Cambridge internal translational / Impact Acceleration-style funding, a Cambridge academic or department would lead, not OTOS — see <a href="01-funding-route-summary.html">01 — Funding Route Summary</a>.</p>
         </div>
 
-        <p class="task-note"><b>What's live vs. static:</b> G/D/Ready ticks, Owner assignment, per-document notes, tracker status/dates/log, target-list status, to-dos and the activity feed all sync live via Supabase — Dean and Gareth see each other's changes on refresh, no GitHub push needed. The document files themselves (their actual content/copy) still need a save + push to GitHub to update for both.</p>
+        <p class="task-note"><b>One thing to know about live sync:</b> all the <i>working data</i> — contacts, tasks, G/D/Ready ticks, owners, notes, statuses, dates and the activity feed — syncs live between Dean and Gareth automatically. The only thing that isn't live is the <i>content of the document files themselves</i> (their actual copy); editing those still happens outside the Hub and is published when a version is signed off.</p>
 
         <div class="explainer" style="margin-top:24px;">
-          <div class="lbl">Automatic daily digest — backend cron (optional)</div>
-          <p>The <b>Today</b> screen shows a one-click "Email it" digest each day. To have the digest <b>sent automatically every morning</b> with no one logged in, a real backend cron is now wired into the repo — it just needs turning on in Vercel:</p>
-          <ol class="digest-steps">
-            <li><b>Files are already in the repo:</b> <code>api/daily-digest.js</code> and <code>api/weekly-summary.js</code> (the functions) and <code>vercel.json</code> (the schedules — daily 08:00 UK, plus a <b>weekly summary every Monday 08:00 UK</b>). Push them to GitHub so Vercel picks them up.</li>
-            <li><b>Create a free Resend account</b> at resend.com and copy an API key.</li>
-            <li><b>In Vercel → Project → Settings → Environment Variables</b>, add: <code>RESEND_API_KEY</code> (your key) and <code>DIGEST_TO</code> (recipients, comma-separated — e.g. dean@otos.life,gareth@…). Optional: <code>DIGEST_FROM</code> (a verified sender), <code>CRON_SECRET</code> (locks the endpoint).</li>
-            <li><b>Redeploy.</b> Vercel registers the cron automatically. It emails only when something is actually due (edit the function to always send).</li>
-          </ol>
-          <p style="font-size:12px;color:var(--muted);">Test it any time by visiting <code>/api/daily-digest</code> on the deployed site. Vercel's Hobby plan allows one daily cron; change the <code>schedule</code> in <code>vercel.json</code> to adjust the time (it's in UTC).</p>
-
-          <div class="digest-time">
-            <div class="dt-row">
-              <label>Daily digest at <input type="time" id="digDaily" value="08:00"></label>
-              <label>Weekly summary <select id="digDay"><option value="1">Mon</option><option value="2">Tue</option><option value="3">Wed</option><option value="4">Thu</option><option value="5">Fri</option><option value="6">Sat</option><option value="0">Sun</option></select> (same time)</label>
-              <span class="dt-tz" id="digTz"></span>
-            </div>
-            <pre class="dt-cron" id="digCron"></pre>
-            <button type="button" id="digCopy" class="td-send" style="border:1px solid var(--rule);border-radius:7px;background:var(--paper);color:var(--ink);font:700 11.5px var(--sans);padding:8px 14px;cursor:pointer;">Copy vercel.json crons</button>
-            <span id="digCopyMsg" style="font-size:12px;color:var(--muted);margin-left:8px;"></span>
-            <p style="font-size:12px;color:var(--muted);margin-top:8px;">Paste into <code>vercel.json</code>, commit &amp; redeploy — Vercel crons run in UTC, so the line is converted for you (accounts for BST/GMT as of today).</p>
-          </div>
+          <div class="lbl">Daily &amp; weekly email digest</div>
+          <p>The Hub emails a short digest of what's due — a <b>daily</b> one each morning and a <b>weekly summary</b> on Mondays — automatically, to the people below. It's the only email the Hub sends, and it only ever goes to <b>you two</b>; the Hub never emails contacts. Change who receives it here anytime — it saves live, no redeploy needed.</p>
           <div class="digest-recips">
-            <div class="dr-lbl">Digest recipients <span>— who gets the daily &amp; weekly emails (you and/or Gareth). Saved live for both of you.</span></div>
+            <div class="dr-lbl">Digest recipients <span>— who gets the daily &amp; weekly emails</span></div>
             <div class="dr-chips" id="drChips"></div>
             <div class="dr-add"><input type="email" id="drInput" placeholder="name@email.com — press Enter to add"><span id="drMsg"></span></div>
-            <p style="font-size:12px;color:var(--muted);margin:8px 0 0;">One-time setup: in Supabase → SQL editor run <code>create table if not exists hub_settings (key text primary key, value text, updated_at timestamptz default now());</code> and allow the anon role to read/write it. The cron functions read this list first, then fall back to the <code>DIGEST_TO</code> env var.</p>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap;">
             <button type="button" id="cronTestBtn" class="td-send" style="border:none;border-radius:7px;background:var(--accent-ink);color:#fff;font:700 12px var(--sans);padding:9px 16px;cursor:pointer;">Send daily digest now</button>
             <button type="button" id="weeklyTestBtn" class="td-send" style="border:1px solid var(--accent-ink);border-radius:7px;background:var(--paper);color:var(--accent-ink);font:700 12px var(--sans);padding:9px 16px;cursor:pointer;">Send weekly summary now</button>
             <span id="cronTestMsg" style="font-size:12px;color:var(--muted);"></span>
