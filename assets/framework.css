@@ -1,0 +1,215 @@
+/* ════════════════════════════════════════════════════════════
+   OTOS PARTNER PACK FRAMEWORK v2 — EMPTY STYLED SYSTEM
+   A fixed-zone, placeholder-only layout system. NO manuscript copy.
+   Loads after colors_and_type.css + otos-brief.css (reuses the .page
+   A4 frame + --otos / --bk tokens so measurements match the real pack).
+   ════════════════════════════════════════════════════════════ */
+
+:root{
+  --fw-dark:#17130f;
+  --fw-green:#2e7d32;
+  --fw-red:#b23a2e;
+  /* ── LOCKED ZONE MEASUREMENTS (A4 portrait, 210 × 297mm) ──
+     page margin 19mm → usable column 172mm wide. Heights below are
+     the fixed vertical budget; zones never exceed their band. */
+  --fw-margin:19mm;
+  --fw-col:172mm;
+  --z-header:9mm;     /* brand / running-title strip          */
+  --z-eyebrow:7mm;    /* section number + eyebrow             */
+  --z-headline:30mm;  /* deliberately line-broken headline    */
+  --z-image:62mm;     /* hero image slot (172 × 62mm locked)  */
+  --z-image-tall:84mm;/* feature / cover hero                  */
+  --z-body:30mm;      /* body copy band                       */
+  --z-quote:18mm;     /* single hero quote                    */
+  --z-evidence:30mm;  /* stat / evidence strip                */
+  --z-caveat:16mm;    /* one caveat / source note             */
+  --z-footer:8mm;     /* locked footer                        */
+}
+
+/* ── PAGE FRAME ─────────────────────────────────────────── */
+.page.fw{
+  box-sizing:border-box;
+  width:210mm; min-height:297mm; height:297mm;
+  margin:0 auto; padding:var(--fw-margin);
+  background:var(--otos-paper); color:var(--otos-paper-ink);
+  display:flex; flex-direction:column; gap:5mm;
+  position:relative; overflow:hidden;
+}
+.page.fw.dark{ background:var(--fw-dark); color:var(--otos-ink);
+  background-image:radial-gradient(ellipse 60rem 38rem at 100% -4%, rgba(242,108,13,.20), transparent 56%); }
+.fw-stack{ display:flex; flex-direction:column; gap:5mm; flex:1 1 auto; min-height:0; }
+
+/* ── LOCKED HEADER + FOOTER ─────────────────────────────── */
+.fw-head,.fw-foot{
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:10px; font-weight:900; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--otos-paper-muted); flex:0 0 auto;
+}
+.fw-head{ height:var(--z-header); border-bottom:1px solid var(--line-paper); }
+.fw-foot{ height:var(--z-footer); border-top:1px solid var(--line-paper); margin-top:auto; }
+.dark .fw-head,.dark .fw-foot{ color:var(--otos-muted); border-color:var(--line); }
+.fw-head .brand{ display:inline-flex; align-items:center; gap:8px; color:var(--otos-paper-ink); }
+.dark .fw-head .brand{ color:var(--otos-ink); }
+.fw-head .brand::before{ content:""; width:26px; height:20px;
+  background:url("otos-brain-icon.png") center/contain no-repeat;
+  image-rendering:auto; }
+
+/* ── SECTION NUMBER + EYEBROW + HEADLINE BLOCK ──────────── */
+.fw-sec{ display:grid; grid-template-columns:auto 1fr; gap:6mm; align-items:start; flex:0 0 auto; }
+.fw-num{ font-size:64px; font-weight:1000; letter-spacing:-.06em; line-height:.8; color:var(--otos-orange); }
+.dark .fw-num{ color:var(--otos-orange-2); }
+
+/* ── THE SLOT PRIMITIVE ─────────────────────────────────── */
+.slot{
+  position:relative; border:1.5px dashed rgba(70,48,34,.34); border-radius:var(--bk-radius-sm,14px);
+  background:repeating-linear-gradient(135deg, rgba(70,48,34,.035) 0 14px, rgba(70,48,34,0) 14px 28px);
+  display:flex; flex-direction:column; justify-content:center; gap:5px;
+  padding:14px 18px; color:var(--otos-paper-muted); flex:0 0 auto;
+}
+.dark .slot{ border-color:rgba(255,170,90,.32);
+  background:repeating-linear-gradient(135deg, rgba(255,170,90,.05) 0 14px, rgba(255,170,90,0) 14px 28px); }
+.slot .sname{ font-size:11px; font-weight:950; letter-spacing:.22em; text-transform:uppercase; color:var(--otos-orange); }
+.dark .slot .sname{ color:var(--otos-orange-2); }
+.slot .scon{ font-size:10px; font-weight:700; letter-spacing:.04em; color:var(--otos-paper-muted); }
+.dark .slot .scon{ color:var(--otos-muted); }
+.slot.center{ align-items:center; text-align:center; }
+
+/* zone-specific behaviour (size = role) */
+.slot.eyebrow{ height:var(--z-eyebrow); flex-direction:row; align-items:center; gap:10px; padding:0 14px; border-radius:999px; }
+.slot.headline{ min-height:var(--z-headline); justify-content:center; gap:8px; border-style:solid; border-color:rgba(70,48,34,.18);
+  background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.4)); }
+.slot.headline .hline{ font-size:34px; font-weight:1000; letter-spacing:-.05em; line-height:.95; color:rgba(33,29,25,.34); }
+.slot.headline .hline.l2{ color:rgba(242,108,13,.42); }
+.dark .slot.headline{ background:rgba(255,255,255,.05); border-color:rgba(255,170,90,.22); }
+.dark .slot.headline .hline{ color:rgba(251,247,238,.34); }
+
+.slot.image{ height:var(--z-image); }
+.slot.image.tall{ height:var(--z-image-tall); }
+.slot.image .ph-frame{ width:42px; height:32px; border:2px solid rgba(242,108,13,.5); border-radius:5px; margin-bottom:4px; position:relative; }
+.slot.image .ph-frame::before{ content:""; position:absolute; inset:5px; background:rgba(242,108,13,.16); border-radius:2px; }
+.slot.image.full{ position:absolute; inset:0; margin:0; border:none; border-radius:0; z-index:0; }
+
+.slot.body{ min-height:var(--z-body); flex:1 1 auto; }
+.slot.quote{ height:var(--z-quote); border-style:solid; background:var(--otos-paper-ink); border-color:transparent; }
+.slot.quote .sname{ color:var(--otos-orange-2); }
+.slot.quote .scon{ color:rgba(255,255,255,.55); }
+.slot.evidence{ min-height:var(--z-evidence); }
+.slot.caveat{ min-height:var(--z-caveat); border-radius:var(--bk-radius-sm,14px); border-color:rgba(242,108,13,.4);
+  background:rgba(242,108,13,.05); }
+.slot.caveat .sname{ font-size:9.5px; }
+
+/* grids of equal slots (cards / stats / route) */
+.fw-grid{ display:grid; gap:5mm; flex:1 1 auto; }
+.fw-grid.c2{ grid-template-columns:1fr 1fr; }
+.fw-grid.c3{ grid-template-columns:repeat(3,1fr); }
+.fw-grid.c4{ grid-template-columns:repeat(4,1fr); }
+.fw-grid.r2{ grid-template-rows:1fr 1fr; }
+.fw-grid .slot{ height:auto; }
+
+/* split body + side rail */
+.fw-split{ display:grid; grid-template-columns:1.05fr .95fr; gap:6mm; flex:1 1 auto; }
+
+/* cover treatment */
+.page.fw.cover{ padding:0; }
+.cover-inner{ position:relative; z-index:1; flex:1; display:flex; flex-direction:column; padding:30mm 19mm 19mm; }
+.cover-scrim{ position:absolute; inset:0; z-index:0;
+  background:linear-gradient(155deg, rgba(8,10,15,.6), rgba(8,10,15,.78)); }
+.cover-inner .slot{ background:rgba(255,255,255,.06); border-color:rgba(255,170,90,.34); }
+.cover-inner .slot .scon{ color:rgba(251,247,238,.7); }
+
+/* variant ribbon (for the density-variant pages) */
+.fw-variant{ position:absolute; top:0; right:0; z-index:3;
+  background:var(--otos-orange); color:#fff; font-size:9px; font-weight:950; letter-spacing:.18em;
+  text-transform:uppercase; padding:6px 14px; border-bottom-left-radius:12px; }
+
+/* page-type caption chip (in the bottom margin, clear of the footer) */
+.fw-type{ position:absolute; left:19mm; bottom:7mm; font-size:8.5px; font-weight:900; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--otos-orange); opacity:.9; }
+
+/* section divider page (system reference cards live in the doc head) */
+.fw-ref{ background:var(--otos-paper-2); }
+
+/* ════════════════════════════════════════════════════════════
+   v2.1 UPGRADE LAYER (scoped to body.v21)
+   Spread-based editorial · bigger headlines · clean footers ·
+   benefit-led boundary · compact dense evidence · fewer boxes.
+   ════════════════════════════════════════════════════════════ */
+/* bigger, more artistic headlines that dominate the page — placeholder copy
+   uses slightly looser tracking so words stay readable in the EMPTY master */
+.v21 .slot.headline{ min-height:34mm; background:transparent; border:none; padding:0; gap:6px; }
+.v21 .slot.headline .hline{ font-size:46px; font-weight:1000; letter-spacing:0; line-height:.96; color:rgba(33,29,25,.4); }
+.v21 .slot.headline .hline.l2{ color:rgba(242,108,13,.5); }
+/* dark pages (cover, break, dark spreads): keep the hero feel but lift the
+   placeholder headline so it never disappears on dark export/print */
+.v21.dark .slot.headline .hline,.v21 .dark .slot.headline .hline{ color:rgba(251,247,238,.62); }
+.v21.dark .slot.headline .hline.l2,.v21 .dark .slot.headline .hline.l2{ color:rgba(255,138,31,.78); }
+.v21 .fw-num{ font-size:72px; }
+/* clean footer: no floating captions above it on main pages */
+.v21 .fw-type{ display:none; }
+/* a discreet endnote marker for claims that need the boundary ref */
+.v21 .ref-mark{ font-size:9px; font-weight:900; color:var(--otos-orange); vertical-align:super; }
+
+/* ── LINKED TWO-PAGE SPREAD ──────────────────────────────────
+   Same image split across two A4 pages (left half / right half)
+   so the reader feels visual continuity across the turn. */
+.spread-tag{ position:absolute; top:0; left:0; z-index:3; background:var(--otos-paper-ink); color:#fff;
+  font-size:8.5px; font-weight:950; letter-spacing:.18em; text-transform:uppercase; padding:5px 12px; border-bottom-right-radius:12px; }
+.dark .spread-tag{ background:var(--otos-orange); }
+.slot.image.half{ position:relative; overflow:hidden; }
+.slot.image.half .ph-frame{ position:relative; z-index:1; }
+.slot.image.half.left::after,.slot.image.half.right::after{ content:""; position:absolute; inset:0;
+  background:linear-gradient(90deg, rgba(242,108,13,.1), rgba(242,108,31,.04)); }
+.slot.image.half .scon em{ font-style:normal; color:var(--otos-orange); font-weight:900; }
+
+/* glass overlay used sparingly on spread heroes */
+.glass-pane{ position:relative; z-index:1; background:linear-gradient(180deg, rgba(255,250,240,.86), rgba(255,250,240,.7));
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.6);
+  border-radius:var(--bk-radius-sm,14px); box-shadow:0 22px 54px rgba(64,42,22,.18); padding:18px 20px; }
+
+/* ── BENEFIT-LED BOUNDARY (replaces blunt does/does-not) ───── */
+.benefit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; flex:1 1 auto; }
+.benefit-grid .slot{ height:auto; }
+.benefit-grid .slot .sname{ font-size:12px; }
+.v21 .boundary-ref-line{ font-size:11px; font-weight:800; letter-spacing:.04em; color:var(--otos-paper-muted);
+  display:flex; align-items:center; gap:8px; flex:0 0 auto; }
+.v21 .boundary-ref-line::before{ content:"→"; color:var(--otos-orange); font-weight:900; }
+
+/* ── COMPACT DENSE EVIDENCE ─────────────────────────────────── */
+.ev-note{ font-size:11px; line-height:1.45; color:var(--otos-paper-muted); font-weight:600; flex:0 0 auto; margin:0; }
+.ev-table{ flex:1 1 auto; border:1px solid var(--line-paper); border-radius:10px; overflow:hidden;
+  display:flex; flex-direction:column; }
+.ev-table .ev-row{ display:grid; grid-template-columns:1.6fr 1fr .9fr; gap:0; border-bottom:1px solid var(--line-paper);
+  flex:1 1 auto; align-items:center; }
+.ev-table .ev-row:last-child{ border-bottom:none; }
+.ev-table .ev-row.head{ background:var(--otos-paper-ink); flex:0 0 auto; }
+.ev-table .ev-row.head .ev-c{ color:#fff; font-size:9px; font-weight:950; letter-spacing:.14em; text-transform:uppercase; }
+.ev-table .ev-c{ padding:7px 12px; font-size:10.5px; font-weight:650; color:var(--otos-paper-ink); border-right:1px solid var(--line-paper); }
+.ev-table .ev-c:last-child{ border-right:none; }
+.ev-table .ev-c .src{ color:var(--otos-paper-muted); font-weight:800; font-size:9.5px; }
+.ev-table .ev-c .st{ font-weight:900; font-size:9.5px; }
+.ev-table .ev-c .st.v{ color:var(--fw-green); }
+.ev-table .ev-c .st.f{ color:var(--otos-orange); }
+.ev-table .ev-c .st.c{ color:#9a7b3a; }
+.v21 .slot.placeholder-rows{ flex:1 1 auto; }
+
+/* ── v2.2 BREAK PAGE (full-image problem→solution transition) ── */
+.page.fw.brk{ justify-content:center; align-items:center; }
+.brk-line{ position:relative; z-index:1; margin:auto; text-align:center; padding:0 18mm; }
+.brk-line .slot.headline{ align-items:center; text-align:center; }
+.brk-line .slot.headline .hline{ font-size:52px; line-height:.94; }
+/* break page carries NO boxes, NO body, NO disclaimer — image + one line only */
+.page.fw.brk .fw-head{ display:none; }
+
+/* ── PRINT / PDF: one true A4 page per .page.fw, no blanks ── */
+@media print{
+  @page{ size:A4 portrait; margin:0; }
+  html,body{ margin:0 !important; padding:0 !important; background:#fff !important; }
+  .doc{ display:block !important; padding:0 !important; gap:0 !important; }
+  .page.fw{
+    width:210mm !important; height:calc(297mm - 1px) !important; margin:0 !important;
+    box-shadow:none !important; overflow:hidden !important;
+    break-inside:avoid; page-break-inside:avoid; break-after:page; page-break-after:always;
+  }
+  .doc > .page:last-child{ break-after:auto; page-break-after:auto; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
