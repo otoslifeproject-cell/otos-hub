@@ -1,0 +1,403 @@
+/* ════════════════════════════════════════════════════════════
+   AZ × OTOS — NIA MASTER BRIEF · DESIGN-SYSTEM TEST (v2)
+   Image-led editorial layer. Loads AFTER colors_and_type.css and
+   otos-brief.css and sits on the shared --bk-* / --otos-* grid.
+   Borrows the annual-report editorial rhythm — full hero cover,
+   numbered contents, oversized section numerals, two-column
+   editorial body, big stat rows, table appendix, contact close —
+   rendered in the OTOS palette. No yellow, no arrows, no stock,
+   no CSS "diagram" motifs: every visual zone is a LABELLED image
+   placeholder with its brief, filled later by Dean.
+   ════════════════════════════════════════════════════════════ */
+
+:root {
+  --az-deepcream: #e8ddcd;   /* deep cream — placeholder fills, rules */
+  --az-dark:      #17130f;   /* dark feature page (spec) */
+  --az-green:     #2e7d32;   /* evidence green (spec) */
+  --az-red:       #b23a2e;   /* caution red (spec) */
+}
+
+/* The brief runs on the deeper warm cream so glass + placeholders read.
+   box-sizing: border-box so the 297mm height INCLUDES the 18/22mm
+   page padding — otherwise (content-box) padding adds ~40mm outside
+   the height and every page becomes ~337mm and spills to a 2nd sheet
+   on export. Applied on screen too so the fill layout targets the
+   real ~972px (257mm) safe area, matching print exactly. */
+.page.azv2, .page.cover-v2 { box-sizing: border-box; }
+.page.azv2 { background: var(--otos-paper); }
+
+/* ── PAGE FILL DISCIPLINE (no top-heavy pages, no dead lower space) ──
+   Every content page is a flex column. The page's PRIMARY block grows
+   to absorb slack, with its internal rows/items distributing — so a
+   copy-light page enlarges its hero/panel/table rather than leaving an
+   accidental void. (The brief's "increase hero image / visual area"
+   rule, applied structurally.) */
+.page.azv2 { display: flex; flex-direction: column; }
+.page.azv2 > .imgph,
+.page.azv2 > .imgfill,
+.page.azv2 > .fb,
+.page.azv2 > .ddn,
+.page.azv2 > .toc,
+.page.azv2 > .routemap,
+.page.azv2 > .col-split { flex: 1 1 auto; }
+.page.azv2.closing > .imgph,
+.page.azv2.closing > .imgfill { flex: 0 0 auto; }
+
+/* internal distribution so a grown block fills evenly, never top-bunched */
+.page.azv2 > .toc { align-content: space-between; }
+.page.azv2 > .routemap { align-content: space-between; }
+.page.azv2 > .ddn .col { justify-content: flex-start; }
+.page.azv2 > .ddn ul { flex: 1 1 auto; justify-content: space-between; }
+.page.azv2 > .col-split > div { display: flex; flex-direction: column; }
+.page.azv2 > .col-split .value-list { flex: 1 1 auto; justify-content: space-between; }
+/* grown source tables: airy rows, content centred so no bottom-heavy gap */
+.page.azv2 > .fb.srctable td, .page.azv2 > .fb.srctable th { vertical-align: middle; }
+
+.page.azv2.dark { background: var(--az-dark); color: var(--otos-ink);
+  background-image:
+    radial-gradient(ellipse 64rem 40rem at 100% -4%, rgba(255,138,31,.22), transparent 58%),
+    radial-gradient(ellipse 54rem 36rem at -4% 104%, rgba(242,108,13,.12), transparent 60%); }
+
+/* ── OVERSIZED SECTION NUMERAL + HEADER (annual-report DNA) ──── */
+.sec-head { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: start; margin-bottom: 14px; }
+.mod-no {
+  font-size: 74px; font-weight: 1000; letter-spacing: -0.06em; line-height: .82;
+  color: var(--otos-orange); -webkit-text-stroke: 0; opacity: .92;
+  font-variant-numeric: tabular-nums;
+}
+.dark .mod-no { color: var(--otos-orange-2); }
+.sec-head .htext { padding-top: 4px; }
+.sec-head .kicker { margin-bottom: 12px; }
+.sec-head h1.title, .sec-head h2.title { margin-bottom: 0; }
+
+/* ── TWO-COLUMN EDITORIAL BODY ──────────────────────────────── */
+.edit-2col { columns: 2; column-gap: 28px; margin-top: 4px; }
+.edit-2col p { break-inside: avoid; }
+.col-split { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 6px; }
+.col-split .ch { font-size: 10px; font-weight: 950; letter-spacing: .2em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 8px; }
+
+/* ════════════════════════════════════════════════════════════
+   IMAGE PLACEHOLDER ZONES — the heart of the test build.
+   A deliberate, premium "image goes here" block, labelled with
+   its IMAGE ID + intended subject so the page rhythm reads true
+   before Dean drops the real artwork in.
+   ════════════════════════════════════════════════════════════ */
+.imgph {
+  position: relative; margin-top: var(--bk-img-gap);
+  border-radius: var(--bk-radius); overflow: hidden;
+  border: 1.5px dashed rgba(70,48,34,.34);
+  background:
+    repeating-linear-gradient(135deg, rgba(70,48,34,.045) 0 16px, rgba(70,48,34,0) 16px 32px),
+    linear-gradient(155deg, #efe7d8 0%, var(--az-deepcream) 100%);
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 250px;
+}
+.imgph.band   { min-height: 220px; }
+.imgph.tall   { min-height: 320px; }
+.imgph.feature{ min-height: 392px; }
+.imgph.short  { min-height: 170px; }
+/* full-bleed background placeholder (covers / hero overlays) */
+.imgph.bg { position: absolute; inset: 0; margin: 0; border-radius: 0; border: none; z-index: 0; display: block; }
+.imgph.bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(23,19,15,.42) 0%, rgba(23,19,15,.7) 100%);
+}
+.imgph.bg .ph-label { position: absolute; top: 26px; right: 26px; max-width: 340px; text-align: right; padding: 0; }
+.imgph.bg .ph-frame { margin: 0 0 10px auto; }
+/* dark variant for the cost-chain feature page */
+.imgph.onink {
+  border-color: rgba(255,170,90,.34);
+  background:
+    repeating-linear-gradient(135deg, rgba(255,170,90,.05) 0 16px, rgba(255,170,90,0) 16px 32px),
+    linear-gradient(155deg, #221a13 0%, #160f0a 100%);
+}
+
+/* ── FILLED IMAGE ZONES (real artwork dropped into a placeholder slot) ──
+   Same footprint + radius as .imgph, but holds a real <img> cover-fitted.
+   object-position keeps the orange pathway/thread focal point in frame.
+   A subtle brightness lift helps dark-on-cream bands read without washing
+   out the orange glow (the brief's +brightness / -contrast guidance). */
+.imgfill {
+  position: relative; margin-top: var(--bk-img-gap);
+  border-radius: var(--bk-radius); overflow: hidden;
+  border: 1px solid rgba(70,48,34,.16);
+  background: var(--az-dark);
+}
+.imgfill img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 58%;
+}
+.imgfill.band   { min-height: 230px; }
+.imgfill.tall   { min-height: 320px; }
+.imgfill.short  { min-height: 180px; }
+/* dark-on-cream lift: gentle, preserves orange focal glow */
+.page.azv2:not(.dark) > .imgfill img { filter: brightness(1.09) contrast(0.95) saturate(1.03); }
+/* light editorial infographics: no lift; show WHOLE image (contain). Frame is
+   seamless — cream-on-cream — so the image floats on the page with no visible
+   letterbox box. */
+.page.azv2 > .imgfill.lightart img { filter: none; }
+.imgfill.lightart { background: transparent; border-color: transparent; box-shadow: none; }
+.imgfill.lightart::after { display: none; }
+.imgfill.lightart img { object-fit: contain; object-position: center; }
+/* capped strip: for dense pages where a full-height image would overflow */
+.imgfill.lightart.cap { flex: 0 0 auto !important; height: 188px; box-shadow: none; border-color: rgba(70,48,34,.16); }
+
+/* page 15 evidence: text-dense + image — tighten so locked copy + strip fit one A4 */
+.page.dense-ev .lede { margin-bottom: 8px; }
+.page.dense-ev .imgfill.cap { height: 150px; margin-top: 10px; }
+.page.dense-ev .col-split { gap: 22px; margin-top: 10px; }
+.page.dense-ev .value-list li { font-size: 11px; line-height: 1.34; margin-bottom: 6px; padding-left: 17px; }
+.page.dense-ev .col-split .ch { margin-bottom: 7px; }
+.page.dense-ev .model-badge { font-size: 7.5px; padding: 1px 6px; }
+.page.dense-ev .callout { font-size: 11px; line-height: 1.42; padding: 12px 16px; margin-top: 10px; }
+
+/* page 7 adult ADHD wave: two long paras + image + quote + caveat — cap image,
+   tighten rhythm so the evidence-safe framing never collides with the footer */
+.page.dense-wave > p { margin-top: 9px; margin-bottom: 0; line-height: 1.5; }
+.page.dense-wave .imgfill { flex: 0 0 auto !important; height: 178px; margin-top: 11px; }
+.page.dense-wave .quote-band { margin-top: 11px; font-size: 16px; padding: 14px 20px; }
+.page.dense-wave .boundary-box { margin-top: 11px; padding: 13px 18px; }
+.page.dense-wave .boundary-box p { font-size: 11.5px; line-height: 1.5; }
+
+/* page 18 — Boundary, named in full: four readable labelled blocks (2×2) */
+.boundary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; flex: 1 1 auto; align-content: stretch; }
+.boundary-grid .bcard { border-radius: var(--bk-radius-sm); padding: 20px 22px; background: var(--otos-paper-2);
+  border: 1px solid rgba(70,48,34,.14); display: flex; flex-direction: column; }
+.boundary-grid .bcard .bk { font-size: 10px; font-weight: 950; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--otos-orange); margin-bottom: 11px; }
+.boundary-grid .bcard p { font-size: 12.5px; line-height: 1.62; color: var(--otos-paper-ink); margin: 0; font-weight: 600; }
+.boundary-grid .bcard p strong { font-weight: 900; }
+.page.azv2 > .boundary-grid { flex: 1 1 auto; }
+
+/* page 19 — the ask (closing): keep image + ask + boundary + sign-off clear of footer */
+.page.closing .imgfill { flex: 0 0 auto !important; height: 150px; margin-top: 11px; }
+.page.closing .ask-box { margin-top: 12px; }
+.page.closing .boundary-box { margin-top: 12px; }
+.page.closing .signoff { margin-top: 14px; margin-bottom: 6px; }
+.imgfill.onink { border-color: rgba(255,170,90,.28); }
+.imgfill::after { content: ""; position: absolute; inset: 0; border-radius: var(--bk-radius);
+  box-shadow: inset 0 0 0 1px rgba(255,170,90,.1); pointer-events: none; }
+
+/* COVER full-bleed real image — must escape the shared `.page > *`
+   relative/z-index:1 rule, exactly like .cover-bg did. */
+.cover-v2 > .cover-img { position: absolute !important; inset: 0 !important; width: 100%; height: 100%; object-fit: cover;
+  object-position: center 55%; z-index: 0 !important; }
+.cover-v2 > .cover-scrim { position: absolute !important; inset: 0 !important; z-index: 0 !important;
+  background: linear-gradient(155deg, rgba(8,10,15,.66) 0%, rgba(8,10,15,.3) 44%, rgba(8,10,15,.74) 100%); }
+
+/* placeholder centre label */
+.imgph .ph-label { position: relative; z-index: 1; max-width: 78%; padding: 18px; }
+.imgph .ph-frame {
+  width: 46px; height: 36px; margin: 0 auto 14px; border-radius: 6px;
+  border: 2px solid rgba(242,108,13,.55); position: relative;
+}
+.imgph .ph-frame::before { content: ""; position: absolute; inset: 5px; border-radius: 3px; background: rgba(242,108,13,.16); }
+.imgph .ph-id {
+  font-size: 12px; font-weight: 950; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--otos-orange); margin-bottom: 7px;
+}
+.imgph.onink .ph-frame { border-color: rgba(255,170,90,.6); }
+.imgph.onink .ph-frame::before { background: rgba(255,170,90,.18); }
+.imgph.onink .ph-id { color: var(--otos-orange-2); }
+.imgph .ph-desc { font-size: 13.5px; font-weight: 700; line-height: 1.4; color: var(--otos-paper-ink); }
+.imgph.onink .ph-desc { color: var(--otos-ink); }
+.imgph .ph-note {
+  margin-top: 9px; font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--otos-paper-muted);
+}
+.imgph.onink .ph-note { color: var(--otos-muted); }
+
+/* ── GLASS OVERLAY CARDS (over image zones) ─────────────────── */
+.glass {
+  position: relative; z-index: 1;
+  background: linear-gradient(180deg, rgba(255,250,240,.86), rgba(255,250,240,.7));
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.62);
+  border-radius: var(--bk-radius); box-shadow: 0 26px 64px rgba(64,42,22,.2);
+  padding: 22px 24px;
+}
+.glass.dark {
+  background: linear-gradient(180deg, rgba(23,19,15,.78), rgba(23,19,15,.62));
+  border-color: rgba(255,170,90,.3); color: var(--otos-ink);
+  box-shadow: 0 26px 64px rgba(0,0,0,.4);
+}
+.glass.dark h1, .glass.dark h2, .glass.dark h3 { color: var(--otos-ink); }
+
+/* a hero zone that stacks a glass card over a full image placeholder */
+.hero-ph { position: relative; margin-top: var(--bk-img-gap); border-radius: var(--bk-radius); overflow: hidden;
+  min-height: 360px; display: flex; align-items: flex-end; padding: 22px; }
+.hero-ph .glass { margin: 0; max-width: 70%; }
+
+/* closing page: keep the kicker hugging its content, not stretched by the column flex */
+.page.closing > .kicker { align-self: flex-start; }
+
+/* ════════════════════════════════════════════════════════════
+   COVER (full-bleed hero, annual-report grammar in OTOS skin)
+   ════════════════════════════════════════════════════════════ */
+.page.cover-v2 { padding: 0; display: flex; flex-direction: column; color: var(--otos-ink); overflow: hidden; }
+.cover-v2 .cover-inner { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column;
+  padding: 30mm 22mm 22mm; }
+.cover-v2 .cv-top { display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,247,238,.82); }
+.cover-v2 .cv-brand { display: inline-flex; align-items: center; gap: 10px; }
+.cover-v2 .cv-brand::before { content: ""; width: 24px; height: 18px;
+  background: url("otos-brain-icon.png") center/contain no-repeat; filter: drop-shadow(0 0 7px rgba(242,108,13,.6)); }
+.cover-v2 .cv-mid { margin-top: auto; }
+.cover-v2 .kicker { background: rgba(242,108,13,.18); border-color: rgba(255,138,31,.6); color: var(--otos-ink); margin-bottom: 22px; }
+.cover-v2 h1.cover-title {
+  font-size: 66px; font-weight: 1000; letter-spacing: -0.05em; line-height: .96;
+  color: var(--otos-ink); margin: 0 0 20px; max-width: 15ch; text-shadow: 0 2px 18px rgba(0,0,0,.3);
+}
+.cover-v2 .cv-sub { font-size: 20px; font-weight: 600; line-height: 1.4; color: rgba(251,247,238,.92);
+  max-width: 30ch; letter-spacing: -0.01em; }
+.cover-v2 .cv-prongline { margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; }
+.cover-v2 .cv-prongline span { font-size: 12px; font-weight: 900; letter-spacing: .02em; color: var(--otos-ink);
+  padding: 8px 16px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.28);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.cover-v2 .cv-meta { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 30px; max-width: 560px;
+  border-top: 1px solid rgba(255,255,255,.22); padding-top: 16px; }
+.cover-v2 .cv-meta .m { font-size: 11.5px; line-height: 1.5; color: rgba(251,247,238,.86); }
+.cover-v2 .cv-meta .m .l { display: block; font-size: 9px; font-weight: 900; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--otos-orange-2); margin-bottom: 3px; }
+.cover-v2 .cv-foot { margin-top: 24px; font-size: 10.5px; line-height: 1.55; color: rgba(251,247,238,.74); max-width: 92%; }
+.cover-v2 .cv-foot strong { color: var(--otos-ink); font-weight: 800; }
+
+/* ════════════════════════════════════════════════════════════
+   CONTENTS (annual-report TOC)
+   ════════════════════════════════════════════════════════════ */
+.toc { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; margin-top: 10px; }
+.toc .toc-row { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: baseline;
+  padding: 11px 0; border-bottom: 1px solid rgba(70,48,34,.14); }
+.toc .toc-row .tn { font-size: 15px; font-weight: 1000; color: var(--otos-orange); letter-spacing: -0.03em; }
+.toc .toc-row .tt { font-size: 13.5px; font-weight: 700; color: var(--otos-paper-ink); line-height: 1.25; }
+.toc .toc-row .tt small { display: block; font-size: 10.5px; font-weight: 600; color: var(--otos-paper-muted); margin-top: 2px; letter-spacing: 0; text-transform: none; }
+.toc .toc-row .tp { font-size: 11px; font-weight: 800; color: var(--otos-paper-muted); letter-spacing: .08em; }
+
+/* ════════════════════════════════════════════════════════════
+   PORTED EDITORIAL MODULES (cleaned for v2)
+   ════════════════════════════════════════════════════════════ */
+
+/* DTD → NIA lineage — two cards joined by an orange thread (no arrow) */
+.lineage { display: grid; grid-template-columns: 1fr 60px 1fr; align-items: center; margin-top: 14px; }
+.lin { border-radius: var(--bk-radius-sm); padding: 18px 20px; border: 1px solid rgba(70,48,34,.16); }
+.lin.dtd { background: rgba(70,48,34,.05); }
+.lin.nia { background: rgba(242,108,13,.07); border-color: rgba(242,108,13,.4); }
+.lin .lk { font-size: 9px; font-weight: 950; letter-spacing: .18em; text-transform: uppercase; color: var(--otos-paper-muted); margin-bottom: 7px; }
+.lin.nia .lk { color: var(--otos-orange); }
+.lin h3 { font-size: 16px; font-weight: 1000; letter-spacing: -0.02em; color: var(--otos-paper-ink); margin: 0 0 6px; line-height: 1.08; }
+.lin p { font-size: 11.5px; line-height: 1.46; color: var(--otos-paper-muted); margin: 0; font-weight: 600; }
+.lin-thread { position: relative; height: 4px; }
+.lin-thread::before { content: ""; position: absolute; left: 4px; right: 4px; top: 0; height: 4px; border-radius: 3px;
+  background: linear-gradient(90deg, var(--otos-orange), var(--otos-orange-2)); }
+.lin-thread::after { content: ""; position: absolute; right: 2px; top: -3px; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--otos-orange-2); }
+
+/* Founder statement block */
+.statement .lead-line { font-size: 40px; font-weight: 1000; letter-spacing: -0.045em; line-height: 1.0; color: var(--otos-paper-ink); max-width: 17ch; }
+.statement .lead-line .hl { color: var(--otos-orange); }
+.statement .reflect { margin-top: 20px; padding-left: 18px; border-left: 3px solid var(--otos-orange);
+  font-size: 16px; line-height: 1.6; color: var(--otos-paper-ink); font-weight: 600; max-width: 56ch; }
+.statement .sub-claim { margin-top: 16px; font-size: 13.5px; line-height: 1.55; color: var(--otos-paper-muted); font-weight: 600; max-width: 62ch; }
+.statement .sub-claim strong { color: var(--otos-paper-ink); font-weight: 900; }
+
+/* Off-pathway two-route */
+.routes2 { display: flex; flex-direction: column; gap: 11px; margin-top: 4px; }
+.route2 { display: grid; grid-template-columns: 138px 1fr; align-items: center; gap: 14px; border-radius: var(--bk-radius-sm); padding: 14px 17px; border: 1px solid rgba(70,48,34,.14); background: var(--otos-paper-2); }
+.route2 .rt { font-size: 10px; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; }
+.route2.formal { border-style: dashed; opacity: .74; }
+.route2.formal .rt { color: var(--otos-paper-muted); }
+.route2.actual { border-color: rgba(242,108,13,.4); background: rgba(242,108,13,.06); }
+.route2.actual .rt { color: var(--otos-orange); }
+.route2 p { margin: 0; font-size: 12px; line-height: 1.46; color: var(--otos-paper-muted); font-weight: 600; }
+.route2 p strong { color: var(--otos-paper-ink); font-weight: 800; }
+
+/* Medicine-plus-continuity hub + ring */
+.hub { display: grid; grid-template-columns: 196px 1fr; gap: 20px; align-items: center; margin-top: 4px; }
+.hub-core { border-radius: var(--bk-radius); background: var(--otos-paper-ink); color: var(--otos-paper-2); padding: 22px 18px; text-align: center; }
+.hub-core .hc-k { font-size: 8.5px; font-weight: 950; letter-spacing: .18em; text-transform: uppercase; color: var(--otos-orange-2); margin-bottom: 6px; }
+.hub-core .hc-t { font-size: 21px; font-weight: 1000; letter-spacing: -0.03em; line-height: 1; }
+.hub-ring { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px; }
+.hub-ring .hr { font-size: 10.5px; font-weight: 800; color: var(--otos-paper-ink); text-align: center; padding: 11px 8px; border-radius: 12px; background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.6)); border: 1px solid rgba(70,48,34,.14); line-height: 1.25; }
+
+/* AZ route doors — ranked grid */
+.routemap { margin-top: 4px; display: grid; grid-template-columns: repeat(2,1fr); gap: 9px; }
+.door { display: grid; grid-template-columns: 26px 1fr; gap: 11px; align-items: baseline; padding: 12px 15px; border-radius: 12px; border: 1px solid rgba(70,48,34,.14); background: var(--otos-paper-2); }
+.door .dr { font-size: 17px; font-weight: 1000; color: var(--otos-orange); letter-spacing: -0.04em; }
+.door .dt { font-size: 12.5px; font-weight: 900; color: var(--otos-paper-ink); line-height: 1.2; }
+.door .dd { font-size: 10px; font-weight: 600; color: var(--otos-paper-muted); line-height: 1.35; margin-top: 2px; }
+
+/* Demonstrator stat tiles */
+.demo { display: grid; grid-template-columns: repeat(4,1fr); gap: 11px; margin-top: 4px; }
+.demo .d { text-align: center; border-radius: var(--bk-radius-sm); padding: 18px 10px; background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.64)); border: 1px solid rgba(70,48,34,.14); }
+.demo .d .dn { font-size: 28px; font-weight: 1000; letter-spacing: -0.04em; color: var(--otos-orange); line-height: 1; }
+.demo .d .dl { font-size: 9.5px; font-weight: 700; color: var(--otos-paper-muted); line-height: 1.35; margin-top: 7px; }
+
+/* Boundary does / does-not */
+.ddn { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+.ddn .col { border-radius: var(--bk-radius-sm); padding: 22px 24px; display: flex; flex-direction: column; }
+.ddn .does { background: rgba(46,125,50,.08); border: 1px solid rgba(46,125,50,.36); }
+.ddn .doesnt { background: rgba(178,58,46,.06); border: 1px solid rgba(178,58,46,.32); }
+.ddn .ch { font-size: 11px; font-weight: 950; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 14px; }
+.ddn .does .ch { color: var(--az-green); }
+.ddn .doesnt .ch { color: var(--az-red); }
+.ddn ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.ddn li { font-size: 14px; line-height: 1.4; color: var(--otos-paper-ink); font-weight: 600; padding-left: 24px; position: relative; }
+.ddn .does li::before { content: "✓"; position: absolute; left: 0; color: var(--az-green); font-weight: 900; font-size: 15px; }
+.ddn .doesnt li::before { content: "×"; position: absolute; left: 0; color: var(--az-red); font-weight: 900; font-size: 17px; }
+
+/* Three-prong cards (reuses .cards-3 / .col-card from shared spine) */
+.prong-num { font-size: 9.5px; font-weight: 950; letter-spacing: .2em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 7px; }
+
+/* Pull-quote band (v2 — charcoal slab) */
+.quote-band { margin: 16px 0 0; padding: 17px 22px; border-radius: var(--bk-radius-sm); background: var(--otos-paper-ink); color: #fff; font-size: 18px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.32; }
+.quote-band .hl { color: var(--otos-orange-2); }
+.dark .quote-band { background: rgba(255,255,255,.06); border: 1px solid rgba(255,170,90,.25); }
+
+/* fact cards row */
+.facts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 4px; }
+.factcard { border-radius: var(--bk-radius-sm); padding: 14px 16px; border: 1px solid rgba(70,48,34,.14); background: var(--otos-paper-2); }
+.factcard .fk { font-size: 9px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 6px; }
+.factcard p { font-size: 11.5px; line-height: 1.48; color: var(--otos-paper-muted); margin: 0; font-weight: 600; }
+
+/* appendix tables (reuses .fb; widen for source tables) */
+.srctable .st-status { font-weight: 900; color: var(--otos-paper-ink); }
+.srctable .tag-verified { color: var(--az-green); font-weight: 900; }
+.srctable .tag-forecast { color: var(--otos-orange); font-weight: 900; }
+.srctable .tag-candidate { color: #9a7b3a; font-weight: 900; }
+
+/* contact close strip */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 6px; }
+.contact-card { border-radius: var(--bk-radius-sm); padding: 16px 18px; border: 1px solid rgba(70,48,34,.16); background: var(--otos-paper-2); }
+.contact-card .ck { font-size: 9px; font-weight: 950; letter-spacing: .2em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 8px; }
+.contact-card .cv { font-size: 14px; font-weight: 800; color: var(--otos-paper-ink); line-height: 1.45; }
+.contact-card .cv span { display: block; font-size: 12px; font-weight: 600; color: var(--otos-paper-muted); }
+
+/* ════════════════════════════════════════════════════════════
+   PRINT / PDF PAGINATION — one true A4 page per .page, no blanks
+   ------------------------------------------------------------
+   The 41-page export was the classic fixed-height-flex doubling:
+   each .page was exactly 297mm AND .doc stayed display:flex, so
+   sub-pixel rounding pushed a trailing blank after every page.
+   Fixes: (1) force the doc to ordinary block flow so each page
+   paginates as a single block; (2) shave 1px off the page box so
+   it can never round over the sheet edge; (3) one clean break
+   after each page, none after the last.
+   ════════════════════════════════════════════════════════════ */
+@media print {
+  @page { size: A4 portrait; margin: 0; }
+  html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; }
+  .doc { display: block !important; padding: 0 !important; gap: 0 !important; }
+  .page.azv2, .page.cover-v2 {
+    width: 210mm !important;
+    height: calc(297mm - 1px) !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    break-after: page;
+    page-break-after: always;
+  }
+  .doc > .page:last-child { break-after: auto; page-break-after: auto; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}

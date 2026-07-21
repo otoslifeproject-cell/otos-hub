@@ -1,0 +1,279 @@
+/* ════════════════════════════════════════════════════════════
+   OTOS ANGEL BRIEF vNEXT — populated content layer
+   Loads AFTER colors_and_type.css + otos-brief.css + framework.css.
+   Reuses the v2.3 page chrome (.page.fw, .fw-head, .fw-sec/.fw-num,
+   .fw-foot, .ev-table, cover, spread-tag) but swaps the empty dashed
+   .slot placeholders for REAL editorial content. Scoped to body.angel.
+   ════════════════════════════════════════════════════════════ */
+
+.angel .page.fw{ gap:4.5mm; }
+
+/* ── EYEBROW (kicker pill) ──────────────────────────────── */
+.angel .a-eyebrow{
+  display:inline-flex; align-items:center; gap:8px; align-self:flex-start;
+  font-size:11px; font-weight:950; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--otos-orange); padding:6px 14px; border-radius:999px;
+  background:rgba(242,108,13,.08); border:1px solid rgba(242,108,13,.32);
+}
+.angel .dark .a-eyebrow, .angel .page.fw.dark .a-eyebrow{
+  color:var(--otos-orange-2); background:rgba(242,108,13,.16); border-color:rgba(255,138,31,.4);
+}
+
+/* ── HEADLINE (real, dominant, line-broken) ─────────────── */
+.angel .a-head{ flex:0 0 auto; }
+.angel .a-head .l1, .angel .a-head .l2{
+  font-size:48px; font-weight:1000; letter-spacing:-.022em; line-height:.97;
+  color:var(--otos-paper-ink); display:block;
+}
+.angel .a-head .l2{ color:var(--otos-orange); }
+.angel .page.fw.dark .a-head .l1{ color:var(--otos-ink); }
+.angel .page.fw.dark .a-head .l2{ color:var(--otos-orange-2); }
+.angel .a-head.sm .l1, .angel .a-head.sm .l2{ font-size:37px; }
+/* pills removed globally on internal pages — section label lives top-right */
+.angel .htext .a-eyebrow{ display:none; }
+
+/* section block wrapper to align numeral + eyebrow + headline */
+.angel .fw-sec .htext{ display:flex; flex-direction:column; gap:3mm; }
+
+/* ── LEDE / SUBHEAD ─────────────────────────────────────── */
+.angel .a-lede{
+  font-size:15.5px; font-weight:600; line-height:1.5; color:var(--otos-paper-ink);
+  letter-spacing:-.01em; flex:0 0 auto; max-width:62ch;
+}
+.angel .page.fw.dark .a-lede{ color:var(--otos-soft); }
+
+/* ── BODY COPY ──────────────────────────────────────────── */
+.angel .a-body{
+  font-size:12.5px; font-weight:550; line-height:1.62; color:var(--otos-paper-muted);
+  flex:0 0 auto; max-width:66ch;
+}
+.angel .a-body + .a-body{ margin-top:2mm; }
+.angel .a-body strong{ color:var(--otos-paper-ink); font-weight:800; }
+.angel .page.fw.dark .a-body{ color:var(--otos-muted); }
+.angel .page.fw.dark .a-body strong{ color:var(--otos-ink); }
+
+/* ── PULL QUOTE (charcoal slab) ─────────────────────────── */
+.angel .a-quote{
+  flex:0 0 auto; background:var(--otos-paper-ink); color:#fff; border-radius:14px;
+  padding:16px 22px; font-size:18px; font-weight:850; letter-spacing:-.015em; line-height:1.34;
+}
+.angel .a-quote .hl{ color:var(--otos-orange-2); }
+.angel .a-quote cite{ display:block; margin-top:8px; font-size:11px; font-weight:700; font-style:normal;
+  letter-spacing:.04em; color:rgba(255,255,255,.62); text-transform:none; }
+.angel .page.fw.dark .a-quote{ background:rgba(255,255,255,.06); border:1px solid rgba(255,170,90,.28); }
+
+/* ── SOFT CALLOUT (mechanism / benefit line) ────────────── */
+.angel .a-callout{
+  flex:0 0 auto; border-radius:14px; padding:14px 18px;
+  background:rgba(242,108,13,.06); border:1px solid rgba(242,108,13,.34);
+  font-size:13px; font-weight:650; line-height:1.5; color:var(--otos-paper-ink);
+}
+.angel .a-callout strong{ font-weight:900; }
+.angel .page.fw.dark .a-callout{ background:rgba(242,108,13,.1); border-color:rgba(255,138,31,.4); color:var(--otos-ink); }
+
+/* ── REAL IMAGE FRAME → editorial hero field (no boxed border) ── */
+.angel .a-img{
+  flex:1 1 auto; min-height:46mm; border-radius:14px; overflow:hidden; position:relative;
+  border:none; background:var(--fw-dark);
+}
+.angel .a-img.fix62{ flex:0 0 auto; height:84mm; }
+.angel .a-img.hero{ flex:1 1 auto; min-height:92mm; }
+/* full-bleed editorial band: touch the page edges, no card framing */
+.angel .a-img.bleed{ margin-left:calc(-1 * var(--fw-margin)); margin-right:calc(-1 * var(--fw-margin));
+  width:calc(100% + 2 * var(--fw-margin)); border-radius:0; }
+.angel .a-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+.angel .a-img figcaption{
+  position:absolute; left:0; right:0; bottom:0; padding:14px 16px 10px;
+  background:linear-gradient(0deg, rgba(8,10,15,.82), transparent);
+  font-size:10.5px; font-weight:700; letter-spacing:.02em; color:rgba(251,247,238,.92);
+}
+/* full-bleed cover image */
+.angel .a-img.full{ position:absolute; inset:0; margin:0; border:none; border-radius:0; z-index:0; min-height:0; }
+
+/* ── CARDS (equal grid) ─────────────────────────────────── */
+.angel .a-cards{ display:grid; gap:4mm; flex:0 0 auto; }
+.angel .a-cards.c2{ grid-template-columns:1fr 1fr; }
+.angel .a-cards.c3{ grid-template-columns:repeat(3,1fr); }
+.angel .a-card{
+  border-radius:14px; padding:15px 17px; background:var(--otos-paper-2);
+  border:1px solid var(--line-paper);
+}
+.angel .a-card .k{ font-size:9px; font-weight:950; letter-spacing:.16em; text-transform:uppercase; color:var(--otos-orange); margin-bottom:6px; }
+.angel .a-card h3{ font-size:15px; font-weight:1000; letter-spacing:-.02em; color:var(--otos-paper-ink); margin:0 0 5px; line-height:1.1; }
+.angel .a-card p{ font-size:11px; font-weight:600; line-height:1.46; color:var(--otos-paper-muted); margin:0; }
+
+/* ── STAT GRID ──────────────────────────────────────────── */
+.angel .a-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:4mm; flex:0 0 auto; }
+.angel .a-stats.s3{ grid-template-columns:repeat(3,1fr); }
+.angel .a-stat{ text-align:center; border-radius:14px; padding:16px 10px; background:var(--otos-paper-2); border:1px solid var(--line-paper); }
+.angel .a-stat .n{ font-size:26px; font-weight:1000; letter-spacing:-.04em; color:var(--otos-orange); line-height:1; }
+.angel .a-stat .l{ font-size:9.5px; font-weight:650; line-height:1.34; color:var(--otos-paper-muted); margin-top:7px; }
+.angel .a-stat .s{ font-size:8px; font-weight:850; letter-spacing:.1em; text-transform:uppercase; color:var(--otos-paper-muted); opacity:.8; margin-top:6px; display:block; }
+
+/* ── CHECK / VALUE LIST ─────────────────────────────────── */
+.angel .a-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; flex:0 0 auto; }
+.angel .a-list li{ font-size:12px; font-weight:600; line-height:1.42; color:var(--otos-paper-ink); padding-left:22px; position:relative; }
+.angel .a-list li::before{ content:"→"; position:absolute; left:0; color:var(--otos-orange); font-weight:900; }
+.angel .a-list li strong{ font-weight:900; }
+.angel .page.fw.dark .a-list li{ color:var(--otos-soft); }
+
+/* ── ROUTE STACK ────────────────────────────────────────── */
+.angel .a-routes{ display:grid; grid-template-columns:1fr 1fr; gap:3mm; flex:0 0 auto; }
+.angel .a-route{ display:grid; grid-template-columns:26px 1fr; gap:10px; align-items:baseline;
+  padding:11px 14px; border-radius:12px; background:var(--otos-paper-2); border:1px solid var(--line-paper); }
+.angel .a-route.flag{ border-color:rgba(242,108,13,.45); background:rgba(242,108,13,.06); }
+.angel .a-route .r{ font-size:15px; font-weight:1000; color:var(--otos-orange); letter-spacing:-.04em; }
+.angel .a-route .t{ font-size:11.5px; font-weight:850; color:var(--otos-paper-ink); line-height:1.2; }
+.angel .a-route .d{ font-size:9.5px; font-weight:600; color:var(--otos-paper-muted); line-height:1.3; margin-top:1px; }
+
+/* ── ASK / DEMONSTRATOR BOX ─────────────────────────────── */
+.angel .a-ask{ flex:0 0 auto; border-radius:16px; padding:18px 22px;
+  background:var(--otos-paper-ink); color:#fff; }
+.angel .a-ask .k{ font-size:10px; font-weight:950; letter-spacing:.2em; text-transform:uppercase; color:var(--otos-orange-2); margin-bottom:8px; }
+.angel .a-ask p{ margin:0; font-size:13.5px; font-weight:650; line-height:1.5; color:rgba(255,255,255,.92); }
+.angel .a-ask p strong{ color:#fff; font-weight:900; }
+
+/* ── BOUNDARY 4-BLOCK ───────────────────────────────────── */
+.angel .a-boundary{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; flex:1 1 auto; align-content:center; align-items:start; }
+.angel .a-bcell{ border-radius:14px; padding:20px 22px; background:var(--otos-paper-2); border:1px solid var(--line-paper); }
+.angel .a-bcell .k{ font-size:9.5px; font-weight:950; letter-spacing:.14em; text-transform:uppercase; color:var(--otos-orange); margin-bottom:7px; }
+.angel .a-bcell p{ margin:0; font-size:11.5px; font-weight:600; line-height:1.55; color:var(--otos-paper-muted); }
+.angel .a-bcell p strong{ color:var(--otos-paper-ink); font-weight:800; }
+
+/* ── SIGN-OFF ───────────────────────────────────────────── */
+.angel .a-signoff{ flex:0 0 auto; font-size:11.5px; font-weight:600; line-height:1.55; color:var(--otos-paper-muted); }
+.angel .a-signoff .nm{ font-size:15px; font-weight:1000; color:var(--otos-paper-ink); letter-spacing:-.02em; display:block; margin-bottom:3px; }
+
+/* ── COVER (real) ───────────────────────────────────────── */
+.angel .page.fw.cover .cover-inner{ padding:15mm 19mm 18mm; }
+.angel .cv-top{ display:flex; justify-content:space-between; align-items:flex-start; position:relative; z-index:1;
+  font-size:11px; font-weight:900; letter-spacing:.2em; text-transform:uppercase; color:rgba(251,247,238,.82); }
+
+/* ── FULL OTOS CONTINUITY LOGO IN HEADER (scoped to Angel) ── */
+.angel .fw-head{ height:auto; min-height:11mm; border-bottom:none; padding-top:4mm; }
+.angel .page.fw .fw-sec{ margin-top:3mm; }
+.angel .fw-head .brand{ font-size:0; gap:0; }
+.angel .fw-head .brand::before{ width:26mm; height:8mm; background:url("otos-logo-full.png") left center/contain no-repeat; filter:none; }
+.angel .page.fw.dark .fw-head .brand::before{ background-image:url("otos-logo-full-dark.png"); }
+.angel .cover-scrim{ background:linear-gradient(180deg, rgba(8,10,15,.72) 0%, rgba(8,10,15,.3) 22%, rgba(8,10,15,.34) 52%, rgba(8,10,15,.86) 100%); }
+.angel .cv-top{ display:flex; justify-content:space-between; align-items:center; position:relative; z-index:1;
+  font-size:11px; font-weight:900; letter-spacing:.2em; text-transform:uppercase; color:rgba(251,247,238,.82); }
+.angel .cv-brand{ display:inline-flex; align-items:center; gap:0; color:var(--otos-ink); font-size:0; }
+.angel .cv-brand::before{ content:""; width:46mm; height:14mm; background:url("otos-logo-full-dark.png") left center/contain no-repeat; }
+.angel .cv-mid{ margin-top:7mm; margin-bottom:auto; position:relative; z-index:1; display:flex; flex-direction:column; gap:6mm; }
+.angel .cv-title{ font-size:62px; font-weight:1000; letter-spacing:-.03em; line-height:.95; color:var(--otos-ink); margin:0; }
+.angel .cv-sub{ font-size:18px; font-weight:600; line-height:1.4; color:rgba(251,247,238,.92); max-width:30ch; }
+.angel .cv-pos{ font-size:13px; font-weight:600; line-height:1.5; color:rgba(251,247,238,.86); max-width:54ch;
+  padding-left:16px; border-left:3px solid var(--otos-orange); }
+.angel .cv-meta{ display:grid; grid-template-columns:repeat(2,auto); gap:6px 36px; justify-content:start;
+  padding-top:14px; }
+.angel .cv-meta .m{ font-size:11px; line-height:1.45; color:rgba(251,247,238,.88); }
+.angel .cv-meta .m .l{ display:block; font-size:8.5px; font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--otos-orange-2); margin-bottom:2px; }
+.angel .page.fw.cover .cv-foot{ position:absolute !important; left:19mm; right:19mm; bottom:10mm; width:auto !important; box-sizing:border-box; z-index:1; display:flex; justify-content:space-between;
+  font-size:10px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color:rgba(251,247,238,.6); }
+
+/* ── PRE-PILOT PROOF (3-column question block) ─────────── */
+.angel .a-proof{ display:grid; grid-template-columns:repeat(3,1fr); gap:6mm; flex:1 1 auto; align-content:start; }
+.angel .a-proof .col .k{ font-size:9.5px; font-weight:950; letter-spacing:.16em; text-transform:uppercase; color:var(--otos-orange); margin-bottom:9px; padding-bottom:7px; border-bottom:1px solid rgba(242,108,13,.3); }
+.angel .a-proof ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; }
+.angel .a-proof li{ font-size:11px; font-weight:600; line-height:1.4; color:var(--otos-paper-muted); padding-left:14px; position:relative; }
+.angel .a-proof li::before{ content:""; position:absolute; left:0; top:7px; width:5px; height:5px; border-radius:50%; background:var(--otos-orange); }
+.angel .page.fw.fill-dist{ }
+.angel .page.fw.fill-dist .a-cards{ flex:1 1 auto; }
+.angel .page.fw.fill-dist .a-cards .a-card{ display:flex; flex-direction:column; justify-content:center; }
+.angel .page.fw.fill-dist .a-quote{ margin-top:auto; }
+
+/* ── BENEFIT GRID (page 2 opportunity) ──────────────────── */
+.angel .a-bgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; flex:0 0 auto; }
+.angel .a-bchip{ border-radius:11px; padding:10px 12px; background:var(--otos-paper-2); border:1px solid var(--line-paper); }
+.angel .a-bchip .k{ font-size:8.5px; font-weight:950; letter-spacing:.14em; text-transform:uppercase; color:var(--otos-orange); margin-bottom:4px; }
+.angel .a-bchip p{ margin:0; font-size:10px; font-weight:600; line-height:1.34; color:var(--otos-paper-muted); }
+
+/* ── TABLE VARIANTS (mechanism + crossroads) ────────────── */
+.angel .ev-table.mech .ev-row{ grid-template-columns:0.9fr 1.25fr 1.3fr; }
+.angel .ev-table.cross .ev-row{ grid-template-columns:0.55fr 1.2fr 1.1fr 1.25fr; }
+.angel .ev-table.mech .ev-c, .angel .ev-table.cross .ev-c{ font-size:9.5px; line-height:1.32; padding:6px 10px; }
+.angel .ev-table.mech .ev-row.head .ev-c, .angel .ev-table.cross .ev-row.head .ev-c{ font-size:8px; }
+.angel .ev-table .ev-c .rt{ font-weight:950; color:var(--otos-orange); }
+.angel .ev-table .ev-c strong{ color:var(--otos-paper-ink); font-weight:850; }
+
+/* ── FRICTION / BLIND-SPOTS LIST ────────────────────────── */
+.angel .a-friction{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; flex:0 0 auto; }
+.angel .a-friction li{ font-size:10.5px; font-weight:600; line-height:1.34; color:var(--otos-paper-muted); padding-left:16px; position:relative; }
+.angel .a-friction li::before{ content:"·"; position:absolute; left:4px; color:var(--otos-orange); font-weight:900; font-size:14px; line-height:1; }
+.angel .a-friction li strong{ color:var(--otos-paper-ink); font-weight:850; }
+
+/* information-hazard line */
+.angel .a-hazard{ flex:0 0 auto; font-size:9.5px; font-weight:700; letter-spacing:.02em; color:var(--otos-paper-muted);
+  border-top:1px solid var(--line-paper); padding-top:8px; }
+
+/* ── SERVICE STRIP (already-in-motion page) ─────────────── */
+.angel .a-strip{ flex:0 0 auto; text-align:center; border-radius:12px; padding:11px 16px;
+  background:var(--otos-paper-ink); color:#fff; font-size:11px; font-weight:850; letter-spacing:.01em; line-height:1.5; }
+/* friction sub-heading */
+.angel .a-fhead{ flex:0 0 auto; font-size:9.5px; font-weight:950; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--otos-orange); margin-top:1mm; }
+
+/* ── BACKGROUND WASH (dense pages: image adds family feel, zero layout cost) ── */
+.angel .a-bgwash{ position:absolute !important; inset:0 !important; margin:0 !important; z-index:0; overflow:hidden; pointer-events:none; }
+.angel .a-bgwash img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.12; }
+.angel .a-bgwash::after{ content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(244,239,230,.62), rgba(244,239,230,.82)); }
+.angel .page.fw.dark .a-bgwash img{ opacity:.2; }
+.angel .page.fw.dark .a-bgwash::after{ background:linear-gradient(180deg, rgba(23,19,15,.6), rgba(23,19,15,.78)); }
+/* stronger "background hero" treatment where the image should command the field */
+.angel .page.fw.hero-bg .a-bgwash img{ opacity:.17; }
+.angel .page.fw.hero-bg.dark .a-bgwash img{ opacity:.26; }
+/* keep all real content above the wash (only on washed pages) */
+.angel .page.fw.has-wash > *:not(.a-bgwash){ position:relative; z-index:1; }
+/* visible contained band on the dark clinical page */
+.angel .a-img.dark-band{ height:46mm; }
+
+/* ── COHORT ANCHOR (dark feature / authority moment, page 4) ── */
+.angel .a-anchor{ flex:0 0 auto; margin-top:1mm; border-left:3px solid var(--otos-orange);
+  background:rgba(255,255,255,.05); border-radius:4px 14px 14px 4px; padding:16px 20px; }
+.angel .a-anchor .aq{ font-size:13px; font-weight:650; font-style:italic; line-height:1.5; color:var(--otos-ink); }
+.angel .a-anchor .ac{ margin-top:7px; font-size:9.5px; font-weight:850; letter-spacing:.06em; text-transform:uppercase; color:var(--otos-muted); }
+.angel .a-anchor .ach{ margin:13px 0 0; font-size:17px; font-weight:900; letter-spacing:-.015em; line-height:1.3; color:var(--otos-ink); }
+.angel .a-anchor .ach .hl{ color:var(--otos-orange-2); }
+.angel .a-anchor .acite{ margin-top:8px; font-size:11px; font-weight:700; color:var(--otos-muted); }
+
+/* ════════════════════════════════════════════════════════════
+   TWEAKS — expressive feel controls (body data-attrs + --otos-orange override)
+   Accent recolours via JS setting --otos-orange / --otos-orange-2 on body.
+   ════════════════════════════════════════════════════════════ */
+/* ── Headline emphasis ── */
+.angel[data-emphasis="bold"] .a-head .l1, .angel[data-emphasis="bold"] .a-head .l2{ font-size:52px; letter-spacing:-.035em; line-height:.92; }
+.angel[data-emphasis="bold"] .a-head.sm .l1, .angel[data-emphasis="bold"] .a-head.sm .l2{ font-size:42px; }
+.angel[data-emphasis="bold"] .cv-title{ font-size:74px; }
+.angel[data-emphasis="bold"] .a-stanza .s1, .angel[data-emphasis="bold"] .a-stanza .s2, .angel[data-emphasis="bold"] .a-stanza .s3{ font-size:34px; }
+.angel[data-emphasis="quiet"] .a-head .l1, .angel[data-emphasis="quiet"] .a-head .l2{ font-size:33px; font-weight:850; letter-spacing:-.01em; }
+.angel[data-emphasis="quiet"] .a-head.sm .l1, .angel[data-emphasis="quiet"] .a-head.sm .l2{ font-size:29px; }
+.angel[data-emphasis="quiet"] .a-eyebrow{ background:transparent; border-color:transparent; padding-left:0; }
+.angel[data-emphasis="quiet"] .cv-title{ font-size:54px; font-weight:850; }
+
+/* ── Density ── */
+.angel[data-density="compact"] .a-body{ font-size:11.5px; line-height:1.5; }
+.angel[data-density="compact"] .a-lede{ font-size:14px; line-height:1.42; }
+.angel[data-density="compact"] .a-card p, .angel[data-density="compact"] .a-bchip p{ font-size:9.5px; line-height:1.3; }
+.angel[data-density="compact"] .a-cards{ gap:3mm; }
+.angel[data-density="compact"] .a-card{ padding:12px 14px; }
+.angel[data-density="spacious"] .a-body{ font-size:13.5px; line-height:1.72; }
+.angel[data-density="spacious"] .a-lede{ font-size:17px; line-height:1.56; }
+.angel[data-density="spacious"] .a-cards{ gap:5mm; }
+.angel[data-density="spacious"] .a-card{ padding:18px 20px; }
+.angel[data-density="spacious"] .fw-sec{ margin-bottom:3mm; }
+/* page 3 founder runs near-full; exempt its body from the spacious size bump */
+.angel[data-density="spacious"] section[data-screen-label^="03"] .a-body{ font-size:12.5px; line-height:1.62; }
+.angel[data-density="spacious"] section[data-screen-label^="03"] .a-img.hero{ min-height:78mm; }
+/* dense surgical pages: exempt from the spacious body bump so insertions fit one A4 */
+.angel[data-density="spacious"] section[data-screen-label^="05"] .a-body,
+.angel[data-density="spacious"] section[data-screen-label^="06"] .a-body,
+.angel[data-density="spacious"] section[data-screen-label^="07"] .a-body,
+.angel[data-density="spacious"] section[data-screen-label^="11"] .a-body,
+.angel[data-density="spacious"] section[data-screen-label^="13"] .a-body{ font-size:12.5px; line-height:1.58; }
+
+/* ── PAGE-2 THREE-LINE STANZA HEADLINE ──────────────────── */
+.angel .a-stanza{ flex:0 0 auto; }
+.angel .a-stanza span{ display:block; font-size:44px; font-weight:1000; letter-spacing:-.03em; line-height:1.02; color:var(--otos-paper-ink); }
+.angel .a-stanza .s2{ color:var(--otos-orange); }
