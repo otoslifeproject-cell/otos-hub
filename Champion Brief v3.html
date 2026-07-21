@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<title>OTOS Brief — Champion</title>
+<meta name="viewport" content="width=794" />
+<link rel="stylesheet" href="assets/colors_and_type.css" />
+<style>
+  /* ===== Print + page setup ===== */
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; }
+  body {
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: var(--fw-body);
+    letter-spacing: var(--ls-body);
+    line-height: 1.62;
+    color: var(--otos-paper-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .doc { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 30px 0; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 24mm 22mm;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+
+  /* ===== Page surfaces ===== */
+  .dark {
+    background: #17130d;
+    color: var(--otos-ink);
+    background-image:
+      radial-gradient(ellipse 70rem 44rem at 100% -5%, rgba(255,138,31,.34), transparent 60%),
+      radial-gradient(ellipse 60rem 40rem at -4% 104%, rgba(242,108,13,.15), transparent 62%),
+      radial-gradient(circle at 52% 46%, rgba(48,38,24,.5), transparent 82%);
+  }
+  .cream {
+    background: var(--otos-paper-2);
+    color: var(--otos-paper-ink);
+    background-image:
+      radial-gradient(ellipse 60rem 38rem at 104% -4%, rgba(255,138,31,.15), transparent 56%),
+      radial-gradient(ellipse 48rem 32rem at -4% 108%, rgba(242,108,13,.07), transparent 58%);
+  }
+  .cream h1, .cream h2, .cream h3 { color: var(--otos-paper-ink); }
+  .cream p { color: var(--otos-paper-muted); }
+
+  /* Brain icon watermark */
+  .page::after {
+    content: "";
+    position: absolute;
+    right: -30px; bottom: -30px;
+    width: 280px; height: 220px;
+    background: url("assets/brain.png") right bottom / contain no-repeat;
+    opacity: .045;
+    pointer-events: none;
+  }
+  .dark.page::after { opacity: .055; }
+
+  /* ===== Typography ===== */
+  h1.display {
+    font-size: 60px;
+    font-weight: 1000;
+    letter-spacing: -0.045em;
+    line-height: .94;
+    margin: 0;
+  }
+  h2.title {
+    font-size: 38px;
+    font-weight: 1000;
+    letter-spacing: -0.038em;
+    line-height: 1.0;
+    margin: 0 0 16px;
+  }
+  h3.sub {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.022em;
+    line-height: 1.18;
+    margin: 0 0 10px;
+  }
+  p { font-size: 15px; line-height: 1.68; margin: 0 0 14px; font-weight: 550; }
+  .lede { font-size: 17px; line-height: 1.6; }
+
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 10.5px;
+    font-weight: 950;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--otos-orange);
+    border: 1px solid rgba(242,108,13,.5);
+    background: rgba(242,108,13,.08);
+    border-radius: 999px;
+    padding: 7px 13px;
+    margin-bottom: 22px;
+  }
+  .dark .kicker { color: var(--otos-orange-2); background: rgba(242,108,13,.10); border-color: rgba(242,108,13,.55); }
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 13px; height: 11px;
+    background: url("assets/otos-brain-icon.png") center/contain no-repeat;
+    filter: drop-shadow(0 0 6px rgba(242,108,13,.55));
+  }
+
+  /* Pulled sentence — no quote marks, generous margin */
+  .pull-quiet {
+    font-size: 30px;
+    font-weight: 1000;
+    letter-spacing: -0.038em;
+    line-height: 1.08;
+    color: var(--otos-orange);
+    margin: 28px 0;
+    max-width: 600px;
+  }
+  .dark .pull-quiet { color: var(--otos-orange-2); }
+
+  /* ===== Header + footer ===== */
+  .page-head {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10.5px; font-weight: 800; letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--otos-paper-muted);
+    margin-bottom: 28px;
+  }
+  .dark .page-head { color: var(--otos-muted); }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-weight: 900; letter-spacing: .04em; text-transform: none;
+    font-size: 12px;
+    color: var(--otos-paper-ink);
+  }
+  .dark .brand { color: var(--otos-ink); }
+  .brand::before {
+    content: "";
+    width: 22px; height: 17px;
+    background: url("assets/otos-brain-icon.png") center/contain no-repeat;
+    filter: drop-shadow(0 0 8px rgba(242,108,13,.6));
+  }
+
+  .page-foot {
+    position: absolute;
+    left: 22mm; right: 22mm; bottom: 12mm;
+    display: flex; justify-content: space-between;
+    font-size: 9.5px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--otos-paper-muted);
+    opacity: .8;
+  }
+  .dark .page-foot { color: var(--otos-muted); }
+
+  /* ===== Cover ===== */
+  .page.cover { display: flex; flex-direction: column; padding: 0 !important; }
+  .cover-bg {
+    position: absolute; inset: 0;
+    background: url("assets/partner-img/champion-cover.png") center/cover no-repeat;
+    opacity: .5;
+    filter: saturate(.82) contrast(.98);
+  }
+  .cover-overlay {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 72rem 44rem at 98% 2%, rgba(255,138,31,.34), transparent 56%),
+      linear-gradient(180deg, rgba(15,12,8,.8) 0%, rgba(15,12,8,.6) 50%, rgba(15,12,8,.9) 100%);
+  }
+  .cover-inner {
+    position: relative; z-index: 1;
+    padding: 24mm 22mm;
+    display: flex; flex-direction: column;
+    height: 100%;
+  }
+  .cover-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .cover h1.display { font-size: 84px; line-height: .9; letter-spacing: -0.06em; margin-bottom: 22px; color: var(--otos-ink); }
+  .cover .subtitle {
+    font-size: 22px; font-weight: 600; letter-spacing: -0.015em;
+    line-height: 1.3; color: var(--otos-soft);
+    max-width: 540px;
+    margin-bottom: 30px;
+  }
+  .cover .positioning {
+    font-size: 14.5px; line-height: 1.62; color: var(--otos-muted);
+    max-width: 500px; font-weight: 550;
+    padding: 16px 18px;
+    border-left: 3px solid var(--otos-orange);
+    background: rgba(0,0,0,.25);
+    backdrop-filter: blur(8px);
+  }
+  .cover-foot {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    font-size: 11px; font-weight: 600;
+    color: var(--otos-muted);
+    line-height: 1.55;
+  }
+  .recipient {
+    border-top: 1px solid rgba(255,255,255,.20);
+    padding-top: 10px;
+    font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase;
+    font-weight: 800;
+    color: var(--otos-soft);
+  }
+  .recipient .line {
+    display: inline-block;
+    border-bottom: 1px solid rgba(255,255,255,.36);
+    width: 200px; height: 16px; margin-left: 8px;
+    vertical-align: -3px;
+  }
+
+  /* ===== Story page ===== */
+  .story-body {
+    max-width: 660px;
+  }
+  .story-body p {
+    font-size: 16px;
+    line-height: 1.72;
+    color: var(--otos-paper-ink);
+    font-weight: 550;
+    margin-bottom: 14px;
+  }
+  .closing-line {
+    font-size: 14px; font-weight: 700; color: var(--otos-paper-muted);
+    border-top: 1px solid rgba(70,48,34,.16);
+    padding-top: 14px; margin-top: 14px;
+    max-width: 640px;
+  }
+
+  /* ===== Why a champion page (dark) ===== */
+  .options-list {
+    list-style: none; margin: 18px 0 0; padding: 0;
+  }
+  .options-list li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 9px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--otos-soft);
+  }
+  .options-list li::before {
+    content: "—";
+    position: absolute; left: 0; top: 0;
+    color: var(--otos-orange-2); font-weight: 900;
+  }
+  .callout-quiet {
+    border-radius: 16px;
+    padding: 18px 22px;
+    margin: 22px 0;
+    font-size: 15px; line-height: 1.62;
+    font-weight: 600;
+    background: rgba(242,108,13,.16);
+    border: 1px solid rgba(255,138,31,.5);
+    color: var(--otos-ink);
+  }
+  .cream .callout-quiet {
+    background: rgba(242,108,13,.07);
+    border: 1px solid rgba(242,108,13,.30);
+    color: var(--otos-paper-ink);
+  }
+
+  /* ===== Five support levels (cream) ===== */
+  .levels {
+    display: flex; flex-direction: column; gap: 5px;
+    margin-top: 10px;
+  }
+  .level {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 14px;
+    padding: 11px 16px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.68));
+    border: 1px solid rgba(70,48,34,.14);
+  }
+  .level .num {
+    font-size: 24px; font-weight: 1000; letter-spacing: -0.04em;
+    color: var(--otos-orange); line-height: .9;
+  }
+  .level h4 {
+    font-size: 13.5px; font-weight: 900; letter-spacing: -0.01em;
+    color: var(--otos-paper-ink); margin: 0 0 2px; line-height: 1.18;
+  }
+  .level p {
+    font-size: 13px; line-height: 1.52; color: var(--otos-paper-muted); margin: 0;
+  }
+
+  .not-asking {
+    margin-top: 8px;
+    padding: 10px 16px;
+    border-radius: 14px;
+    background: var(--otos-paper-2);
+    border: 1px solid rgba(70,48,34,.14);
+  }
+  .not-asking h4 {
+    font-size: 10.5px; font-weight: 950; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--otos-orange);
+    margin: 0 0 6px;
+  }
+  .not-asking ul {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px 18px;
+  }
+  .not-asking li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 13px; line-height: 1.5;
+    color: var(--otos-paper-ink); font-weight: 600;
+  }
+  .not-asking li::before {
+    content: "×";
+    position: absolute; left: 3px; top: -2px;
+    font-size: 15px; font-weight: 900;
+    color: var(--otos-red);
+  }
+
+  .protective {
+    margin-top: 7px;
+    font-size: 12.5px; line-height: 1.58;
+    color: var(--otos-paper-muted);
+    font-style: italic;
+    border-left: 3px solid var(--otos-orange);
+    padding: 6px 0 6px 14px;
+  }
+
+  /* ===== Invitation page ===== */
+  .invitation-body { max-width: 640px; }
+  .invitation-body p {
+    font-size: 14.5px; line-height: 1.55;
+    color: var(--otos-paper-ink); font-weight: 550;
+    margin-bottom: 10px;
+  }
+  .meta-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin-top: 12px;
+  }
+  .meta-card {
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: var(--otos-paper-2);
+    border: 1px solid rgba(70,48,34,.14);
+  }
+  .meta-card h4 {
+    font-size: 10.5px; font-weight: 950; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--otos-orange);
+    margin: 0 0 6px;
+  }
+  .meta-card p { font-size: 12.5px; line-height: 1.5; color: var(--otos-paper-muted); margin: 0; }
+
+  .final-cta-cream {
+    margin-top: 12px;
+    padding: 13px 18px;
+    border-radius: 16px;
+    background: linear-gradient(165deg, #2e2419, #20190f);
+    color: var(--otos-paper-2);
+    font-size: 13.5px; line-height: 1.5; font-weight: 600;
+    box-shadow: 0 16px 38px rgba(40,24,8,.24);
+  }
+  .final-cta-cream strong { color: var(--otos-orange-2); }
+
+  .signoff-dean {
+    margin-top: 12px;
+    font-size: 12.5px; line-height: 1.58;
+    color: var(--otos-paper-muted);
+  }
+  .signoff-dean .name {
+    font-size: 15px; font-weight: 900; color: var(--otos-paper-ink);
+    display: block; margin-bottom: 4px;
+    font-style: italic;
+    letter-spacing: -0.01em;
+  }
+
+  /* Imagine-if hero (cream) */
+  .imagine-hero {
+    display: flex; align-items: center; gap: 22px;
+    margin: 22px 0; padding: 22px 26px;
+    border-radius: 18px; background: linear-gradient(165deg, #2e2419, #20190f);
+    box-shadow: 0 18px 44px rgba(40,24,8,.26);
+  }
+  .imagine-hero .big {
+    font-size: 66px; font-weight: 1000; letter-spacing: -0.05em; line-height: .88;
+    color: var(--otos-orange-2); flex-shrink: 0;
+  }
+  .imagine-hero .cap { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,.82); font-weight: 600; }
+  .imagine-hero .src { display: block; margin-top: 9px; font-size: 9.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--otos-orange-2); }
+
+  .hope-banner {
+    margin: 14px 0 0;
+    border-radius: 16px; overflow: hidden; position: relative;
+    height: 156px;
+    border: 1px solid rgba(70,48,34,.16);
+    box-shadow: 0 16px 36px rgba(64,42,22,.14);
+  }
+  .hope-banner img { width:100%; height:100%; object-fit: cover; object-position: center 30%; }
+  .hope-banner::after { content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(20,12,6,.66) 0%, rgba(20,12,6,.25) 40%, rgba(20,12,6,0) 68%); }
+  .hope-banner .cap { position:absolute; left:18px; bottom:13px; right:42%; z-index:1; }
+  .hope-banner .cap .k { font-size:9.5px; font-weight:950; letter-spacing:.22em; text-transform:uppercase; color: var(--otos-orange-2); display:block; margin-bottom:4px; }
+  .hope-banner .cap .t { font-size:17px; font-weight:1000; letter-spacing:-0.025em; line-height:1.12; color:#fff; }
+
+  /* Print refinements */
+  @media print {
+    html, body { background: #fff; }
+    .doc { padding: 0; gap: 0; }
+    .page { box-shadow: none; margin: 0; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+
+  /* ===== OTOS shared spine: Team of Services ===== */
+  .tos-spine { margin-top: 16px; border-radius: 13px; padding: 12px 15px; background: var(--otos-paper-2); border: 1px solid rgba(70,48,34,.16); border-left: 3px solid var(--otos-orange); }
+  .tos-spine .tos-label { font-size: 8.5px; font-weight: 950; letter-spacing: .18em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 9px; display: flex; align-items: center; gap: 7px; }
+  .tos-spine .tos-label::before { content: ""; width: 13px; height: 11px; background: url("assets/otos-brain-icon.png") center/contain no-repeat; }
+  .tos-track { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .tos-node { font-size: 9px; font-weight: 800; color: var(--otos-paper-muted); background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.62)); border: 1px solid rgba(70,48,34,.15); border-radius: 999px; padding: 4px 9px; white-space: nowrap; }
+  .tos-node.on { background: rgba(242,108,13,.13); border-color: rgba(242,108,13,.5); color: var(--otos-orange); font-weight: 950; }
+  .tos-track .sep { color: rgba(242,108,13,.5); font-weight: 900; font-size: 10px; }
+
+  /* ===== Full-bleed impact break ===== */
+  .page.fbreak { padding: 0; position: relative; display: block; overflow: hidden; }
+  .page.fbreak .fb-img { position: absolute !important; inset: 0 !important; width: 100%; height: 100%; object-fit: cover; }
+  .page.fbreak .fb-scrim { position: absolute !important; inset: 0 !important; background: linear-gradient(180deg, rgba(8,7,6,.42) 0%, rgba(8,7,6,.16) 36%, rgba(8,7,6,.62) 76%, rgba(8,7,6,.9) 100%); }
+  .page.fbreak .fb-inner { position: absolute !important; inset: 0 !important; padding: 22mm; display: flex; flex-direction: column; justify-content: flex-end; z-index: 2; }
+  .page.fbreak .fb-kick { font-size: 10px; font-weight: 950; letter-spacing: .26em; text-transform: uppercase; color: var(--otos-orange-2, #ff8a1f); margin-bottom: 16px; }
+  .page.fbreak .fb-line { font-size: 40px; font-weight: 1000; letter-spacing: -0.03em; line-height: 1.04; color: #fff; max-width: 18ch; margin: 0; }
+  .page.fbreak .fb-line .o { color: var(--otos-orange-2, #ff8a1f); }
+  .page.fbreak .fb-sub { margin-top: 16px; font-size: 13px; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,.82); max-width: 48ch; }
+  .page.fbreak .fb-foot { position: absolute; left: 22mm; right: 22mm; bottom: 13mm; display: flex; justify-content: space-between; font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); z-index: 3; }
+</style>
+<link rel="stylesheet" href="assets/otos-brief.css" />
+</head>
+<body>
+<a href="index.html" id="hubBack" style="position:fixed;top:14px;left:14px;z-index:99999;font:700 12px system-ui,-apple-system,sans-serif;color:#b5651d;background:rgba(255,255,255,.82);border:1px solid rgba(181,101,29,.5);padding:8px 15px;border-radius:999px;text-decoration:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.22)">← Hub</a>
+<div class="doc">
+
+  <!-- ============================================== -->
+  <!-- PAGE 1 — COVER -->
+  <!-- ============================================== -->
+  <section class="page dark cover" data-screen-label="01 · Cover">
+    <div class="cover-bg"></div>
+    <div class="cover-overlay"></div>
+    <div class="cover-inner">
+      <div class="page-head">
+        <span class="brand">OTOS</span>
+        <span>Out The Other Side</span>
+      </div>
+
+      <div class="cover-body">
+        <span class="kicker">Private invitation · LinkedIn / direct-message attachment · Not for public circulation</span>
+        <h1 class="display" style="font-size:60px;">When ADHD is left waiting,<br/>addiction steps in.</h1>
+        <div class="subtitle">And too few people are naming the overlap.<br/>Out The Other Side.</div>
+        <div class="positioning">
+          A private invitation to a quiet conversation — not a request for blind endorsement. Out The Other Side™ is the mission. OTOS Continuity™ is how it starts to show up in the real world: a careful, non-clinical continuity layer for the gap between ADHD, addiction, recovery and the services that already exist. This document is designed to sit behind a short LinkedIn or direct message — not a press request, not a campaign pack and not an ask to use your name.
+        </div>
+      </div>
+
+      <div class="cover-foot">
+        <div>
+          <div class="recipient">For <span class="line"></span></div>
+        </div>
+        <div style="text-align: right;">
+          From<br/>
+          <strong style="color: var(--otos-ink); font-weight: 900; font-size: 13px;">Dean Butler · Founder</strong><br/>
+          OTOS Digital Ltd — Out The Other Side™<br/>
+          OTOS Digital Ltd · Co. No. 17084455<br/>
+          <em style="opacity:.7;">Please do not forward without permission.</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 2 — THE HUMAN STORY (cream) -->
+  <!-- ============================================== -->
+  <section class="page cream" data-screen-label="02 · The story">
+    <div class="page-head">
+      <span class="brand">OTOS</span>
+      <span>The story · 02 / 08</span>
+    </div>
+
+    <span class="kicker">Why this exists</span>
+    <h2 class="title">The chaos wasn't<br/>a character defect.</h2>
+
+    <div class="story-body">
+      <p>Before OTOS had a name, I was the person it is being built for.</p>
+
+      <p>For most of my adult life I was stuck in the overlap between ADHD, addiction, self-medication and a long, quiet drift through services that were not designed to hold me. I was on lists. I was discharged between services. I was visible in the wrong rooms and invisible in the right ones. I lost a lot. People who love me lost a lot.</p>
+
+      <p>What changed wasn't willpower. What changed was that ADHD was finally properly identified and treated. That moment did not fix everything. It made everything else possible. I did not recover by waiting my turn.</p>
+    </div>
+
+    <div class="pull-quiet">The continuity I needed didn't exist. So I am building it.</div>
+
+    <div class="story-body">
+      <p>OTOS exists because the gap I fell through is still there. OTOS Continuity is the first piece of it — a quiet, non-clinical layer designed to hold the line between appointments, between services, between waiting and being held.</p>
+    </div>
+
+    <div class="closing-line">
+      That is the whole reason for this letter — and for the conversation it is asking for.
+    </div>
+
+    <div class="page-foot">
+      <span>Private invitation · OTOS Digital Ltd · Co. No. 17084455</span>
+      <span>Page 02 / 08</span>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 3 — WHY A CHAMPION (dark) -->
+  <!-- ============================================== -->
+  <section class="page cream" data-screen-label="03 · Why a champion">
+    <div class="page-head">
+      <span class="brand">OTOS</span>
+      <span>Why a champion might matter · 03 / 08</span>
+    </div>
+
+    <span class="kicker">Why a champion might matter</span>
+    <h2 class="title" style="color: var(--otos-paper-ink);">The ADHD/addiction overlap<br/>is still being missed.</h2>
+
+    <p style="color: var(--otos-paper-muted); max-width: 660px; font-size: 15px;">
+      ADHD has more cultural air than it used to. Addiction has its own public story. But the overlap — where unrecognised or under-treated ADHD drives self-medication, then addiction, then crisis — is still mostly invisible. The people inside that overlap rarely get to tell the story while they're still in it. The people outside it rarely tell it accurately. Known to services is not the same as held between services.
+    </p>
+
+    <p style="color: var(--otos-paper-muted); max-width: 660px; font-size: 15px;">
+      This is the gap a public champion can help close — not by carrying a logo, but by helping the wider story be told honestly, with the right boundaries, at the right moment.
+    </p>
+
+    <p style="color: var(--otos-paper-muted); max-width: 660px; font-size: 15px;">
+      That is not a small thing to ask of anyone. So I am asking it carefully.
+    </p>
+
+    <h3 class="sub" style="margin-top: 22px; color: var(--otos-paper-ink);">What &ldquo;champion&rdquo; can mean here.</h3>
+    <ul class="options-list" style="max-width: 700px;">
+      <li>It can mean <strong style="color: var(--otos-paper-ink); font-weight: 800;">private feedback</strong> on the work, full stop.</li>
+      <li>It can mean <strong style="color: var(--otos-paper-ink); font-weight: 800;">an introduction</strong> to one person who would matter.</li>
+      <li>It can mean <strong style="color: var(--otos-paper-ink); font-weight: 800;">an advisory conversation</strong>, off the record, as the work develops.</li>
+      <li>It can mean <strong style="color: var(--otos-paper-ink); font-weight: 800;">helping decide whether this ADHD/addiction overlap deserves wider public acknowledgement.</strong></li>
+      <li>It can mean, later and only if it ever feels right, a piece of <strong style="color: var(--otos-paper-ink); font-weight: 800;">public support</strong> — on terms you set, on a moment you choose.</li>
+      <li>It can mean <strong style="color: var(--otos-paper-ink); font-weight: 800;">alignment with a foundation, charity or platform you already lead</strong>, if that is relevant.</li>
+    </ul>
+
+    <div class="callout-quiet">
+      This is <em style="font-style: normal; font-weight: 900; color: var(--otos-orange-2);">not</em> a request for blind endorsement. I am not asking you to publicly back a project you have only just heard of. I am asking for the start of a careful conversation. The public story supports the work; partner teams still make every clinical decision.
+    </div>
+
+    <div class="page-foot">
+      <span>Private invitation · OTOS Digital Ltd · Co. No. 17084455</span>
+      <span>Page 03 / 08</span>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 4 — IMPACT BREAK (out the other side) -->
+  <!-- ============================================== -->
+  <section class="page fbreak" data-screen-label="04 · Out the other side">
+    <img class="fb-img" src="assets/partner-img/D-GROUP-closing.png" alt="A varied group of ordinary people arriving together in warm light — everyone this could reach" />
+    <div class="fb-scrim"></div>
+    <div class="fb-inner">
+      <div class="fb-kick">Why your voice could matter</div>
+      <p class="fb-line">One quiet conversation <span class="o">could switch this on.</span></p>
+      <p class="fb-sub">Not a campaign. Not your name in lights. Just the right person, at the right moment, helping an idea that could reach thousands of people find its footing — before another person is met by a system that sees the fire but never asks what is burning.</p>
+    </div>
+    <div class="fb-foot">
+      <span>Private invitation · OTOS Digital Ltd · Co. No. 17084455</span>
+      <span>Page 04 / 08</span>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 4 — IMAGINE IF (cream) -->
+  <!-- ============================================== -->
+  <section class="page cream" data-screen-label="05 · Imagine if">
+    <div class="page-head">
+      <span class="brand">OTOS</span>
+      <span>Imagine if · 05 / 08</span>
+    </div>
+
+    <span class="kicker">Imagine if</span>
+    <h2 class="title">If we get this right,<br/>the difference could be enormous.</h2>
+
+    <p style="max-width: 640px; font-size: 15px; color: var(--otos-paper-ink); font-weight: 700;">Fewer people cycling through crisis before anyone asks what is driving it.</p>
+
+    <p style="max-width: 640px; font-size: 15px; color: var(--otos-paper-ink);">
+      You may have touched these worlds — ADHD, addiction, recovery, mental health — through someone you love, a cause you have stood beside, your own life or the community you speak to. So you will understand straight away why this matters.
+    </p>
+
+    <div class="imagine-hero">
+      <div class="big">61.3%</div>
+      <div class="cap">
+        improvement in addictive-disorder outcomes at six months, when ADHD is diagnosed and properly treated alongside the addiction.
+        <span class="src">START study · France, 2025</span>
+      </div>
+    </div>
+
+    <p style="max-width: 640px; font-size: 15px; color: var(--otos-paper-ink);">
+      Imagine even part of that holding for the people currently lost in the gap. Fewer relapses. Fewer crisis nights in A&amp;E. Fewer families going through what mine did. The NHS's own ADHD Taskforce called much of this human and economic cost <strong style="color: var(--otos-paper-ink); font-weight: 800;">avoidable</strong> — when the right support arrives in time.
+    </p>
+
+    <div class="callout-quiet">
+      That is the prize a champion helps make visible: not a product, but the chance that the next person does not have to fight as hard as I did to get out the other side.
+    </div>
+
+
+    <div class="tos-spine">
+      <div class="tos-label">One team of services · a champion helps the story; partner teams make the decisions</div>
+      <div class="tos-track">
+        <span class="tos-node">CPFT ADHD Team</span>
+        <span class="tos-node">CGL &amp; CRS</span>
+        <span class="tos-node">Alcohol Liaison</span>
+        <span class="tos-node">RCE</span>
+        <span class="tos-node">Mind / WorkWell</span>
+        <span class="tos-node">Dr Claire / LAMP</span>
+        <span class="tos-node">Public Health</span>
+      </div>
+    </div>
+
+    <div class="protective" style="margin-top: 14px;">
+      These figures are published research, not outcomes OTOS has proven. They describe what becomes possible when ADHD is treated upstream — which is exactly the moment OTOS Continuity is being built to help hold.
+    </div>
+
+    <div class="page-foot">
+      <span>Private invitation · OTOS Digital Ltd · Co. No. 17084455</span>
+      <span>Page 05 / 08</span>
+    </div>
+  </section>
+
+  <!-- PASS 9 · diagram page (placement per PDFs-Diagrams authority) -->
+  <section class="page" data-screen-label="05a · Today vs with OTOS" style="background:#faf6ee; color:#241d16; display:flex; flex-direction:column; padding:15mm 17mm 11mm; position:relative; overflow:hidden;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid rgba(70,48,34,.28); padding-bottom:8px; font-size:9.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:rgba(70,48,34,.62);"><span>OTOS Continuity™</span><span>Champion brief · diagram</span></div>
+    <div style="margin-top:22px;">
+      <span style="display:block; font-size:10px; font-weight:900; letter-spacing:.26em; text-transform:uppercase; color:#a8430a; margin-bottom:9px;">The model, drawn simply</span>
+      <h1 style="margin:0; font-size:27px; font-weight:900; letter-spacing:-.03em; line-height:1.06; color:#241d16; max-width:26ch;">Today, and with the thread held.</h1>
+    </div>
+    <div style="flex:1 1 auto; display:flex; align-items:center; justify-content:center; min-height:0; margin:16px 0;">
+      <img src="assets/diagrams/01_today_vs_with_otos.jpg" alt="Today: separate services around one person with no shared infrastructure. With OTOS: a shared continuity management layer holding one individual tokenised thread, partner interfaces with authorised logins, separate records kept." style="max-width:100%; max-height:600px; object-fit:contain;" loading="lazy" decoding="async" />
+    </div>
+    <div style="border-top:2px solid #241d16; padding-top:10px;">
+      <p style="margin:0 0 5px; font-size:13.5px; font-weight:900; line-height:1.4; color:#241d16; max-width:70ch;">Shared thread, not shared clinical record.</p>
+      <p style="margin:0; font-size:11.5px; line-height:1.55; color:#6d6155; max-width:76ch;">One person · one continuity thread · separate service records · authorised partner views. The Layer is shared; the Thread is individual. OTOS surfaces continuity signals; clinical teams make clinical decisions.</p>
+      <p style="margin:10px 0 0; font-size:10.5px; font-style:italic; color:rgba(109,97,85,.85);">Impression-level view — detailed maps and operating diagrams follow under NDA.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================== -->
+  <!-- PAGE 5 — WHAT WE ARE ASKING (cream) -->
+  <!-- ============================================== -->
+  <section class="page cream" data-screen-label="06 · The invitation">
+    <div class="page-head">
+      <span class="brand">OTOS</span>
+      <span>The invitation · 06 / 08</span>
+    </div>
+
+    <span class="kicker">The invitation</span>
+    <h2 class="title" style="margin-bottom: 10px;">Five ways this could go,<br/>in your own time.</h2>
+
+    <p style="max-width: 640px; font-size: 14px; margin-bottom: 8px;">
+      There is no expected answer to this brief. There is no &ldquo;right&rdquo; level of involvement. The five levels below are a menu, not a ladder. Any of them — including the first — would matter.
+    </p>
+
+    <div class="levels">
+      <div class="level">
+        <div class="num">01</div>
+        <div>
+          <h4>Private feedback.</h4>
+          <p>Read the brief. Tell us, privately, what lands and what doesn't. That alone is valuable.</p>
+        </div>
+      </div>
+      <div class="level">
+        <div class="num">02</div>
+        <div>
+          <h4>An introduction.</h4>
+          <p>If there is a single person in your circle this would matter to — a clinician, a foundation lead, an advocate, a peer, an ADHD voice, a recovery voice — a careful introduction from you would open a door I cannot open alone.</p>
+        </div>
+      </div>
+      <div class="level">
+        <div class="num">03</div>
+        <div>
+          <h4>An advisory conversation.</h4>
+          <p>A small number of off-the-record conversations as the work develops. No public association. No commitment.</p>
+        </div>
+      </div>
+      <div class="level">
+        <div class="num">04</div>
+        <div>
+          <h4>Public acknowledgement, only if and when appropriate.</h4>
+          <p>Much later, and only if the work earns it on its own terms, a piece of public acknowledgement or support — on a moment and in a form you would choose entirely.</p>
+        </div>
+      </div>
+      <div class="level">
+        <div class="num">05</div>
+        <div>
+          <h4>Foundation or charity alignment.</h4>
+          <p>If you already lead, fund or advise a foundation, charity or platform whose mission this sits inside, alignment at that level could be explored quietly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="not-asking">
+      <h4>What we are not asking for</h4>
+      <ul>
+        <li>A name to use.</li>
+        <li>A quote I can publish.</li>
+        <li>A social post.</li>
+        <li>A rushed endorsement of early-stage work.</li>
+        <li>Public association OTOS has not yet earned.</li>
+        <li>A reply that commits you to anything.</li>
+      </ul>
+    </div>
+
+    <div class="protective">
+      Your reputation, your lived experience and your consent are the constants here. Nothing in this brief is shared beyond a small private circle. Nothing about you would be referenced publicly without your written agreement, on a moment you choose. If at any point this is not for you, a single line back saying so is all that is needed.
+    </div>
+
+    <div class="page-foot">
+      <span>Private invitation · OTOS Digital Ltd · Co. No. 17084455</span>
+      <span>Page 06 / 08</span>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 5 — THE INVITATION (cream) -->
+  <!-- ============================================== -->
+  <section class="page cream" data-screen-label="07 · What I'd love next">
+    <div class="page-head">
+      <span class="brand">OTOS</span>
+      <span>What I'd love next · 07 / 08</span>
+    </div>
+
+    <span class="kicker">What I'd love next</span>
+    <h2 class="title">A quiet conversation.<br/>That is the whole ask.</h2>
+
+    <div class="invitation-body">
+      <p>If anything in this brief stayed with you, what I'd love is a single conversation. Thirty minutes. Off the record. No deck, no media, no team. Just you and me, with whoever you want in the room with you.</p>
+
+      <p>If after that conversation the answer is &ldquo;thank you, but no&rdquo;, that is a complete answer. If the answer is &ldquo;tell me when there is more to see&rdquo;, that is also a complete answer. If the answer is &ldquo;let me think about how I could help&rdquo;, we will design what that means together, slowly, on your terms.</p>
+
+      <p>The thing I will not do is treat your reply as the start of a chase. That is not what this is.</p>
+    </div>
+
+    <div class="hope-banner">
+      <img src="assets/partner-img/17-seen-safely.png" alt="A person finally understood and steadier — what being held actually looks like." />
+      <div class="cap">
+        <span class="k">Out the other side</span>
+        <div class="t">What being held actually looks like.</div>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <span>Private invitation · OTOS Digital Ltd · Co. No. 17084455</span>
+      <span>Page 07 / 08</span>
+    </div>
+  </section>
+
+  <!-- PASS 9 · diagram page (placement per PDFs-Diagrams authority) -->
+  <section class="page" data-screen-label="07a · The build, at a glance" style="background:#faf6ee; color:#241d16; display:flex; flex-direction:column; padding:15mm 17mm 11mm; position:relative; overflow:hidden;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid rgba(70,48,34,.28); padding-bottom:8px; font-size:9.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:rgba(70,48,34,.62);"><span>OTOS Continuity™</span><span>Champion brief · product impression</span></div>
+    <div style="margin-top:22px;">
+      <span style="display:block; font-size:10px; font-weight:900; letter-spacing:.26em; text-transform:uppercase; color:#a8430a; margin-bottom:9px;">The build, at a glance</span>
+      <h1 style="margin:0; font-size:27px; font-weight:900; letter-spacing:-.03em; line-height:1.06; color:#241d16; max-width:26ch;">What the build puts in people's hands.</h1>
+    </div>
+    <div style="flex:1 1 auto; display:flex; align-items:center; justify-content:center; min-height:0; margin:16px 0;">
+      <img src="assets/diagrams/05_device_mockup_family.jpg" alt="Illustrative interface views of the build: role-based dashboard, participant thread view, touchpoint log, handoff receipt, drift and silence queue, human review, evidence export. Demo data only." style="max-width:100%; max-height:600px; object-fit:contain;" loading="lazy" decoding="async" />
+    </div>
+    <div style="border-top:2px solid #241d16; padding-top:10px;">
+      <p style="margin:0 0 5px; font-size:13.5px; font-weight:900; line-height:1.4; color:#241d16; max-width:70ch;">Functionality in the build. Not live outcomes.</p>
+      <p style="margin:0; font-size:11.5px; line-height:1.55; color:#6d6155; max-width:76ch;">Illustrative interface views with demo data only — no performance claims. Micro check-ins are partner-led, pre-written prompts supported by OTOS; human review sits behind every signal.</p>
+      <p style="margin:10px 0 0; font-size:10.5px; font-style:italic; color:rgba(109,97,85,.85);">Impression-level view — detailed maps and operating diagrams follow under NDA.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================== -->
+  <!-- PAGE 7 — THE ASK (canonical closing template) -->
+  <!-- ============================================== -->
+  <section class="page cream closing" data-screen-label="08 · The ask">
+    <div class="page-head">
+      <span class="who brand">OTOS</span>
+      <span>The ask · 08 / 08</span>
+    </div>
+
+    <span class="kicker">A private invitation</span>
+    <h1 class="title">A one-line reply is the whole ask.</h1>
+
+    <p>That is genuinely all this comes down to — no deck, no chase, no public anything. Just one private conversation, if and only if you want it.</p>
+
+    <div class="meta-grid">
+      <div class="meta-card">
+        <h4>Why now</h4>
+        <p>The gap between ADHD recognition and addiction recovery is wider than people think, and lives are lost inside it now. OTOS is built carefully, with clinical boundaries respected. The underlying pattern, <strong>NIA — Neurologically Informed Addiction</strong> — is proposed terminology, not a recognised diagnosis, and I am opening it to proper scrutiny rather than pretending it is already settled. The earliest conversations shape what this becomes. That is why this is being sent to people who may actually understand the overlap before the wider world does.</p>
+      </div>
+      <div class="meta-card">
+        <h4>Confidentiality</h4>
+        <p>This brief is private. It will not be circulated, referenced or attributed without your written agreement. Anything you tell me afterwards is yours to decide what we do with.</p>
+      </div>
+    </div>
+
+    <div class="ask-box">
+      <div class="label">The ask</div>
+      <p>If a 30-minute private conversation feels possible, a one-line reply with a couple of windows that work is all I need. If not, a one-line &ldquo;not for me&rdquo; is equally welcome and respected. Nothing public ever happens without your separate, written consent.</p>
+    </div>
+
+    <div class="boundary-box">
+      <div class="bhead">Boundary, named</div>
+      <p><strong>A private invitation, not a request for endorsement.</strong> OTOS is non-clinical: it surfaces signals; partner teams make the decisions. NIA is proposed terminology, not a recognised diagnosis. Nothing public happens without your separate, written consent.</p>
+    </div>
+
+    <div class="signoff">
+      <span class="name">With real thanks, Dean.</span>
+      Dean Butler · Founder, OTOS Digital Ltd — Out The Other Side™<br/>
+      dean@otos.life · 07585 899 235<br/>
+      OTOS Digital Ltd · Company No. 17084455
+    </div>
+
+    <div class="page-foot">
+      <span>Private invitation · OTOS Digital Ltd · Co. No. 17084455</span>
+      <span>Page 08 / 08</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

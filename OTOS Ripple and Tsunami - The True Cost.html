@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<title>OTOS — The Ripple &amp; The Tsunami</title>
+<meta name="viewport" content="width=794" />
+<link rel="stylesheet" href="assets/colors_and_type.css" />
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  a { color: var(--otos-orange); text-decoration: none; }
+  a:hover { color: var(--otos-orange-2); }
+
+  /* ── Ripple emblem + tiers (from the Public Health cost case component set) ── */
+  .ripple-top { display: grid; grid-template-columns: 168px 1fr; gap: 22px; align-items: center; margin: 4px 0 18px; }
+  .ripple-emblem { position: relative; width: 160px; height: 150px; }
+  .ripple-emblem .ring { position: absolute; left: 50%; top: 58%; transform: translate(-50%,-50%); border-radius: 50%; border: 2px solid var(--otos-orange-2); }
+  .ripple-emblem .r1 { width: 150px; height: 150px; opacity: .16; }
+  .ripple-emblem .r2 { width: 112px; height: 112px; opacity: .28; }
+  .ripple-emblem .r3 { width: 74px; height: 74px; opacity: .5; }
+  .ripple-emblem .dot { position: absolute; left: 50%; top: 58%; transform: translate(-50%,-50%); width: 30px; height: 30px; border-radius: 50%; background: var(--otos-orange); box-shadow: 0 0 24px rgba(242,108,13,.8); }
+  .ripple-head .big { font-size: 46px; font-weight: 1000; letter-spacing: -0.05em; line-height: .94; color: var(--otos-orange-2); }
+  .ripple-head .cap { font-size: 13px; font-weight: 700; color: var(--otos-soft); margin-top: 4px; line-height: 1.4; }
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .tier { border-radius: var(--bk-radius-sm); padding: 13px 14px; background: rgba(19,27,38,.7); border: 1px solid rgba(255,255,255,.14); position: relative; }
+  .tier .tn { font-size: 9px; font-weight: 950; letter-spacing: .14em; text-transform: uppercase; color: var(--otos-orange-2); margin-bottom: 5px; }
+  .tier h3 { font-size: 13.5px; font-weight: 1000; letter-spacing: -0.01em; color: var(--otos-ink); margin: 0 0 4px; line-height: 1.12; }
+  .tier .amt { font-size: 19px; font-weight: 1000; letter-spacing: -0.03em; color: var(--otos-ink); margin-bottom: 8px; }
+  .tier ul { list-style: none; margin: 0; padding: 0; }
+  .tier li { font-size: 10.5px; line-height: 1.42; color: var(--otos-soft); padding-left: 11px; position: relative; margin-bottom: 3px; }
+  .tier li::before { content: "·"; position: absolute; left: 2px; color: var(--otos-orange-2); font-weight: 900; }
+  .tier .note { margin-top: 7px; font-size: 9px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--otos-muted); }
+  .vs-band { margin-top: 14px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: center; border-radius: var(--bk-radius-sm); padding: 14px 18px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); }
+  .vs-band .col { text-align: center; }
+  .vs-band .lbl { font-size: 9.5px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: var(--otos-muted); margin-bottom: 5px; }
+  .vs-band .num { font-size: 26px; font-weight: 1000; letter-spacing: -0.04em; line-height: 1; }
+  .vs-band .num.bench { color: var(--otos-soft); }
+  .vs-band .num.full { color: var(--otos-orange-2); }
+  .vs-band .sub { font-size: 9.5px; color: var(--otos-muted); margin-top: 5px; line-height: 1.35; font-weight: 600; }
+  .vs-band .vs { width: 40px; height: 40px; border-radius: 50%; background: var(--otos-orange); color: #fff; font-size: 12px; font-weight: 1000; display: flex; align-items: center; justify-content: center; }
+  .nation-strip { margin-top: 12px; border-radius: var(--bk-radius-sm); padding: 14px 20px; background: linear-gradient(100deg, rgba(242,108,13,.16), rgba(242,108,13,.05)); border: 1.5px solid rgba(242,108,13,.5); font-size: 16px; font-weight: 800; letter-spacing: -0.018em; color: var(--otos-ink); line-height: 1.4; }
+  .nation-strip strong { color: var(--otos-orange-2); font-weight: 1000; }
+
+  /* ── Detailed cost ledger (tier deep-dive pages) ── */
+  .ledger { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 12px; border-radius: var(--bk-radius-sm); overflow: hidden; border: 1px solid rgba(70,48,34,.16); }
+  .ledger th { text-align: left; font-size: 9px; font-weight: 950; letter-spacing: .14em; text-transform: uppercase; color: var(--otos-orange); padding: 9px 13px; background: var(--otos-paper-2); border-bottom: 1px solid rgba(70,48,34,.16); }
+  .ledger td { padding: 8px 13px; font-size: 11px; line-height: 1.4; vertical-align: top; border-bottom: 1px solid rgba(70,48,34,.1); color: var(--otos-paper-muted); }
+  .ledger tr:last-child td { border-bottom: none; }
+  .ledger td.item { font-weight: 700; color: var(--otos-paper-ink); width: 66%; }
+  .ledger td.cost { font-weight: 1000; color: var(--otos-orange); text-align: right; white-space: nowrap; }
+  .ledger tr.sub td { background: var(--otos-paper-2); font-size: 9px; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; color: var(--otos-paper-muted); padding: 6px 13px; }
+  .ledger tr.total td { background: var(--otos-paper-ink); color: #fff; font-weight: 1000; font-size: 12.5px; }
+  .ledger tr.total td.cost { color: var(--otos-orange-2); }
+
+  /* full-bleed image plate */
+  .page.plate { padding: 0; position: relative; display: block; background: #0e0b08; }
+  .page.plate img.bg { position: absolute !important; inset: 0 !important; width: 100%; height: 100%; object-fit: cover; }
+  .page.plate .scrim { position: absolute !important; inset: 0 !important; }
+  .page.plate .inner { position: absolute !important; inset: 0 !important; padding: 22mm; display: flex; flex-direction: column; z-index: 2; }
+  .page.plate .kick { font-size: 10px; font-weight: 950; letter-spacing: .26em; text-transform: uppercase; color: var(--otos-orange-2); margin-bottom: 14px; }
+  .page.plate h1.big { font-size: 40px; font-weight: 1000; letter-spacing: -.03em; line-height: 1.04; color: #fff; max-width: 20ch; margin: 0; }
+  .page.plate h1.big .o { color: var(--otos-orange-2); }
+  .page.plate .sub { margin-top: 16px; font-size: 13.5px; font-weight: 600; line-height: 1.55; color: rgba(255,255,255,.86); max-width: 50ch; }
+  .page.plate .foot { position: absolute; left: 22mm; right: 22mm; bottom: 13mm; display: flex; justify-content: space-between; font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); z-index: 3; }
+
+  /* data plate (navy infographic) */
+  .page.datafig { padding: 13mm 15mm 10mm; display: flex; flex-direction: column; background: #faf6ee; }
+  .page.datafig .fig-wrap { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; min-height: 0; margin: 8px 0; }
+  .page.datafig img { max-width: 100%; max-height: 940px; object-fit: contain; border-radius: 8px; box-shadow: 0 14px 34px rgba(64,42,22,.14); }
+
+  /* founder pull */
+  .anchor { border-left: 3px solid var(--otos-orange); padding: 4px 0 4px 18px; margin: 16px 0; }
+  .anchor .q { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 19px; line-height: 1.4; color: #fff; }
+  .anchor .a { font-size: 12px; font-weight: 700; color: var(--otos-soft); margin-top: 8px; }
+
+  .isnt-box { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0 0; }
+  .isnt-col { border-radius:12px; padding:13px 16px; background:var(--otos-paper-2); border:1px solid rgba(70,48,34,.14); }
+  .isnt-col .h { font-size:10px; font-weight:950; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .isnt-col.isnot .h { color:var(--otos-red); } .isnt-col.is .h { color:var(--otos-green); }
+  .isnt-col ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+  .isnt-col li { font-size:11.5px; line-height:1.4; color:var(--otos-paper-muted); font-weight:600; display:flex; gap:8px; align-items:flex-start; }
+  .isnt-col li .b { flex-shrink:0; font-weight:900; font-size:12px; }
+  .isnt-col.isnot li .b, .isnt-col.isnot .h .b { color:var(--otos-red); }
+  .isnt-col.is li .b, .isnt-col.is .h .b { color:var(--otos-green); }
+
+  @media print {
+    html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; }
+    .doc { gap: 0 !important; padding: 0 !important; }
+    .page { margin: 0 !important; box-shadow: none !important; width: 210mm !important; height: 297mm !important; border-radius: 0 !important; }
+    .page.cover-v2, .page.plate, .page.dark, .page.datafig { width: 210mm !important; height: 297mm !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+</style>
+<link rel="stylesheet" href="assets/otos-brief.css" />
+<link rel="stylesheet" href="assets/az-nia-v2.css" />
+</head>
+<body>
+<a href="index.html" id="hubBack" style="position:fixed;top:14px;left:14px;z-index:99999;font:700 12px system-ui,-apple-system,sans-serif;color:#b5651d;background:rgba(255,255,255,.82);border:1px solid rgba(181,101,29,.5);padding:8px 15px;border-radius:999px;text-decoration:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.22)">← Hub</a>
+<div class="doc">
+
+  <!-- PAGE 1 — COVER · the wave of people; title set into the dark sky above it -->
+  <section class="page" data-screen-label="01 · Cover" style="position:relative; padding:0; overflow:hidden; background:#0a0a0c;">
+    <img src="assets/support-img/tsunami-wave-people.png" alt="A colossal wave made entirely of people, curling out of a doorway where a small crowd stands waiting, breaking onto a row of lit public services — hospital, school, police, courts, library, social services — with a single amber continuity thread running along the ground" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(1.02);" />
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,8,10,.68) 0%, rgba(8,8,10,.3) 32%, rgba(8,8,10,0) 52%, rgba(8,8,10,.28) 100%);"></div>
+    <div style="position:absolute; inset:0; padding:19mm 20mm 14mm; display:flex; flex-direction:column; z-index:2;">
+      <div style="display:flex; justify-content:space-between; font-size:9.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.6);"><span>OTOS Continuity</span><span>Support document · The cost of the gap</span></div>
+      <div style="margin-top:12mm; max-width:16ch;">
+        <h1 style="margin:0; font-size:59px; font-weight:1000; letter-spacing:-.045em; line-height:.94; color:#fff; text-shadow:0 2px 30px rgba(0,0,0,.55);">The ripple<br/>effect<br/><span style="color:#ff9c3f;">and the<br/>tsunami.</span></h1>
+      </div>
+      <p style="margin:15px 0 0; max-width:31ch; font-size:22.5px; line-height:1.4; font-weight:600; color:rgba(255,255,255,.88); text-shadow:0 1px 18px rgba(0,0,0,.6);">One untreated life is a stone dropped in still water. The rings never stop — they just move to budgets that cannot see the cause.</p>
+      <div style="margin-top:auto; display:flex; flex-direction:column; gap:9px;">
+        <div style="font-size:11px; font-weight:800; letter-spacing:.02em; color:#FFFFFF;">Dean Butler — Founder, OTOS Continuity<span style="font-weight:600; color:#FFFFFF9E;">  ·  what one case costs now, and the wave we are building for the decade ahead</span></div>
+        <p style="margin:0; max-width:78ch; font-size:8.5px; line-height:1.5; font-weight:600; color:#FFFFFF94;">All figures are a full-ripple cost model built from published unit costs and cross-budget assumptions — a way of seeing the whole burden, not a guaranteed per-case invoice. Overlap-adjusted figures must be validated locally. The tsunami is a strategic risk forecast and service-design argument, not a clinical claim about any individual. NIA is proposed founder-originated terminology for a working clinical pattern, not a recognised diagnosis or official pathway. OTOS is non-clinical; it surfaces signals, partner teams make every decision.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 — THE STONE IS A PERSON (founder tie-in) -->
+  <section class="page dark" data-screen-label="02 · The stone is a person">
+    <div class="page-head"><span class="who">Dean Butler</span><span>Why I can draw this ripple · 02 / 12</span></div>
+    <span class="kicker">Before the numbers — a person</span>
+    <h1 class="title">I can detail and draw this ripple because I was the stone.</h1>
+    <p>Every figure in this document describes a life. I know, because for years it described mine. Adult ADHD I didn't have language for, self-medicated with alcohol because it was the one thing that reliably steadied a brain reaching for regulation. Then the functional use crossed an invisible line into dependence — and the system saw the drink, treated the drink, and never once looked underneath it at the driver.</p>
+    <div class="anchor">
+      <div class="q">"Adult ADHD previously complicated with excess alcohol use to self-medicate inadequately managed ADHD symptoms."</div>
+      <div class="a">— Independent consultant psychiatrist, clinical update letter, April 2026. That single sentence is the entire thesis: the cohort, the mechanism, and the misdirection of treatment.</div>
+    </div>
+    <p>The ripple below is not a spreadsheet exercise. It is A&amp;E visits my family absorbed, the work that stopped, the people around me who thought I was choosing this. When the right diagnosis finally landed — in the right sequence, with the right medication underneath — the noise narrowed into signal, and the recovery work could finally hold. <strong>Medication did not do the recovery work. It made the recovery work reachable.</strong></p>
+    <p>That is the whole reason OTOS exists. Not to treat anyone — clinical teams do that. But to hold the thread across the doors the way nobody held mine, so the next person's ripple gets caught before it spreads. <strong>Treat the driver. Hold the thread. Evidence what happened.</strong></p>
+    <div class="page-foot"><span>Support document · Founder experience is design evidence, not universal proof</span><span>Page 02 / 12</span></div>
+  </section>
+
+  <!-- PAGE 3 — THE FULL RIPPLE COST (dark summary) -->
+  <section class="page dark" data-screen-label="03 · The full ripple cost">
+    <div class="page-head"><span class="who">OTOS Continuity</span><span>The full ripple cost · 03 / 12</span></div>
+    <span class="kicker">The full ripple cost</span>
+    <h1 class="title">One person. One year. The cost ripples across the whole system.</h1>
+    <div class="ripple-top">
+      <div class="ripple-emblem">
+        <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="dot"></div>
+      </div>
+      <div class="ripple-head">
+        <div class="big">£90k–£220k+</div>
+        <div class="cap">The true annual cost of one unidentified, unmedicated, high-risk ADHD + addiction adult — when the family and the whole system are counted, not just the identified individual.</div>
+      </div>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tn">Tier 1 · The individual</div>
+        <h3>Direct costs</h3>
+        <div class="amt">£30k–£120k+</div>
+        <ul>
+          <li>A&amp;E, ambulance, ICU, acute beds</li>
+          <li>Mental-health crisis care &amp; admissions</li>
+          <li>Drug &amp; alcohol treatment / rehab</li>
+          <li>GP, housing, police, probation, prison</li>
+        </ul>
+        <div class="note">Official figures mostly stop here</div>
+      </div>
+      <div class="tier">
+        <div class="tn">Tier 2 · Family &amp; household</div>
+        <h3>Ripple costs</h3>
+        <div class="amt">£5k–£60k+</div>
+        <ul>
+          <li>Partner stress, GP, therapy, sick leave</li>
+          <li>Children: CAMHS, safeguarding, education</li>
+          <li>Carers: burnout, lost work, bailing out</li>
+          <li>Relationship breakdown &amp; instability</li>
+        </ul>
+        <div class="note">Invisible in national data</div>
+      </div>
+      <div class="tier">
+        <div class="tn">Tier 3 · Community &amp; system</div>
+        <h3>Knock-on costs</h3>
+        <div class="amt">£7k–£40k+</div>
+        <ul>
+          <li>Local-authority cleansing, ASB, safety</li>
+          <li>Employers: HR time, absence, lost output</li>
+          <li>Benefits, DWP assessments, housing</li>
+          <li>Wider justice, victim support, GDP loss</li>
+        </ul>
+        <div class="note">Spread across the whole system</div>
+      </div>
+    </div>
+    <div class="vs-band">
+      <div class="col"><div class="lbl">Official benchmark</div><div class="num bench">£58k–£65k</div><div class="sub">Estimated annual cost of an identified crack/heroin addict — usually Tier 1 only.</div></div>
+      <div class="vs">VS</div>
+      <div class="col"><div class="lbl">OTOS full ripple model</div><div class="num full">£90k–£220k+</div><div class="sub">All tiers, stacked on top of any single placement — direct, family and system-wide.</div></div>
+    </div>
+    <div class="nation-strip">~200,000 high-risk ADHD + addiction adults nationally → a modelled, indicative avoidable demand of <strong>£4bn+ per year</strong> (planning estimate, not a guaranteed total).</div>
+    <div class="page-foot"><span>Support document · OTOS full-ripple cost model</span><span>Page 03 / 12</span></div>
+  </section>
+
+  <!-- PAGE 4 — TIER 1 (light detail) -->
+  <section class="page azv2" data-screen-label="04 · Tier 1 — the individual">
+    <div class="page-head"><span class="who">The full ripple cost</span><span>Tier 1 · the individual · 04 / 12</span></div>
+    <div class="sec-head"><div class="mod-no">01</div><div class="htext">
+      <span class="kicker">Tier 1 · direct costs — the individual</span>
+      <h1 class="title">The costs the system can already see — and still under-counts.</h1>
+    </div></div>
+    <p>These hit identified public services directly and are the ones most likely to appear in official figures. Even these are routinely under-counted, because the ADHD root cause is never coded — the spend is attributed to the symptom, not the treatable condition underneath it.</p>
+    <table class="ledger">
+      <thead><tr><th>Cost line</th><th style="text-align:right;">Per person / year</th></tr></thead>
+      <tbody>
+        <tr class="sub"><td colspan="2">Emergency &amp; acute health</td></tr>
+        <tr><td class="item">A&amp;E attendance — self-harm, overdose, intoxication (3–8/yr)</td><td class="cost">£1,350–£12,000</td></tr>
+        <tr><td class="item">Ambulance call-outs (2–5/yr)</td><td class="cost">£660–£3,000</td></tr>
+        <tr><td class="item">Acute / ICU admission per crisis episode</td><td class="cost">£3,600–£16,000</td></tr>
+        <tr class="sub"><td colspan="2">Mental health &amp; substance-use services</td></tr>
+        <tr><td class="item">Inpatient MH admission (14–28 nights)</td><td class="cost">£4,900–£14,000</td></tr>
+        <tr><td class="item">Community detox / residential rehab episode</td><td class="cost">£6,000–£15,000</td></tr>
+        <tr><td class="item">DAAT key-worker case management (open case)</td><td class="cost">£3,000–£6,000</td></tr>
+        <tr class="sub"><td colspan="2">Primary care, housing &amp; justice</td></tr>
+        <tr><td class="item">GP consultations, crisis-driven (12–30/yr)</td><td class="cost">£480–£2,550</td></tr>
+        <tr><td class="item">Emergency accommodation / eviction cycle</td><td class="cost">£4,200–£18,000</td></tr>
+        <tr><td class="item">Police, courts, probation, short custodial</td><td class="cost">£320–£15,000+</td></tr>
+        <tr class="total"><td class="item">Tier 1 total range</td><td class="cost">£30,000–£120,000+</td></tr>
+      </tbody>
+    </table>
+    <div class="callout soft">The official crack/heroin figure of <strong>~£58,000–£65,000/year</strong> sits in the middle of this range — and covers Tier 1 only, and only the <em>identified</em> addict. It captures nothing from the two tiers that follow.</div>
+    <div class="page-foot"><span>Support document · Built from published unit costs · validate locally</span><span>Page 04 / 12</span></div>
+  </section>
+
+  <!-- PAGE 5 — TIER 2 (light detail) -->
+  <section class="page azv2" data-screen-label="05 · Tier 2 — family & household">
+    <div class="page-head"><span class="who">The full ripple cost</span><span>Tier 2 · family &amp; household · 05 / 12</span></div>
+    <div class="sec-head"><div class="mod-no">02</div><div class="htext">
+      <span class="kicker">Tier 2 · ripple costs — family &amp; household</span>
+      <h1 class="title">None of this is attributed to the case. All of it is real.</h1>
+    </div></div>
+    <p>These costs are completely invisible in national statistics — yet they are measurable, and directly caused by the unmanaged condition. <strong>One unstable case typically generates 6–10 additional service interactions across the family group — none of which are ever attributed back to the core ADHD + addiction issue.</strong></p>
+    <table class="ledger">
+      <thead><tr><th>Cost line</th><th style="text-align:right;">Per case / year</th></tr></thead>
+      <tbody>
+        <tr class="sub"><td colspan="2">Partner / spouse</td></tr>
+        <tr><td class="item">Partner's GP, anxiety/depression, prescribing</td><td class="cost">£320–£2,000</td></tr>
+        <tr><td class="item">Partner's sick leave — stress, caring, impact (lost to employer)</td><td class="cost">£400–£3,000</td></tr>
+        <tr><td class="item">Domestic-abuse services / separation &amp; mediation</td><td class="cost">£2,000–£10,000</td></tr>
+        <tr class="sub"><td colspan="2">Children in the household</td></tr>
+        <tr><td class="item">CAMHS assessment &amp; treatment pathway</td><td class="cost">£800–£6,000</td></tr>
+        <tr><td class="item">Safeguarding — Section 47, Child-in-Need plan</td><td class="cost">£1,500–£8,000</td></tr>
+        <tr><td class="item">Child taken into care (per child, if removed)</td><td class="cost">£30,000–£55,000</td></tr>
+        <tr class="sub"><td colspan="2">Parents, carers &amp; wider family</td></tr>
+        <tr><td class="item">Carer stress, burnout, own MH deterioration</td><td class="cost">£540–£4,000</td></tr>
+        <tr><td class="item">Family financial support — rent, fines, bailing out</td><td class="cost">£500–£5,000</td></tr>
+        <tr><td class="item">Bereavement &amp; inquest support (if overdose death)</td><td class="cost">£5,000–£20,000</td></tr>
+        <tr class="total"><td class="item">Tier 2 total range (across all affected members)</td><td class="cost">£5,000–£60,000+</td></tr>
+      </tbody>
+    </table>
+    <div class="callout soft">And a cost with no line at all: a child's own future ADHD + addiction risk is amplified as their ACE score climbs — the ripple that starts the next ripple, a decade from now.</div>
+    <div class="page-foot"><span>Support document · Absent from official per-person cost figures</span><span>Page 05 / 12</span></div>
+  </section>
+
+  <!-- PAGE 6 — TIER 3 (light detail, the binmen layer) -->
+  <section class="page azv2" data-screen-label="06 · Tier 3 — community & system">
+    <div class="page-head"><span class="who">The full ripple cost</span><span>Tier 3 · community &amp; system · 06 / 12</span></div>
+    <div class="sec-head"><div class="mod-no">03</div><div class="htext">
+      <span class="kicker">Tier 3 · knock-on costs — community &amp; system</span>
+      <h1 class="title">All the way out to the binman — and it still adds up.</h1>
+    </div></div>
+    <p>This is the layer official figures never reach. Every line falls on a real budget, caused by one unmanaged case, spread across the whole apparatus of the state and the private sector — right down to the micro-pennies.</p>
+    <table class="ledger">
+      <thead><tr><th>Cost line</th><th style="text-align:right;">Per person / year</th></tr></thead>
+      <tbody>
+        <tr class="sub"><td colspan="2">Environmental &amp; local authority — the "binman" layer</td></tr>
+        <tr><td class="item">Street cleaning — extra litter (not a moral failure, an executive-function one)</td><td class="cost">£20–£80</td></tr>
+        <tr><td class="item">Needle / sharps safe disposal &amp; graffiti remediation</td><td class="cost">£190–£920</td></tr>
+        <tr><td class="item">ASB team response &amp; community-safety coordination (3–8/yr)</td><td class="cost">£600–£4,800</td></tr>
+        <tr class="sub"><td colspan="2">Employers &amp; the private sector</td></tr>
+        <tr><td class="item">Lost productivity — presenteeism &amp; absenteeism</td><td class="cost">£2,800–£14,000</td></tr>
+        <tr><td class="item">Recruitment / replacement if dismissed or leaves</td><td class="cost">£3,000–£12,000</td></tr>
+        <tr><td class="item">GDP output lost vs stabilised potential</td><td class="cost">£8,000–£22,000</td></tr>
+        <tr class="sub"><td colspan="2">Benefits, social security &amp; wider justice</td></tr>
+        <tr><td class="item">ESA / UC, Housing Benefit, Council Tax support</td><td class="cost">£13,800–£26,000</td></tr>
+        <tr><td class="item">DWP assessments, victim support, MAPPA, inquest</td><td class="cost">£700–£15,000</td></tr>
+        <tr class="total"><td class="item">Tier 3 total range</td><td class="cost">£7,000–£40,000+</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>The whole-system multiplier.</strong> Each unstable case generates 10–20 separate service interactions a year. Every crisis event activates 5–12 cost centres at once. And every relapse resets the entire cost chain — all progress lost, all referrals re-opened, all assessments repeated.</div>
+    <div class="page-foot"><span>Support document · Every line falls on a real budget</span><span>Page 06 / 12</span></div>
+  </section>
+
+  <!-- PAGE 7 — FULL RIPPLE DATA PLATE -->
+  <section class="page datafig" data-screen-label="07 · The full ripple cost, drawn">
+    <div class="page-head" style="border-bottom:1px solid rgba(70,48,34,.28); color:rgba(70,48,34,.62);"><span class="who">OTOS Continuity</span><span>The ripple, at a glance · 07 / 12</span></div>
+    <div class="fig-wrap">
+      <img src="assets/support-img/full-ripple.png" alt="The full ripple cost — 3-tier cost burden for a high-risk ADHD + addiction case: Tier 1 £30k–£120k+, Tier 2 £5k–£60k+, Tier 3 £7k–£40k+, totalling £90k–£220k+ per person per year; official benchmark £58k–£65k versus OTOS full ripple model £90k–£220k; ~200,000 adults, avoidable demand of £4bn+ per year." />
+    </div>
+    <p style="margin:0; font-size:11px; line-height:1.5; color:var(--otos-paper-muted); font-weight:600;"><strong style="color:var(--otos-paper-ink);">Diagnose the ADHD. Treat the root cause. The cost chain collapses.</strong> Full-ripple cost model built from published unit costs and cross-budget assumptions — a way of seeing the whole burden, not a guaranteed per-case invoice. Overlap-adjusted figures must be validated locally.</p>
+    <div class="page-foot" style="color:rgba(70,48,34,.5);"><span>Support document · OTOS full-ripple cost model</span><span>Page 07 / 12</span></div>
+  </section>
+
+  <!-- PAGE 8 — THE KEY ARGUMENT (light) -->
+  <section class="page azv2" data-screen-label="08 · Official figures vs real cost">
+    <div class="page-head"><span class="who">The full ripple cost</span><span>The argument · 08 / 12</span></div>
+    <div class="sec-head"><div class="mod-no">04</div><div class="htext">
+      <span class="kicker">Official figures vs the real cost</span>
+      <h1 class="title">The same person. The same revolving door. A different name on the file.</h1>
+    </div></div>
+    <p>The official figure of <strong>£58,000–£65,000/year</strong> for a crack or heroin addict covers Tier 1 only — and only the <em>identified</em> addict. It captures nothing from Tier 2 (the family falling apart) or Tier 3 (the binman picking up the litter, the employer's HR team processing the absence, the child's CAMHS referral, the probation caseload, the GDP that was never generated).</p>
+    <p>A meaningful subgroup may be cycling through addiction because ADHD remains unidentified, untreated or under-treated — the same person, the same revolving door, the same cost chain. But because ADHD is never coded as the root cause, the cost is attributed to the symptom — the addiction — and never to the treatable condition underneath it.</p>
+    <div class="num-grid mt-sm">
+      <div class="ncard"><div class="num">£58k–£65k</div><div class="desc">official cost — identified crack/heroin addict (Tier 1 only)</div><span class="tag">Carol Black Review</span></div>
+      <div class="ncard"><div class="num">£17k</div><div class="desc">incremental annual cost — untreated ADHD adult</div><span class="tag">NHS ADHD Taskforce, 2025</span></div>
+      <div class="ncard"><div class="num">£90k–£220k</div><div class="desc">OTOS full-ripple model — all tiers combined</div><span class="tag">OTOS modelling</span></div>
+    </div>
+    <div class="callout"><strong>Identify the ADHD earlier. Medicate appropriately where clinically indicated. Test whether the cost chain can be interrupted.</strong> This is the OTOS thesis — the same thesis The Science of Sticking makes in the brain, and the Evidence Dossier makes in the literature. Here it is made in the budget: this is the £4 billion argument.</div>
+    <p class="boundaries mt-sm">These are published evidence candidates and an OTOS cost model, not OTOS outcomes. START / 61.3% is a real-world pathway signal, never an OTOS promise. The first test would produce decision-grade local evidence, not national proof.</p>
+    <div class="page-foot"><span>Support document · Published candidates + OTOS modelling</span><span>Page 08 / 12</span></div>
+  </section>
+
+  <!-- PAGE 9 — THE TSUNAMI · text set into the open sky upper-left; the wave stays the hero on the right, the town readable below -->
+  <section class="page plate" data-screen-label="09 · The tsunami">
+    <img class="bg" src="assets/support-img/tsunami-chaos.png" alt="An enormous wave towering over a coastal town and its hospital, moments before it breaks" style="object-position:70% center;" />
+    <div class="scrim" style="background:linear-gradient(118deg, rgba(10,11,14,.8) 0%, rgba(10,11,14,.5) 30%, rgba(10,11,14,.12) 52%, rgba(10,11,14,0) 68%), linear-gradient(0deg, rgba(10,11,14,.66) 0%, rgba(10,11,14,0) 24%);"></div>
+    <div class="inner" style="justify-content:flex-start;">
+      <div class="kick" style="margin-top:2mm;">The 10-year forecast</div>
+      <h1 class="big" style="max-width:15ch;">The wave isn't coming from nowhere. We are <span class="o">building it upstream.</span></h1>
+      <p class="sub" style="max-width:34ch;">Not one person's cost, spreading now — a whole cohort's crisis, gathering over a decade. Restrict adult ADHD assessment to prioritise children, and the system doesn't remove the need. It stores it as future crisis.</p>
+    </div>
+    <div class="foot"><span>Support document · Strategic risk hypothesis, not a proven forecast</span><span>Page 09 / 12</span></div>
+  </section>
+
+  <!-- PAGE 10 — THE MECHANISM (light) -->
+  <section class="page azv2" data-screen-label="10 · Why the wave forms">
+    <div class="page-head"><span class="who">The 10-year forecast</span><span>Why the wave forms · 10 / 12</span></div>
+    <div class="sec-head"><div class="mod-no">05</div><div class="htext">
+      <span class="kicker">The mechanism · a pipeline problem, not a "bad choices" problem</span>
+      <h1 class="title">Block the door upstream, and you increase the harm downstream.</h1>
+    </div></div>
+    <p>Some NHS areas are already restricting or pausing adult ADHD access under capacity pressure — with the clearest current example being adult Right-to-Choose restrictions for over-25s in Coventry &amp; Warwickshire, alongside wider local pauses and activity caps elsewhere. The wider risk is the same: when adult ADHD access is blocked or rationed upstream, need is not removed; it is stored as future crisis. The consequence is a widening <strong>missing adult cohort</strong>: people who are never stabilised early, never properly formulated within services, and far more likely to accumulate trauma, exclusion and substance misuse.</p>
+    <div class="priorities">
+      <div class="prio"><div class="n">1</div><div class="t"><b>Permanently undiagnosed</b> — not "waiting", but structurally excluded. The need doesn't disappear.</div></div>
+      <div class="prio"><div class="n">2</div><div class="t"><b>Self-medicating as we speak</b> — alcohol, drugs, compulsions — until they cross the invisible line into addiction. NIA forms from the ADHD self-medication where they were once genuinely stable.</div></div>
+      <div class="prio"><div class="n">3</div><div class="t"><b>Presenting downstream, repeatedly</b> — A&amp;E, CGL, CPFT, 111, crisis MH, safeguarding, housing, police, courts, probation, prison.</div></div>
+      <div class="prio"><div class="n">4</div><div class="t"><b>Treated for the symptom, never the cause</b> — because ADHD is unrecognised — producing churn, relapse and escalating risk.</div></div>
+    </div>
+    <div class="callout soft">Over the next decade this produces a visible <strong>tsunami effect</strong>: costs that look "sudden" to commissioners, but were built slowly, upstream, by a blockage nobody costed at the time. Higher severity at presentation, more comorbidity, more instability, rising re-presentation — because the upstream condition was never addressed.</div>
+    <div class="page-foot"><span>Support document · Structural exclusion increases risk and downstream cost</span><span>Page 10 / 12</span></div>
+  </section>
+
+  <!-- PAGE 11 — WHAT OTOS ARGUES (light, boundary) -->
+  <section class="page azv2" data-screen-label="11 · What OTOS argues">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>What OTOS argues · 11 / 12</span></div>
+    <div class="sec-head"><div class="mod-no">06</div><div class="htext">
+      <span class="kicker">What OTOS argues — and what it does not claim</span>
+      <h1 class="title">OTOS can't stop the wave. It can make the drift visible before crisis.</h1>
+    </div></div>
+    <p>The point is structural, not clinical. OTOS is not claiming to diagnose or treat NIA. When services are siloed and access is blocked upstream, people drift between doors — and a continuity layer is what keeps the engagement thread alive across those handoffs, makes drift visible early, and provides commissioner-grade receipts of exactly where the pathway breaks.</p>
+    <div class="isnt-box">
+      <div class="isnt-col is">
+        <div class="h"><span class="b">✓</span> What OTOS is</div>
+        <ul>
+          <li><span class="b">✓</span> A non-clinical continuity layer around services that already exist</li>
+          <li><span class="b">✓</span> A way to hold one continuity thread across the doors</li>
+          <li><span class="b">✓</span> Surfaces continuity signals; partner teams make every decision</li>
+          <li><span class="b">✓</span> Supports authorised partner visibility</li>
+          <li><span class="b">✓</span> Supports human review</li>
+        </ul>
+      </div>
+      <div class="isnt-col isnot">
+        <div class="h"><span class="b">×</span> What OTOS is not</div>
+        <ul>
+          <li><span class="b">×</span> A clinical service, diagnosis tool or treatment</li>
+          <li><span class="b">×</span> An EPR or NHS record — no record access, no write-back</li>
+          <li><span class="b">×</span> A shared clinical record, or automated clinical triage</li>
+          <li><span class="b">×</span> A claim to stop the wave, or a guaranteed cash saving</li>
+          <li><span class="b">×</span> A replacement for any commissioned service</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout"><strong>Shared thread, not shared clinical record.</strong> One person · one continuity thread · separate service records · authorised partner views. Clinical teams make clinical decisions; partner teams keep service responsibility; OTOS surfaces the continuity signals in between.</div>
+    <div class="page-foot"><span>Support document · OTOS is non-clinical infrastructure</span><span>Page 11 / 12</span></div>
+  </section>
+
+  <!-- PAGE 12 — CLOSE -->
+  <section class="page azv2 closing" data-screen-label="12 · The one line">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>The one line · 12 / 12</span></div>
+    <div class="sec-head"><div class="mod-no">07</div><div class="htext">
+      <span class="kicker">Where this leaves us</span>
+      <h1 class="title">The rings never stop. They just move to budgets that can't see the cause.</h1>
+    </div></div>
+    <p>The ripple is what one untreated life costs the whole system right now. The tsunami is what happens when we build a decade of those lives on purpose, by blocking the door upstream. Both come back to the same, single, treatable driver — and the same quiet failure to hold the thread between the services that could catch it.</p>
+    <div class="ask-box">
+      <div class="label">The one line</div>
+      <p>If adult ADHD diagnosis and treatment is throttled today, the system will pay tomorrow — in addiction, crisis, and cost. We are already paying. The only question is whether we pay upstream, once — or downstream, forever.</p>
+    </div>
+    <div class="boundary-box">
+      <div class="bhead">Boundary, named</div>
+      <p><strong>OTOS does not diagnose, prescribe, treat, replace services or make clinical decisions. OTOS surfaces signals; partner teams make the decisions.</strong> All figures are a full-ripple cost model built from published unit costs and cross-budget assumptions — a way of seeing the whole burden, not a guaranteed per-case invoice, and overlap-adjusted figures must be validated locally. The tsunami is a strategic risk forecast and service-design argument, not a clinical claim about any individual, and language about fatality or inevitability is deliberately avoided. NIA is proposed founder-originated terminology for a working clinical pattern, not a recognised diagnosis or official pathway.</p>
+    </div>
+    <div class="signoff">
+      <span class="name">Dean Butler.</span>
+      Founder, OTOS Digital Ltd — Out The Other Side™ · Co. No. 17084455<br/>
+      dean@otos.life · 07585 899 235
+    </div>
+    <div class="page-foot"><span>Support document · Sits beside The Science of Sticking &amp; the Evidence Dossier</span><span>Page 12 / 12</span></div>
+  </section>
+
+</div>
+</body>
+</html>

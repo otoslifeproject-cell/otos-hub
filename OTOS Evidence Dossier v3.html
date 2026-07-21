@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<title>OTOS Evidence Dossier — Sources, Science & Claims Register</title>
+<meta name="viewport" content="width=794" />
+<link rel="stylesheet" href="assets/colors_and_type.css" />
+<link rel="stylesheet" href="assets/az-nia-v2.css" />
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; }
+  body {
+    font-family: var(--font);
+    font-size: 16px; font-weight: var(--fw-body); letter-spacing: var(--ls-body);
+    line-height: 1.6; color: var(--otos-paper-ink); -webkit-font-smoothing: antialiased;
+  }
+  .doc { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 30px 0; }
+  .page {
+    width: 210mm; height: 297mm; padding: 22mm 22mm; position: relative; overflow: hidden;
+    page-break-after: always; break-after: page; box-shadow: 0 30px 80px rgba(0,0,0,.5);
+    background: var(--otos-paper); color: var(--otos-paper-ink);
+    background-image: radial-gradient(ellipse 56rem 34rem at 100% 0%, rgba(242,108,13,.06), transparent 56%);
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .page::after {
+    content: ""; position: absolute; right: -28px; bottom: -28px; width: 240px; height: 188px;
+    background: url("assets/brain.png") right bottom / contain no-repeat; opacity: .035; pointer-events: none; z-index: 0;
+  }
+  .page > *:not(.page-foot) { position: relative; z-index: 1; }
+
+  h1.title { font-size: 36px; font-weight: 1000; letter-spacing: -0.034em; line-height: 1.04; margin: 0 0 14px; color: var(--otos-paper-ink); max-width: 20ch; }
+  h2.sub { font-size: 16px; font-weight: 900; letter-spacing: -0.018em; line-height: 1.2; margin: 0 0 9px; color: var(--otos-paper-ink); }
+  p { font-size: 14px; line-height: 1.66; margin: 0 0 12px; color: var(--otos-paper-muted); font-weight: 550; }
+  p strong, .ink { color: var(--otos-paper-ink); font-weight: 800; }
+
+  .kicker {
+    display: inline-flex; align-items: center; gap: 9px; font-size: 10px; font-weight: 950; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--otos-orange); border: 1px solid rgba(242,108,13,.4);
+    background: rgba(242,108,13,.07); border-radius: 999px; padding: 7px 13px; margin-bottom: 16px;
+  }
+  .kicker::before { content: ""; display: inline-block; width: 13px; height: 11px; background: url("assets/otos-brain-icon.png") center/contain no-repeat; filter: saturate(.9); }
+
+  .page-head {
+    display: flex; justify-content: space-between; align-items: center; font-size: 10px; font-weight: 800;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--otos-paper-muted); margin-bottom: 20px;
+    padding-bottom: 12px; border-bottom: 1px solid rgba(70,48,34,.14);
+  }
+  .who { font-weight: 900; letter-spacing: .06em; text-transform: none; font-size: 12.5px; color: var(--otos-paper-ink); }
+  .who.brand { display: inline-flex; align-items: center; gap: 9px; }
+  .who.brand::before { content: ""; width: 21px; height: 16px; background: url("assets/otos-brain-icon.png") center/contain no-repeat; filter: drop-shadow(0 0 6px rgba(242,108,13,.45)); }
+
+  .page-foot {
+    position: absolute; left: 22mm; right: 22mm; bottom: 13mm; display: flex; justify-content: space-between;
+    font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--otos-paper-muted); opacity: .85; z-index: 1;
+  }
+
+  /* section header with big numeral */
+  .sec-head { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; margin-bottom: 4px; }
+  .sec-head .mod-no { font-size: 46px; font-weight: 1000; letter-spacing: -0.05em; line-height: .8; color: var(--otos-orange); opacity: .9; }
+  .sec-head .htext { padding-top: 2px; }
+  .sec-head .htext .kicker { margin-bottom: 10px; }
+
+  .callout { border-radius: 14px; padding: 16px 20px; margin: 14px 0 0; background: var(--otos-paper-ink); color: var(--otos-paper-2); font-size: 14px; line-height: 1.55; font-weight: 600; }
+  .callout strong { color: var(--otos-orange-2); }
+  .callout.soft { background: rgba(242,108,13,.07); border: 1px solid rgba(242,108,13,.3); color: var(--otos-paper-ink); }
+  .callout.soft strong { color: var(--otos-orange); }
+
+  .pull { border-left: 3px solid var(--otos-orange); padding: 4px 0 4px 18px; margin: 16px 0; font-size: 19px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.3; color: var(--otos-paper-ink); }
+  .pull .by { display:block; margin-top: 8px; font-size: 11px; font-weight: 700; letter-spacing: .04em; color: var(--otos-paper-muted); }
+
+  /* ===== cover ===== */
+  .cover-v2 h1.cover-title { max-width: 18ch; line-height: .98; }
+  .cover-v2 .ct-white { color: var(--otos-ink); display: block; }
+  .cover-v2 .ct-orange { color: var(--otos-orange-2); display: block; font-size: 1.12em; margin: 2px 0; }
+  .cover-v2 .cover-img { filter: brightness(.6) saturate(1.04) contrast(1.02); }
+  .cover-v2 .cover-scrim { background: linear-gradient(180deg, rgba(8,7,6,.55) 0%, rgba(8,7,6,.36) 30%, rgba(8,7,6,.68) 72%, rgba(8,7,6,.88) 100%) !important; }
+
+  /* ===== badge legend ===== */
+  .legend { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 12px; }
+  .legend .li { display: grid; grid-template-columns: auto 1fr; gap: 11px; align-items: baseline; padding: 11px 14px; border-radius: 11px; background: var(--otos-paper-2); border: 1px solid rgba(70,48,34,.13); }
+  .legend .li .t { font-size: 12px; line-height: 1.4; color: var(--otos-paper-muted); font-weight: 600; }
+  .legend .li .t b { display: block; color: var(--otos-paper-ink); font-weight: 900; font-size: 12.5px; margin-bottom: 1px; }
+
+  .badge { font-size: 8.5px; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; padding: 4px 9px; border-radius: 999px; white-space: nowrap; align-self: center; }
+  .badge.pub  { background: rgba(46,125,50,.13); color: #2e7d32; border: 1px solid rgba(46,125,50,.4); }
+  .badge.loc  { background: rgba(42,111,219,.12); color: #2a6fdb; border: 1px solid rgba(42,111,219,.4); }
+  .badge.mod  { background: rgba(242,108,13,.12); color: var(--otos-orange); border: 1px solid rgba(242,108,13,.42); }
+  .badge.pol  { background: rgba(120,80,160,.13); color: #7850a0; border: 1px solid rgba(120,80,160,.4); }
+  .badge.no   { background: rgba(178,58,46,.1); color: var(--otos-red); border: 1px solid rgba(178,58,46,.4); }
+
+  /* ===== register table ===== */
+  .reg { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 12px; border: 1px solid rgba(70,48,34,.16); border-radius: 12px; overflow: hidden; }
+  .reg thead th { font-size: 9px; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; padding: 10px 12px; text-align: left; background: var(--otos-paper-ink); color: #fff; }
+  .reg td { padding: 9px 12px; font-size: 11px; line-height: 1.4; vertical-align: top; border-bottom: 1px solid rgba(70,48,34,.1); color: var(--otos-paper-muted); font-weight: 550; }
+  .reg tr:last-child td { border-bottom: none; }
+  .reg td.cl { font-weight: 900; color: var(--otos-paper-ink); width: 32%; }
+  .reg td.cl small { display:block; font-weight: 700; color: var(--otos-paper-muted); font-size: 9.5px; letter-spacing: .04em; margin-top: 2px; }
+  .reg td.vl { width: 20%; font-weight: 800; color: var(--otos-paper-ink); }
+  .reg tbody tr:nth-child(even) td { background: rgba(70,48,34,.025); }
+
+  /* ===== science responder table ===== */
+  .versus { width:100%; border-collapse:separate; border-spacing:0; margin-top:12px; border:1px solid rgba(70,48,34,.16); border-radius:12px; overflow:hidden; }
+  .versus thead th { font-size:9.5px; font-weight:950; letter-spacing:.14em; text-transform:uppercase; padding:10px 13px; text-align:left; background:var(--otos-paper-ink); color:#fff; }
+  .versus thead th.adhd { background:var(--otos-red); } .versus thead th.rec { background:var(--otos-green); }
+  .versus td { padding:9px 13px; font-size:11px; line-height:1.36; vertical-align:top; border-bottom:1px solid rgba(70,48,34,.1); }
+  .versus tr:last-child td { border-bottom:none; }
+  .versus td.fn { font-weight:900; color:var(--otos-paper-ink); width:24%; }
+  .versus td.adhd { width:38%; color:var(--otos-paper-ink); font-weight:600; background:rgba(178,58,46,.05); }
+  .versus td.rec { width:38%; color:var(--otos-paper-ink); font-weight:600; background:rgba(46,125,50,.05); }
+  .versus tbody tr:nth-child(even) td.fn { background:rgba(70,48,34,.03); }
+  .src-note { font-size:10.5px; line-height:1.5; color:var(--otos-paper-muted); margin-top:11px; font-style:italic; }
+  .src-note strong { color:var(--otos-paper-ink); font-weight:900; font-style:normal; }
+
+  /* ===== mechanism chain ===== */
+  .chain { display: flex; flex-direction: column; gap: 0; margin-top: 12px; }
+  .chain .step { display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: start; }
+  .chain .step .dot { width: 13px; height: 13px; border-radius: 50%; background: var(--otos-orange); margin: 4px auto 0; position: relative; }
+  .chain .step .ln { width: 2px; flex: 1; background: rgba(242,108,13,.3); margin: 2px auto; min-height: 14px; }
+  .chain .step .col { display: flex; flex-direction: column; align-items: center; }
+  .chain .step:last-child .ln { display: none; }
+  .chain .body { padding-bottom: 13px; }
+  .chain .body .st { font-size: 13px; font-weight: 950; color: var(--otos-paper-ink); letter-spacing: -0.01em; }
+  .chain .body .st.hl { color: var(--otos-orange); }
+  .chain .body .sd { font-size: 12px; line-height: 1.45; color: var(--otos-paper-muted); font-weight: 550; margin-top: 1px; }
+
+  /* ===== responder stat trio ===== */
+  .trial-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 11px; margin: 12px 0 0; }
+  .trial { background: var(--otos-paper-2); border: 1px solid rgba(70,48,34,.14); border-radius: 12px; padding: 13px 14px; }
+  .trial .big { font-size: 25px; font-weight: 1000; letter-spacing: -0.03em; color: var(--otos-orange); line-height: 1; }
+  .trial .big span { font-size: 14px; color: var(--otos-paper-muted); font-weight: 800; }
+  .trial .vs { font-size: 11px; font-weight: 700; color: var(--otos-paper-muted); margin: 6px 0 0; }
+  .trial .ds { font-size: 10.5px; line-height: 1.4; color: var(--otos-paper-muted); margin-top: 7px; font-weight: 600; }
+
+  /* ===== is/is-not ===== */
+  .isnt-box { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0 0; }
+  .isnt-col { border-radius:12px; padding:13px 16px; background:var(--otos-paper-2); border:1px solid rgba(70,48,34,.14); }
+  .isnt-col .h { font-size:10px; font-weight:950; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .isnt-col.isnot .h { color:var(--otos-red); } .isnt-col.is .h { color:var(--otos-green); }
+  .isnt-col ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+  .isnt-col li { font-size:11.5px; line-height:1.4; color:var(--otos-paper-muted); font-weight:600; display:flex; gap:8px; align-items:flex-start; }
+  .isnt-col li .b { flex-shrink:0; font-weight:900; font-size:12px; }
+  .isnt-col.isnot li .b, .isnt-col.isnot .h .b { color:var(--otos-red); }
+  .isnt-col.is li .b, .isnt-col.is .h .b { color:var(--otos-green); }
+
+  .boundary-box { margin: 14px 0 0; border-radius: 14px; padding: 13px 17px; background: var(--otos-paper-2); border: 1px solid rgba(70,48,34,.18); border-left: 3px solid var(--otos-orange); }
+  .boundary-box .bhead { font-size: 9.5px; font-weight: 950; letter-spacing: .2em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 6px; }
+  .boundary-box p { font-size: 11.5px; line-height: 1.5; color: var(--otos-paper-muted); margin: 0; font-weight: 600; }
+  .boundary-box p strong { color: var(--otos-paper-ink); font-weight: 900; }
+
+  .midhead { display: flex; align-items: center; gap: 10px; font-size: 10.5px; font-weight: 950; letter-spacing: .22em; text-transform: uppercase; color: var(--otos-orange); margin: 20px 0 11px; }
+  .midhead::after { content: ""; flex: 1; height: 1px; background: rgba(242,108,13,.28); }
+
+  .signoff { margin-top: 14px; font-size: 12.5px; line-height: 1.55; color: var(--otos-paper-muted); }
+  .signoff .name { font-size: 13.5px; font-weight: 900; color: var(--otos-paper-ink); display: block; margin-bottom: 3px; }
+
+  /* page 12 fit — tighten the language-bank lists so they clear the footer */
+  section[data-screen-label="12 · Language bank II"] .reg td { padding: 7px 11px; }
+  section[data-screen-label="12 · Language bank II"] .isnt-box { gap: 10px; }
+  section[data-screen-label="12 · Language bank II"] .isnt-col { padding: 11px 14px; }
+  section[data-screen-label="12 · Language bank II"] .isnt-col ul { gap: 5px; }
+  section[data-screen-label="12 · Language bank II"] .isnt-col li { font-size: 10.8px; line-height: 1.32; }
+
+  @media print {
+    html, body { background: #fff; }
+    .doc { padding: 0; gap: 0; }
+    .page { box-shadow: none; margin: 0; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+</style>
+</head>
+<body>
+<a href="index.html" id="hubBack" style="position:fixed;top:14px;left:14px;z-index:99999;font:700 12px system-ui,-apple-system,sans-serif;color:#b5651d;background:rgba(255,255,255,.82);border:1px solid rgba(181,101,29,.5);padding:8px 15px;border-radius:999px;text-decoration:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.22)">← Hub</a>
+<div class="doc">
+
+  <!-- ============================================== -->
+  <!-- PAGE 1 — COVER -->
+  <!-- ============================================== -->
+  <section class="page cover-v2" data-screen-label="01 · Cover">
+    <img class="cover-img" src="assets/partner-img/19-the-evidence.png" alt="An evidence-review desk — sources, claims and caveats kept visibly separate" />
+    <div class="cover-scrim"></div>
+    <div class="cover-inner">
+      <div class="cv-top">
+        <span class="cv-brand">OTOS Continuity</span>
+        <span>Evidence dossier · Accompanying document</span>
+      </div>
+      <div class="cv-mid">
+        <h1 class="cover-title">
+          <span class="ct-white">Every claim is sourced.</span>
+          <span class="ct-orange">Every estimate</span>
+          <span class="ct-white">is labelled.</span>
+        </h1>
+        <p class="cv-support">Published evidence, local figures and OTOS modelling — kept visibly separate. The proof vault behind every OTOS brief; modelling is never presented as fact.</p>
+        <div class="cv-meta">
+          <div class="m"><span class="l">Accompanies</span>The NIA Paper and every OTOS partner brief</div>
+          <div class="m"><span class="l">Purpose</span>Sources · the science · the claims register · the caveats</div>
+          <div class="m"><span class="l">From</span>Dean Butler — Founder, OTOS Continuity</div>
+          <div class="m"><span class="l">Status</span>Reference document · Not a pitch</div>
+        </div>
+        <p class="cv-foot">A reference dossier. <strong>NIA (Neurologically Informed Addiction) is proposed founder-originated terminology for a working clinical pattern, not a recognised diagnosis or official pathway; a category-recognition / clinical-pattern review dialogue is in progress. OTOS is non-clinical; it surfaces signals, partner teams make every decision. Alignment with policy is not endorsement, certification or approval.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 2 — HOW TO READ THIS -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="02 · How to read this">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Source discipline · 02 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">01</div>
+      <div class="htext">
+        <span class="kicker">How to read this dossier</span>
+        <h1 class="title">Five kinds of evidence, never mixed.</h1>
+      </div>
+    </div>
+
+    <p>This dossier protects the work from overclaiming. Everything in it is sorted into one of five categories, and each carries a visible badge wherever it appears across the family of briefs. <strong>Published evidence is never blurred with OTOS modelling; modelling is never quietly passed off as fact.</strong></p>
+
+    <div class="legend">
+      <div class="li"><span class="badge pub">Published</span><span class="t"><b>Published evidence</b>Peer-reviewed studies, NICE / RCPsych guidance, national reports. Traceable to source.</span></div>
+      <div class="li"><span class="badge loc">Local</span><span class="t"><b>Local service data</b>CPFT / NDTMS figures for Cambridgeshire &amp; Peterborough. Pending local validation.</span></div>
+      <div class="li"><span class="badge mod">Modelled</span><span class="t"><b>OTOS modelling</b>Planning and scenario estimates. Explicitly not guaranteed outcomes or cash.</span></div>
+      <div class="li"><span class="badge pol">Policy</span><span class="t"><b>Policy alignment</b>Direction-of-travel fit with NHS / DHSC strategy. Alignment, not endorsement.</span></div>
+    </div>
+
+    <div class="callout soft" style="margin-top:14px;"><strong>The one rule.</strong> A comparator figure (e.g. the 61.3% START result) is something the pre-pilot learns from locally — never a promised OTOS outcome. The pre-pilot exists to replace modelling with locally validated evidence.</div>
+
+    <h2 class="sub" style="margin-top:18px;">What this dossier covers</h2>
+    <p style="margin-bottom:6px;">The science of why treating ADHD makes recovery work usable (pp. 3–5); the published source register (p. 6); local data and OTOS modelling (p. 7); policy alignment (p. 8); what OTOS is explicitly <em class="ink" style="font-style:normal;">not</em> claiming (p. 9); and the master claims register (p. 10); the approved-language bank (pp. 11–12); the extended claims &amp; caveats register (pp. 13–14); the source quote bank (pp. 15–16); and verification &amp; sign-off status (p. 17).</p>
+
+    <div class="boundary-box">
+      <div class="bhead">The non-negotiable boundary</div>
+      <p><strong>OTOS does not diagnose, prescribe, treat, replace services or make clinical decisions. OTOS surfaces signals; partner teams make the decisions.</strong> Every figure in this dossier is labelled by type, and nothing here assumes endorsement from any named body.</p>
+    </div>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Sources kept visibly separate</span><span>Page 02 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 3 — THE SCIENCE OF STICKING (I) -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="03 · The science of sticking I">
+    <div class="page-head">
+      <span class="who">The science of sticking</span>
+      <span>Medication opens the window · 03 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">02</div>
+      <div class="htext">
+        <span class="kicker">The science of sticking · part one</span>
+        <h1 class="title">Medication opens the learning window. OTOS keeps it open.</h1>
+      </div>
+    </div>
+
+    <p>For the NIA cohort, recovery does not fail because the person does not care. It fails because addiction recovery asks for the exact capacities unmanaged ADHD impairs — attention, working memory, impulse control, emotional regulation, routine, delayed reward and repeated behavioural learning. <strong>That is the medical point.</strong></p>
+
+    <p>CBT, relapse-prevention, recovery education, check-ins and habit-building all depend on the same neurocognitive machinery: notice the trigger, remember the strategy, pause before acting, repeat the new behaviour, and return to it tomorrow. Untreated ADHD makes that sequence fragile.</p>
+
+    <div class="pull">“The medication does not do the recovery work. But it creates the conditions where the recovery work can finally land.”</div>
+
+    <h2 class="sub"><span class="badge pub" style="margin-right:8px;">Published</span>NICE already supports the combination</h2>
+    <p style="margin-bottom:8px;"><strong>01 · NICE supports combined treatment.</strong> NICE recommends medication for adults whose ADHD symptoms remain significantly impairing, and recommends considering non-pharmacological treatment <em class="ink" style="font-style:normal;">in combination</em> with medication where adults have benefited from medication but remain impaired — which may include a full course of CBT. Medication and CBT are not competing ideas; the recognised pathway is combined.</p>
+    <p><strong>02 · CBT lands better when the brain can use it.</strong> NICE's combination-treatment review states that medication can target core ADHD symptoms such as inattention and impulsivity, while psychosocial treatment builds longer-lasting behavioural and cognitive skills. In plain terms: medication reduces the core barrier; structured psychological work then builds the skills on top.</p>
+
+    <div class="callout">A treated ADHD brain can finally form and hold new pathways. <strong>The work was never wrong — the brain could not use it yet.</strong></div>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · The science of sticking</span><span>Page 03 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 4 — THE SCIENCE OF STICKING (II) -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="04 · The science of sticking II">
+    <div class="page-head">
+      <span class="who">The science of sticking</span>
+      <span>The hard clinical signal · 04 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">03</div>
+      <div class="htext">
+        <span class="kicker">The science of sticking · part two</span>
+        <h1 class="title">Adult trial data gives a hard clinical signal.</h1>
+      </div>
+    </div>
+
+    <p><strong>03 · In adult ADHD studies reviewed by NICE, medication-plus-CBT showed stronger responder outcomes</strong> than medication alone or CBT-plus-placebo in selected adult groups. These are <em class="ink" style="font-style:normal;">ADHD treatment-engagement</em> signals, not alcohol-outcome claims — they show why it is medically plausible that treating ADHD makes behavioural change more usable.</p>
+
+    <div class="trial-row">
+      <div class="trial"><div class="big">9<span>/16</span></div><div class="vs">vs 2/15 medication alone</div><div class="ds">Medication + CBT/DBT responders, one adult study.</div></div>
+      <div class="trial"><div class="big">22<span>/41</span></div><div class="vs">vs 9/37 medication + supportive therapy</div><div class="ds">Medication + CBT responders, another adult study.</div></div>
+      <div class="trial"><div class="big">15<span>/23</span></div><div class="vs">vs 4/25 CBT + placebo</div><div class="ds">Stimulant + CBT responders, one adult study.</div></div>
+    </div>
+    <p class="src-note"><strong>Use carefully.</strong> Selected adult ADHD studies as reviewed by NICE. Responder counts, not alcohol-recovery rates. Presented to show the direction of the engagement signal, not to promise an outcome.</p>
+
+    <h2 class="sub" style="margin-top:16px;"><span class="badge pub" style="margin-right:8px;">Published</span>The wider harm signal points the same way</h2>
+    <p><strong>04 ·</strong> Recent large-scale evidence links ADHD medication with lower real-world harm, including reduced substance-misuse events. That does not prove OTOS. It supports the narrower, testable proposition that <strong>treating ADHD is relevant to substance-related risk</strong> — not merely to attention scores.</p>
+
+    <div class="callout soft"><strong>Stated safely:</strong> NIA does not claim ADHD medication cures alcohol addiction. It claims that, for a defined subgroup, dependence may be driven by untreated ADHD — and once the ADHD is stabilised, recovery work may become usable in a way it was not before.</div>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · The science of sticking</span><span>Page 04 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 5 — THE NIA MECHANISM -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="05 · The NIA mechanism">
+    <div class="page-head">
+      <span class="who">The mechanism</span>
+      <span>How the pattern works · 05 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">04</div>
+      <div class="htext">
+        <span class="kicker">The NIA mechanism</span>
+        <h1 class="title">The pattern, step by step.</h1>
+      </div>
+    </div>
+
+    <p>A simplified clinical model of how unmanaged ADHD becomes alcohol dependence — and where medication and continuity re-open the door to recovery.</p>
+
+    <div class="chain">
+      <div class="step"><div class="col"><span class="dot"></span><span class="ln"></span></div><div class="body"><div class="st">Unmanaged ADHD</div><div class="sd">Low regulation, poor inhibition, under-arousal, impulsivity, emotional dysregulation.</div></div></div>
+      <div class="step"><div class="col"><span class="dot"></span><span class="ln"></span></div><div class="body"><div class="st">Alcohol as regulation</div><div class="sd">Focus, relief, calm, social access and temporary baseline correction.</div></div></div>
+      <div class="step"><div class="col"><span class="dot"></span><span class="ln"></span></div><div class="body"><div class="st">Dependence</div><div class="sd">Tolerance, withdrawal, reward-system capture and a deeper executive-function deficit.</div></div></div>
+      <div class="step"><div class="col"><span class="dot"></span><span class="ln"></span></div><div class="body"><div class="st">Recovery mismatch</div><div class="sd">The system now asks the person to recover using attention, memory, routine and delayed reward — precisely the capacities most impaired.</div></div></div>
+      <div class="step"><div class="col"><span class="dot"></span><span class="ln"></span></div><div class="body"><div class="st hl">Medication-supported learning window</div><div class="sd">ADHD treatment improves attention, behavioural control and the ability to follow through.</div></div></div>
+      <div class="step"><div class="col"><span class="dot"></span></div><div class="body"><div class="st hl">OTOS continuity layer</div><div class="sd">Micro check-ins, partner-approved next-step prompts, waiting-well learning, partner nudges and relapse-risk visibility keep the new behavioural pattern warm long enough for behaviour to stick.</div></div></div>
+    </div>
+
+    <div class="callout soft"><strong>The brain has to be ready to learn. The person has to stay engaged long enough for learning to become behaviour. The system has to hold the thread.</strong> That is the role of OTOS.</div>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · The NIA mechanism</span><span>Page 05 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 6 — PUBLISHED SOURCES -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="06 · Published sources">
+    <div class="page-head">
+      <span class="who">Published register</span>
+      <span>Peer-reviewed &amp; guidance · 06 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">05</div>
+      <div class="htext">
+        <span class="kicker">Published sources</span>
+        <h1 class="title">Published, traceable, citable.</h1>
+      </div>
+    </div>
+
+    <p>The clinical rationale rests on published guidance and studies. These are the front-page-safe anchors — used across the family without caveat beyond their own scope.</p>
+
+    <table class="reg">
+      <thead><tr><th>Claim</th><th>Value</th><th>Source &amp; status</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">More benefit than risk from treating ADHD in substance-use disorder<small>In both ADHD and substance-use symptom reduction</small></td><td class="vl">Clinical consensus</td><td>RCPsych, 2022 · <span class="badge pub">Published</span></td></tr>
+        <tr><td class="cl">Median ADHD prevalence in addiction-treatment cohorts<small>Range across services 23–45%</small></td><td class="vl">≈34%</td><td>RCPsych CR235 · <span class="badge pub">Published</span></td></tr>
+        <tr><td class="cl">ADHD assessment is appropriate in active substance misuse<small>Co-occurring use is not a contraindication</small></td><td class="vl">Guideline</td><td>NICE NG87 · <span class="badge pub">Published</span></td></tr>
+        <tr><td class="cl">Improvement in addictive disorders at 6 months after ADHD diagnosis &amp; treatment<small>Comparator only — not a promised OTOS outcome</small></td><td class="vl">61.3%</td><td>START study, France 2025 · <span class="badge pub">Comparator</span></td></tr>
+        <tr><td class="cl">Trial-end abstinence, ADHD + cocaine dependence (medication + CBT)<small>Caveat: selected group, not generalisable</small></td><td class="vl">30%</td><td>JAMA Psychiatry RCT · <span class="badge pub">Comparator</span></td></tr>
+        <tr><td class="cl">Avoidable economic cost of unsupported ADHD<small>Route into unemployment, crime, substance misuse, illness</small></td><td class="vl">£17bn</td><td>NHS ADHD Taskforce, Apr 2025 · <span class="badge pub">Published</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Published sources</span><span>Page 06 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 7 — LOCAL DATA + MODELLING -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="07 · Local data & modelling">
+    <div class="page-head">
+      <span class="who">Local &amp; modelled</span>
+      <span>The local case · 07 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">06</div>
+      <div class="htext">
+        <span class="kicker">Local data &amp; OTOS modelling</span>
+        <h1 class="title">The local cohort — and exactly how it is estimated.</h1>
+      </div>
+    </div>
+
+    <p>The local figures are kept deliberately honest: a published denominator, a prevalence range, and a transparent modelled estimate the pre-pilot exists to validate. <strong>None of the modelled figures are presented as committed savings or guaranteed cohorts.</strong></p>
+
+    <table class="reg">
+      <thead><tr><th>Claim</th><th>Value</th><th>Source &amp; status</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">Adults in structured addiction treatment, Cambs &amp; Peterborough<small>Planning denominator</small></td><td class="vl">4,175</td><td>CPFT / NDTMS extract · <span class="badge loc">Local</span></td></tr>
+        <tr><td class="cl">ADHD waiting list within CPFT<small>The waiting period — not the list length — is the gap OTOS addresses</small></td><td class="vl">Significant &amp; growing</td><td>CPFT planning · <span class="badge loc">Local</span></td></tr>
+        <tr><td class="cl">Local ADHD-driven risk cohort<small>4,175 × 21% (Rohner et al.), within RCPsych 23–45% range — subject to local validation</small></td><td class="vl">≈877</td><td>OTOS modelling · <span class="badge mod">Modelled</span></td></tr>
+        <tr><td class="cl">Pre-pilot scope<small>Bounded evidence test, not a rollout</small></td><td class="vl">50 people · 12 weeks</td><td>OTOS design · <span class="badge mod">Design</span></td></tr>
+        <tr><td class="cl">Pre-pilot cost<small>Platform, coordination, co-production, independent evaluation, governance</small></td><td class="vl">circa £150k — subject to requote and governance</td><td>OTOS budget estimate · <span class="badge mod">Modelled</span></td></tr>
+        <tr><td class="cl">Modelled avoidable annual demand<small>Scenario-based — the pre-pilot exists to replace this with validated evidence</small></td><td class="vl">≈£18m</td><td>OTOS scenario modelling · <span class="badge mod">Modelled</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout soft"><strong>Read the cohort figure precisely.</strong> ≈877 is a planning estimate — never a count of people already identified. It is the number the pre-pilot is designed to test, refine or correct against real local data.</div>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Local data &amp; modelling</span><span>Page 07 / 17</span></div>
+  </section>
+
+  <!-- PASS 9 · diagram page (placement per PDFs-Diagrams authority) -->
+  <section class="page" data-screen-label="07a · The thread, over time" style="background:#faf6ee; color:#241d16; display:flex; flex-direction:column; padding:15mm 17mm 11mm; position:relative; overflow:hidden;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid rgba(70,48,34,.28); padding-bottom:8px; font-size:9.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:rgba(70,48,34,.62);"><span>OTOS Continuity™</span><span>Evidence dossier · diagram</span></div>
+    <div style="margin-top:22px;">
+      <span style="display:block; font-size:10px; font-weight:900; letter-spacing:.26em; text-transform:uppercase; color:#a8430a; margin-bottom:9px;">Continuity, evidenced</span>
+      <h1 style="margin:0; font-size:27px; font-weight:900; letter-spacing:-.03em; line-height:1.06; color:#241d16; max-width:26ch;">One person's thread, over time.</h1>
+    </div>
+    <div style="flex:1 1 auto; display:flex; align-items:center; justify-content:center; min-height:0; margin:16px 0;">
+      <img src="assets/diagrams/04_continuity_thread_timeline.jpg" alt="One person's continuity thread over time: check-ins sent, replies, silence and drift signals, handoff receipts, human review, evidence export." style="max-width:100%; max-height:600px; object-fit:contain;" loading="lazy" decoding="async" />
+    </div>
+    <div style="border-top:2px solid #241d16; padding-top:10px;">
+      <p style="margin:0 0 5px; font-size:13.5px; font-weight:900; line-height:1.4; color:#241d16; max-width:70ch;">A continuity thread, not a clinical record.</p>
+      <p style="margin:0; font-size:11.5px; line-height:1.55; color:#6d6155; max-width:76ch;">Tokenised user · check-ins sent · replies · silence and drift signals · handoff receipts · human review · evidence export. No therapy notes, no prescribing record, no shared EPR.</p>
+      
+    </div>
+  </section>
+
+  <!-- PASS 12 · Evidence / Export / Review Map (full-page figure — placement per Packaging Authority) -->
+  <section class="page" data-screen-label="07b · Evidence / export / review map" style="background:#faf6ee; color:#241d16; display:flex; flex-direction:column; padding:13mm 15mm 10mm; position:relative; overflow:hidden;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid rgba(70,48,34,.28); padding-bottom:7px; font-size:9.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:rgba(70,48,34,.62);"><span>OTOS Continuity™</span><span>Evidence dossier · from events to decisions</span></div>
+    <div style="flex:1 1 auto; display:flex; align-items:center; justify-content:center; min-height:0; margin:10px 0;">
+      <img src="assets/diagrams/09_evidence_export_review_map.png" alt="Evidence / Export / Review Map: authorised thread events flow to an operational dashboard, then human review, then a structured evidence export, then the formal decision set — continue, continue with changes, rebuild, pause, stop. Evidence output, not outcome proof." style="max-width:100%; max-height:1000px; object-fit:contain;" loading="lazy" decoding="async" />
+    </div>
+    <div style="border-top:2px solid #241d16; padding-top:8px;">
+      <p style="margin:0; font-size:10.5px; line-height:1.5; color:#6d6155; max-width:88ch;"><strong style="color:#241d16;">Decision-grade local evidence, not national proof.</strong> Evidence output, not outcome proof — generated from agreed non-clinical Thread events, never from clinical records. Not a clinical record. Not clinical outcome proof.</p>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================== -->
+  <!-- PAGE 8 — POLICY ALIGNMENT -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="08 · Policy alignment">
+    <div class="page-head">
+      <span class="who">Policy</span>
+      <span>Direction of travel · 08 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">07</div>
+      <div class="htext">
+        <span class="kicker">Policy alignment</span>
+        <h1 class="title">Aligned with the direction of travel — not claiming endorsement.</h1>
+      </div>
+    </div>
+
+    <p>OTOS fits the stated direction of NHS and public-health policy. <strong>Alignment is not endorsement, certification or approval</strong> — it simply means the pilot tests, at the earliest point of contact, exactly the transitions national strategy is asking the system to make.</p>
+
+    <table class="reg">
+      <thead><tr><th>Policy</th><th>Fit</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">NHS 10 Year Health Plan<small>Hospital → community, analogue → digital, sickness → prevention</small></td><td class="vl">Tests the transition early</td><td><span class="badge pol">Policy</span></td></tr>
+        <tr><td class="cl">NHS ADHD Taskforce, April 2025<small>Undiagnosed ADHD as a major under-addressed public-health issue</small></td><td class="vl">Identification &amp; continuity</td><td><span class="badge pol">Policy</span></td></tr>
+        <tr><td class="cl">DHSC addiction healthcare goals<small>Reducing structural fragmentation via addiction technology</small></td><td class="vl">Directly aligned</td><td><span class="badge pol">Policy</span></td></tr>
+        <tr><td class="cl">250 NHS Community Hubs<small>Lightweight, non-clinical, human-reviewed continuity</small></td><td class="vl">Operates naturally within</td><td><span class="badge pol">Policy</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout"><strong>RCPsych:</strong> The NIA submission to the Royal College of Psychiatrists is in progress — a proposed category-recognition request, not a recognised diagnosis and not an endorsement.</div>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Policy alignment</span><span>Page 08 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 9 — WHAT WE ARE NOT CLAIMING -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="09 · What we are not claiming">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Claim discipline · 09 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">08</div>
+      <div class="htext">
+        <span class="kicker">Claim discipline</span>
+        <h1 class="title">What the evidence does — and does not — say.</h1>
+      </div>
+    </div>
+
+    <p>The strength of the case depends on being precise about its limits. This is the discipline that protects the pilot, the partners and the people it is built for.</p>
+
+    <div class="isnt-box">
+      <div class="isnt-col isnot">
+        <div class="h"><span class="b">×</span> What OTOS is NOT claiming</div>
+        <ul>
+          <li><span class="b">×</span> That ADHD treatment automatically resolves addiction</li>
+          <li><span class="b">×</span> That all addiction is ADHD-driven</li>
+          <li><span class="b">×</span> That OTOS itself produces START-level (61.3%) outcomes</li>
+          <li><span class="b">×</span> That the pre-pilot will save money without local evaluation</li>
+          <li><span class="b">×</span> Any endorsement, certification or approval from a named body</li>
+          <li><span class="b">×</span> That NIA is a recognised diagnosis</li>
+        </ul>
+      </div>
+      <div class="isnt-col is">
+        <div class="h"><span class="b">✓</span> What the evidence DOES support</div>
+        <ul>
+          <li><span class="b">✓</span> Treating ADHD in substance use: more benefit than risk (RCPsych)</li>
+          <li><span class="b">✓</span> Assessment appropriate in active misuse (NICE NG87)</li>
+          <li><span class="b">✓</span> Combined medication + CBT outperforms either alone (adult studies)</li>
+          <li><span class="b">✓</span> ADHD medication linked to lower real-world harm</li>
+          <li><span class="b">✓</span> A material local cohort worth a bounded, evaluated test</li>
+          <li><span class="b">✓</span> Strong alignment with NHS &amp; DHSC policy direction</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="boundary-box">
+      <div class="bhead">The testable proposition, stated safely</div>
+      <p>For a defined subgroup, alcohol dependence may be driven by untreated or inadequately treated ADHD. <strong>Once the ADHD is clinically stabilised, recovery work may become usable in a way it was not before.</strong> OTOS is the non-clinical continuity infrastructure designed to keep that learning window open between services — and the pre-pilot exists to decide whether to continue, continue with changes, rebuild, pause or stop.</p>
+    </div>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Claim discipline</span><span>Page 09 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 10 — MASTER CLAIMS REGISTER -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="10 · Master claims register">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Master register · 10 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">09</div>
+      <div class="htext">
+        <span class="kicker">Master claims register</span>
+        <h1 class="title">One table. Every claim, its status, where it may lead.</h1>
+      </div>
+    </div>
+
+    <p>The quick reference for which figure may appear where — expanded claim-by-claim on pp. 13–14. <strong>Front-page-safe</strong> = a published anchor usable up front. <strong>Comparator / Modelled</strong> = caveat required, appendix or body only.</p>
+
+    <table class="reg">
+      <thead><tr><th>Claim</th><th>Value</th><th>Status</th><th>Front-page-safe?</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">RCPsych — benefit &gt; risk treating ADHD in SUD</td><td class="vl">Consensus</td><td><span class="badge pub">Published</span></td><td>Yes</td></tr>
+        <tr><td class="cl">RCPsych CR235 — prevalence in addiction cohorts</td><td class="vl">≈34% (23–45%)</td><td><span class="badge pub">Published</span></td><td>Yes</td></tr>
+        <tr><td class="cl">NICE NG87 — assessment in active misuse</td><td class="vl">Guideline</td><td><span class="badge pub">Published</span></td><td>Yes</td></tr>
+        <tr><td class="cl">NHS ADHD Taskforce — avoidable cost</td><td class="vl">£17bn</td><td><span class="badge pub">Published</span></td><td>Yes</td></tr>
+        <tr><td class="cl">START — improvement after ADHD treatment</td><td class="vl">61.3%</td><td><span class="badge mod">Comparator</span></td><td>Caveat only</td></tr>
+        <tr><td class="cl">JAMA — abstinence, medication + CBT</td><td class="vl">30%</td><td><span class="badge mod">Comparator</span></td><td>Caveat only</td></tr>
+        <tr><td class="cl">CPFT / NDTMS — adults in treatment</td><td class="vl">4,175</td><td><span class="badge loc">Local</span></td><td>Yes (labelled)</td></tr>
+        <tr><td class="cl">OTOS — local risk cohort</td><td class="vl">≈877</td><td><span class="badge mod">Modelled</span></td><td>No — never &ldquo;identified&rdquo;</td></tr>
+        <tr><td class="cl">OTOS — pre-pilot cost</td><td class="vl">circa £150k</td><td><span class="badge mod">Modelled</span></td><td>Yes (labelled)</td></tr>
+        <tr><td class="cl">OTOS — avoidable annual demand</td><td class="vl">≈£18m</td><td><span class="badge mod">Modelled</span></td><td>No</td></tr>
+      </tbody>
+    </table>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Master claims register</span><span>Page 10 / 17</span></div>
+  </section>
+  <!-- ============================================== -->
+  <!-- PAGE 11 — APPROVED LANGUAGE BANK I -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="11 · Language bank I">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Language control · 11 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">10</div>
+      <div class="htext">
+        <span class="kicker">Approved language bank</span>
+        <h1 class="title">Banned phrases — and the safe version of each.</h1>
+      </div>
+    </div>
+
+    <p>Every risky phrase in the family has one approved replacement. <strong>If a sentence is not on this page or the next, it must be reducible to one that is.</strong></p>
+
+    <table class="reg">
+      <thead><tr><th>Claim / phrase</th><th>Status</th><th>Safe version</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">&ldquo;START proves medication improves addiction&rdquo;</td><td><span class="badge no">Avoid</span></td><td>START suggests that identifying ADHD inside addiction-treatment populations and treating it within routine care can coincide with improvement in addictive outcomes. Not a causal medication-only claim.</td></tr>
+        <tr><td class="cl">&ldquo;Methylphenidate caused 61.3% improvement&rdquo;</td><td><span class="badge no">Banned</span></td><td>The START material does not support a medication-only causal reading; diagnosis, treatment timing, engagement, addiction care and follow-up interacted.</td></tr>
+        <tr><td class="cl">&ldquo;Medication fixes addiction&rdquo;</td><td><span class="badge no">Banned</span></td><td>ADHD treatment may open a learning window where clinically indicated; recovery work, addiction support, CBT, waiting-well support and continuity still need to land.</td></tr>
+        <tr><td class="cl">&ldquo;OTOS treats addiction&rdquo;</td><td><span class="badge no">Banned</span></td><td>OTOS is non-clinical continuity infrastructure. Addiction treatment remains with partner services.</td></tr>
+        <tr><td class="cl">&ldquo;OTOS diagnoses ADHD / NIA&rdquo;</td><td><span class="badge no">Banned</span></td><td>OTOS may help partners identify a suspected ADHD-driven addiction pattern. ADHD diagnosis remains with qualified clinical teams. NIA is working terminology, not a diagnosis.</td></tr>
+        <tr><td class="cl">&ldquo;OTOS creates a shared clinical record&rdquo;</td><td><span class="badge no">Banned</span></td><td>OTOS provides shared continuity infrastructure, not a shared clinical record. The Continuity Thread follows the user journey through agreed non-clinical events.</td></tr>
+        <tr><td class="cl">&ldquo;OTOS will save money&rdquo;</td><td><span class="badge no">Avoid</span></td><td>OTOS is designed to generate local evidence about whether earlier recognition and continuity may reduce avoidable crisis and late spend. Local evidence pending.</td></tr>
+        <tr><td class="cl">&ldquo;First-50 proves the model&rdquo;</td><td><span class="badge no">Avoid</span></td><td>The First-50 test produces decision-grade local evidence, not national proof. Use continue / continue with changes / rebuild / pause / stop.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Approved language bank</span><span>Page 11 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 12 — APPROVED LANGUAGE BANK II -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="12 · Language bank II">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Language control · 12 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">11</div>
+      <div class="htext">
+        <span class="kicker">Approved language bank</span>
+        <h1 class="title">Approved with limits — and the two lists.</h1>
+      </div>
+    </div>
+
+    <table class="reg">
+      <thead><tr><th>Phrase</th><th>Status</th><th>How to use it</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">&ldquo;Medicine-plus-Continuity&rdquo;</td><td><span class="badge mod">Placement limit</span></td><td>Use sparingly in strategic / NIA / pharma-category material. In most NHS, commissioner, partner and operating copy, use suspected ADHD-driven addiction intervention, Continuity Management Layer and Continuity Thread language. Keep clinical ownership explicit.</td></tr>
+        <tr><td class="cl">&ldquo;ADHD treatment may open the learning window&rdquo;</td><td><span class="badge pub">With caveat</span></td><td>Use where clinically indicated and clinically owned; do not imply suitability for everyone. Strong mechanism line.</td></tr>
+        <tr><td class="cl">&ldquo;OTOS keeps the window open&rdquo;</td><td><span class="badge no">Metaphor only</span></td><td>Prefer: the Continuity Management Layer helps authorised partners keep recovery, waiting-well support and behavioural reinforcement visible and repeated while clinical decisions remain clinically owned.</td></tr>
+        <tr><td class="cl">&ldquo;Decision-grade local evidence&rdquo;</td><td><span class="badge pub">Approved</span></td><td>Use for First-50 evidence posture. Not national proof.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="isnt-box">
+      <div class="isnt-col is">
+        <div class="h"><span class="b">✓</span> Approved language — use</div>
+        <ul>
+          <li><span class="b">✓</span> suspected ADHD-driven addiction within the user journey</li>
+          <li><span class="b">✓</span> NIA as working terminology, not diagnosis</li>
+          <li><span class="b">✓</span> where clinically indicated · qualified clinical ADHD route</li>
+          <li><span class="b">✓</span> ADHD clinical-route / next-step status where agreed</li>
+          <li><span class="b">✓</span> Continuity Management Layer · tokenised user Continuity Thread</li>
+          <li><span class="b">✓</span> shared continuity infrastructure, not shared clinical record</li>
+          <li><span class="b">✓</span> SMS delivery / failure / reply / silence evidence · human review</li>
+          <li><span class="b">✓</span> START as real-world dual-diagnosis service-journey signal</li>
+          <li><span class="b">✓</span> continue / continue with changes / rebuild / pause / stop</li>
+          <li><span class="b">✓</span> clinical teams make clinical decisions · partner teams retain service responsibility</li>
+        </ul>
+      </div>
+      <div class="isnt-col isnot">
+        <div class="h"><span class="b">×</span> Avoid or ban — never use</div>
+        <ul>
+          <li><span class="b">×</span> medication cures addiction · stimulant treatment solves addiction</li>
+          <li><span class="b">×</span> OTOS treats addiction · diagnoses ADHD / NIA</li>
+          <li><span class="b">×</span> OTOS prescribes or manages medication · makes clinical decisions</li>
+          <li><span class="b">×</span> OTOS provides therapy · provides crisis care · safeguards independently</li>
+          <li><span class="b">×</span> shared clinical record · full pathway integration</li>
+          <li><span class="b">×</span> guaranteed relapse reduction · guaranteed savings</li>
+          <li><span class="b">×</span> START-level replication · 61.3% expected outcome</li>
+          <li><span class="b">×</span> national proof from the first test</li>
+          <li><span class="b">×</span> Phase 2 or rollout is guaranteed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Approved language bank</span><span>Page 12 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 13 — EXTENDED CLAIMS REGISTER I -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="13 · Extended register I">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Claims control · 13 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">12</div>
+      <div class="htext">
+        <span class="kicker">Extended claims &amp; caveats register</span>
+        <h1 class="title">Every claim, its status, its exact caveat.</h1>
+      </div>
+    </div>
+
+    <p>The claim-by-claim control behind the quick register on p. 10 — published and guidance claims first. <strong>&ldquo;Citation check&rdquo; means the claim is usable once exact source wording is confirmed.</strong></p>
+
+    <table class="reg">
+      <thead><tr><th>Item</th><th>Claim</th><th>Approved-use caveat</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">START 61.3%<small>France, 2025 · Citation check</small></td><td>61.3% improvement signal in addictive-disorder outcomes at six months after ADHD diagnosis / appropriate treatment.</td><td>Never an OTOS outcome, medication-only proof, or a prediction that OTOS will achieve 61.3%.</td></tr>
+        <tr><td class="cl">START design<small>Citation check</small></td><td>START followed adults entering addiction treatment who were also screened and treated for ADHD.</td><td>Confirm setting, cohort, retrospective / observational design and treatment details before external citation.</td></tr>
+        <tr><td class="cl">NICE NG87<small>Wording check</small></td><td>Supports ADHD assessment and treatment in active substance-misuse contexts.</td><td>Check exact NICE wording. Do not imply NICE endorses OTOS.</td></tr>
+        <tr><td class="cl">RCPsych CR235<small>Citation check</small></td><td>Benefit may outweigh risk when treating ADHD in patients with substance-use disorder — in both ADHD symptom and substance-use outcomes.</td><td>Check exact CR235 wording and section. High-risk if misquoted.</td></tr>
+        <tr><td class="cl">Prevalence in addiction cohorts<small>Citation check</small></td><td>ADHD prevalence in addiction cohorts: 23–45%, median ≈34%.</td><td>Identify original source(s), setting, and whether the range applies to SUD, alcohol-use disorder or treatment cohorts.</td></tr>
+        <tr><td class="cl">Alcohol-use disorder / ADHD<small>Citation check</small></td><td>Adults with alcohol-use disorder meeting ADHD criteria may vary from 20% to 50% by study population.</td><td>Evidence-controlled materials only — not first-read copy.</td></tr>
+        <tr><td class="cl">ADHD–SUD severity<small>Citation check</small></td><td>Comorbidity is associated with more severe addiction patterns, earlier onset, higher polysubstance rates, increased relapse risk.</td><td>Avoid presenting as universal for every participant.</td></tr>
+        <tr><td class="cl">NHS ADHD Taskforce — £17bn<small>High-priority check</small></td><td>Unsupported ADHD linked to educational failure, unemployment, crime, substance misuse, suicide, illness — avoidable costs of at least £17bn.</td><td>Separate national economic burden from OTOS outcome claims.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Extended claims register</span><span>Page 13 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 14 — EXTENDED CLAIMS REGISTER II -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="14 · Extended register II">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Claims control · 14 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">13</div>
+      <div class="htext">
+        <span class="kicker">Extended claims &amp; caveats register</span>
+        <h1 class="title">Local modelling, economics — and the discipline rules.</h1>
+      </div>
+    </div>
+
+    <table class="reg">
+      <thead><tr><th>Item</th><th>Claim</th><th>Approved-use caveat</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">Local risk cohort<small>OTOS modelling</small></td><td>≈877 (800–900) local ADHD + addiction risk cohort, from 4,175 adults in treatment and prevalence assumptions.</td><td>Always labelled OTOS modelling estimate — never a CPFT-reported number, never people already identified.</td></tr>
+        <tr><td class="cl">12-week window<small>Design</small></td><td>12 weeks of active support tests touchpoints, engagement, handoff receipts and drift signals.</td><td>Frame as active-support / operating window, with 3- and 6-month follow-up where consent, governance and data-sharing allow.</td></tr>
+        <tr><td class="cl">Modelled avoidable demand<small>OTOS modelling</small></td><td>≈£18m modelled avoidable annual demand / opportunity.</td><td>Not a guaranteed saving. Out of first-read external copy unless fully sourced and caveated.</td></tr>
+        <tr><td class="cl">Scenario calculator<small>Appendix only</small></td><td>e.g. 4,175 × 25% prevalence × 25% effect × £40,070 annual burden ≈ £10.5m gross.</td><td>Modelling appendix only. Never a promised saving.</td></tr>
+        <tr><td class="cl">Turning Point / LSE<small>Citation check</small></td><td>£4.07 return per £1 invested in addiction interventions.</td><td>Check original programme. Do not imply direct applicability to OTOS.</td></tr>
+        <tr><td class="cl">Sleepio benchmark<small>Optional comparator</small></td><td>Digital therapeutic evaluated at ~£55–65 per patient, cost-saving within one year in early implementations.</td><td>Comparator economics only — appendix.</td></tr>
+        <tr><td class="cl">Founder clinical letter<small>Private / case-specific</small></td><td>Psymplicity letter records ADHD complicated by excess alcohol use to self-medicate inadequately managed symptoms; improved response to Elvanse.</td><td>Private evidence archive / founder-story guardrail only. Not generalisable; consent / legal / clinical review before wider circulation.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="midhead">Evidence-discipline rules</div>
+    <p style="font-size:12px; margin-bottom:0;">Every serious claim traceable · every number labelled (published / local / modelled / policy / founder receipt) · observed, modelled, proxy and assumption figures kept separate · comparator studies are evidence depth, never guaranteed OTOS outcomes · build-cost figures stay out of the evidence pages · superseded budget figures (£90k, £90k–£150k, £91,520) are retired from evidence claims.</p>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Extended claims register</span><span>Page 14 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 15 — SOURCE QUOTE BANK I -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="15 · Quote bank I">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Source quotes · 15 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">14</div>
+      <div class="htext">
+        <span class="kicker">Source quote bank — RCPsych CR235</span>
+        <h1 class="title">The strongest guidance, quoted safely.</h1>
+      </div>
+    </div>
+
+    <p>Claim-ready wording traced to RCPsych CR235 (2023). <strong>Each row carries its safe form — quote the safe form, cite the section.</strong></p>
+
+    <table class="reg">
+      <thead><tr><th>CR235 says</th><th>Safe claim-ready wording</th><th>Use / caveat</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">&ldquo;ADHD in adults continues to be underdiagnosed … a large unmet need.&rdquo;</td><td>Adult ADHD remains underdiagnosed, with substantial unmet need.</td><td>UK service context. Not a Cambridgeshire-specific claim without local data.</td></tr>
+        <tr><td class="cl">&ldquo;Substance misuse … may be twice as common among individuals with ADHD … and tends to begin earlier.&rdquo; <small>§11.1</small></td><td>Substance misuse may be around twice as common among people with ADHD and may begin earlier.</td><td>High-value overlap row. Phrase as &ldquo;may&rdquo;; cite §11.1 / Breyer et al.</td></tr>
+        <tr><td class="cl">&ldquo;A recognisable risk factor for early onset substance misuse&rdquo; with relapse risk if untreated <small>§11.1</small></td><td>ADHD is a recognised risk factor for earlier substance misuse and may be linked with relapse risk when not adequately treated.</td><td>Risk / association — not deterministic causation.</td></tr>
+        <tr><td class="cl">Individuals with untreated ADHD &ldquo;may describe self-medicating&rdquo; <small>§11.1</small></td><td>Some people with untreated ADHD describe using substances as self-medication.</td><td>Evidence-controlled copy only; never sensational or universal.</td></tr>
+        <tr><td class="cl">&ldquo;Controlled misuse should not completely preclude treatment, although careful monitoring will be required.&rdquo; <small>§11.1</small></td><td>Substance misuse does not automatically exclude ADHD treatment — it requires careful monitoring and clinical risk management.</td><td>Clinical sign-off required. OTOS never decides treatment suitability.</td></tr>
+        <tr><td class="cl">In uncontrolled / chaotic misuse, stimulants are &ldquo;not routinely recommended&rdquo; <small>§11.1</small></td><td>Where misuse is uncontrolled or chaotic, stimulant medication may be difficult to manage safely and is not routinely recommended.</td><td>Boundary row for medication caution.</td></tr>
+        <tr><td class="cl">&ldquo;Significant and comorbid substance misuse should be managed jointly&rdquo; between services <small>§11.1</small></td><td>Significant comorbidity should be managed jointly across adult mental-health and addiction services, following local protocols.</td><td>Supports partner ownership; OTOS is wraparound continuity infrastructure.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Source quote bank</span><span>Page 15 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 16 — SOURCE QUOTE BANK II -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="16 · Quote bank II">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Source quotes · 16 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">15</div>
+      <div class="htext">
+        <span class="kicker">Source quote bank — care, access &amp; the science of sticking</span>
+        <h1 class="title">Assessment, access — and why skills stick.</h1>
+      </div>
+    </div>
+
+    <table class="reg">
+      <thead><tr><th>Source says</th><th>Safe claim-ready wording</th><th>Use / caveat</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">CR235 — assessment quality</td><td>Good adult ADHD assessment takes time, is ideally multidisciplinary, and should use information from multiple sources.</td><td>Justifies continuity / evidence capture around a clinical process — never OTOS assessment.</td></tr>
+        <tr><td class="cl">CR235 — management is multimodal</td><td>Adult ADHD management is multimodal: medication may be part of care, but psychological, educational, skills-based and environmental support also matter.</td><td>Supports Medicine-plus-Continuity. OTOS provides no treatment.</td></tr>
+        <tr><td class="cl">CR235 — environment first</td><td>Environmental adaptation is a first-line part of adult ADHD care, alongside medication where used.</td><td>&ldquo;Medicine may open the window; support still has to land.&rdquo;</td></tr>
+        <tr><td class="cl">CR235 — flexible access</td><td>Flexible access, including text-message reminders and remote consultation, may help adult ADHD services support attendance.</td><td>Supports SMS check-ins as service alignment — not outcome proof.</td></tr>
+        <tr><td class="cl">CR235 — post-diagnostic support</td><td>Post-diagnostic support and education should be part of adult ADHD care.</td><td>Waiting-well / support-to-land framing; OTOS is not therapy.</td></tr>
+        <tr><td class="cl">CR235 — service design</td><td>Adult ADHD service models should be stepped, matched, multidisciplinary, partnership-based and informed by lived experience.</td><td>Alignment only — RCPsych does not endorse OTOS.</td></tr>
+        <tr><td class="cl">Adult ADHD CBT review<small>Citation check</small></td><td>Among medication-treated adults with residual symptoms, one review reports 56% treatment responders with CBT versus 13% without.</td><td>Science-of-Sticking evidence only. Not an alcohol-recovery rate, not an OTOS outcome.</td></tr>
+        <tr><td class="cl">Safren adult ADHD CBT RCT<small>Citation check</small></td><td>CBT adds structured skills training where medication reduces some barriers but residual impairment remains.</td><td>&ldquo;Medication may open the learning window; CBT teaches the skills.&rdquo;</td></tr>
+        <tr><td class="cl">CBT + medication comparison, 2019<small>Citation check</small></td><td>Combined treatment produced broader executive-function improvements than CBT alone.</td><td>Supports the learning-window argument — not higher addiction-recovery success.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Source quote bank</span><span>Page 16 / 17</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 17 — GOVERNANCE CONTEXT + VERIFICATION STATUS -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="17 · Verification & sign-off">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Verification · 17 / 17</span>
+    </div>
+    <div class="sec-head">
+      <div class="mod-no">16</div>
+      <div class="htext">
+        <span class="kicker">Governance context &amp; verification status</span>
+        <h1 class="title">What the market teaches — and what is still to check.</h1>
+      </div>
+    </div>
+
+    <p style="font-size:12.5px;"><strong class="ink">The digital mental-health market is a cautionary tale OTOS designs against.</strong> Investment peaked at $5.1bn (2021) then plummeted; only ~1.4% of mental-health apps carry peer-reviewed evidence; the MHRA increasingly treats diagnosis / treatment-advice tools as medical devices. The lessons built in: digital tools as <strong class="ink">adjuncts, not substitutes</strong> · privacy-first, minimal data, clear consent · explicit non-clinical boundaries · evidence-led from the start.</p>
+
+    <div class="midhead">Verification status — before external circulation</div>
+
+    <table class="reg">
+      <thead><tr><th>Check</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="cl">Dean — evidence rows useful, right tone, kept in register</td><td><span class="badge pub">Complete</span></td></tr>
+        <tr><td class="cl">Evidence — national ADHD / SUD / cost claims traced to source stack</td><td><span class="badge pub">Substantially complete</span></td></tr>
+        <tr><td class="cl">START — exact citation, sample, outcome wording, six-month caveat vs original source</td><td><span class="badge mod">Final citation pass</span></td></tr>
+        <tr><td class="cl">Clinical — ADHD, medication, stimulant and treatment-boundary wording</td><td><span class="badge mod">Awaiting reviewer</span></td></tr>
+        <tr><td class="cl">Governance — data, digital-therapy, procurement, safeguarding wording</td><td><span class="badge mod">Awaiting reviewer</span></td></tr>
+        <tr><td class="cl">External circulation without further review</td><td><span class="badge no">Not yet</span></td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:11.5px; margin:10px 0 0;"><strong class="ink">Control rule.</strong> This dossier is the single evidence-control document for the OTOS family — any future evidence work feeds back into it, never into a competing file. Clinical and governance wording is ready for review but not for founder self-approval.</p>
+
+    <div class="signoff" style="margin-top:10px; font-size:11.5px;">
+      <span class="name">Dean Butler — Founder, OTOS Continuity</span>
+      OTOS Digital Ltd · Co. No. 17084455 · dean@otos.life · 07585 899 235 · This dossier accompanies the NIA Paper and every OTOS partner brief.
+    </div>
+
+    <div class="page-foot"><span>OTOS Evidence Dossier · Verification &amp; sign-off</span><span>Page 17 / 17</span></div>
+  </section>
+
+</div>
+</body>
+</html>

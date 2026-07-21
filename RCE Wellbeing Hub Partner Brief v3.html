@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<title>OTOS Brief — RCE Wellbeing Hub</title>
+<meta name="viewport" content="width=794" />
+<link rel="stylesheet" href="assets/colors_and_type.css" />
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; }
+  body {
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: var(--fw-body);
+    letter-spacing: var(--ls-body);
+    line-height: 1.6;
+    color: var(--otos-paper-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .doc { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 30px 0; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 22mm 22mm;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+    background: var(--otos-paper);
+    color: var(--otos-paper-ink);
+    background-image: radial-gradient(ellipse 56rem 34rem at 100% 0%, rgba(242,108,13,.06), transparent 56%);
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+
+  .page::after {
+    content: "";
+    position: absolute;
+    right: -28px; bottom: -28px;
+    width: 240px; height: 188px;
+    background: url("assets/brain.png") right bottom / contain no-repeat;
+    opacity: .035;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .page > *:not(.page-foot) { position: relative; z-index: 1; }
+
+  /* ===== Typography ===== */
+  h1.title {
+    font-size: 39px;
+    font-weight: 1000;
+    letter-spacing: -0.034em;
+    line-height: 1.04;
+    margin: 0 0 16px;
+    color: var(--otos-paper-ink);
+    max-width: 19ch;
+  }
+  h2.sub {
+    font-size: 17px; font-weight: 900; letter-spacing: -0.018em;
+    line-height: 1.2; margin: 0 0 9px; color: var(--otos-paper-ink);
+  }
+  p { font-size: 14.5px; line-height: 1.7; margin: 0 0 13px; color: var(--otos-paper-muted); font-weight: 550; }
+  p strong, .ink { color: var(--otos-paper-ink); font-weight: 800; }
+
+  .kicker {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 10px; font-weight: 950; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--otos-orange);
+    border: 1px solid rgba(242,108,13,.4);
+    background: rgba(242,108,13,.07);
+    border-radius: 999px; padding: 7px 13px; margin-bottom: 18px;
+  }
+  .kicker::before {
+    content: ""; display: inline-block; width: 13px; height: 11px;
+    background: url("assets/otos-brain-icon.png") center/contain no-repeat;
+    filter: saturate(.9);
+  }
+
+  /* ===== Header / footer ===== */
+  .page-head {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px; font-weight: 800; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--otos-paper-muted);
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(70,48,34,.14);
+  }
+  .who { font-weight: 900; letter-spacing: .06em; text-transform: none; font-size: 12.5px; color: var(--otos-paper-ink); }
+  .who.brand { display: inline-flex; align-items: center; gap: 9px; }
+  .who.brand::before {
+    content: ""; width: 21px; height: 16px;
+    background: url("assets/otos-brain-icon.png") center/contain no-repeat;
+    filter: drop-shadow(0 0 6px rgba(242,108,13,.45));
+  }
+
+  .page-foot {
+    position: absolute; left: 22mm; right: 22mm; bottom: 13mm;
+    display: flex; justify-content: space-between;
+    font-size: 9px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--otos-paper-muted); opacity: .85;
+    z-index: 1;
+  }
+
+  /* ===== Reference block (page 1) ===== */
+  .refblock {
+    border: 1px solid rgba(70,48,34,.16);
+    border-radius: 12px;
+    background: var(--otos-paper-2);
+    padding: 14px 16px;
+    margin-bottom: 22px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5px 22px;
+  }
+  .refblock .row { font-size: 11.5px; line-height: 1.45; color: var(--otos-paper-muted); }
+  .refblock .row span { font-weight: 900; color: var(--otos-paper-ink); letter-spacing: .04em; }
+  .refblock .full { grid-column: 1 / -1; }
+
+  /* ===== Priorities ===== */
+  .priorities { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+  .prio {
+    display: grid; grid-template-columns: 30px 1fr; gap: 13px; align-items: baseline;
+    padding: 13px 16px; border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.6));
+    border: 1px solid rgba(70,48,34,.13);
+  }
+  .prio .n { font-size: 19px; font-weight: 1000; color: var(--otos-orange); letter-spacing: -0.04em; }
+  .prio .t { font-size: 14px; line-height: 1.45; color: var(--otos-paper-ink); font-weight: 600; }
+  .prio .t b { font-weight: 900; }
+
+  /* ===== Callout ===== */
+  .callout {
+    border-radius: 14px; padding: 16px 20px; margin: 16px 0 0;
+    background: var(--otos-paper-ink); color: var(--otos-paper-2);
+    font-size: 14.5px; line-height: 1.55; font-weight: 600;
+  }
+  .callout strong { color: var(--otos-orange-2); }
+  .callout.soft {
+    background: rgba(242,108,13,.07);
+    border: 1px solid rgba(242,108,13,.3);
+    color: var(--otos-paper-ink);
+    font-size: 13.5px; line-height: 1.55;
+  }
+  .callout.soft strong { color: var(--otos-orange); }
+
+  /* ===== Pull quote (founder voice) ===== */
+  .pull {
+    border-left: 3px solid var(--otos-orange);
+    padding: 4px 0 4px 18px;
+    margin: 16px 0;
+    font-size: 19px; font-weight: 900; letter-spacing: -0.02em;
+    line-height: 1.3; color: var(--otos-paper-ink);
+  }
+  .pull .by { display:block; margin-top: 8px; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; color: var(--otos-paper-muted); }
+
+  /* ===== Feature → benefit table ===== */
+  .fb {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    margin: 12px 0 0; border-radius: 12px; overflow: hidden;
+    border: 1px solid rgba(70,48,34,.16);
+  }
+  .fb th {
+    text-align: left; font-size: 10px; font-weight: 950; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--otos-orange);
+    padding: 9px 13px; background: var(--otos-paper-2);
+    border-bottom: 1px solid rgba(70,48,34,.16);
+  }
+  .fb td {
+    padding: 8px 13px; font-size: 12px; line-height: 1.4; vertical-align: top;
+    border-bottom: 1px solid rgba(70,48,34,.1);
+    color: var(--otos-paper-muted);
+  }
+  .fb tr:last-child td { border-bottom: none; }
+  .fb td.el { font-weight: 900; color: var(--otos-paper-ink); width: 24%; }
+  .fb td.wh { width: 33%; }
+
+  .value-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .value-list li {
+    position: relative; padding-left: 24px; margin-bottom: 9px;
+    font-size: 14px; line-height: 1.5; color: var(--otos-paper-ink); font-weight: 550;
+  }
+  .value-list li::before {
+    content: ""; position: absolute; left: 0; top: 4px; width: 14px; height: 11px;
+    background: url("assets/otos-brain-icon.png") center/contain no-repeat; opacity: .8;
+  }
+
+  .mlist { list-style: none; margin: 4px 0 0; padding: 0; }
+  .mlist li {
+    position: relative; padding-left: 24px; margin-bottom: 9px;
+    font-size: 14px; line-height: 1.5; color: var(--otos-paper-ink); font-weight: 550;
+  }
+  .mlist li::before {
+    content: ""; position: absolute; left: 0; top: 4px; width: 14px; height: 11px;
+    background: url("assets/otos-brain-icon.png") center/contain no-repeat; opacity: .8;
+  }
+  .mlist li strong { font-weight: 900; }
+
+  /* Two-column split (need-from / now-later) */
+  .split2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+  .nl-card {
+    border-radius: 14px; padding: 15px 17px;
+    border: 1px solid rgba(70,48,34,.14);
+    background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.6));
+  }
+  .nl-card.accent { background: rgba(242,108,13,.06); border-color: rgba(242,108,13,.3); }
+  .nl-card .tag { font-size: 9.5px; font-weight: 950; letter-spacing: .22em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 7px; }
+  .nl-card h3 { font-size: 16px; font-weight: 1000; letter-spacing: -0.02em; color: var(--otos-paper-ink); margin: 0 0 8px; line-height: 1.15; }
+  .nl-card .mlist li { font-size: 13px; margin-bottom: 7px; line-height: 1.45; }
+
+  /* Blip / SMS thread band */
+  .blip {
+    margin-top: 16px; padding: 15px 18px; border-radius: 14px;
+    background: var(--otos-paper-ink); color: var(--otos-paper-2);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .blip .lead { font-size: 19px; font-weight: 1000; letter-spacing: -0.02em; color: var(--otos-orange-2); line-height: 1.1; flex-shrink: 0; max-width: 8.5ch; }
+  .blip .body { font-size: 13px; line-height: 1.55; font-weight: 600; }
+  .blip .body strong { color: var(--otos-orange-2); }
+
+  .ask-box {
+    border-radius: 14px; padding: 17px 20px; margin: 12px 0 0;
+    background: linear-gradient(180deg, rgba(242,108,13,.1), rgba(242,108,13,.04));
+    border: 1.5px solid rgba(242,108,13,.42);
+  }
+  .ask-box .label { font-size: 9.5px; font-weight: 950; letter-spacing: .22em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 6px; }
+  .ask-box p { font-size: 14.5px; line-height: 1.58; color: var(--otos-paper-ink); margin: 0; font-weight: 600; }
+
+  .boundaries { font-size: 12px; line-height: 1.55; color: var(--otos-paper-muted); margin: 12px 0 0; font-style: italic; }
+
+  /* ===== Standard boundary box (shared spine) ===== */
+  .boundary-box {
+    margin: 14px 0 0; border-radius: 14px; padding: 13px 17px;
+    background: var(--otos-paper-2); border: 1px solid rgba(70,48,34,.18);
+    border-left: 3px solid var(--otos-orange);
+  }
+  .boundary-box .bhead { font-size: 9.5px; font-weight: 950; letter-spacing: .2em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 6px; }
+  .boundary-box p { font-size: 11.5px; line-height: 1.5; color: var(--otos-paper-muted); margin: 0; font-weight: 600; }
+  .boundary-box p strong { color: var(--otos-paper-ink); font-weight: 900; }
+
+  /* ===== Touchpoint flow diagram ===== */
+  .flow { margin: 14px 0 0; }
+  .flow-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: stretch; }
+  .flow-step {
+    border-radius: 13px; padding: 12px 12px; text-align: center;
+    background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.62));
+    border: 1px solid rgba(70,48,34,.15);
+  }
+  .flow-step.accent { background: rgba(242,108,13,.08); border-color: rgba(242,108,13,.4); }
+  .flow-step .n { font-size: 8.5px; font-weight: 950; letter-spacing: .14em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 5px; }
+  .flow-step .t { font-size: 12.5px; font-weight: 1000; letter-spacing: -0.01em; color: var(--otos-paper-ink); line-height: 1.12; margin-bottom: 4px; }
+  .flow-step .d { font-size: 9.5px; line-height: 1.34; color: var(--otos-paper-muted); font-weight: 600; }
+  .flow-arrow { display: flex; align-items: center; justify-content: center; width: 24px; color: var(--otos-orange); font-size: 16px; font-weight: 900; }
+  .flow-cap { margin: 11px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--otos-paper-muted); font-weight: 600; }
+  .flow-cap strong { color: var(--otos-paper-ink); font-weight: 900; }
+
+  .signoff { margin-top: 14px; font-size: 12.5px; line-height: 1.55; color: var(--otos-paper-muted); }
+  .signoff .name { font-size: 13.5px; font-weight: 900; color: var(--otos-paper-ink); display: block; margin-bottom: 2px; }
+  .signoff .promise { display:block; font-size: 15px; font-weight: 900; color: var(--otos-orange); letter-spacing: -0.015em; margin-bottom: 10px; line-height: 1.25; }
+
+  @media print {
+    html, body { background: #fff; }
+    .doc { padding: 0; gap: 0; }
+    .page { box-shadow: none; margin: 0; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+
+  /* ===== OTOS shared spine: Team of Services ===== */
+  .tos-spine { margin-top: 16px; border-radius: 13px; padding: 12px 15px; background: var(--otos-paper-2); border: 1px solid rgba(70,48,34,.16); border-left: 3px solid var(--otos-orange); }
+  .tos-spine .tos-label { font-size: 8.5px; font-weight: 950; letter-spacing: .18em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 9px; display: flex; align-items: center; gap: 7px; }
+  .tos-spine .tos-label::before { content: ""; width: 13px; height: 11px; background: url("assets/otos-brain-icon.png") center/contain no-repeat; }
+  .tos-track { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .tos-node { font-size: 9px; font-weight: 800; color: var(--otos-paper-muted); background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.62)); border: 1px solid rgba(70,48,34,.15); border-radius: 999px; padding: 4px 9px; white-space: nowrap; }
+  .tos-node.on { background: rgba(242,108,13,.13); border-color: rgba(242,108,13,.5); color: var(--otos-orange); font-weight: 950; }
+  .tos-track .sep { color: rgba(242,108,13,.5); font-weight: 900; font-size: 10px; }
+
+  /* ===== Shared image banner ===== */
+  .img-banner { margin: 16px 0 0; border-radius: 14px; overflow: hidden; position: relative; height: 152px; border: 1px solid rgba(70,48,34,.16); box-shadow: 0 14px 32px rgba(64,42,22,.12); }
+  .img-banner img { width: 100%; height: 100%; object-fit: cover; }
+  .img-banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,12,6,.66) 0%, rgba(20,12,6,.20) 44%, rgba(20,12,6,0) 70%); }
+  .img-banner .cap { position: absolute; left: 16px; bottom: 12px; right: 46%; z-index: 1; }
+  .img-banner .cap .k { font-size: 9px; font-weight: 950; letter-spacing: .2em; text-transform: uppercase; color: var(--otos-orange-2); display: block; margin-bottom: 4px; }
+  .img-banner .cap .t { font-size: 15px; font-weight: 1000; letter-spacing: -0.02em; line-height: 1.14; color: #fff; }
+  .img-banner .ill { position: absolute; right: 11px; bottom: 9px; z-index: 1; font-size: 7.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+
+  .cover-v2 h1.cover-title { max-width: 21ch; line-height: .98; }
+  .cover-v2 .ct-white { color: var(--otos-ink); display: block; }
+  .cover-v2 .ct-orange { color: var(--otos-orange-2); display: block; font-size: 1.1em; margin: 2px 0; }
+  .cover-v2 .cover-img { filter: brightness(.62) saturate(1.04) contrast(1.02); }
+  .cover-v2 .cover-scrim { background: linear-gradient(180deg, rgba(8,7,6,.5) 0%, rgba(8,7,6,.34) 30%, rgba(8,7,6,.66) 72%, rgba(8,7,6,.86) 100%) !important; }
+  /* ===== Full-bleed impact break ===== */
+  .page.fbreak { padding: 0; position: relative; display: block; }
+  .page.fbreak .fb-img { position: absolute !important; inset: 0 !important; width: 100%; height: 100%; object-fit: cover; }
+  .page.fbreak .fb-scrim { position: absolute !important; inset: 0 !important; background: linear-gradient(180deg, rgba(8,7,6,.4) 0%, rgba(8,7,6,.14) 38%, rgba(8,7,6,.6) 76%, rgba(8,7,6,.9) 100%); }
+  .page.fbreak .fb-inner { position: absolute !important; inset: 0 !important; padding: 22mm; display: flex; flex-direction: column; justify-content: flex-end; z-index: 2; }
+  .page.fbreak .fb-kick { font-size: 10px; font-weight: 950; letter-spacing: .26em; text-transform: uppercase; color: var(--otos-orange-2); margin-bottom: 16px; }
+  .page.fbreak .fb-line { font-size: 40px; font-weight: 1000; letter-spacing: -0.03em; line-height: 1.04; color: #fff; max-width: 18ch; margin: 0; }
+  .page.fbreak .fb-line .o { color: var(--otos-orange-2); }
+  .page.fbreak .fb-sub { margin-top: 16px; font-size: 13px; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,.82); max-width: 48ch; }
+  .page.fbreak .fb-foot { position: absolute; left: 22mm; right: 22mm; bottom: 13mm; display: flex; justify-content: space-between; font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); z-index: 3; }
+    .versus { width:100%; border-collapse:separate; border-spacing:0; margin-top:12px; border:1px solid rgba(70,48,34,.16); border-radius:12px; overflow:hidden; }
+  .versus thead th { font-size:9.5px; font-weight:950; letter-spacing:.14em; text-transform:uppercase; padding:11px 14px; text-align:left; background:var(--otos-paper-ink); color:#fff; }
+  .versus thead th.adhd { background:var(--otos-red); } .versus thead th.rec { background:var(--otos-green); }
+  .versus td { padding:9px 14px; font-size:11px; line-height:1.36; vertical-align:top; border-bottom:1px solid rgba(70,48,34,.1); }
+  .versus tr:last-child td { border-bottom:none; }
+  .versus td.fn { font-weight:900; color:var(--otos-paper-ink); width:20%; }
+  .versus td.adhd { width:40%; color:var(--otos-paper-ink); font-weight:600; background:rgba(178,58,46,.05); }
+  .versus td.rec { width:40%; color:var(--otos-paper-ink); font-weight:600; background:rgba(46,125,50,.05); }
+  .versus tbody tr:nth-child(even) td.fn { background:rgba(70,48,34,.03); }
+  .src-note { font-size:10.5px; line-height:1.5; color:var(--otos-paper-muted); margin-top:11px; font-style:italic; }
+  .src-note strong { color:var(--otos-paper-ink); font-weight:900; font-style:normal; }
+  .isnt-box { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0 0; }
+  .isnt-col { border-radius:12px; padding:13px 16px; background:var(--otos-paper-2); border:1px solid rgba(70,48,34,.14); }
+  .isnt-col .h { font-size:10px; font-weight:950; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .isnt-col.isnot .h { color:var(--otos-red); } .isnt-col.is .h { color:var(--otos-green); }
+  .isnt-col ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+  .isnt-col li { font-size:11.5px; line-height:1.4; color:var(--otos-paper-muted); font-weight:600; display:flex; gap:8px; align-items:flex-start; }
+  .isnt-col li .b { flex-shrink:0; font-weight:900; font-size:12px; }
+  .isnt-col.isnot li .b, .isnt-col.isnot .h .b { color:var(--otos-red); }
+  .isnt-col.is li .b, .isnt-col.is .h .b { color:var(--otos-green); }
+  .pathway-fig { margin-top:14px; border-radius:14px; background:var(--otos-paper-2); border:1px solid rgba(70,48,34,.14); padding:12px 14px 10px; }
+  .pathway-fig img { width:100%; max-width:720px; display:block; margin:0 auto; }
+  .pathway-fig .cap { margin-top:7px; text-align:center; font-size:9.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--otos-paper-muted); }
+  .neuro-note { margin-top:13px; border-left:3px solid var(--otos-orange); padding:4px 0 4px 14px; }
+  .neuro-note b { color:var(--otos-paper-ink); font-weight:900; }
+</style>
+<link rel="stylesheet" href="assets/otos-brief.css" />
+<link rel="stylesheet" href="assets/az-nia-v2.css" />
+</head>
+<body>
+<a href="index.html" id="hubBack" style="position:fixed;top:14px;left:14px;z-index:99999;font:700 12px system-ui,-apple-system,sans-serif;color:#b5651d;background:rgba(255,255,255,.82);border:1px solid rgba(181,101,29,.5);padding:8px 15px;border-radius:999px;text-decoration:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.22)">← Hub</a>
+<div class="doc">
+
+  <!-- ============================================== -->
+  <!-- PAGE 1 — YOU WERE A PLACE I COULD GO -->
+  <!-- ============================================== -->
+  <!-- PAGE 1 — COVER -->
+  <section class="page cover-v2" data-screen-label="01 · Cover">
+    <img class="cover-img" src="assets/partner-img/08-active-waiting.png" alt="Someone engaged in an online wellbeing course — active, supported waiting" />
+    <div class="cover-scrim"></div>
+    <div class="cover-inner">
+      <div class="cv-top"><span class="cv-brand">OTOS Continuity</span><span>Private · Partner brief</span></div>
+      <div class="cv-mid">
+        <h1 class="cover-title">
+          <span class="ct-white">RCE can help turn</span>
+          <span class="ct-orange">waiting</span>
+          <span class="ct-white">into something that holds.</span>
+        </h1>
+        <p class="cv-support">Holding support while someone waits is not a small thing. RCE already gives people structured learning, courses, self-management and wellbeing support while the ADHD clinical review route catches up, where applicable. OTOS makes that holding visible, active and receipted — only around a small, bounded ADHD-driven addiction intervention test, and only where RCE / CPFT governance agrees.</p>
+        <div class="cv-meta">
+          <div class="m"><span class="l">For the attention of</span>The lived-experience facilitator — RCE Wellbeing Hub (&amp; the wellbeing leads)</div>
+          <div class="m"><span class="l">Re</span>Turning the waiting period into something that actually holds</div>
+          <div class="m"><span class="l">From</span>Dean Butler — former RCE participant, now founder</div>
+          <div class="m"><span class="l">Status</span>Private · Not a pitch · No endorsement assumed</div>
+        </div>
+        <p class="cv-foot">A private partner brief — not a pitch, not a proposal. <strong>NIA (Neurologically Informed Addiction) is proposed founder-originated terminology for a working clinical pattern, not a recognised diagnosis or official pathway; a category-recognition / clinical-pattern review dialogue is in progress. OTOS is non-clinical infrastructure; it surfaces signals, partner teams make every decision. No endorsement is assumed or implied.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 — THE PROMISE / PERSONAL NOTE -->
+  <section class="page azv2" data-screen-label="02 · A place I could go">
+    <div class="page-head"><span class="who">Dean Butler</span><span>A place I could actually use · 02 / 11</span></div>
+    <div class="sec-head"><div class="mod-no">01</div><div class="htext">
+      <span class="kicker">The place I could actually use</span>
+      <h1 class="title">I could finally register, open the laptop, attend the session and learn.</h1>
+    </div></div>
+
+    <p>I experienced RCE from the other side — as a participant. I actually picked up the RCE leaflet at CGL, shortly after finally receiving my corrected ADHD medication, and went along. Before the right ADHD treatment, I could barely turn my laptop on. But this note comes from after that — shortly after I was finally medicated and out the other side, when RCE courses gave me structure, knowledge and something real to do. Those sessions stuck. That mattered more than I can easily put into words.</p>
+
+    <p>This is a private note, not a pitch and not an endorsement request. I'm building OTOS Continuity — the thread that holds people between referrals, discharges and long waiting lists — and I think RCE could be one of its most important practical service partners.</p>
+
+    <p>I am also asking Dr Claire Gillvray / LAMP to pressure-test the &ldquo;waiting well&rdquo; seam, because her language and thinking matter. But this brief is different. This brief is for RCE as the actual CPFT-facing service route where structured active waiting may be available, subject to RCE / CPFT agreement and governance.</p>
+
+    <div class="priorities">
+      <div class="prio"><div class="n">1</div><div class="t"><b>Somewhere real to go while waiting</b> — courses, routine, education, coping tools, self-management and wellbeing support.</div></div>
+      <div class="prio"><div class="n">2</div><div class="t"><b>The moment the work can land</b> — newly diagnosed, newly medicated, finally able to use it.</div></div>
+      <div class="prio"><div class="n">3</div><div class="t"><b>A thread around the support</b> — so agreed course touchpoints, attendance / engagement signals and drift both become visible inside the bounded intervention test.</div></div>
+    </div>
+
+    <div class="page-foot"><span>Private partner brief · Not a pitch · No endorsement assumed</span><span>Page 02 / 11</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 2 — NOT PASSIVE WAITING. ACTIVE CONTINUITY. -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="03 · Active continuity">
+    <div class="page-head">
+      <span class="who">Dean Butler</span>
+      <span>The waiting layer · 03 / 11</span>
+    </div>
+
+    <div class="sec-head">
+      <div class="mod-no">02</div>
+      <div class="htext">
+        <span class="kicker">The waiting layer</span>
+        <h1 class="title">Not passive waiting. Active continuity.</h1>
+      </div>
+    </div>
+
+    <p>For this cohort, the advice is almost always the same: <em class="ink" style="font-style:normal;">wait</em>. Wait for the assessment, the titration, the review, the next appointment. But waiting without structure is exactly where ADHD-driven drift becomes addiction-driven crisis. <strong>A person can be clinically known and still operationally lost.</strong></p>
+
+    <p>For this cohort, active waiting is not passive support — it is repeated, behavioural connection. The things that helped me were small but constant: habit-stacking, CBT-style repetition, relapse-prevention mini-tools, breathing exercises, short meditations, course prompts, micro check-ins, recovery nudges, simple &ldquo;do this next&rdquo; reminders, and tiny moments of reassurance that kept me linked to the work when my brain wanted to drift. On their own, those tools helped for a while, but they could not hold indefinitely while the ADHD underneath was untreated. Once medication created the conditions for the work to land, the same small repetitions became powerful: they helped build new neural patterns, keep recovery warm, and create the constant feeling of connection I had been missing. That is the active-waiting seam OTOS is trying to protect — not therapy, not clinical care, not a replacement for services, but the repeated human-shaped thread that helps the person stay connected long enough for the real work to stick.</p>
+
+    <div class="imgfill short" style="height:112px; min-height:0; flex:0 0 auto; margin-left:-22mm; margin-right:-22mm; border-radius:0; border:none; box-shadow:none;">
+      <img src="assets/partner-img/az-ext-5-chaos.png" alt="A scattered tangle resolving into one ordered pattern — focus, returning" style="object-position: center 45%;" />
+    </div>
+
+    <p>
+
+CPFT already signposts people waiting for ADHD assessment, diagnosis or medication review toward RCE / Waiting-Well support — and the offer is voluntary and course-based: the person signs up, receives email contact, and joins online group lessons and webinars, sometimes just a handful of people at a time. RCE is one of the few places that already turns that empty wait into something real — courses, recovery education, routine and organisation support, breathwork, meditation, coping tools, diagnosis education, community-style self-management and peer / wellbeing support. It gives the person something to engage with while the ADHD clinical review route catches up, where applicable.</p>
+
+    <p>OTOS wraps a continuity thread around that — only for the defined intervention test — so the waiting period is no longer a silence the system can't see. <strong>Known to services is not the same as held between services</strong> — and RCE is one of the best existing places that thread can point.</p>
+
+    <div class="callout">
+      RCE gives the person something real to engage with while the ADHD clinical review route catches up, where applicable. <strong>OTOS keeps the thread alive around it.</strong> RCE is not a signpost — RCE is one of the supports the person can actively engage with while the Continuity Thread is held.
+    </div>
+
+    <div class="tos-spine">
+      <div class="tos-label">One team of services · OTOS holds the thread between them</div>
+      <div class="tos-track">
+        <span class="tos-node">CPFT ADHD Team</span>
+        <span class="tos-node">CGL &amp; CRS</span>
+        <span class="tos-node">Alcohol Liaison</span>
+        <span class="tos-node on">RCE</span>
+        <span class="tos-node">Mind / WorkWell</span>
+        <span class="tos-node">Dr Claire / LAMP</span>
+        <span class="tos-node">Public Health</span>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <span>Private partner brief · Not a pitch · No endorsement assumed</span>
+      <span>Page 03 / 11</span>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 3 — THE MOMENT THE WORK CAN FINALLY LAND -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="04 · The work can land">
+    <div class="page-head">
+      <span class="who">Dean Butler</span>
+      <span>Newly diagnosed · newly medicated · 04 / 11</span>
+    </div>
+
+    <div class="sec-head">
+      <div class="mod-no">03</div>
+      <div class="htext">
+        <span class="kicker">The moment it lands</span>
+        <h1 class="title">This is the moment the work can finally go in.</h1>
+      </div>
+    </div>
+
+    <p>This is the part I most want RCE to hear, because I lived it. <strong>Before the ADHD was recognised and treated, the support could not land.</strong> I could not turn my laptop on. I could not sequence a course, hold a routine, or absorb the recovery work — and I had been through a lot of it.</p>
+
+    <p>Once the treatment was right, everything changed. The CBT started to hold. The recovery learning landed. RCE's courses suddenly gave me structure and knowledge I could actually use. The work had always been good — my brain just hadn't been able to take it in.</p>
+
+    <div class="pull">
+      &ldquo;Medication does not do the recovery work. But it creates the conditions where the work can finally land.&rdquo;
+      <span class="by">— and RCE is exactly the kind of support that should be waiting at that moment.</span>
+    </div>
+
+    <p>That is why the newly diagnosed and newly medicated moment matters so much. It is a narrow, precious window where CBT, routine building, self-management, emotional regulation, addiction education, ADHD education and practical wellbeing can finally become usable. RCE is built for exactly that window.</p>
+
+    <div class="imgfill short" style="height:166px; min-height:0; flex:0 0 auto; margin-left:-22mm; margin-right:-22mm; border-radius:0; border:none; box-shadow:none;">
+      <img src="assets/partner-img/D-RCE-session.png" alt="The same man at an online RCE session — engaged, the moment the work lands" style="object-position: center 35%;" />
+    </div>
+
+        <div class="page-foot">
+      <span>Private partner brief · Not a pitch · No endorsement assumed</span>
+      <span>Page 04 / 11</span>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 5 — IMPACT BREAK (out the other side) -->
+  <!-- ============================================== -->
+  <section class="page fbreak" data-screen-label="05 · Out the other side">
+    <img class="fb-img" src="assets/partner-img/az-ext-3-tree.png" alt="A lone tree at the end of a long path, first light breaking — out the other side" />
+    <div class="fb-scrim"></div>
+    <div class="fb-inner">
+      <div class="fb-kick">Why the waiting layer matters</div>
+      <p class="fb-line">The work was not wrong. My brain <span class="o">could not use it yet.</span></p>
+      <p class="fb-sub">Active waiting kept me reachable until the moment treatment made the work land. That is what RCE does that nothing clinical can: it holds people in something useful while the system catches up — and that is where the turn out the other side actually begins.</p>
+    </div>
+    <div class="fb-foot">
+      <span>Private partner brief · Not a pitch · No endorsement assumed</span>
+      <span>Page 05 / 11</span>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 4 — HOW RCE CREATES CONTINUITY TOUCHPOINTS -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="06 · Touchpoints">
+    <div class="page-head">
+      <span class="who">Dean Butler</span>
+      <span>The touchpoint model · 06 / 11</span>
+    </div>
+
+    <div class="sec-head">
+      <div class="mod-no">05</div>
+      <div class="htext">
+        <span class="kicker">How the thread stays alive</span>
+        <h1 class="title">A course is not just content. It becomes a touchpoint.</h1>
+      </div>
+    </div>
+
+    <p>In this model, RCE content and language — in <strong>RCE's own voice</strong>, co-written and non-clinical — can become agreed continuity prompts or touchpoints for the defined intervention test. Not surveillance. Not a general RCE communications tool. Just a way to keep the person on the thread while they wait.</p>
+
+    <table class="fb">
+      <thead>
+        <tr><th>RCE / OTOS element</th><th>What it does</th><th>Why it matters</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="el">Course touchpoint</td><td class="wh">Points someone to a real RCE course or session</td><td>Gives waiting a useful next step</td></tr>
+        <tr><td class="el">Agreed non-clinical prompt</td><td class="wh">Uses RCE-approved wording for a bounded cohort</td><td>Keeps contact alive without a keyworker call</td></tr>
+        <tr><td class="el">Simple reply / interaction</td><td class="wh">Lets the person respond simply</td><td>Creates a continuity signal without burden</td></tr>
+        <tr><td class="el">Attendance / engagement signal</td><td class="wh">Shows whether the person is interacting with support</td><td>Improves the learning report and human review</td></tr>
+        <tr><td class="el">Missed interaction</td><td class="wh">Shows the thread may be going quiet</td><td>Makes drift visible before crisis</td></tr>
+        <tr><td class="el">Partner-shaped language</td><td class="wh">Uses RCE's tone and service voice</td><td>Keeps messages safe, familiar, non-clinical</td></tr>
+        <tr><td class="el">Learning report</td><td class="wh">Shows what was used, ignored, completed or missed</td><td>Demonstrates RCE's value in the wider User Journey</td></tr>
+      </tbody>
+    </table>
+
+    <div class="flow">
+      <div class="flow-row">
+        <div class="flow-step accent">
+          <div class="n">Step 1</div>
+          <div class="t">Course</div>
+          <div class="d">A real RCE session, in RCE's own voice</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="n">Step 2</div>
+          <div class="t">Check-in</div>
+          <div class="d">An agreed prompt; a simple reply or interaction</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="n">Step 3</div>
+          <div class="t">Drift signal</div>
+          <div class="d">Silence becomes visible before crisis</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="n">Step 4</div>
+          <div class="t">Human review</div>
+          <div class="d">A person decides what, if anything, happens next</div>
+        </div>
+      </div>
+      <p class="flow-cap">A light, agreed check-in cadence can show whether the person is still connected — without turning RCE into a monitoring service. <strong>OTOS surfaces signals. Partner teams make the decisions.</strong> Never a clinical score.</p>
+    </div>
+
+    <div class="page-foot">
+      <span>Private partner brief · Not a pitch · No endorsement assumed</span>
+      <span>Page 06 / 11</span>
+    </div>
+  </section>
+
+  <!-- PASS 9 · diagram page (placement per PDFs-Diagrams authority) -->
+  <section class="page" data-screen-label="06a · Your authorised view" style="background:#faf6ee; color:#241d16; display:flex; flex-direction:column; padding:15mm 17mm 11mm; position:relative; overflow:hidden;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid rgba(70,48,34,.28); padding-bottom:8px; font-size:9.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:rgba(70,48,34,.62);"><span>OTOS Continuity™</span><span>RCE brief · diagram</span></div>
+    <div style="margin-top:22px;">
+      <span style="display:block; font-size:10px; font-weight:900; letter-spacing:.26em; text-transform:uppercase; color:#a8430a; margin-bottom:9px;">Partner zoom-in</span>
+      <h1 style="margin:0; font-size:27px; font-weight:900; letter-spacing:-.03em; line-height:1.06; color:#241d16; max-width:26ch;">The RCE · LAMP · Waiting-Well authorised view.</h1>
+    </div>
+    <div style="flex:1 1 auto; display:flex; align-items:center; justify-content:center; min-height:0; margin:16px 0;">
+      <img src="assets/diagrams/09_partner_zoom_rce_lamp_waiting_well.jpg" alt="RCE, LAMP and Waiting-Well authorised view of the shared continuity layer: support prompts and attendance touchpoints where agreed, with separate records kept." style="max-width:100%; max-height:600px; object-fit:contain;" loading="lazy" decoding="async" />
+    </div>
+    <div style="border-top:2px solid #241d16; padding-top:10px;">
+      <p style="margin:0 0 5px; font-size:13.5px; font-weight:900; line-height:1.4; color:#241d16; max-width:70ch;">Authorised view. Separate record. Same thread.</p>
+      <p style="margin:0; font-size:11.5px; line-height:1.55; color:#6d6155; max-width:76ch;">RCE / LAMP creates support prompts and attendance touchpoints where agreed — active holding while people wait. Attendance, replies, silence and drift become agreed non-clinical Thread events. No clinical record is shared.</p>
+      
+    </div>
+  </section>
+
+
+  <!-- ============================================== -->
+  <!-- PAGE 5 — WHAT WE WOULD NEED FROM RCE -->
+  <!-- ============================================== -->
+  <section class="page azv2" data-screen-label="07 · What we'd need">
+    <div class="page-head">
+      <span class="who">Dean Butler</span>
+      <span>Light and practical · 07 / 11</span>
+    </div>
+
+    <div class="sec-head">
+      <div class="mod-no">06</div>
+      <div class="htext">
+        <span class="kicker">What we would need from RCE</span>
+        <h1 class="title">Be exactly what you already are — with a thread around it.</h1>
+      </div>
+    </div>
+
+    <p>None of this asks RCE to change what it does or take on anything clinical. The whole point is to use RCE's existing strengths, with continuity wrapped gently around them for a defined cohort only. <strong>Nothing changes in how you work. What changes is what can be seen.</strong></p>
+
+    <div class="split2">
+      <div class="nl-card accent">
+        <div class="tag">A short scoping call</div>
+        <h3>What we'd explore together.</h3>
+        <ul class="mlist">
+          <li>A named contact, and a 30–45 minute conversation.</li>
+          <li>Which courses or sessions could work as continuity next steps for the defined ADHD-driven addiction intervention test.</li>
+          <li>What language feels safe and right in RCE's voice.</li>
+          <li>Which attendance / engagement signals would be appropriate to log.</li>
+          <li>How RCE wants its boundaries held.</li>
+          <li>What governance would need to be in place before anything live happened.</li>
+        </ul>
+      </div>
+      <div class="nl-card">
+        <div class="tag">What we would never do</div>
+        <h3>The boundaries, named.</h3>
+        <ul class="mlist">
+          <li>No clinical records replaced; no EPR write-back.</li>
+          <li>No asking RCE to diagnose, treat or manage medication.</li>
+          <li>No automated clinical decisions from a reply or a silence.</li>
+          <li>No general SMS / comms use across RCE's current activity.</li>
+          <li>No use of RCE content, prompts or touchpoints without agreement.</li>
+          <li>No commitment to rollout — learning, not claiming.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout soft" style="margin-top:18px;">
+      <strong>RCE is not being asked to become a clinical decision-maker.</strong> It is being asked to be exactly what it already is — a real, trusted next step — with a thread around it so the person doesn't disappear while they wait.
+    </div>
+
+    <div class="page-foot">
+      <span>Private partner brief · Not a pitch · No endorsement assumed</span>
+      <span>Page 07 / 11</span>
+    </div>
+  </section>
+
+  <!-- PAGE 7 — THE SCIENCE -->
+  <section class="page azv2" data-screen-label="08 · The science">
+    <div class="page-head"><span class="who">Dean Butler</span><span>Why the moment matters · 08 / 11</span></div>
+    <div class="sec-head"><div class="mod-no">07</div><div class="htext">
+      <span class="kicker">The comparison, item for item</span>
+      <h1 class="title">What recovery needs. What ADHD takes away.</h1>
+    </div></div>
+    <p>This is why the newly-medicated window matters so much to RCE. Before treatment, the courses could not land; after treatment, the same courses become usable — <strong>if the person is still connected when the window opens</strong>. <strong class="ink">That hold is what RCE gives. OTOS makes it visible.</strong></p>
+
+    <table class="versus">
+      <thead><tr><th>Capacity</th><th class="adhd">Unmanaged ADHD impairs</th><th class="rec">Recovery &amp; learning require</th></tr></thead>
+      <tbody>
+        <tr><td class="fn">Executive function</td><td class="adhd">Difficulty planning, sequencing and self-regulating; a starved prefrontal cortex</td><td class="rec">Daily planning, structure and the delay of short-term gratification</td></tr>
+        <tr><td class="fn">Focus &amp; attention</td><td class="adhd">Chronic distractibility; hard to sustain attention on non-stimulating tasks</td><td class="rec">Deep, continuous focus through courses, sessions and recovery work</td></tr>
+        <tr><td class="fn">Working memory</td><td class="adhd">Forgets coping strategies, misses appointments, loses the thread</td><td class="rec">Retaining new tools, tracking triggers, holding daily routines</td></tr>
+        <tr><td class="fn">Impulse control</td><td class="adhd">Reflexive, immediate urges; acting before the pause</td><td class="rec">Pausing, reflecting and resisting cravings in the moment</td></tr>
+        <tr><td class="fn">Emotional regulation</td><td class="adhd">Dysregulation; distress arrives fast and overwhelms</td><td class="rec">Tolerating distress and riding out craving without the substance</td></tr>
+        <tr><td class="fn">Routine &amp; follow-through</td><td class="adhd">Hard to initiate and sustain mundane, unrewarding routines</td><td class="rec">Repetition and routine that physically rebuild new behavioural patterns</td></tr>
+        <tr><td class="fn">Reward &amp; arousal</td><td class="adhd">Under-arousal and a pull toward immediate reward</td><td class="rec">A stable baseline — tolerating boredom and delayed reward</td></tr>
+        <tr><td class="fn">Neuroplastic learning</td><td class="adhd">Blunted adaptation; resists routines without immediate payoff</td><td class="rec">Rapid, healthy re-wiring to replace deep-seated habits</td></tr>
+      </tbody>
+    </table>
+    <p class="src-note"><strong>Read it as a model, not a verdict.</strong> Presentations vary and the alignment is directional — offered to show why active waiting matters, not to diagnose any individual.</p>
+
+    <div class="callout soft" style="margin-top:13px;"><strong>The science of sticking.</strong> NICE recommends medication and structured CBT <em class="ink" style="font-style:normal;">in combination</em> — and in adult studies, medication-plus-CBT outperforms either alone. The medication doesn't do the recovery work; it creates the conditions where it can finally land. <em class="ink" style="font-style:normal;">Full evidence in the OTOS Evidence Dossier.</em></div>
+    <div class="page-foot"><span>Private partner brief · Not a pitch · No endorsement assumed</span><span>Page 08 / 11</span></div>
+  </section>
+
+  <!-- PAGE 8 — TEAM OF SERVICES -->
+  <section class="page azv2" data-screen-label="09 · Team of services">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>One team of services · 09 / 11</span></div>
+    <div class="sec-head"><div class="mod-no">08</div><div class="htext">
+      <span class="kicker">One team of services</span>
+      <h1 class="title">One person, held across the whole team.</h1>
+    </div></div>
+    <p>RCE is an active-waiting and education point in a longer User Journey. OTOS does not replace any part of it — it holds the thread <em class="ink" style="font-style:normal;">between</em> every part, so the person stays visible from referral to recovery and back.</p>
+    <div class="pathway-fig" style="background:transparent; border:none; padding:0; box-shadow:none;">
+      <img src="assets/partner-img/team-diagram.png" alt="The OTOS brain at the centre, with every in-loop partner service — including RCE and LAMP — connected by one orange continuity thread" />
+      <div class="cap">One person, held across the whole team of services</div>
+    </div>
+    <div class="neuro-note"><p style="margin:0;"><b>Think of it as neuroplasticity for the system.</b> Just as a treated ADHD brain can finally form new behavioural patterns, a connected service system learns too — and RCE's courses are one of the points where that learning is strongest.</p></div>
+    <p>Dr Claire / LAMP helps pressure-test the &ldquo;waiting well&rdquo; seam; RCE Wellbeing Hub is the actual CPFT-facing service route where structured active waiting may be available. OTOS must respect both: the thinking and language on one side, the operational service and governance on the other.</p>
+    <div class="page-foot"><span>Private partner brief · Not a pitch · No endorsement assumed</span><span>Page 09 / 11</span></div>
+  </section>
+
+  <!-- PAGE 9 — CLARITY -->
+  <section class="page azv2" data-screen-label="10 · What OTOS is and isn't">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Clarity · 10 / 11</span></div>
+    <div class="sec-head"><div class="mod-no">09</div><div class="htext">
+      <span class="kicker">To be completely clear</span>
+      <h1 class="title">What OTOS is, and what it is not.</h1>
+    </div></div>
+    <p>Before any conversation, the boundary should be unambiguous. This protects RCE, your facilitators and your governance — OTOS adds a thread, never a clinical responsibility.</p>
+    <div class="isnt-box">
+      <div class="isnt-col isnot">
+        <div class="h"><span class="b">×</span> What OTOS is not</div>
+        <ul>
+          <li><span class="b">×</span> A clinical service, diagnosis tool or treatment</li>
+          <li><span class="b">×</span> An EPR or NHS record — no record access, no write-back</li>
+          <li><span class="b">×</span> A replacement for RCE, LAMP or any existing course</li>
+          <li><span class="b">×</span> Asking facilitators to take on anything clinical</li>
+          <li><span class="b">×</span> A general SMS / communications platform for RCE activity</li>
+          <li><span class="b">×</span> Asking RCE to authorise clinical messages or carry risk</li>
+          <li><span class="b">×</span> A finished product asking for endorsement</li>
+        </ul>
+      </div>
+      <div class="isnt-col is">
+        <div class="h"><span class="b">✓</span> What OTOS is</div>
+        <ul>
+          <li><span class="b">✓</span> A non-clinical continuity layer around services that already exist</li>
+          <li><span class="b">✓</span> A thread that keeps people engaged between sessions and waits</li>
+          <li><span class="b">✓</span> A bounded, consent-led intervention test around a defined ADHD-driven addiction cohort</li>
+          <li><span class="b">✓</span> A way to log agreed touchpoints, attendance / engagement signals and drift signals</li>
+          <li><span class="b">✓</span> Grounded in NICE NG87 and RCPsych (CR235 / CR243) guidance</li>
+          <li><span class="b">✓</span> Built from lived experience — including as an RCE participant</li>
+          <li><span class="b">✓</span> A small, bounded demonstrator — built to test pilot readiness</li>
+        </ul>
+      </div>
+    </div>
+    <div class="page-foot"><span>Private partner brief · Not a pitch · No endorsement assumed</span><span>Page 10 / 11</span></div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- PAGE 6 — WHY RCE INVOLVEMENT MATTERS / THE ASK -->
+  <!-- ============================================== -->
+  <section class="page azv2 closing" data-screen-label="11 · The ask">
+    <div class="page-head">
+      <span class="who brand">OTOS Continuity</span>
+      <span>Why you matter · the ask · 11 / 11</span>
+    </div>
+
+    <div class="sec-head">
+      <div class="mod-no">10</div>
+      <div class="htext">
+        <span class="kicker">Why your involvement matters · the ask</span>
+        <h1 class="title">RCE can help turn waiting into something that holds.</h1>
+      </div>
+    </div>
+
+    <p>Done well, RCE stops being a forgotten signpost at the end of a referral and becomes a <strong>visible, valued part of the pathway</strong> — the place that demonstrates how wellbeing education actually supports people while they wait, are newly diagnosed, or are newly medicated.</p>
+
+    <ul class="value-list">
+      <li>It helps the <strong>ADHD Team</strong>: &ldquo;go and wait&rdquo; becomes &ldquo;go and engage with something structured while we keep the thread alive.&rdquo;</li>
+      <li>It helps <strong>CGL &amp; CRS</strong>: people have a real next step between recovery conversations.</li>
+      <li>It helps <strong>RCE</strong>: clearer feedback on who engaged, drifted, completed or needed follow-up — and proof of RCE's value inside the wider User Journey, without becoming clinically responsible for it.</li>
+    </ul>
+
+    <div class="ask-box">
+      <div class="label">The ask</div>
+      <p><strong>I'm not asking you to approve OTOS, endorse NIA, commit to a pilot or take on new responsibility.</strong> I would value a 30–45 minute conversation about whether RCE could help shape the active waiting and wellbeing-support layer inside a small, safe, bounded ADHD-driven addiction continuity-learning model. Just your practical wellbeing and education judgement in the room.</p>
+    </div>
+
+    <p class="boundaries"><strong>OTOS does not diagnose, prescribe, treat, replace services or make clinical decisions. OTOS surfaces signals; partner teams make the decisions.</strong> RCE is not a clinical service and is not asked to become one; RCE content stays in RCE's own voice and boundaries. This is not a general SMS / comms tool for RCE activity; it is a bounded OTOS Continuity Layer around a defined ADHD-driven addiction intervention test. No endorsement is assumed or implied. Any work would be RCE-shaped, consent-led and subject to governance.</p>
+
+    <div class="signoff">
+      <span class="promise">Not passive waiting — active holding. RCE is one of the best existing places the continuity thread can point to while people wait.</span>
+      <span class="name">With real thanks — Dean Butler.</span>
+      Founder, OTOS Digital Ltd — Out The Other Side™ · Co. No. 17084455<br/>
+      dean@otos.life · 07585 899 235
+    </div>
+
+    <div class="page-foot">
+      <span>Private partner brief · Not a pitch · No endorsement assumed</span>
+      <span>Page 11 / 11</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

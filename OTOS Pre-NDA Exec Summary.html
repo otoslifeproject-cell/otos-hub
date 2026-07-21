@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="en-GB"><head>
+
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<title>OTOS Continuity — Executive Summary</title>
+<meta name="viewport" content="width=794">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;550;700;900;1000&display=swap');
+  :root{ --ink:#232020; --muted:#4a443d; --orange:#c0480d; --orange2:#f26c0d; --paper:#f7f4ee; --paper2:#fffdf8; --line:rgba(70,48,34,.16); }
+  *{ box-sizing:border-box; } @page{ size:A4 portrait; margin:0; }
+  html,body{ margin:0; background:#2a2a2a; font-family:'Inter',sans-serif; }
+  .doc{ display:flex; flex-direction:column; align-items:center; gap:18px; padding:28px 0; }
+  .page{ width:210mm; height:297mm; background:var(--paper); color:var(--ink); position:relative; overflow:hidden;
+    box-shadow:0 24px 70px rgba(0,0,0,.5); page-break-after:always; }
+  .page:last-child{ page-break-after:auto; }
+  .pad{ padding:22mm 22mm 17mm; height:100%; display:flex; flex-direction:column; position:relative; z-index:2; }
+  .brainwm::after{ content:""; position:absolute; right:-30px; bottom:-30px; width:230px; height:180px;
+    background:url("assets/brain.png") right bottom/contain no-repeat; opacity:.035; z-index:0; }
+  .phead{ display:flex; justify-content:space-between; align-items:center; font-size:9px; font-weight:800;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--muted); padding-bottom:11px; margin-bottom:18px; border-bottom:1px solid var(--line); }
+  .who{ font-weight:900; letter-spacing:.04em; text-transform:none; font-size:11.5px; color:var(--ink); display:inline-flex; align-items:center; gap:8px; }
+  .who::before{ content:""; width:19px; height:14px; background:url("assets/otos-brain-icon.png") center/contain no-repeat; }
+  .kick{ font-size:10px; font-weight:950; letter-spacing:.22em; text-transform:uppercase; color:var(--orange); margin-bottom:12px; display:block; }
+  h1.title{ font-size:24px; font-weight:1000; letter-spacing:-.03em; line-height:1.13; color:var(--ink); margin:0 0 9px; }
+  .prop{ font-size:14px; line-height:1.5; color:var(--muted); font-weight:600; font-style:italic; margin:0 0 18px; padding-bottom:16px; border-bottom:1px solid var(--line); }
+  h2{ font-size:12px; font-weight:950; letter-spacing:.13em; text-transform:uppercase; color:var(--orange); margin:0 0 7px; }
+  p{ font-size:12.5px; line-height:1.58; margin:0 0 11px; color:var(--muted); font-weight:500; }
+  p strong, .ink{ color:var(--ink); font-weight:800; }
+  .askbox{ background:var(--ink); color:var(--paper2); border-radius:14px; padding:18px 20px; }
+  .askbox .l{ font-size:10px; font-weight:950; letter-spacing:.2em; text-transform:uppercase; color:var(--orange2); margin-bottom:9px; }
+  .askbox .big{ font-size:15px; font-weight:800; line-height:1.4; color:#fff; margin:0; }
+  .askbox .sm{ font-size:10.5px; line-height:1.5; color:rgba(255,255,255,.72); margin:11px 0 0; font-weight:500; }
+  .pull{ border-left:3px solid var(--orange2); padding:4px 0 4px 17px; margin:14px 0; font-size:17px; font-weight:900;
+    letter-spacing:-.02em; line-height:1.3; color:var(--ink); }
+  .callout{ background:var(--paper2); border:1px solid var(--line); border-left:3px solid var(--orange2); border-radius:12px; padding:14px 17px; margin:13px 0; }
+  .callout p{ font-size:11.5px; line-height:1.52; margin:0 0 8px; }
+  .callout p:last-child{ margin:0; }
+  .fquote{ background:var(--ink); color:#fff; border-radius:14px; padding:17px 21px; margin:13px 0; }
+  .fquote .q{ font-size:18px; font-weight:900; letter-spacing:-.02em; line-height:1.3; margin:0; color:#fff; }
+  .fquote .a{ font-size:11px; font-weight:600; color:rgba(255,255,255,.66); margin:10px 0 0; line-height:1.5; }
+  .contact{ margin-top:14px; padding-top:13px; border-top:1px solid var(--line); font-size:12px; line-height:1.55; color:var(--muted); }
+  .contact strong{ color:var(--ink); font-weight:900; }
+  .pfoot{ position:absolute; left:22mm; right:22mm; bottom:10mm; display:flex; justify-content:space-between;
+    font-size:8.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); opacity:.8; z-index:3; }
+
+  /* page 1 — float ask box so copy wraps and fills full width below */
+  .flowwrap::after{ content:""; display:block; clear:both; }
+  .flowwrap .askbox{ float:right; width:38%; margin:2px 0 14px 24px; }
+  .flowwrap h2:first-of-type{ margin-top:0; }
+
+  /* COVER PAGE */
+  .cover{ padding:0; background:#f7f4ee; color:#17130f; }
+  .cover .cimg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
+    opacity:.15; filter:grayscale(.4) contrast(.9); }
+  .cover .cwash{ position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(247,244,238,.80) 0%, rgba(247,244,238,.46) 26%, rgba(247,244,238,.30) 50%, rgba(247,244,238,.44) 100%); }
+  .cover .cpad{ position:relative; z-index:2; height:100%; padding:18mm 18mm; display:flex; flex-direction:column; }
+  .cover .ctop{ display:flex; justify-content:space-between; align-items:center; margin-bottom:13mm; }
+  .cover .ctop .who{ font-weight:900; font-size:15px; letter-spacing:.01em; color:#17130f; display:inline-flex; align-items:center; gap:9px; }
+  .cover .ctop .who::before{ content:""; width:26px; height:19px; background:url("assets/otos-brain-icon.png") center/contain no-repeat; }
+  .cover .ctop .who sup{ font-size:.58em; font-weight:700; color:#8a8175; margin-left:3px; }
+  .cover .ctop .conf{ font-size:11px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:#6b6358; }
+  .cover .cbrand{ font-size:64px; font-weight:900; letter-spacing:-.035em; line-height:.92; color:#f26c0d; margin:0; }
+  .cover .cbrand sup{ font-size:.32em; font-weight:800; vertical-align:super; }
+  .cover .csub{ font-size:25px; font-weight:800; letter-spacing:-.01em; line-height:1.28; color:#17130f; margin:20px 0 0; max-width:84%; }
+  .cover .clines{ margin-top:22px; display:flex; flex-direction:column; gap:5px; }
+  .cover .clines span{ font-size:17px; font-weight:500; line-height:1.5; color:#2a2118; }
+  .cover .cnote{ margin-top:22px; font-size:17px; font-weight:500; line-height:1.5; color:#2a2118; max-width:75%; }
+  .cover .cfoot{ margin-top:auto; border-top:1px solid rgba(70,48,34,.22); padding-top:15px;
+    display:grid; grid-template-columns:1fr 1fr; gap:14px 0; }
+  .cover .cfk{ font-size:10px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color:#f26c0d; margin-bottom:3px; }
+  .cover .cfv{ font-size:13px; font-weight:500; color:#2a2118; }
+  .cover .cfv strong{ font-weight:800; color:#17130f; }
+
+  /* ELVANSE FULL-BG MECHANISM PAGE */
+  .imgpage{ padding:0; }
+  .imgpage .bimg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .imgpage .bpad{ position:relative; z-index:2; height:100%; padding:22mm 22mm 17mm; display:flex; flex-direction:column; }
+  .imgpage .btext{ max-width:60%; }
+
+  .claims-caveat{ margin-top:12px; font-size:11px; line-height:1.5; color:#8a8175; font-style:italic; border-top:1px solid rgba(70,48,34,.14); padding-top:8px; }
+  @media print{ html,body{ background:#fff; } .doc{ padding:0; gap:0; } .page{ box-shadow:none; } *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; } }
+</style>
+<link id="gfont-Inter" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"></head>
+<body style="">
+<a href="index.html" id="hubBack" style="position:fixed;top:14px;left:14px;z-index:99999;font:700 12px system-ui,-apple-system,sans-serif;color:#b5651d;background:rgba(255,255,255,.82);border:1px solid rgba(181,101,29,.5);padding:8px 15px;border-radius:999px;text-decoration:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.22)">← Hub</a>
+<div class="doc">
+
+  <!-- PAGE 1 — COVER -->
+  <section class="page cover" data-screen-label="01 · Cover">
+    <img class="cimg" src="assets/partner-img/exec-cover-new2.png" alt="A lone figure at the centre of a vast ripple, one faint orange thread leading up and out across the system to surrounding services">
+    <div class="cwash"></div>
+    <div class="cpad">
+      <div class="ctop"><span class="who">OTOS Continuity<sup>™</sup></span><span class="conf">Executive summary · Private &amp; confidential</span></div>
+      <h1 class="cbrand">Out The Other Side<sup>™</sup></h1>
+      <p class="csub">A proposed continuity model for ADHD-driven addiction, repeat relapse and the service disconnect that keeps this cohort trapped in costly crisis.</p>
+      <div class="clines">
+        <span>Identify the driver earlier.</span>
+        <span>Hold the person through the gaps.</span>
+        <span>Test whether existing services can connect the route out.</span>
+      </div>
+      <p class="cnote">Founder learning, clinical receipt and published evidence also suggest an avoidable £4bn cost chain is hiding in plain sight.</p>
+      <div class="cfoot">
+        <div class="cf"><div class="cfk">Prepared by</div><div class="cfv"><strong>Dean Butler</strong> — Founder, OTOS Continuity™</div></div>
+        <div class="cf"><div class="cfk">Document</div><div class="cfv">Executive summary · pre-NDA overview</div></div>
+        <div class="cf"><div class="cfk">Company</div><div class="cfv">OTOS Digital Ltd · Co. No. 17084455</div></div>
+        <div class="cf"><div class="cfk">Status</div><div class="cfv">Private &amp; confidential · not a procurement</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 — THE CASE FOR A CONVERSATION -->
+  <section class="page brainwm" data-screen-label="02 · The case for a conversation">
+    <div class="pad">
+      <div class="phead"><span class="who" style="">OTOS Continuity™</span><span style="font-size: 9px;">The case for a conversation · 02 / 06</span></div>
+      <span class="kick" style=""><br></span>
+      <h1 class="title" style="font-size: 32px;">Known to services is not the same as held between services.</h1>
+      <p class="prop" style="text-align: justify">OTOS Continuity™ is a non-clinical Continuity Layer for a high-cost ADHD-addiction User Journey the system already sees but does not yet hold between services. The question is narrow: can a small, governed demonstrator identify adults whose addiction may be ADHD-driven, route them into appropriate clinical review where criteria are met, and hold the consent-led Continuity Thread while existing services do their own work?</p>
+
+      <div class="flowwrap">
+        <aside class="askbox">
+          <div class="l">The ask</div>
+          <p class="big" style="text-align: left">A 30-minute exploratory conversation to test whether a small, governed 50-person demonstrator is worth shaping.</p>
+          <p class="sm" style="text-align: justify">Not a procurement request. No funding commitment. No clinical responsibility moves to OTOS. Just the right people in the room, deciding whether the idea is worth a next step.</p>
+        </aside>
+
+        <h2>The problem</h2>
+        <p>The system sees this cohort constantly and pays for them in the most expensive settings it has — A&amp;E, ICU, addiction services and mental health crisis — without ever joining up <em>why</em>. The founder, Dean Butler, has been on a CPFT ADHD medication-review waiting list for seven years, with no communication and no connection made between that wait, his many alcohol-related presentations and the other services involved across the system.</p>
+        <p>He suspects this is not a small edge case. Published evidence already shows ADHD is heavily over-represented in addiction cohorts, with studies placing it in a large minority of people in substance-use treatment — in some samples approaching one in three. Dean’s working hypothesis, built from his lived experience, service exposure, recovery fellowships and the evidence gathered globally, is that the repeat-relapse, alcohol cohort may sit at the sharp end of that figure. Addiction services struggle to move them forward while ADHD remains untreated, while the ADHD clinical review route itself may stall or exclude them if substance use remains active. So they keep self-medicating; referrals are made; patients are discharged with no service picking up the risk in the gaps. The teams, services and care exist. What is missing is upstream recognition, earlier intervention, stronger hand-off and continuity between them all — the infrastructure thread that could help this cohort get Out The Other Side too.</p>
+
+        <h2>Why this matters now</h2>
+        <p style="text-align: justify">The NHS Independent ADHD Taskforce (2025) put the avoidable economic cost of unsupported ADHD at least £17 billion and the NHS 10-Year Plan is explicitly pushing care upstream — hospital to community, treatment to prevention, analogue to digital. The cost keeps landing in the worst possible places. A focused conversation now could identify a practical, low-disruption next step with the potential to reduce avoidable crisis, improve outcomes and save significant money across the system.</p>
+      </div>
+
+      <div class="pfoot"><span>OTOS Continuity™ · Executive summary</span><span>Page 02 / 06</span></div>
+    </div>
+  </section>
+
+  <!-- PASS 15 · the wave — problem / scale spread (full-bleed, NNa insert convention) -->
+  <section class="page imgpage" data-screen-label="02a · The wave we are building">
+    <img class="bimg" src="assets/support-img/tsunami-wave-people.png" alt="A colossal wave made entirely of people, curling out of a doorway where a small crowd waits, breaking onto a row of lit public services — hospital, school, police, courts, library, social services — with a single amber continuity thread running along the ground">
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,8,10,.72) 0%, rgba(8,8,10,.32) 34%, rgba(8,8,10,0) 54%, rgba(8,8,10,.42) 100%); z-index:1;"></div>
+    <div class="bpad" style="display:flex; flex-direction:column; height:100%; position:relative; z-index:2;">
+      <div class="phead"><span class="who" style="color:rgba(255,255,255,.72);">OTOS Continuity™</span><span style="color:rgba(255,255,255,.72); font-size:9px;">The scale of the gap · 02 / 06</span></div>
+      <div style="max-width:18ch; margin-top:6mm;">
+        <h1 class="title" style="font-size:34px; color:#fff; text-shadow:0 2px 26px rgba(0,0,0,.55);">Left waiting upstream, a cohort doesn't disappear. <span style="color:#ff9c3f;">It arrives downstream as a wave.</span></h1>
+      </div>
+      <div style="margin-top:auto; max-width:54ch;">
+        <p style="font-size:13px; color:rgba(255,255,255,.9); line-height:1.55; text-shadow:0 1px 14px rgba(0,0,0,.6);">Restrict adult ADHD assessment and the need doesn't vanish — it stores itself as future crisis: self-medicated into addiction, then landing all at once on the services least able to absorb it. And one untreated case does not create one cost. It ripples — <strong style="color:#fff;">£90k–£220k+ a year</strong> across the whole system, from the family to the courts to the litter on the street.</p>
+        <p style="font-size:9px; color:rgba(255,255,255,.62); margin-top:11px; line-height:1.5;">Strategic risk hypothesis, not a proven forecast. Figures are a full-ripple cost model — a way of seeing the whole burden, not a guaranteed per-case invoice; validate locally. OTOS is non-clinical; it surfaces signals, partner teams make every decision.</p>
+      </div>
+      <div class="pfoot"><span style="color:rgba(255,255,255,.55);">OTOS Continuity™ · Executive summary</span><span style="color:rgba(255,255,255,.55);">Page 02 / 06</span></div>
+    </div>
+  </section>
+
+  <!-- PAGE 3 — THE PROPOSED IDEA / ELVANSE MECHANISM (full-bg) -->
+  <section class="page imgpage" data-screen-label="03 · The big idea">
+    <img class="bimg" src="assets/partner-img/elvanse-bg.png" alt="A chaotic tangle of dark lines resolving into a single focused orange point">
+    <div class="bpad" style="display:flex; flex-direction:column; height:100%;">
+      <div class="phead"><span class="who">OTOS Continuity™</span><span>THE QUESTION &amp; PROPOSAL · 03 / 06</span></div>
+      <h1 class="title" style="font-size: 32px">When ADHD is left waiting, addiction does not arrive quietly — it brings chaos, crisis and cost with it.</h1>
+      <p style="font-size: 14px; width: 627px; text-align: justify">The question is not whether the system is paying. It is whether it is paying early enough to change the outcome. The proposal is to test one question: what happens if this suspected cohort is identified earlier, ADHD is properly assessed and treatment is considered alongside addiction support instead of remaining an “ADHD only” unconnected case? The intervention question is bounded — can they be identified earlier, routed to proper assessment and supported while clinically indicated ADHD treatment is considered before years of self-medication become crisis and consequence at huge cost to service users and the entire system?</p>
+      <div style="margin-top:auto;">
+        <p style="font-size: 13px; text-align: justify">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+That is the mechanism OTOS is asking to test safely in others. The change for Dean was not just emotional. The recovery work, meetings, therapy, learning and support the system had already paid for began to land because the ADHD underneath was finally being addressed, supported by medication providing the executive function he had been missing all along. OTOS does not claim medication is the whole answer. It asks whether, for this cohort, earlier ADHD treatment creates the neurological opening that allows addiction recovery work to take hold.</p>
+        <div class="callout" style="border-color: rgba(70, 48, 34, 0.16); background-color: rgb(249, 243, 233)"><p style="font-size: 13px; font-weight: 600">What recovery needs, unmanaged ADHD has already taken away: planning, focus, working memory, impulse control, emotional regulation, routine, delayed reward and the capacity to learn new patterns. That is why standard recovery work can fail to land for this cohort until ADHD is recognised and treated where clinically indicated — the person is being asked to sustain the very capacities the condition is impairing. It could explain why earlier ADHD treatment may create the neurological opening for recovery work to take hold.
+
+
+OTOS is non-clinical: it doesn’t diagnose, prescribe or make treatment decisions — it holds the consent-led Continuity Thread while partners do.</p></div>
+      </div>
+      <div class="pfoot"><span>OTOS Continuity™ · Executive summary</span><span>Page 03 / 06</span></div>
+    </div>
+  </section>
+
+  <!-- PASS 9 · diagram page (placement per PDFs-Diagrams authority) -->
+  <section class="page" data-screen-label="03a · Today vs with OTOS" style="background:#faf6ee; color:#241d16; display:flex; flex-direction:column; padding:15mm 17mm 11mm; position:relative; overflow:hidden;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid rgba(70,48,34,.28); padding-bottom:8px; font-size:9.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:rgba(70,48,34,.62);"><span>OTOS Continuity™</span><span>Pre-NDA · diagram</span></div>
+    <div style="margin-top:22px;">
+      <span style="display:block; font-size:10px; font-weight:900; letter-spacing:.26em; text-transform:uppercase; color:#a8430a; margin-bottom:9px;">The model, drawn simply</span>
+      <h1 style="margin:0; font-size:27px; font-weight:900; letter-spacing:-.03em; line-height:1.06; color:#241d16; max-width:26ch;">Today, and with the thread held.</h1>
+    </div>
+    <div style="flex:1 1 auto; display:flex; align-items:center; justify-content:center; min-height:0; margin:16px 0;">
+      <img src="assets/diagrams/01_today_vs_with_otos.jpg" alt="Today: separate services around one person with no shared infrastructure. With OTOS: a shared continuity management layer holding one individual tokenised thread, partner interfaces with authorised logins, separate records kept." style="max-width:100%; max-height:600px; object-fit:contain;" loading="lazy" decoding="async" />
+    </div>
+    <div style="border-top:2px solid #241d16; padding-top:10px;">
+      <p style="margin:0 0 5px; font-size:13.5px; font-weight:900; line-height:1.4; color:#241d16; max-width:70ch;">Shared thread, not shared clinical record.</p>
+      <p style="margin:0; font-size:11.5px; line-height:1.55; color:#6d6155; max-width:76ch;">One person · one continuity thread · separate service records · authorised partner views. The Layer is shared; the Thread is individual. OTOS surfaces continuity signals; clinical teams make clinical decisions.</p>
+      <p style="margin:10px 0 0; font-size:10.5px; font-style:italic; color:rgba(109,97,85,.85);">Impression-level view — detailed maps and operating diagrams follow under NDA.</p>
+    </div>
+  </section>
+
+
+  <!-- PAGE 4 — WHAT MAKES IT DIFFERENT / EVIDENCE -->
+  <section class="page brainwm" data-screen-label="04 · What makes it different &amp; evidence">
+    <div class="pad">
+      <div class="phead"><span class="who">OTOS Continuity™</span><span>The enabler &amp; what makes it different · 04 / 06</span></div>
+      <span class="kick"><br></span>
+      <h1 class="title" style="font-size: 30px;">The missed flag was visible in five colours.</h1>
+      <p style="font-weight:800; color:var(--ink);">Identify the cohort earlier. Clinically address the driver where indicated. Hold the person long enough for support to land.</p>
+
+      <p style="text-align: justify">
+
+Earlier ADHD identification and treatment, where clinically indicated, is the intervention hypothesis. OTOS Continuity™ is the enabler — a non-clinical infrastructure layer that holds the person on the thread between services, supports them to wait well through existing lifestyle, living-well and addiction-support sessions informed by ADHD understanding, and delivers partner-informed micro check-ins and daily nudges that extend keyworker reach, maintain connection and generate feedback for the evidence report.</p>
+
+      <h2>
+
+WHAT MAKES IT DIFFERENT</h2>
+      <p style="text-align: justify">It is infrastructure. It is not another treatment service, not an EPR and not a clinical decision tool. It does not diagnose, prescribe, treat or replace anything. It focuses on the one thing nobody currently owns: the continuity between services and the sequencing — getting ADHD identified and treated upstream so the downstream recovery work has a better chance of landing. OTOS surfaces signals; partner teams make every clinical decision.</p>
+
+      <div style="margin-top: 14px; background: rgba(255,253,248,.7); border: 1px solid rgba(70,48,34,.16); border-left: 3px solid var(--orange2); border-radius: 12px; padding: 15px 18px; line-height: 1.6; font-size: 15px; font-weight: 800">A patient with a documented ADHD diagnosis and waiting-list confirmation for medication review. Then multiple ICU admissions, a documented psychosis episode, alcohol-withdrawal seizures, a suicide attempt, an assault, an arrest, probation, addiction services and rehab that removed his medication — and still the thread did not connect.<br><br><strong>That is not a missed flag. That is a missed flag visible in at least five different colours across multiple records, none of which were talking to each other.</strong></div>
+
+      <div class="pfoot"><span>OTOS Continuity™ · Executive summary</span><span>Page 04 / 06</span></div>
+    </div>
+  </section>
+
+  <!-- PAGE 5 — EVIDENCE / PROOF -->
+  <section class="page brainwm" data-screen-label="05 · Evidence &amp; proof">
+    <div class="pad">
+      <div class="phead"><span class="who">OTOS Continuity™</span><span>Evidence &amp; proof · 05 / 06</span></div>
+      <span class="kick"><br></span>
+      <h1 class="title" style="font-size: 30px;">Bold on pattern. Honest on proof.</h1>
+      <p style="text-align: justify">Published evidence and NHS policy now point in the same direction. Three figures make the case hard to ignore: the NHS Independent ADHD Taskforce puts the avoidable economic cost of unsupported ADHD at around £17bn; the START France 2025 study reported 61.3% improvement in addictive-disorder outcomes after ADHD diagnosis and treatment in its study population; and a 2025 national-register study found ADHD medication was associated with reduced recurrent substance misuse and criminality. Dean’s case adds the lived and clinical receipt — in April 2026 an independent GMC-registered consultant psychiatrist wrote to the CPFT ADHD Team: “Adult ADHD previously complicated with excess alcohol use to self-medicate inadequately managed ADHD symptoms.” That sentence is the cohort thesis in writing, addressed to the exact team this work is being put in front of.</p>
+
+      <p style="text-align: justify">A fuller evidence sheet, founder chronology and £4bn cost-chain workings are available for governed follow-up review, under NDA where appropriate.</p>
+
+      <p class="claims-caveat">Figures shown are comparator and context evidence, not OTOS outcomes. OTOS has not yet demonstrated reduced relapse, reduced A&amp;E attendance or savings — the proposed demonstrator is designed to test whether these become measurable.</p>
+
+      <div class="pfoot"><span>OTOS Continuity™ · Executive summary</span><span>Page 05 / 06</span></div>
+    </div>
+  </section>
+
+  <!-- PASS 9 · diagram page (placement per PDFs-Diagrams authority) -->
+  <section class="page" data-screen-label="05a · The build, at a glance" style="background:#faf6ee; color:#241d16; display:flex; flex-direction:column; padding:15mm 17mm 11mm; position:relative; overflow:hidden;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid rgba(70,48,34,.28); padding-bottom:8px; font-size:9.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:rgba(70,48,34,.62);"><span>OTOS Continuity™</span><span>Pre-NDA · product impression</span></div>
+    <div style="margin-top:22px;">
+      <span style="display:block; font-size:10px; font-weight:900; letter-spacing:.26em; text-transform:uppercase; color:#a8430a; margin-bottom:9px;">The build, at a glance</span>
+      <h1 style="margin:0; font-size:27px; font-weight:900; letter-spacing:-.03em; line-height:1.06; color:#241d16; max-width:26ch;">What the build puts in people's hands.</h1>
+    </div>
+    <div style="flex:1 1 auto; display:flex; align-items:center; justify-content:center; min-height:0; margin:16px 0;">
+      <img src="assets/diagrams/05_device_mockup_family.jpg" alt="Illustrative interface views of the build: role-based dashboard, participant thread view, touchpoint log, handoff receipt, drift and silence queue, human review, evidence export. Demo data only." style="max-width:100%; max-height:600px; object-fit:contain;" loading="lazy" decoding="async" />
+    </div>
+    <div style="border-top:2px solid #241d16; padding-top:10px;">
+      <p style="margin:0 0 5px; font-size:13.5px; font-weight:900; line-height:1.4; color:#241d16; max-width:70ch;">Functionality in the build. Not live outcomes.</p>
+      <p style="margin:0; font-size:11.5px; line-height:1.55; color:#6d6155; max-width:76ch;">Illustrative interface views with demo data only — no performance claims. Micro check-ins are partner-led, pre-written prompts supported by OTOS; human review sits behind every signal.</p>
+      <p style="margin:10px 0 0; font-size:10.5px; font-style:italic; color:rgba(109,97,85,.85);">Impression-level view — detailed maps and operating diagrams follow under NDA.</p>
+    </div>
+  </section>
+
+
+  <!-- PAGE 5 — THE DEMONSTRATOR / MEETING ASK -->
+  <section class="page brainwm" data-screen-label="06 · The demonstrator">
+    <div class="pad" style="text-align: justify">
+      <div class="phead"><span class="who">OTOS Continuity™</span><span>The demonstrator &amp; the ask · 06 / 06</span></div>
+      <span class="kick" style=""><br></span>
+      <h1 class="title" style="font-size: 32px;">A small, governed test and a single, low-risk next step.</h1>
+
+      <h2 style=""><div><br></div>What could be tested</h2>
+      <p style="text-align: justify">A bounded demonstrator pre-pilot build — 50 people, 12 weeks, Cambridge &amp; Peterborough, circa £150k to cover setup, coordination, continuity support, measurement and reporting — could test the core question directly: can the learning from Dean’s journey be applied retrospectively and safely to identify others earlier, before the same pattern hardens? The intent is not to repeat his route but to use lived experience, clinical evidence and system hindsight to find and route the cohort sooner — expedite proper ADHD assessment and treatment where clinically indicated, hold people on the thread so support has a chance to land and measure how recovery outcomes change. It is an evidence budget, not a therapy budget — a surgical test, not a rollout.</p>
+
+      <h2 style=""><div><br></div>What is not being asked for</h2>
+      <p style="text-align: justify">At this stage this is not a request for procurement, full adoption, funding commitment or operational change, and no clinical decision-making moves to OTOS. NIA (Neurologically Informed Addiction) is proposed founder-originated terminology for “ADHD-driven addiction”, not an official diagnosis; a category-recognition / clinical-pattern review dialogue is in progress. No partner endorsement is assumed.</p>
+
+      <h2 style=""><div><br></div>The meeting ask</h2>
+      <p style="text-align: justify">The request is for a 30-minute exploratory conversation — to discuss the problem, test whether the cohort and the early-treatment approach are clinically meaningful, identify what would be unsafe or unworkable and decide together whether a small, governed next step is worth scoping.</p>
+
+      <div class="fquote">
+        <p class="q">"Next time we meet, I won't be your patient. I'll be your partner."</p>
+        <p class="a" style="font-size: 13px; text-align: justify">— Dean, to the alcohol liaison nurse who, on his third visit, had nowhere left to send him. Alcohol Liaison may be one of the earliest places the pattern becomes visible. In a governed test, that bedside signal could be preserved into the Continuity Thread instead of snapping at discharge.</p>
+      </div>
+
+      <div class="contact" style="font-size: 13px;">Thanks for reading. There is more to share and we would welcome that short exploratory conversation to understand whether this proposal is relevant and whether there is a safe, practical route to take it further.  
+
+
+Dean Butler, Founder, Out The Other Side™
+OTOS Digital Ltd · Co No. 17084455 · dean@otos.life · +44 7585 899 235 
+
+
+
+
+
+</div>
+
+      <div class="pfoot"><span>OTOS Continuity™ · Executive summary</span><span>Page 06 / 06</span></div>
+    </div>
+  </section>
+
+</div>
+
+
+
+
+
+</body></html>
+

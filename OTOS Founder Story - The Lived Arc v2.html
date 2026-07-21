@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="en-GB"><head>
+
+
+
+
+<meta charset="utf-8">
+<title>The Lived Arc — Dean Butler, founder of OTOS Continuity™</title>
+<meta name="viewport" content="width=794">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;550;700;900;1000&display=swap');
+  :root{ --ink:#211d19; --muted:#4a443d; --orange:#c0480d; --orange2:#f26c0d; --paper:#f4efe6; --paper2:#fffaf0; --line:rgba(70,48,34,.14); }
+  *{ box-sizing:border-box; } @page{ size:A4 portrait; margin:0; }
+  html,body{ margin:0; background:#2a2a2a; font-family:'Inter',sans-serif; }
+  .doc{ display:flex; flex-direction:column; align-items:center; gap:18px; padding:28px 0; }
+  .page{ width:210mm; height:297mm; background:var(--paper); color:var(--ink); position:relative; overflow:hidden;
+    box-shadow:0 24px 70px rgba(0,0,0,.5); page-break-after:always; }
+  .page:last-child{ page-break-after:auto; }
+  .pad{ padding:20mm 20mm 18mm; height:100%; display:flex; flex-direction:column; position:relative; z-index:2; }
+  .brainwm::after{ content:""; position:absolute; right:-26px; bottom:-26px; width:220px; height:172px;
+    background:url("assets/brain.png") right bottom/contain no-repeat; opacity:.04; z-index:0; }
+  .phead{ display:flex; justify-content:space-between; align-items:center; font-size:9px; font-weight:800;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--muted); padding-bottom:10px; margin-bottom:15px; border-bottom:1px solid var(--line); }
+  .who{ font-weight:900; letter-spacing:.04em; text-transform:none; font-size:11.5px; color:var(--ink); display:inline-flex; align-items:center; gap:8px; }
+  .who::before{ content:""; width:19px; height:14px; background:url("assets/otos-brain-icon.png") center/contain no-repeat; }
+  .kick{ display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:950; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--orange); margin-bottom:11px; }
+  .kick::before{ content:""; width:13px; height:10px; background:url("assets/otos-brain-icon.png") center/contain no-repeat; }
+  h1.title{ font-size:30px; font-weight:1000; letter-spacing:-.035em; line-height:1.04; color:var(--ink); margin:0 0 14px; max-width:21ch; }
+  p{ font-size:13px; line-height:1.6; margin:0 0 11px; color:var(--muted); font-weight:500; }
+  p strong, .ink{ color:var(--ink); font-weight:800; }
+  .pull{ border-left:3px solid var(--orange2); padding:3px 0 3px 16px; margin:14px 0; font-size:18px; font-weight:900;
+    letter-spacing:-.02em; line-height:1.28; color:var(--ink); max-width:30ch; }
+  .pull.sm{ font-size:15px; max-width:36ch; }
+  .pull .by{ display:block; margin-top:7px; font-size:10px; font-weight:600; letter-spacing:.03em; color:var(--muted); }
+  .pfoot{ position:absolute; left:20mm; right:20mm; bottom:11mm; display:flex; justify-content:space-between;
+    font-size:8.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); opacity:.85; z-index:2; }
+  /* cover */
+  .cover{ background:#0e0b08; color:#fff; }
+  .cover .fb{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(.5) saturate(1.05); }
+  .cover .scrim{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(14,11,8,.55),rgba(14,11,8,.32) 32%,rgba(14,11,8,.72) 72%,rgba(14,11,8,.94)); }
+  .cover .pad{ z-index:2; justify-content:space-between; }
+  .cover .ctop{ display:flex; justify-content:space-between; align-items:center; }
+  .cbrand{ display:inline-flex; align-items:center; gap:9px; font-size:14px; font-weight:950; color:#fff; }
+  .cbrand::before{ content:""; width:23px; height:17px; background:url("assets/otos-brain-icon.png") center/contain no-repeat; }
+  .ctop .m{ font-size:9px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.6); }
+  .cover .ckick{ font-size:10px; font-weight:950; letter-spacing:.24em; text-transform:uppercase; color:var(--orange2); margin-bottom:14px; }
+  .cover h1{ font-size:44px; font-weight:1000; letter-spacing:-.04em; line-height:1.0; color:#fff; margin:0; max-width:16ch; }
+  .cover .csub{ margin-top:16px; font-size:14px; line-height:1.55; color:rgba(255,255,255,.84); font-weight:550; max-width:50ch; }
+  .cover .cepi{ margin-top:20px; padding-top:14px; border-top:1px solid rgba(255,255,255,.16); font-size:12.5px; line-height:1.5; color:rgba(255,255,255,.7); font-style:italic; max-width:54ch; }
+  .cover .cby{ margin-top:8px; font-size:11px; font-weight:800; letter-spacing:.04em; color:rgba(255,255,255,.78); font-style:normal; }
+  @media print{ html,body{ background:#fff; } .doc{ padding:0; gap:0; } .page{ box-shadow:none; } *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; } }
+  /* full-bleed cinematic interlude */
+  .brk{ background:#0e0b08; color:#fff; }
+  .brk .fb{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(.56) saturate(1.04); }
+  .brk .scrim{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(14,11,8,.5),rgba(14,11,8,.24) 40%,rgba(14,11,8,.72)); }
+  .brk .pad{ z-index:2; justify-content:flex-end; }
+  .brk .bkick{ font-size:10px; font-weight:950; letter-spacing:.24em; text-transform:uppercase; color:var(--orange2); margin-bottom:13px; }
+  .brk h1{ font-size:38px; font-weight:1000; letter-spacing:-.035em; line-height:1.04; color:#fff; margin:0; max-width:18ch; }
+  .brk .bsub{ margin-top:15px; font-size:13px; line-height:1.55; color:rgba(255,255,255,.82); font-weight:550; max-width:50ch; }
+  .brk .pfoot{ color:rgba(255,255,255,.6); }
+
+  /* full-bleed photo page, text pinned top-left (letter/receipt treatment) */
+  .brk.topleft .pad{ justify-content:flex-start; align-items:flex-start; max-width:62ch; }
+  .brk.topleft .scrim{ background:linear-gradient(115deg, rgba(10,8,6,.86) 0%, rgba(10,8,6,.62) 34%, rgba(10,8,6,.18) 58%, rgba(10,8,6,.05) 74%), linear-gradient(180deg, rgba(10,8,6,.2) 0%, rgba(10,8,6,0) 30%, rgba(10,8,6,.5) 100%); }
+  .brk.topleft h1{ max-width:22ch; }
+  .brk.topleft p{ color:rgba(255,255,255,.82); font-weight:550; }
+  .brk.topleft p strong, .brk.topleft .ink{ color:#fff; }
+  .brk.topleft .pull{ color:#fff; border-left-color:var(--orange2); max-width:44ch; }
+  .brk.topleft .pull .by{ color:rgba(255,255,255,.6); }
+  .reflect-box{ margin-top:16px; max-width:52ch; background:rgba(10,8,6,.42); border:1px solid rgba(255,255,255,.22); padding:16px 18px; }
+  .reflect-box .rb-label{ display:block; font-size:9.5px; font-weight:950; letter-spacing:.22em; text-transform:uppercase; color:var(--orange2); margin-bottom:10px; }
+  .reflect-box p{ font-size:13.5px; line-height:1.55; color:rgba(255,255,255,.9); font-weight:550; margin:0; padding:10px 0; border-top:1px solid rgba(255,255,255,.14); }
+  .reflect-box p:first-of-type{ padding-top:0; border-top:none; }
+  .reflect-box p strong{ color:#fff; }
+  /* glass card on paper page */
+  .brainwm .reflect-box{ margin-top:22px; max-width:none; background:rgba(20,15,10,.94); border:1px solid rgba(255,255,255,.1); padding:24px 26px; box-shadow:0 18px 40px rgba(20,15,10,.18); }
+  .brainwm .reflect-box p{ font-size:14px; }
+</style>
+</head>
+<body style="">
+<a href="index.html" id="hubBack" style="position:fixed;top:14px;left:14px;z-index:99999;font:700 12px system-ui,-apple-system,sans-serif;color:#b5651d;background:rgba(255,255,255,.82);border:1px solid rgba(181,101,29,.5);padding:8px 15px;border-radius:999px;text-decoration:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.22)">← Hub</a>
+<div class="doc">
+
+  <!-- COVER -->
+  <section class="page cover" data-screen-label="01 · Cover">
+    <img class="fb" src="assets/exec-img/exit-door.png" alt="A trail of orange light across a dark plain toward a glowing doorway">
+    <div class="scrim"></div>
+    <div class="pad">
+      <div class="ctop"><span class="cbrand">OTOS Continuity™</span><span class="m">The lived arc · founder's account</span></div>
+      <div>
+        <span class="ckick">The lived arc</span>
+        <h1 style="">My story isn't a theory.
+My journey isn't unique.
+My survival, is.</h1>
+        <p class="csub" style="">Four phases. A 10-year hunch. One tablet, one penny dropping. Then the receipt — addressed to the team that's had me waiting seven years and counting.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHASE 1 -->
+  <section class="page brainwm" data-screen-label="02 · Phase 1 — The Hunch">
+    <div class="pad">
+      <div class="phead"><span class="who">Dean Butler</span><span>Phase 1 — The Hunch · 02</span></div>
+      <span class="kick">Phase 1 — The Hunch</span>
+      <h1 class="title" style="width: 558px;">For twenty-five years, drinking worked. The question nobody asked was: why?</h1>
+      <div style="background-color:#0e0b08; padding:16px 20px; margin:0 0 12px; border-radius:2px;">
+        <p class="cepi" style="font-size:12.5px; line-height:1.5; margin:0 0 8px; color:rgba(255,255,255,.7); font-style:italic; max-width:54ch;">"The lived experience is not the sales pitch. It is the design specification. It appears my whole life has been market research for this moment because every broken thread in this story is an upstream intervention waiting to happen — a chance to benefit everyone else trapped in an ADHD-driven addiction loop, before the crisis becomes consequence.</p>
+        <span style="color:#fff; font-size:11px; font-weight:800; letter-spacing:.02em;">— Dean, Founder, OTOS Continuity™</span>
+      </div>
+      <p>For most of my adult life, I was a high-functioning person who drank every day. A DJ. A promoter. Part of the early house music scene. Alcohol gave me energy, focus and relief from a low-grade mental friction I couldn't name for years ad into my thirties. I crossed the invisible line into dependency at some point — most people in this story do — and after that the drinking stopped working but didn't stop being necessary.</p>
+      <p>The question nobody ever asked, in all those years of GP visits, hospital admissions and addiction services and so many more crisis occasions was: why does this work so well for him? The answer, when it finally came, changed everything.</p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 02</span></div>
+    </div>
+  </section>
+
+  <!-- PHASE 2 a -->
+  <section class="page brainwm" data-screen-label="03 · Phase 2 — The Collapse">
+    <div class="pad">
+      <div class="phead"><span class="who">Dean Butler</span><span>Phase 2 — The Collapse · 03</span></div>
+      <span class="kick">Phase 2 — The Collapse</span>
+      <h1 class="title">The system saw what was on fire. It never asked what was burning.</h1>
+      <p>Before any of this had a name, I moved to Spain for three years. The drinking continued, heavier. A pancreatic attack in a Spanish hospital ended with a clinician telling me, plainly: "You can never drink again." I felt relief, not fear. Permission to stop.</p>
+      <p>Back in the UK, weeks later, a different GP told me I was healthy enough to drink. The thread had broken at the border. Two contradictory clinical verdicts. No continuity of care had transferred. None ever would.</p>
+      <p>The GP put me on antidepressants for what was diagnosed as depression and anxiety. The root cause — the ADHD nobody had yet named — was never considered.</p>
+      <p style="">Then, in 2020, my parents pushed me to get a private ADHD assessment. I was diagnosed and put on a small dose of stimulant medication, three times a day, on a shared-care agreement with my GP. As far as I was concerned, the ADHD was handled. I was on trial medication and had been referred to the ADHD Team for medication review but the thing on fire was the drinking, so I focused on that.</p>
+      <div class="pull">"I forgot about the ADHD. The ADHD did not forget about me."</div>
+      <p><strong>And then I lost everything.</strong></p>
+      <p>I lost my partner. I lost my kids. I lost houses, jobs, three or four years of my life I do not remember in order. The pain is real. The anger should be real too. I am channelling it into the work but I will not pretend it doesn't sit underneath this page. It does. It always will.</p>
+      <p>The system started catching what was happening. The system did not start catching why.</p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 03</span></div>
+    </div>
+  </section>
+
+  <!-- INTERLUDE A -->
+  <section class="page brk" data-screen-label="Interlude — what was burning">
+    <img class="fb" src="assets/partner-img/alco-p4-vacant.png" alt="A man sitting at the edge of a hospital bed, worn and vacant, staring into the middle distance">
+    <div class="scrim"></div>
+    <div class="pad">
+      <div></div>
+      <div>
+        <span class="bkick">Phase 2 — The Collapse</span>
+        <h1>The system saw what was on fire. It never asked what was burning.</h1>
+        <p class="bsub" style="">Five colours of crisis, on five different records — none of them talking to each other and no service owning the risk after discharge.</p>
+      </div>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span></span></div>
+    </div>
+  </section>
+
+  <!-- PHASE 2 b -->
+  <section class="page brainwm" data-screen-label="04 · What the collapse looked like">
+    <div class="pad">
+      <div class="phead"><span class="who">Dean Butler</span><span>Phase 2 — The Collapse · 04</span></div>
+      <span class="kick">Events the system saw without seeing</span>
+      <h1 class="title" style="">Five colours of crisis, on five different records.</h1>
+      <p style="text-align: justify;">The police, called when I went missing — a suicide-risk flag raised, no health pathway triggered. The system noted it. The system moved on.</p>
+      <p style="text-align: justify;">An A&amp;E suicide attempt. I cut my wrists. I was admitted, treated, discharged. The ADHD diagnosis was on my record. It was not part of the conversation and the system moved on.</p>
+      <p style="text-align: justify;">An ICU admission after an assault by a neighbour — broken ribs, facial trauma, punctured lung. I survived. I was discharged. The system saved my life but again, the system did not ask why I was the kind of patient who kept ending up there.</p>
+      <p style="text-align: justify;">An ICU admission after I jumped from my own balcony. I had been hallucinating — convinced people were in my flat trying to steal my identity. I was trying to escape what I thought was real. I landed on iron railings. More broken ribs. The episode is on my medical record at the time as psychosis. Possibly DTs. Possibly something I'd been given. Possibly the compound effect of withdrawal and exhaustion.&nbsp;</p>
+      <p style="">Months later, an arrest after I kicked my assailants door down in drunken retaliation.</p>
+      <p style="text-align: justify;">And after all of it — the bedside after my final (engineered) crisis detox a lovely alcohol liaison nurse. who id genuinely got to know through repeat A&amp;E presentations trying to stop, wanting to stop drinking, on the Liver ward at Addenbrookes, sat with me and tried to join the picture up. One of the key professionals who actually tried. She admitted, she had nowhere else to send me. The system had nothing to give her to give to me. all routes had been explored and I had been discharged. EXCEPT for the ADHD Waiting List.</p>
+      <p style="text-align: justify;">A patient with a documented ADHD diagnosis, multiple ICU admissions, a documented psychosis episode, alcohol-withdrawal seizures, a suicide attempt, an assault, many arrests, mental health and addiction services — and the thread still didn't connect. That is not a missed flag. That is a missed flag visible in five different colours on five different records, none of which were talking to each other or communicating potential issues surrounding the ADHD being the root cause.</p><div><br></div><div style=""><br></div><p></p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 04</span></div>
+    </div>
+  </section>
+
+  <!-- PHASE 3 a -->
+  <section class="page brainwm" data-screen-label="05 · Phase 3 — The Loop">
+    <div class="pad">
+      <div class="phead"><span class="who">Dean Butler</span><span>Phase 3 — The Loop · 05</span></div>
+      <span class="kick">Phase 3 — The loop the system kept feeding back into</span>
+      <h1 class="title">The underlying condition, suppressed by the treatment system itself.</h1>
+      <p>Eventually, I got a private detox. Two weeks inpatient at a London hospital — Nightingale, self-funded, £20,000. The ADHD was not part of the treatment programme.</p>
+      <p>Then a six-week day rehabilitation programme — Help Me Stop, £4,500. The ADHD still wasn't part of it.</p>
+      <p>Then about a year of AA. Some benefit at first. Then the repetition started to drag — and I now know why. The repetitive ritual of meetings does not suit an ADHD brain. The programme called it "character defect." I knew it wasn't.</p>
+      <p>A nine-month controlled-drinking experiment turned into crisis. The assault. The drink-driving. The devastation to my family. Probation. CGL. The system started catching what was happening more reliably now. The system still wasn't asking why.</p>
+      <p>And then the rehab that should have been the answer. Three months residential, dual-diagnosis — funded by CGL and charity. Remarkable people. Real care. A genuine effort by everyone involved.</p>
+      <div class="pull sm">On arrival, they removed my ADHD medication because it was a stimulant. The system created the conditions for relapse inside the treatment setting.</div>
+      <p style="">I came out of that rehab with a brain thoroughly scrubbed after thirteen hours a day of therapy, my body healthy, fully twelve-stepped, addiction-informed at a level most people never reach — but no medication underneath any of it.<div><br></div><div>I realised this only recently, whilst building OTOS and it's another sad system failure and a wasted misdirection of public and charity funds, probably around £45k for half my stay, a dual diagnosis hospital, that i found because even through CGL because I was convinced the ADHD needed addressing at the same time as alcohol. What dual diagnosis hospital doesn't treat the ADHD and removes the exact medication to treat it with, let alone enhance the addiction work?</div><div><br></div><div>The fact it was methylphenidate and a dose that was possibly 10-20% effective, isn't the point. the removal of it fundamentally is. Another excellent piece of market research, I now realise.</div></p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 05</span></div>
+    </div>
+  </section>
+
+  <!-- PHASE 3 b -->
+  <section class="page brainwm" data-screen-label="06 · The two-year shadow">
+    <div class="pad">
+      <div class="phead"><span class="who">Dean Butler</span><span>Phase 3 — The Loop · 06</span></div>
+      <span class="kick">The two-year shadow — what nobody, including me, could see</span>
+      <h1 class="title">I survived two years before the brain underneath started calling for what it had always needed.</h1>
+      <p>Here is the part I only understood this year, and only after Elvanse: those two years were the first time in my adult life I had experienced un-medicated, un-self-medicated ADHD. No alcohol. No methylphenidate. Nothing. And I didn't know that's what I was looking at. I thought, "this is life now. I'm a shadow of who I used to be. This is what sober looks like."</p>
+      <p>I can be honest now — it was grim. Nothing could hold my attention. I sat through meeting after meeting listening to people declare their sober time down to the second — twenty-three years, six months, three weeks, eleven hours — and felt nothing but static. I thought: this is it, this is the world now. No wonder I'd enjoyed a drink.</p>
+      <p>But that signal, right there, was the clue I'd miss for two more years. The drink had never really been for fun. It was for executive function — for the dopamine and the drive I simply don't produce enough of. A deficiency. And a brain with a deficiency will go looking to fill it.</p>
+      <p>I put my rehab head on. I strutted into AA proudly and did the work — I even ran the Young Persons' Group for a while, until I had to give it up. By then I felt useless. The depression was quietly settling back in, and I had to dig deep every day not to buckle and drink. Be strong, man up, push on. So I did.</p>
+      <p>But there was no motivation underneath it, no focus, no drive. My ability to communicate was folding inward — me, once one of the best communicators I knew, a successful salesman and managing director of multiple businesses, now locked, labelled and written off. "Dean's finished. Alchy." What the hell was happening to me?</p>
+      <p><strong>I was still the shadow. I still didn't know.</strong></p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 06</span></div>
+    </div>
+  </section>
+
+  <!-- PHASE 3 c — THE ADVOCATE -->
+  <section class="page brainwm" data-screen-label="07 · Becoming the advocate">
+    <div class="pad">
+      <div class="phead"><span class="who">Dean Butler</span><span>Phase 3 — The Loop · 07</span></div>
+      <span class="kick">The advocate, before I'd even fixed myself</span>
+      <h1 class="title">I became the ADHD advocate in the rooms — long before I got my own review.</h1>
+      <p>I left AA after about a year — not because the people weren't good. They were. But the attachment model of "I am an alcoholic, this is who I am, forever" didn't fit a brain that increasingly suspected it was being mis-described. I went toward Ram Dass, toward something with more space in it — something that didn't ask me to pin an identity to the worst version of me.</p>
+      <p>And the conviction kept sharpening. I still believe half the people in fellowships right now are undiagnosed ADHD — they just haven't connected the dots, or, like me, they're still waiting for a system that may never come. Some NHS trusts have now stopped diagnosing adults over twenty-four altogether. <strong>That is a tsunami building offshore</strong> — a preventable wave of ADHD-driven addiction and cost, out of sight today, due to hit these shores in about ten years. It needs stopping now: upstream, and intelligently.</p>
+      <p>So I started talking. About six months into the rooms, I'd look around at the regulars and quietly think: at least half of you are undiagnosed. Then I began saying it — explaining how stimulant medication replaces the function we're missing, urging people to go to their doctors and ask. I was becoming an ADHD advocate before I'd sorted myself out, which, of course, is exactly my path. I just didn't know it yet.</p>
+      <p>I was even buying methylphenidate illegally, trying to chase the right dose — the wrong type, it later turned out. It worked just enough to show me a glimmer of light, a couple of hours of something like "effort" each day. Never enough. And the review I'd been promised still didn't come.</p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 07</span></div>
+    </div>
+  </section>
+
+  <!-- PHASE 4 a -->
+  <section class="page brainwm" data-screen-label="08 · Phase 4 — The Engineering">
+    <div class="pad">
+      <div class="phead"><span class="who">Dean Butler</span><span>Phase 4 — The Engineering · 08</span></div>
+      <span class="kick">Phase 4 — The Engineering</span>
+      <h1 class="title">I had to engineer my own rescue route. I designed it by surviving it.</h1>
+      <p>Then it came back. The lie I told myself was the same one I now hear in everyone like me: I'll be alright. If it goes wrong, I'll just pull the plug and get myself into A&amp;E.</p>
+      <p>I drank again. One week. I genuinely couldn't believe how fast I was back in trouble. Properly gripped this time. I put my hands up to my mum and dad. I told them: help me, please — it has to be the ADHD. We still haven't had that review. I'm not well, I'm barely coping and I'm in trouble again.</p>
+      <p>They agreed to fund a private psychiatric reassessment. I booked it. The psychiatrist agreed to reassess and remedicate me — but only if I could turn up medically detoxed, with a confirmation letter from the addiction service.</p>
+      <p><strong>So I had to engineer that too.</strong></p>
+      <p>The night before the planned detox, I turned up at A&amp;E super-drunk and fell asleep. I woke up nine hours later and the staff told me to go away. "You've been here nine hours, we don't do detoxes." Which they don't. And the addiction service takes time to see a nurse — and when they do, they tell you to keep drinking until they can. I didn't want to keep drinking. I wanted out. Fast.</p>
+      <p>So I collapsed at my GP surgery on purpose. The GP tried to get me back into A&amp;E. They wouldn't take me. I told the GP about the "come back when you're in full withdrawal" line a different doctor had given me. She paused and she said: "I didn't hear you say that." I said: "I know. But that's what I'll have to do to get the letter and the medical detox for the psychiatrist."</p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 08</span></div>
+    </div>
+  </section>
+
+  <!-- PHASE 4 b -->
+  <section class="page brainwm" data-screen-label="09 · The night, the bedside">
+    <div class="pad">
+      <div class="phead"><span class="who">Dean Butler</span><span>Phase 4 — The Engineering · 09</span></div>
+      <span class="kick" style="">The night I had to make my body sick enough to qualify for help</span>
+      <h1 class="title" style=""><div><span style="letter-spacing: -0.035em;">Star-jumps in my flat to force the shakes — because nobody would admit a man who looked too well to be detoxing.</span></div></h1>
+      <p style="">So I waited. I stopped drinking. I sat in my flat with my neighbours and waited for withdrawal to start. Genuinely dangerous. 111 wouldn't take me. 999 wouldn't take me. In the end I was doing star-jumps around my flat to force the sweats and the shakes — because nobody would admit a man who looked too well to be detoxing.</p>
+      <p>I got back to A&amp;E. A senior doctor told me to go away again. She said: "You weren't told to come back in withdrawal." I said: "How the fuck do you know what your own nurse said to me this morning?" She handed me to the on-shift psychiatric nurse. The psychiatric nurse believed me. I got admitted.</p>
+      <p>This is the part of the story I hate writing the most. Because the people I had to fight that night were not bad people. They were a system running on rigid criteria, designed for an average patient who isn't trying to engineer their own clinical access. They were doing their jobs. The system asked them to.</p>
+      <p>But this is what it costs. When ADHD is left waiting and addiction services run on rigid criteria, people engineer worse symptoms to qualify for help. <strong>That is a system failure expressing itself through patient behaviour. It is not a moral failing. It is a design problem.</strong></p>
+      <p>On the ward, I met the same alcohol liaison nurse I had met on three previous admissions. The first three times, we hadn't really talked — I'd been too drunk, too withdrawn, too gone. This time, I was lucid enough to have a conversation. I told her my plan. The reassessment. The Elvanse. The route I'd engineered. I told her I needed her to write the discharge letter in my words, so I could use it to access the private psychiatric route and finally get on the right medication. She wrote it exactly as I asked.</p>
+      <div class="pull">"Next time we meet, I won't be your patient. I'll be your partner."</div>
+      <p>She had said something to me, weeks earlier — and I only fully remembered it as I was writing this page. She'd said, plainly: "You're right. There's nowhere for me to send you. I'd appreciate more places to signpost." Out of A&amp;E. Through the addiction service. Two people there held the thread for me — wrote the letter the psychiatrist needed, vouched for the engagement work I'd been doing. For the first time, the thread held. To the psychiatrist. Reassessment confirmed. The original 2020 ADHD diagnosis upheld and updated, with the addiction history now fully in scope. <strong>Elvanse, prescribed.</strong></p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 11</span></div>
+    </div>
+  </section>
+
+  <!-- INTERLUDE B -->
+  <section class="page brk" data-screen-label="Interlude — the door" style="background:#efe8da;">
+    <img class="fb" src="assets/exec-img/elvanse-effect.png" alt="A chaotic tangle of lines resolving into a single focused orange path toward a point of light" style="filter:brightness(1.02) contrast(1.12) saturate(1.45);">
+    <div class="scrim" style="background:linear-gradient(180deg, rgba(250,246,238,.25), rgba(250,246,238,0) 16%, rgba(250,246,238,0) 58%, rgba(250,246,238,.45) 72%, rgba(250,246,238,.66));"></div>
+    <div class="pad">
+      <div></div>
+      <div>
+        <span class="bkick" style="color:#a8430a;">Phase 5 — The Vindication</span>
+        <h1 style="color:#1d1813;">Within hours — not weeks — my whole life made sense.</h1>
+        <p class="bsub" style="color:#322b23;">This is what it looked like from inside — the noise narrowing into signal. Not enhancement: restoration. The brain brought back to zero, the same starting line as everyone else — and for the first time in twenty-five years, “next week” existed as a felt concept.</p>
+      </div>
+      <div class="pfoot" style="color:rgba(33,29,25,.6);"><span>The lived arc · OTOS Continuity™</span><span></span></div>
+    </div>
+  </section>
+
+  <!-- PHASE 5 -->
+  <section class="page brainwm" data-screen-label="10 · Phase 5 — The Vindication">
+    <div class="pad">
+      <div class="phead"><span class="who">Dean Butler</span><span>Phase 5 — The Vindication · 10</span></div>
+      <span class="kick">Phase 5 — The Vindication</span>
+      <h1 class="title">Within hours of the first dose, my whole life made sense.</h1>
+      <p>I took the first Elvanse. Within hours — not weeks, not months — everything made sense. The chaos. The addiction. The relapses. The A&amp;E. The ICU. The courts. The shame. The AA meetings that felt wrong. The residential rehab where they took my medication away and called it treatment. All of it. Not failures of willpower. Not character defects. What happens when the underlying neurological condition stays unresolved while the system treats only what arrives first.</p>
+      <p>The dopamine was restored. The executive function returned. For the first time in twenty-five years, "next week" existed as a felt concept. I could sequence. I could follow through. I could sit with a thought long enough to do something with it. Within days I started decorating my flat. I had focus, motivation, drive — not the artificial kind alcohol gave me but something clean and real. The therapy started to hold. The CBT landed. The recovery work held — not because the addiction work hadn't been good, it had been excellent, but because the brain finally had what it needed to use it.</p>
+      <p>And then, about a month in, the penny dropped. I remembered: they had taken my methylphenidate away on arrival at the residential rehab. Because it was a stimulant. The hunch I'd carried for years was now provable. Not a feeling. Not a guess. Documented. The system was actively suppressing the only thing that would have helped. The relapse that followed wasn't a treatment failure. <strong>It was a system-generated relapse — created by the rehabilitation programme's own protocol.</strong></p>
+      <p>And the moment the penny dropped, the shame left. I am not even an alcoholic. I am someone whose brain spent twenty-five years self-medicating an untreated neurological condition. I do know I am now allergic to alcohol — it has done its damage and I cannot drink safely. But the difference is that my brain is making the correct decisions now. The fact alcohol just doesn't really come to mind any more — that's because I don't need a "sharpener" any more. That is what it always was.</p>
+      <p>So I sat down and started pouring everything into it — thousands of hours of brutally honest brain-dumping into AI. Counselling training. Lived experience. Every rehab printout and piece of recovery material I'd kept. At first I only wanted to <strong>work in recovery</strong> — to keep my own in good shape, and to build a unique, mentored way through it for other people, for a fraction of the cost of rehab. But it grew. And it grew, and it grew. I refined it, and refined it, and refined it again. Six months later, what had come out of it was <strong>Continuity™ and the Intervention</strong> — and another three or four months on from that, here I am.</p>
+      <p>And there's a reason it came out as a platform. Years before OTOS — during my time in Spain — I raised investment and set up a company in Gibraltar to build one of the earliest all-in-one mobile marketing platforms: multi-partner, SMS and more, connecting people and services through a single system. That is simply how my brain works: it took everything I'd survived and reached for the thing I already knew how to build — a platform to connect everyone around the person, so no one falls through the gaps I fell through.</p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 10</span></div>
+    </div>
+  </section>
+
+  <!-- THE RECEIPT -->
+  <section class="page brk topleft" data-screen-label="11 · The receipt">
+    <img class="fb" src="assets/support-img/letter-thread-desk.png" alt="A private, lamplit desk at night — a single letter with one line highlighted in amber, a thread of light leading away down the hallway beyond">
+    <div class="scrim"></div>
+    <div class="pad">
+      <div class="phead" style="border-bottom-color:rgba(255,255,255,.18);"><span class="who" style="color:#fff;">Dean Butler</span><span style="color:rgba(255,255,255,.6);">The receipt · 11</span></div>
+      <span class="bkick">The clinical receipt</span>
+      <h1 style="font-size:27px; max-width:19ch;">The diagnosis. From an independent consultant. Addressed to the team that's had me waiting seven years and counting.</h1>
+      <p style="margin-top:12px;">In April 2026 — six months after the prescription — the consultant psychiatrist who reassessed me wrote a clinical update letter to the Cambridgeshire and Peterborough NHS Foundation Trust ADHD Team. On letterhead. GMC-registered. The same team that has had me on its medication-review waiting list since 2020 — though I only discovered in September 2025 that a medication-review list was what I'd been on all along; until then I assumed I was still waiting just to be assessed. Names and identifying details are withheld here for privacy; the full version can be shared with the ADHD Team privately.</p>
+      <div class="pull sm">"Adult ADHD previously complicated with excess alcohol use to self-medicate inadequately managed ADHD symptoms… Elvanse has been more effective for him and he is managing to control his alcohol intake and has tolerated the switch rather well."<span class="by">— Redacted clinical update letter, 8 April 2026. Consultant psychiatrist, addressed to the CPFT ADHD Team.</span></div>
+      <p style="margin-top:34px;">That single clinical sentence is the entire thesis — the cohort, the mechanism, the misdirection of treatment — written by an independent consultant, addressed to the exact NHS team this story is being put in front of. The letter is medical correspondence about me, not an endorsement of OTOS Continuity™. The consultant who wrote it has not co-signed this project. I am quoting from it because the diagnosis itself is the receipt I have been waiting for since 2020. I did not arrange that. The system did, by being itself.</p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 11</span></div>
+    </div>
+  </section>
+
+  <!-- WHAT CHANGED -->
+  <section class="page brainwm" data-screen-label="12 · What changed">
+    <div class="pad">
+      <div class="phead"><span class="who">Dean Butler</span><span>What changed · 12</span></div>
+      <span class="kick">After the diagnosis</span>
+      <h1 class="title">What the right diagnosis, in the right sequence, actually gives back.</h1>
+      <p>Not just relief for the person on the medication. The air clears for everyone who loves them.</p>
+      <div class="reflect-box">
+        <span class="rb-label">What changed</span>
+        <p><strong>The air, finally cleared.</strong> For years, my parents and the people who loved me thought I was choosing this — choosing to drink, choosing to be an alcoholic. After Elvanse, after the penny dropped, that air cleared. They totally get it now. That's a family handed back.</p>
+        <p>That's a son who can hang his hat on what happened and smile again, instead of carrying it as a lifelong punishment, labelled an "alcoholic" forever. Now, officially, in writing, I simply <strong>"rely on crucial, daily ADHD medication in order to not self-medicate with alcohol."</strong> A very different meaning of "needing" of a drink.</p>
+        <p>That's what the right diagnosis does — at the right moment, in the right sequence, with the right treatment underneath. Not just for the person on the medication. For everyone who loves them. <strong>I am building OTOS Continuity™ for the others trapped in the ADHD-driven Addiction loop, so they don't have to engineer the way Out The Other Side™ themselves.</strong></p>
+      </div>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 12</span></div>
+    </div>
+  </section>
+
+  <!-- INTERLUDE C — THE WAVE -->
+  <section class="page brk" data-screen-label="13 · Not just me">
+    <img class="fb" src="assets/support-img/tsunami-wave-people.png" alt="A colossal wave made entirely of people, curling out of a doorway where a small crowd waits, breaking onto a row of lit public services — hospital, school, police, courts, library, social services — with a single amber continuity thread running along the ground" style="object-position:35% 62%;">
+    <div class="scrim" style="background:linear-gradient(180deg, rgba(14,11,8,.55) 0%, rgba(14,11,8,.15) 30%, rgba(14,11,8,0) 50%, rgba(14,11,8,.4) 100%);"></div>
+    <div class="pad">
+      <span class="bkick">Not just me</span>
+      <h1>I am just one person. Behind me, there's a tsunami coming.</h1>
+      <p class="bsub">Every person still waiting on that same list is living some version of what I lived — the self-medication, the services that can only see the addiction, the years it takes to be believed. Left waiting, that need does not disappear. It arrives downstream, later and harder, on services never built to absorb it. OTOS Continuity™ is the upstream intervention I am building so the next person does not have to survive it the way I did.<br><br>If I'm right, the next person gets <b style="color:#f26c0d;">Out The Other Side</b> in a fraction of the time — and at a fraction of the cost.</p>
+      <div class="pfoot"><span>The lived arc · OTOS Continuity™</span><span>Page 13</span></div>
+    </div>
+  </section>
+
+</div>
+
+
+</body></html>

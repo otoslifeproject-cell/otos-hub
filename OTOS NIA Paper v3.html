@@ -1,0 +1,893 @@
+<!DOCTYPE html><html lang="en-GB"><head>
+
+
+<meta charset="utf-8">
+<title>Out The Other Side — The NIA Paper</title>
+<meta name="viewport" content="width=794">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/otos-brief.css">
+<link rel="stylesheet" href="assets/az-nia-v2.css">
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" data-om-id="026989fe:8">
+    <rect width="100" height="100" fill="#17130f" data-om-id="026989fe:9"></rect>
+    <text x="50" y="46" font-family="Inter, sans-serif" font-size="32" font-weight="900" fill="#f26c0d" text-anchor="middle" data-om-id="026989fe:10">NIA</text>
+    <text x="50" y="66" font-family="Inter, sans-serif" font-size="8.5" font-weight="800" fill="#fbf7ee" text-anchor="middle" letter-spacing="1" data-om-id="026989fe:11">OTOS PAPER</text>
+  </svg>
+</template>
+<style>
+  /* ════════ NIA PAPER — page-specific components (tokens only) ════════ */
+
+  /* Cover — two-line identity treatment */
+  .cover-v2 h1.cover-title{ max-width: 16ch; line-height: .98; }
+  .cover-v2 .ct-white{ color: var(--otos-ink); display:block; }
+  .cover-v2 .ct-orange{ color: var(--otos-orange-2); display:block; }
+
+  /* Declaration page — oversized statement lines on dark */
+  .declare{ margin-top: 6px; }
+  .declare .dl{ font-size: 46px; font-weight: 1000; letter-spacing: -.045em; line-height: 1.02;
+    color: var(--otos-ink); max-width: 17ch; }
+  .declare .dl .hl{ color: var(--otos-orange-2); }
+  .declare .dsub{ margin-top: 22px; padding-left: 20px; border-left: 3px solid var(--otos-orange);
+    font-size: 16.5px; line-height: 1.6; color: var(--otos-soft); font-weight: 600; max-width: 60ch; }
+  .declare .dsub strong{ color: var(--otos-ink); font-weight: 800; }
+
+  /* NIA definition — feature block */
+  .nia-def{ margin-top: 14px; border-radius: var(--bk-radius); padding: 24px 28px;
+    background: rgba(242,108,13,.06); border: 1px solid rgba(242,108,13,.34); border-left: 4px solid var(--otos-orange); }
+  .nia-def .nd-k{ font-size: 10px; font-weight: 950; letter-spacing: .2em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 12px; }
+  .nia-def .nd-term{ font-size: 26px; font-weight: 1000; letter-spacing: -.03em; color: var(--otos-paper-ink); margin: 0 0 10px; line-height: 1.05; }
+  .nia-def p{ font-size: 14px; line-height: 1.6; color: var(--otos-paper-ink); margin: 0; font-weight: 600; max-width: 64ch; }
+  .nia-def p strong{ font-weight: 900; }
+
+  /* The invisible line — staged gradient bar */
+  .lineflow{ margin-top: 16px; }
+  .lineflow .track{ position: relative; height: 8px; border-radius: 4px;
+    background: linear-gradient(90deg, var(--otos-green) 0%, var(--otos-orange) 52%, var(--az-red) 100%); opacity:.9; }
+  .lineflow .track .mark{ position: absolute; top: -4px; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--otos-paper-2); border: 3px solid var(--az-red); left: 52%; transform: translateX(-50%);
+    box-shadow: 0 0 0 4px rgba(178,58,46,.18); }
+  .lineflow .track .mlabel{ position: absolute; top: 16px; left: 52%; transform: translateX(-50%);
+    font-size: 9px; font-weight: 950; letter-spacing: .14em; text-transform: uppercase; color: var(--az-red); white-space: nowrap; }
+  .lineflow .stages{ display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 34px; }
+  .lineflow .stg{ border-radius: var(--bk-radius-sm); padding: 15px 17px; border: 1px solid rgba(70,48,34,.14); background: var(--otos-paper-2); }
+  .lineflow .stg .sk{ font-size: 9px; font-weight: 950; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 7px; color: var(--otos-orange); }
+  .lineflow .stg.s1 .sk{ color: var(--az-green); }
+  .lineflow .stg.s3 .sk{ color: var(--az-red); }
+  .lineflow .stg h3{ font-size: 15px; font-weight: 1000; letter-spacing: -.02em; color: var(--otos-paper-ink); margin: 0 0 6px; line-height: 1.12; }
+  .lineflow .stg p{ font-size: 11px; line-height: 1.46; color: var(--otos-paper-muted); margin: 0; font-weight: 600; }
+
+  /* Science mechanism cards */
+  .mech-grid{ display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 12px; }
+  .mech-grid .mc{ border-radius: var(--bk-radius-sm); padding: 16px 18px; border: 1px solid rgba(70,48,34,.14);
+    background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.62)); }
+  .mech-grid .mc .mk{ font-size: 9.5px; font-weight: 950; letter-spacing: .16em; text-transform: uppercase; color: var(--otos-orange); margin-bottom: 7px; }
+  .mech-grid .mc h3{ font-size: 16px; font-weight: 1000; letter-spacing: -.02em; color: var(--otos-paper-ink); margin: 0 0 6px; line-height: 1.1; }
+  .mech-grid .mc p{ font-size: 11.5px; line-height: 1.5; color: var(--otos-paper-muted); margin: 0; font-weight: 600; }
+
+  /* Vicious cycle — four stages around a loop */
+  .cycle{ display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 14px; border-radius: var(--bk-radius);
+    overflow: hidden; border: 1px solid rgba(255,170,90,.22); background: rgba(255,255,255,.04); }
+  .cycle .cs{ padding: 18px 16px; border-right: 1px solid rgba(255,170,90,.16); position: relative; }
+  .cycle .cs:last-child{ border-right: none; }
+  .cycle .cs .cn{ font-size: 11px; font-weight: 1000; letter-spacing: -.02em; color: var(--otos-orange-2); margin-bottom: 9px; }
+  .cycle .cs h3{ font-size: 15px; font-weight: 1000; letter-spacing: -.02em; color: var(--otos-ink); margin: 0 0 7px; line-height: 1.12; }
+  .cycle .cs p{ font-size: 11px; line-height: 1.46; color: var(--otos-soft); margin: 0; font-weight: 500; }
+  .cycle-loop{ margin-top: 12px; font-size: 12.5px; font-weight: 800; color: var(--otos-orange-2); letter-spacing: .02em; }
+
+  /* "This can't be coincidence" reveal */
+  .coincidence{ margin: auto 0; text-align: left; }
+  .coincidence .ck{ font-size: 12px; font-weight: 950; letter-spacing: .26em; text-transform: uppercase; color: var(--otos-orange-2); margin-bottom: 22px; }
+  .coincidence h2{ font-size: 64px; font-weight: 1000; letter-spacing: -.05em; line-height: .98; color: var(--otos-ink); margin: 0; max-width: 16ch; }
+  .coincidence h2 .hl{ color: var(--otos-orange-2); }
+  .coincidence p{ margin-top: 26px; font-size: 17px; line-height: 1.58; color: var(--otos-soft); font-weight: 600; max-width: 58ch; }
+  .coincidence p strong{ color: var(--otos-ink); }
+
+  /* Versus comparison table */
+  .versus{ width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 12px;
+    border: 1px solid rgba(70,48,34,.16); border-radius: var(--bk-radius-sm); overflow: hidden; }
+  .versus thead th{ font-size: 9.5px; font-weight: 950; letter-spacing: .14em; text-transform: uppercase; padding: 11px 14px;
+    text-align: left; background: var(--otos-paper-ink); color: #fff; }
+  .versus thead th.adhd{ background: var(--az-red); }
+  .versus thead th.rec{ background: var(--az-green); }
+  .versus td{ padding: 9px 14px; font-size: 11px; line-height: 1.36; vertical-align: top; border-bottom: 1px solid rgba(70,48,34,.1); }
+  .versus tr:last-child td{ border-bottom: none; }
+  .versus td.fn{ font-weight: 900; color: var(--otos-paper-ink); width: 20%; }
+  .versus td.adhd{ width: 40%; color: var(--otos-paper-ink); font-weight: 600; background: rgba(178,58,46,.05); }
+  .versus td.rec{ width: 40%; color: var(--otos-paper-ink); font-weight: 600; background: rgba(46,125,50,.05); }
+  .versus tbody tr:nth-child(even) td.fn{ background: rgba(70,48,34,.03); }
+
+  /* Proposed criteria — numbered ledger */
+  .criteria{ display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 12px; }
+  .criteria .cr{ display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start;
+    border-radius: var(--bk-radius-sm); padding: 14px 16px; border: 1px solid rgba(70,48,34,.14); background: var(--otos-paper-2); }
+  .criteria .cr .crn{ font-size: 18px; font-weight: 1000; color: var(--otos-orange); letter-spacing: -.04em; line-height: 1; }
+  .criteria .cr h3{ font-size: 13px; font-weight: 950; letter-spacing: -.01em; color: var(--otos-paper-ink); margin: 0 0 4px; line-height: 1.18; }
+  .criteria .cr p{ font-size: 10.5px; line-height: 1.42; color: var(--otos-paper-muted); margin: 0; font-weight: 600; }
+
+  /* Recognition pathway — staged steps */
+  .recog{ display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 14px; }
+  .recog .rg{ border-radius: var(--bk-radius-sm); padding: 16px 18px; border: 1px solid rgba(255,170,90,.22); background: rgba(255,255,255,.04); }
+  .recog .rg .rgk{ font-size: 9px; font-weight: 950; letter-spacing: .16em; text-transform: uppercase; color: var(--otos-orange-2); margin-bottom: 9px; }
+  .recog .rg h3{ font-size: 15px; font-weight: 1000; letter-spacing: -.02em; color: var(--otos-ink); margin: 0 0 7px; line-height: 1.14; }
+  .recog .rg p{ font-size: 11px; line-height: 1.46; color: var(--otos-soft); margin: 0; font-weight: 500; }
+  .recog .rg.live{ background: rgba(242,108,13,.12); border-color: rgba(242,108,13,.5); }
+
+  /* is / is-not (reuse ddn semantics with neutral palette) */
+  .isnot .col.is{ background: rgba(46,125,50,.08); border: 1px solid rgba(46,125,50,.36); }
+  .isnot .col.isnt{ background: rgba(178,58,46,.06); border: 1px solid rgba(178,58,46,.32); }
+
+  /* small stat caveat line under stat grids */
+  .src-note{ margin-top: 10px; font-size: 10px; line-height: 1.5; color: var(--otos-paper-muted); font-weight: 600; }
+  .src-note strong{ color: var(--otos-paper-ink); font-weight: 800; }
+
+  /* Cinematic full-page background image (absolute layer → zero layout impact).
+     Uses !important to escape the shared `.page > *` relative/z-index:1 rule,
+     exactly like the cover image does. Content stays at z-index:1 above it. */
+  .page.azv2 > .bg-img{ position:absolute !important; inset:0 !important; width:100%; height:100%;
+    object-fit:cover; object-position:center 50%; z-index:0 !important; }
+  .page.azv2 > .bg-scrim{ position:absolute !important; inset:0 !important; z-index:0 !important;
+    background:linear-gradient(158deg, rgba(8,10,15,.82) 0%, rgba(8,10,15,.64) 44%, rgba(8,10,15,.9) 100%); }
+  .page.azv2.has-bg{ background:var(--az-dark); }
+
+  /* Page 05 — dual-diagnosis pathway-failure diagram */
+  .pathfail{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
+  .pathfail .pf-col{ border-radius:var(--bk-radius-sm); padding:18px 20px; border:1px solid rgba(70,48,34,.14); background:var(--otos-paper-2); display:flex; flex-direction:column; }
+  .pathfail .fail{ border-style:dashed; }
+  .pathfail .win{ border-color:rgba(242,108,13,.42); background:rgba(242,108,13,.06); }
+  .pathfail .pf-k{ font-size:10px; font-weight:950; letter-spacing:.14em; text-transform:uppercase; color:var(--otos-paper-muted); margin-bottom:15px; }
+  .pathfail .pf-k.orange{ color:var(--otos-orange); }
+  .pf-lanes{ display:flex; flex-direction:column; gap:0; margin-bottom:13px; }
+  .pf-lanes .rail{ display:flex; align-items:center; gap:10px; }
+  .pf-lanes .rail .rt{ font-size:9px; font-weight:950; letter-spacing:.04em; text-transform:uppercase; color:var(--otos-paper-ink); width:74px; flex:0 0 auto; }
+  .pf-lanes .rail .rline{ flex:1; height:4px; border-radius:2px; background:repeating-linear-gradient(90deg, #a99c8c 0 9px, transparent 9px 16px); }
+  .pf-lanes .seam{ text-align:center; font-size:8px; font-weight:950; letter-spacing:.12em; text-transform:uppercase; color:var(--az-red); padding:8px 0; }
+  .pf-merge{ margin-bottom:13px; padding-top:4px; }
+  .pf-merge .mthread{ display:block; height:7px; border-radius:4px; background:linear-gradient(90deg, var(--otos-orange), var(--otos-orange-2)); box-shadow:0 0 14px rgba(242,108,13,.4); }
+  .pf-merge .mlabel{ display:block; margin-top:9px; font-size:8px; font-weight:950; letter-spacing:.12em; text-transform:uppercase; color:var(--otos-orange); }
+  .pathfail .pf-col p{ font-size:11px; line-height:1.46; color:var(--otos-paper-muted); margin:auto 0 0; font-weight:600; }
+  .pathfail .pf-col p strong{ color:var(--otos-paper-ink); font-weight:900; }
+
+  /* Page 17 — confidence boundary: does-not / makes-possible */
+  .confcols{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:12px; flex:1 1 auto; }
+  .confcols .cc{ padding:2px 6px; display:flex; flex-direction:column; }
+  .confcols .no{ }
+  .confcols .yes{ padding-left:26px; border-left:1px solid rgba(70,48,34,.18); }
+  .confcols .cch{ font-size:10px; font-weight:950; letter-spacing:.12em; text-transform:uppercase; margin-bottom:12px; }
+  .confcols .no .cch{ color:var(--az-red); }
+  .confcols .yes .cch{ color:var(--az-green); }
+  .confcols ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .confcols li{ font-size:10.5px; line-height:1.32; color:var(--otos-paper-ink); font-weight:600; padding-left:18px; position:relative; }
+  .confcols .no li::before{ content:"\00D7"; position:absolute; left:0; top:-1px; color:var(--az-red); font-weight:900; font-size:13px; }
+  .confcols .yes li::before{ content:"\2713"; position:absolute; left:0; color:var(--az-green); font-weight:900; font-size:11px; }
+
+  /* Cover — keep the title field clean: darken left, push image energy right */
+  .cover-v2 > .cover-img{ object-position:74% 50% !important; }
+  .cover-v2 > .cover-scrim{ background:linear-gradient(108deg, rgba(8,10,15,.88) 0%, rgba(8,10,15,.66) 40%, rgba(8,10,15,.4) 68%, rgba(8,10,15,.62) 100%) !important; }
+
+  /* Page 07 — alcohol-as-regulation: warm amber environment in the dark (no literal image) */
+  .page.azv2.amber-env{ background:var(--az-dark);
+    background-image:
+      radial-gradient(ellipse 52rem 34rem at 80% 88%, rgba(242,108,13,.30), transparent 60%),
+      radial-gradient(ellipse 40rem 30rem at 10% 6%, rgba(255,138,31,.12), transparent 62%); }
+
+  /* Page 21 — safeguard pillars (no filled boxes, thin orange rules) */
+  .pillars{ display:grid; grid-template-columns:1fr 1fr; column-gap:34px; row-gap:24px; margin-top:18px; flex:1 1 auto; align-content:center; }
+  .pillars .pil{ padding-top:16px; border-top:2px solid var(--otos-orange); }
+  .pillars .pil .pn{ font-size:10px; font-weight:950; letter-spacing:.16em; text-transform:uppercase; color:var(--otos-orange); margin-bottom:9px; }
+  .pillars .pil h3{ font-size:18px; font-weight:1000; letter-spacing:-.025em; color:var(--otos-paper-ink); margin:0 0 9px; line-height:1.1; }
+  .pillars .pil p{ font-size:12px; line-height:1.55; color:var(--otos-paper-muted); margin:0; font-weight:600; }
+  .pillars .pil p strong{ color:var(--otos-paper-ink); font-weight:900; }
+
+  /* Page 06 — official clinical-letter treatment (lighter, quote-first) */
+  .clin-quote{ margin:4px 0 12px; font-size:22px; font-weight:800; line-height:1.32; letter-spacing:-.015em;
+    color:var(--otos-paper-ink); border-left:4px solid var(--otos-orange); padding-left:20px; }
+  .clin-quote .hl{ color:var(--otos-orange); }
+  .clin-cap{ font-size:11px; font-weight:700; color:var(--otos-paper-muted); margin:0 0 13px; }
+  .clin-cap strong{ color:var(--otos-paper-ink); }
+
+  /* 4-up card grid (page 19) */
+  .cards-4{ display:grid; grid-template-columns:repeat(2,1fr); gap:11px; margin-top:13px; }
+
+  /* Heavy scrim for a light image used as a full-page dark environment (page 14) */
+  .page.azv2 > .bg-scrim.heavy{ background:linear-gradient(150deg, rgba(8,10,15,.95) 0%, rgba(8,10,15,.82) 45%, rgba(8,10,15,.94) 100%) !important; }
+
+  /* Page 21 — safeguard architecture over a full-page image */
+  .safe-arch{ flex:1 1 auto; display:flex; flex-direction:column; justify-content:center; }
+  .safe-arch .core{ text-align:center; margin-bottom:26px; }
+  .safe-arch .core .ck{ font-size:10px; font-weight:950; letter-spacing:.24em; text-transform:uppercase; color:var(--otos-orange-2); margin-bottom:11px; }
+  .safe-arch .core h2{ font-size:42px; font-weight:1000; letter-spacing:-.045em; color:var(--otos-ink); margin:0; line-height:1; }
+  .safe-arch .ring{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px 34px; }
+  .safe-arch .sg{ padding-top:13px; border-top:2px solid var(--otos-orange); }
+  .safe-arch .sg .sn{ font-size:10px; font-weight:950; letter-spacing:.16em; text-transform:uppercase; color:var(--otos-orange-2); margin-bottom:7px; }
+  .safe-arch .sg p{ font-size:12px; line-height:1.5; color:var(--otos-soft); margin:0; font-weight:600; }
+  .safe-arch .sg p strong{ color:var(--otos-ink); }
+
+  /* Closing page on dark bg — signoff must read light */
+  .page.azv2.closing.has-bg .signoff{ color:var(--otos-soft) !important; }
+  .page.azv2.closing.has-bg .signoff .name{ color:var(--otos-ink) !important; }
+</style>
+</head>
+<body style="">
+<a href="index.html" id="hubBack" style="position:fixed;top:14px;left:14px;z-index:99999;font:700 12px system-ui,-apple-system,sans-serif;color:#b5651d;background:rgba(255,255,255,.82);border:1px solid rgba(181,101,29,.5);padding:8px 15px;border-radius:999px;text-decoration:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.22)">← Hub</a>
+<div class="doc">
+
+  <!-- ════════ 01 · COVER ════════ -->
+  <section class="page cover-v2" data-screen-label="01 · Cover">
+    <img class="cover-img" src="assets/brief-img/IMAGE_01.jpg" alt="A dark field with a glowing orange thread rising like a wave toward a bright horizon">
+    <div class="cover-scrim"></div>
+    <div class="cover-inner">
+      <div class="cv-top">
+        <span class="cv-brand">OTOS Continuity</span>
+        <span>A position &amp; recognition paper</span>
+      </div>
+      <div class="cv-mid">
+        <h1 class="cover-title">
+          <span class="ct-white">Out The Other Side.</span>
+          <span class="ct-orange">The NIA Paper.</span>
+        </h1>
+        <p class="cv-sub" style="">Why ADHD-driven alcohol dependence should be recognised, named and held as a pattern of its own.</p>
+        <div class="cv-prongline">
+          <span>NIA — the category</span>
+          <span style="">Medicine-plus-Continuity — the intervention</span>
+          <span style="">OTOS Continuity — the infrastructure</span>
+        </div>
+        <div class="cv-meta">
+          <div class="m"><span class="l">Author</span>Dean Butler — Founder, OTOS Continuity</div>
+          <div class="m"><span class="l">Document</span>OTOS position &amp; recognition paper</div>
+          <div class="m"><span class="l">Date</span>June 2026</div>
+          <div class="m"><span class="l">Status</span>Proposed category · recognition submission in progress</div>
+        </div>
+        <p class="cv-foot">A founder-led clinical-position paper. <strong>NIA is proposed, founder-originated terminology — not an official diagnosis. OTOS is non-clinical infrastructure and does not diagnose, prescribe, treat or replace anyone. Published figures are evidence candidates, not OTOS outcomes.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 02 · CONTENTS ════════ -->
+  <section class="page azv2" data-screen-label="02 · Contents">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Contents · The NIA Paper</span></div>
+    <span class="kicker">What is inside</span>
+    <h1 class="title">Contents.</h1>
+    <p class="lede" style="">A proposed clinical category, the science beneath it and the position OTOS takes — built from one documented case and the published evidence around it.</p>
+
+    <div class="toc">
+      <div class="toc-row"><span class="tn">01</span><span class="tt">The declaration<small>This is not ordinary comorbidity</small></span><span class="tp">p.03</span></div>
+      <div class="toc-row"><span class="tn">02</span><span class="tt">Executive summary<small>The pattern, in one page</small></span><span class="tp">p.04</span></div>
+      <div class="toc-row"><span class="tn">03</span><span class="tt">Why NIA exists<small>Where dual-diagnosis falls short</small></span><span class="tp">p.05</span></div>
+      <div class="toc-row"><span class="tn">04</span><span class="tt">The clinical anchor<small>That sentence is the cohort</small></span><span class="tp">p.06</span></div>
+      <div class="toc-row"><span class="tn">05</span><span class="tt">Alcohol was not misuse at the start<small>The founder's correction</small></span><span class="tp">p.07</span></div>
+      <div class="toc-row"><span class="tn">06</span><span class="tt">The invisible line<small>Function becomes dependence</small></span><span class="tp">p.08</span></div>
+      <div class="toc-row"><span class="tn">07</span><span class="tt">The science of the pattern<small>Dopamine, noradrenaline, control</small></span><span class="tp">p.09</span></div>
+      <div class="toc-row"><span class="tn">08</span><span class="tt">The vicious cycle<small>Regulation to dependence to mismatch</small></span><span class="tp">p.10</span></div>
+      <div class="toc-row"><span class="tn">09</span><span class="tt">This can't be coincidence<small>The reveal</small></span><span class="tp">p.11</span></div>
+      <div class="toc-row"><span class="tn">10</span><span class="tt">Deficit vs requirement<small>The comparison table</small></span><span class="tp">p.12</span></div>
+      <div class="toc-row"><span class="tn">11</span><span class="tt">Medicine-plus-continuity<small>The medicine opens the door</small></span><span class="tp">p.13</span></div>
+      <div class="toc-row"><span class="tn">12</span><span class="tt">The medicine that let recovery land<small>Methylphenidate to lisdexamfetamine</small></span><span class="tp">p.14</span></div>
+      <div class="toc-row"><span class="tn">13</span><span class="tt">NIA — the proposed definition<small>Stated formally</small></span><span class="tp">p.15</span></div>
+      <div class="toc-row"><span class="tn">14</span><span class="tt">Proposed criteria<small>What would define the cohort</small></span><span class="tp">p.16</span></div>
+      <div class="toc-row"><span class="tn">15</span><span class="tt">What NIA is — and is not<small>The boundary of the idea</small></span><span class="tp">p.17</span></div>
+      <div class="toc-row"><span class="tn">16</span><span class="tt">Evidence position<small>Bold on pattern, honest on proof</small></span><span class="tp">p.18</span></div>
+      <div class="toc-row"><span class="tn">17</span><span class="tt">The OTOS role<small>Category · intervention · infrastructure</small></span><span class="tp">p.19</span></div>
+      <div class="toc-row"><span class="tn">18</span><span class="tt">Why recognition matters<small>And the process now under way</small></span><span class="tp">p.20</span></div>
+      <div class="toc-row"><span class="tn">19</span><span class="tt">Safeguards<small>The line held to</small></span><span class="tp">p.21</span></div>
+      <div class="toc-row"><span class="tn">20</span><span class="tt">Closing<small>Out the other side</small></span><span class="tp">p.22</span></div>
+      <div class="toc-row"><span class="tn">A</span><span class="tt">Evidence ledger<small>Sources &amp; status</small></span><span class="tp">p.23</span></div>
+    </div>
+
+    <div class="page-foot"><span>OTOS · The NIA Paper · Proposed category &amp; clinical-position document</span><span>Page 02 / 23</span></div>
+  </section>
+
+  <!-- ════════ 03 · DECLARATION ════════ -->
+  <section class="page azv2 dark has-bg" data-screen-label="03 · Declaration">
+    <img class="bg-img" src="assets/brief-img/IMAGE_02.jpg" alt="" aria-hidden="true">
+    <div class="bg-scrim"></div>
+    <div class="page-head"><span class="who">Dean Butler</span><span>The declaration · 01</span></div>
+    <div class="sec-head">
+      <div class="mod-no">01</div>
+      <div class="htext">
+        <span class="kicker">The declaration</span>
+        <h1 class="title">Name the pattern the system keeps missing.</h1>
+      </div>
+    </div>
+
+    <div class="declare">
+      <div class="dl"><br>This is not ordinary <span class="hl">comorbidity.<br><br></span></div>
+      <p class="dsub">Current frameworks treat ADHD and alcohol dependence as two separate problems that happen to overlap. This paper proposes something more specific: a pattern in which alcohol first does the neurological work that untreated ADHD leaves undone — and only later crosses into dependence. <strong>Neurologically Informed Addiction (NIA) is the proposed name for that pattern.<br><br></strong></p>
+    </div>
+
+    <div class="quote-band">"I did not invent the suffering. <span class="hl">I named the pattern.</span>"<br><br></div>
+
+    <div class="callout" style="margin-top:14px;">
+      <strong>NIA is proposed, founder-originated terminology — not an official diagnosis.</strong> It is offered for clinical consideration, research and service design, alongside and never replacing existing diagnoses and services. Everything in this paper sits inside that boundary.
+    </div>
+
+    <div class="page-foot"><span>NIA is proposed terminology, not a diagnosis</span><span>Page 03 / 23</span></div>
+  </section>
+
+  <!-- ════════ 04 · EXECUTIVE SUMMARY ════════ -->
+  <section class="page azv2" data-screen-label="04 · Executive summary">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Executive summary · 02</span></div>
+    <div class="sec-head">
+      <div class="mod-no">02</div>
+      <div class="htext">
+        <span class="kicker">The pattern, in one page</span>
+        <h1 class="title">A single driven pattern, not two passing conditions.</h1>
+      </div>
+    </div>
+
+    <p>A large share of adults with untreated or under-treated ADHD self-medicate without actually realising. For many, the substance that works most reliably — because it is legal, accessible and socially normalised — is alcohol. In the proposed NIA pattern, alcohol does not begin as misuse. <strong class="ink">It begins as an ignition and regulation</strong> — spark, relief, focus, energy, social access — for a brain that, without language for ADHD, is reaching for something that finally steadies it.</p>
+
+    <p style="">Over years, that functional use can cross an invisible line into physical and psychological dependence. By the time help is sought, the system sees the dependence and treats Addiction — while the original ADHD-shaped driver underneath is mis-sequenced, delayed, left waiting or missed entirely. <strong class="ink">Treating the alcohol alone leaves the driver untouched.</strong></p>
+
+    <div class="callout soft" style="">
+      The core argument of this paper is simple and once seen, hard to un-see: <strong>addiction recovery demands precisely the cognitive capacities that unmanaged ADHD impairs</strong> — executive function, attention, working memory, impulse control, emotional regulation, routine and delayed reward. That is why standard recovery so often fails this group and why recognising and treating the ADHD will be what finally lets recovery work land for those found with it being the barrier to recovery.
+    </div>
+
+    <div class="cards-3" style="margin-top:14px;">
+      <div class="col-card"><div class="prong-num">The category</div><h3>NIA</h3><p>Neurologically Informed Addiction — ADHD-driven alcohol dependence, named so the system can see it.</p></div>
+      <div class="col-card"><div class="prong-num">The intervention</div><h3 style="">Medicine-plus-Continuity</h3><p>Proper ADHD treatment under clinical care, with continuity holding the person around it.</p></div>
+      <div class="col-card"><div class="prong-num">The infrastructure</div><h3 style="">OTOS</h3><p>The non-clinical continuity layer that finds the cohort, holds the person and gathers the evidence.</p></div>
+    </div>
+
+    <div class="page-foot"><span>Founder proof is not population proof · published figures are evidence candidates</span><span>Page 04 / 23</span></div>
+  </section>
+
+  <!-- ════════ 05 · WHY NIA EXISTS ════════ -->
+  <section class="page azv2" data-screen-label="05 · Why NIA exists">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Why NIA exists · 03</span></div>
+    <div class="sec-head">
+      <div class="mod-no">03</div>
+      <div class="htext">
+        <span class="kicker">Where dual-diagnosis falls short</span>
+        <h1 class="title">Two silos cannot hold this cohort's journey</h1>
+      </div>
+    </div>
+
+    <p style="">The prevailing model is "dual diagnosis": ADHD and a substance use disorder treated as distinct conditions that co-occur. That framing is not wrong but for this cohort it is <strong class="ink">incomplete</strong>. It describes co-occurrence not function or sequence and the gap between the two silos is exactly where people are lost. "Known" by services is not the same as "held".</p>
+
+    <div class="pathfail">
+      <div class="pf-col fail">
+        <div class="pf-k">Today · dual diagnosis</div>
+        <div class="pf-lanes">
+          <div class="rail"><span class="rt">ADHD</span><span class="rline"></span></div>
+          <div class="seam">known to both · held by neither</div>
+          <div class="rail"><span class="rt">Alcohol</span><span class="rline"></span></div>
+        </div>
+        <p style="">Two parallel tracks that never meet. Each side waits for the other — and the person <strong>drifts in the gap</strong> between them.</p>
+      </div>
+      <div class="pf-col win">
+        <div class="pf-k orange">Proposed · NIA</div>
+        <div class="pf-merge"><span class="mthread"></span><span class="mlabel">one driven pattern</span></div>
+        <p>ADHD recognised as the driver, sequenced correctly, and the person held across services — clinically known <strong>and</strong> operationally held.</p>
+      </div>
+    </div>
+
+    <div class="callout soft">
+      The Royal College of Psychiatrists already advises that significant, comorbid substance misuse "should be managed jointly between general adult and addiction services" (CR235). NIA proposes the category that would make that joint management routine for the ADHD-driven alcohol cohort — not exceptional.
+    </div>
+
+    <div class="page-foot"><span>A proposed lens, alongside existing diagnoses — never replacing them</span><span>Page 05 / 23</span></div>
+  </section>
+
+  <!-- ════════ 06 · CLINICAL ANCHOR ════════ -->
+  <section class="page azv2" data-screen-label="06 · Clinical anchor">
+    <div class="page-head"><span class="who">Dean Butler</span><span>The clinical anchor · 04</span></div>
+    <div class="sec-head">
+      <div class="mod-no">04</div>
+      <div class="htext">
+        <span class="kicker">The cohort, anchored — the receipt exists</span>
+        <h1 class="title">That sentence is the cohort.</h1>
+      </div>
+    </div>
+
+    <div class="clin-quote">"Adult ADHD, previously complicated with excess alcohol use to <span class="hl">self-medicate inadequately managed ADHD symptoms.</span>"</div>
+    <p class="clin-cap"><strong>Independent consultant psychiatrist</strong> — diagnostic letter, April 2026 · name and clinic redacted; full letter available privately during scoping.</p>
+
+    <figure class="imgfill band">
+      <img src="assets/angel-img/04-clinical.png" alt="A printed clinical letter, personal details redacted, a single glowing orange thread running through the self-medication line">
+    </figure>
+
+    <p style="margin-top:11px;">That single clinical sentence is the whole thesis in miniature. Not ADHD and alcohol use as two separate problems — <strong class="ink">adult ADHD, complicated by self-medication.</strong> The letter is medical correspondence about one person. It is not an endorsement of OTOS, and not proof that OTOS works — but it documents, in clinical language, that the mechanism is real in a lived user journey.</p>
+
+    <div class="callout soft">
+      <strong>Founder proof is not population proof.</strong> One documented case shows the pattern exists and that the system route failed to name it. The proposed category, and the research around it, exist to test whether it holds for a defined cohort.
+    </div>
+
+    <div class="page-foot"><span>Clinical anchor · medical correspondence, not an endorsement</span><span>Page 06 / 23</span></div>
+  </section>
+
+  <!-- ════════ 07 · ALCOHOL WAS NOT MISUSE ════════ -->
+  <section class="page azv2 dark amber-env" data-screen-label="07 · Alcohol was not misuse">
+    <div class="page-head"><span class="who">Dean Butler</span><span>The correction · 05</span></div>
+    <div class="sec-head">
+      <div class="mod-no">05</div>
+      <div class="htext">
+        <span class="kicker">The founder's correction</span>
+        <h1 class="title">Alcohol was not misuse at the start.</h1>
+      </div>
+    </div>
+
+    <p>This is the correction that matters most, and the one most often flattened into generic "misuse" language. In the beginning, alcohol was not abuse. <strong class="ink" style=""><span style="color: rgb(255, 255, 255);">Alcohol worked.</span></strong> It gave focus, energy, relief, confidence, social access and a kind of regulation — before there was any language for ADHD, before any diagnosis, before anyone had named what the brain underneath was actually doing.</p>
+
+    <p>It was legally bought, easily accessible and socially normalised. It functioned, in effect, like unrecognised neurological regulation — the steadying that medication might have provided, had ADHD been recognised in time. To call that "misuse" at the outset misreads what was happening: it was self-medication of an unmet neurological need, using the most available tool there was.</p>
+
+    <div class="quote-band" style="">"It did not start as a problem. <span class="hl" style="">It started as the only thing that worked. </span><span style="letter-spacing: -0.36px;">Needing a drink wasn't about curing hangovers or settling shakes</span>"</div>
+
+    <div class="callout" style="">
+      This is not a defence of drinking and not a claim that alcohol is safe. It is a precise account of <strong>sequence</strong>: function first, dependence later. That sequence is what the proposed NIA pattern is built to recognise and what generic "alcohol misuse" language erases.
+    </div>
+
+    <div class="page-foot"><span>Self-medication of an unmet neurological need — not misuse at the outset</span><span>Page 07 / 23</span></div>
+  </section>
+
+  <!-- ════════ 08 · THE INVISIBLE LINE ════════ -->
+  <section class="page azv2" data-screen-label="08 · The invisible line">
+    <div class="page-head"><span class="who">Dean Butler</span><span>The invisible line · 06</span></div>
+    <div class="sec-head">
+      <div class="mod-no">06</div>
+      <div class="htext">
+        <span class="kicker">Function becomes dependence</span>
+        <h1 class="title" style="">Somewhere, it crossed a line nobody saw.</h1>
+      </div>
+    </div>
+
+    <p style="">The danger of a substance that genuinely works is that the line into dependence is invisible while you cross it. What began as regulation slowly became requirement. The brain adapts: the same amount does less, more is needed to feel level and stopping no longer returns things to baseline — it drops below it. By then the alcohol is no longer steadying the ADHD; <strong class="ink">it is its own problem, layered on top of the first.</strong></p>
+
+    <div class="lineflow">
+      <div class="track"><div class="mark"></div><div class="mlabel">the invisible line</div></div>
+      <div class="stages">
+        <div class="stg s1"><div class="sk">Before the line</div><h3>Function</h3><p style="">Alcohol regulates an unrecognised ADHD brain — focus, relief, social access. It works, so it continues.</p></div>
+        <div class="stg s2"><div class="sk">Crossing</div><h3>Tolerance</h3><p>The brain adapts. More is needed for the same effect; use becomes daily, then structural. The line is crossed unseen.</p></div>
+        <div class="stg s3"><div class="sk">After the line</div><h3>Dependence</h3><p>Physical and psychological dependence. Now there are two problems — and the system usually only treats the second.</p></div>
+      </div>
+    </div>
+
+    <p style="margin-top: 16px;">Crucially, around the period a person finally wants to stop and seeks help is often when ADHD is first recognised. But recognition is not sequencing: in the lived case, the alcohol dependence worsened while the ADHD stayed mis-ordered — diagnosed but not yet treated in a way the brain could use.</p>
+
+    <div class="page-foot"><span>A described sequence from one lived user journey · not a clinical inevitability</span><span>Page 08 / 23</span></div>
+  </section>
+
+  <!-- ════════ 09 · THE SCIENCE ════════ -->
+  <section class="page azv2" data-screen-label="09 · The science">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>The science · 07</span></div>
+    <div class="sec-head">
+      <div class="mod-no">07</div>
+      <div class="htext">
+        <span class="kicker">The science of the pattern</span>
+        <h1 class="title">Why the wrong chemistry makes recovery so hard.</h1>
+      </div>
+    </div>
+
+    <p style="">The mechanism is, in plain terms, a chemistry mismatch. The unmanaged ADHD brain tends to run with lower available signalling in the systems that govern focus, motivation and self-control. A substance that temporarily lifts that signalling feels, at first, like relief but long-term dependence then erodes the very systems recovery depends on.</p>
+
+    <div class="mech-grid">
+      <div class="mc"><div class="mk">The chemistry</div><h3>Dopamine &amp; noradrenaline</h3><p>These catecholamines regulate reward, motivation, arousal and attention. In ADHD, their signalling in key circuits is widely understood to run low — leaving a brain that is under-aroused and reaching for stimulation.</p></div>
+      <div class="mc"><div class="mk">The control centre</div><h3>The prefrontal cortex</h3><p style="">The seat of executive function — planning, judgement, impulse control. It depends on steady catecholamine signalling to work. Under-fuel it and pause-and-reflect becomes reflex-and-react.</p></div>
+      <div class="mc"><div class="mk">The trap</div><h3>The reward hijack</h3><p style="">A substance floods the reward system with a surge the ADHD brain rarely feels naturally. The brain learns the substance equals relief and, over time, turns down its own sensitivity to ordinary reward.</p></div>
+      <div class="mc"><div class="mk">The cost</div><h3>Neuroplastic learning</h3><p>Recovery is re-wiring: building new habits through repetition. That needs a working prefrontal cortex and a stable baseline — the very things untreated ADHD and long-term dependence both degrade.</p></div>
+    </div>
+
+    <p class="src-note" style=""><strong style=""><br>An explanatory model.</strong> Neurochemistry is simplified here for clarity. "Low dopamine" is a widely-used explanatory framing, not an absolute or settled measurement and individual presentations vary. The point is directional, not a claim of precise mechanism.</p>
+
+    <div class="page-foot"><span>Simplified explanatory model · directional, not a precise mechanistic claim</span><span>Page 09 / 23</span></div>
+  </section>
+
+  <!-- ════════ 10 · THE VICIOUS CYCLE ════════ -->
+  <section class="page azv2 dark" data-screen-label="10 · The vicious cycle">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>The vicious cycle · 08</span></div>
+    <div class="sec-head">
+      <div class="mod-no">08</div>
+      <div class="htext">
+        <span class="kicker">Regulation → dependence → mismatch</span>
+        <h1 class="title">A loop that tightens the longer it runs.</h1>
+      </div>
+    </div>
+
+    <p style="">Put the chemistry in motion and it becomes a self-tightening loop. Each turn makes the next one harder and makes standard, abstinence-first recovery less likely to hold, not more.</p>
+
+    <div class="cycle">
+      <div class="cs"><div class="cn">01</div><h3 style="">Under&nbsp; &nbsp; regulation</h3><p>Untreated ADHD: low arousal, restless focus, impulsivity, emotional swings. The brain is hunting for something that steadies it.</p></div>
+      <div class="cs"><div class="cn">02</div><h3>Alcohol regulates</h3><p>Alcohol temporarily lifts signalling and quiets the noise. It works — so it repeats, and becomes the go-to tool for coping.</p></div>
+      <div class="cs"><div class="cn">03</div><h3 style="">Dependence&nbsp;<div>sets in</div></h3><p>Long-term use worsens the underlying deficits, flattens neuroplasticity and erodes prefrontal control — deepening the original problem.</p></div>
+      <div class="cs"><div class="cn">04</div><h3>Recovery mismatch</h3><p>Now recovery asks for focus, memory and impulse control — the exact capacities most degraded. Failure looks like "lack of willpower." It is not.</p></div>
+    </div>
+    <div class="cycle-loop">→ and a failed attempt sends the brain straight back to step 01, more depleted than before.</div>
+
+    <div class="callout" style="margin-top:14px;">
+      Breaking the loop is not about trying harder. It is about restoring enough neurological stability — through proper ADHD treatment under clinical care — that the recovery tools become usable. <strong style="">Treat the driver and the addiction work can finally hold.</strong>
+    </div>
+
+    <div class="page-foot"><span>An explanatory model of the lived pattern · not a universal claim</span><span>Page 10 / 23</span></div>
+  </section>
+
+  <!-- ════════ 11 · THIS CAN'T BE COINCIDENCE ════════ -->
+  <section class="page azv2 dark" data-screen-label="11 · This can't be coincidence">
+    <div class="page-head"><span class="who">Dean Butler</span><span>The reveal · 09</span></div>
+    <div class="coincidence">
+      <div class="ck">Look at the two lists side by side</div>
+      <h2>This <span class="hl">can't</span> be coincidence.</h2>
+      <p>Everything addiction recovery <strong>requires</strong>, unmanaged ADHD <strong>impairs</strong>. Not loosely. Item for item. Executive function. Attention. Working memory. Impulse control. Emotional regulation. Routine. Delayed reward. The capacity to learn new habits at all.</p>
+      <p style="">When the requirements of recovery and the deficits of ADHD line up that precisely, the question stops being whether they are related and becomes <strong>why we keep treating them as if they are not.</strong></p>
+    </div>
+    <div class="page-foot"><span>The argument, stated plainly — the evidence follows</span><span>Page 11 / 23</span></div>
+  </section>
+
+  <!-- ════════ 12 · COMPARISON TABLE ════════ -->
+  <section class="page azv2" data-screen-label="12 · Deficit vs requirement">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Deficit vs requirement · 10</span></div>
+    <div class="sec-head">
+      <div class="mod-no">10</div>
+      <div class="htext">
+        <span class="kicker">The comparison, item for item</span>
+        <h1 class="title">What recovery needs. What ADHD takes away.</h1>
+      </div>
+    </div>
+
+    <table class="versus">
+      <thead><tr><th>Capacity</th><th class="adhd">Unmanaged ADHD impairs</th><th class="rec">Addiction recovery requires</th></tr></thead>
+      <tbody>
+        <tr><td class="fn">Executive function</td><td class="adhd">Difficulty planning, sequencing and self-regulating; a starved prefrontal cortex</td><td class="rec">Daily planning, structure and the delay of short-term gratification</td></tr>
+        <tr><td class="fn">Focus &amp; attention</td><td class="adhd">Chronic distractibility; hard to sustain attention on non-stimulating tasks</td><td class="rec">Deep, continuous focus through long therapy sessions and recovery work</td></tr>
+        <tr><td class="fn">Working memory</td><td class="adhd">Forgets coping strategies, misses appointments, loses the thread</td><td class="rec">Retaining new tools, tracking triggers, holding daily routines</td></tr>
+        <tr><td class="fn">Impulse control</td><td class="adhd">Reflexive, immediate urges; acting before the pause</td><td class="rec">Pausing, reflecting and resisting cravings in the moment</td></tr>
+        <tr><td class="fn">Emotional regulation</td><td class="adhd">Dysregulation; distress arrives fast and overwhelms</td><td class="rec">Tolerating distress and riding out craving without the substance</td></tr>
+        <tr><td class="fn">Routine &amp; follow-through</td><td class="adhd">Hard to initiate and sustain mundane, unrewarding routines</td><td class="rec">Repetition and routine that physically rebuild new pathways</td></tr>
+        <tr><td class="fn">Reward &amp; arousal</td><td class="adhd">Under-arousal and a pull toward immediate reward</td><td class="rec">A stable baseline — tolerating boredom and delayed reward</td></tr>
+        <tr><td class="fn">Neuroplastic learning</td><td class="adhd">Blunted adaptation; resists routines without immediate payoff</td><td class="rec">Rapid, healthy re-wiring to replace deep-seated habits</td></tr>
+      </tbody>
+    </table>
+
+    <p class="src-note"><strong style=""><br>Read it as a model, not a verdict.</strong> The mapping is an explanatory framing drawn from the published account of ADHD and recovery; presentations vary and the alignment is directional. It is offered to show why this cohort struggles with standard recovery — not to diagnose any individual.</p>
+
+    <div class="page-foot"><span>Explanatory comparison · directional, not a clinical instrument</span><span>Page 12 / 23</span></div>
+  </section>
+
+  <!-- ════════ 13 · MEDICINE-PLUS-CONTINUITY ════════ -->
+  <section class="page azv2" data-screen-label="13 · Medicine-plus-continuity">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>The intervention · 11</span></div>
+    <div class="sec-head">
+      <div class="mod-no">11</div>
+      <div class="htext">
+        <span class="kicker">The medicine opens the door</span>
+        <h1 class="title">The medicine opens the door. Continuity holds it open.</h1>
+      </div>
+    </div>
+
+    <p>If the driver is neurological, then stabilising the neurology — through proper ADHD treatment, under qualified clinical care — may be the missing prerequisite that lets recovery work finally land. But medication alone is not the intervention. <strong class="ink">Medication opens the door; Continuity holds it open long enough for the person, the service and the recovery work to participate properly.</strong></p>
+
+    <figure class="imgfill band lightart">
+      <img src="assets/brief-img/IMAGE_09.jpg" alt="A central stability foundation ringed by continuity elements: diagnosis clarity, access, adherence, persistence, relapse-risk visibility, behavioural reinforcement">
+    </figure>
+
+    <div class="callout soft">
+      Medicine-plus-Continuity means clinical ADHD stability wrapped in adherence support, relapse-risk visibility, service continuity, recovery support and behavioural reinforcement — so gains are not lost between appointments, services or motivation dips. <strong>The molecule is not the product. The continuity around it is.</strong>
+    </div>
+
+    <p style="margin-top: 13px;">This reframes the published evidence carefully. START is a comparator signal: after ADHD diagnosis and methylphenidate initiation, improvement in addictive disorders was observed in a study population. That does not prove OTOS, and it does not make medication a cure. It supports the narrower proposition that treating the ADHD driver may make addiction recovery work more usable for a defined subgroup.</p>
+
+    <div class="page-foot"><span>OTOS does not prescribe · medication choice is a clinical decision</span><span>Page 13 / 23</span></div>
+  </section>
+
+  <!-- ════════ 14 · THE MEDICINE THAT LET RECOVERY LAND ════════ -->
+  <section class="page azv2 dark" data-screen-label="14 · The medicine that let recovery land">
+    <img class="bg-img" src="assets/brief-img/IMAGE_04.jpg" alt="" aria-hidden="true">
+    <div class="bg-scrim heavy"></div>
+    <div class="page-head"><span class="who">Dean Butler</span><span>The lived sequence · 12</span></div>
+    <div class="sec-head">
+      <div class="mod-no">12</div>
+      <div class="htext">
+        <span class="kicker">Methylphenidate → lisdexamfetamine</span>
+        <h1 class="title">The right medicine, seven years too late.</h1>
+      </div>
+    </div>
+
+    <p>The founder's sequence matters because it shows that <strong class="ink"><span style="color:#fff;">recognition is not the same as treatment.</span></strong> At diagnosis, methylphenidate was started, but the treatment was not properly continued after a GP change. The next seven years included six A&amp;E presentations seeking detox, police and probation involvement, a suicide attempt, two intensive-care admissions, repeated CGL engagement, day-hab, residential dual-diagnosis rehab and repeated failed sobriety attempts. The rehab was caring and intensive — but on arrival his ADHD medication was removed because it was a stimulant. He left with addiction knowledge, therapy and structure, but with no medication underneath it. He remained on the NHS ADHD medication-review waiting list. A final relapse forced the question he had carried for years: was the untreated ADHD the driver? He engineered a private reassessment and was prescribed lisdexamfetamine, better matched to his combined-presentation ADHD. Only then did the same recovery work — courses, therapy, structure and repetition — become usable.</p>
+
+    <div class="quote-band">"The work was not wrong. For a while after rehab, it held. But without medication and without alcohol, I was <span class="hl">living with pure ADHD for the first time in my adult life.</span> Relapse was not a failure of effort. My brain was still seeking the basic function it did not have."</div>
+
+    <div class="callout">
+      <strong>Said plainly, to be safe:</strong> this is one clinically supervised case, not a population study and not a claim that lisdexamfetamine — or any ADHD medication — cures alcohol dependence or is right for everyone. Medication choice, titration and supervision are clinical decisions. <strong>OTOS does not diagnose, prescribe, manage or promote medication.</strong> The point is the sequence: treat the driver properly, and recovery may finally hold.
+    </div>
+
+    <div class="page-foot"><span>One clinically-supervised case · not a cure claim · OTOS does not prescribe</span><span>Page 14 / 23</span></div>
+  </section>
+
+  <!-- ════════ 15 · NIA DEFINITION ════════ -->
+  <section class="page azv2" data-screen-label="15 · NIA definition">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>The proposed definition · 13</span></div>
+    <div class="sec-head">
+      <div class="mod-no">13</div>
+      <div class="htext">
+        <span class="kicker">Stated formally</span>
+        <h1 class="title">NIA — the proposed definition.</h1>
+      </div>
+    </div>
+
+    <div class="nia-def">
+      <div class="nd-k">Proposed category · founder-originated</div>
+      <div class="nd-term">Neurologically Informed Addiction (NIA)</div>
+      <p style=""><strong style="">A proposed subtype of addiction in which substance use — most commonly alcohol — begins as functional self-medication of an underlying neurodevelopmental condition, principally ADHD and later progresses to dependence.</strong> In NIA, the neurology is understood as a driver of the addiction, not merely a co-occurring condition and treatment of that driver, under qualified clinical care, is considered a prerequisite for recovery to hold, rather than a secondary concern.</p>
+    </div>
+
+    <div class="lineage" style="margin-top:16px;">
+      <div class="lin dtd"><div class="lk">The lived origin term</div><h3 style="">A "Double Trouble" Diagnosis</h3><p style="">The raw, lived name for ADHD and addiction running as one loop. Used in the founder narrative only.</p></div>
+      <div class="lin-thread"></div>
+      <div class="lin nia"><div class="lk">The proposed category</div><h3>Neurologically Informed Addiction</h3><p>The professional, clinical-facing term offered for consideration, research and service design.</p></div>
+    </div>
+
+    <p class="src-note" style="margin-top:14px;"><strong>NIA is proposed terminology, not an official diagnosis.</strong> It is offered for clinical review and research, alongside — never replacing — DSM-5 and ICD-11 categories and existing services.</p>
+
+    <div class="page-foot"><span>Proposed terminology · offered for clinical consideration</span><span>Page 15 / 23</span></div>
+  </section>
+
+  <!-- ════════ 16 · PROPOSED CRITERIA ════════ -->
+  <section class="page azv2" data-screen-label="16 · Proposed criteria">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Proposed criteria · 14</span></div>
+    <div class="sec-head">
+      <div class="mod-no">14</div>
+      <div class="htext">
+        <span class="kicker">What would define the cohort</span>
+        <h1 class="title">What would define the cohort.</h1>
+      </div>
+    </div>
+
+    <p>Offered for discussion, not as a diagnostic instrument: the features that, taken together, might distinguish an NIA category / clinical pattern from alcohol dependence alone. A clinician would confirm any of this — OTOS would not.</p>
+
+    <div class="criteria">
+      <div class="cr"><div class="crn">1</div><div><h3>ADHD foundation</h3><p>A confirmed or strongly indicated ADHD diagnosis underlying the alcohol-dependence pattern.</p></div></div>
+      <div class="cr"><div class="crn">2</div><div><h3>Alcohol dependence / harmful use</h3><p>Established dependence or harmful use — most commonly alcohol — meeting recognised criteria.</p></div></div>
+      <div class="cr"><div class="crn">3</div><div><h3>Functional-regulation history</h3><p>Early alcohol use that improved focus, calmed restlessness, steadied mood or created social/executive access.</p></div></div>
+      <div class="cr"><div class="crn">4</div><div><h3>Executive-relapse pattern</h3><p>Relapse driven by executive exhaustion, boredom, task paralysis or under-arousal, not cues alone.</p></div></div>
+      <div class="cr"><div class="crn">5</div><div><h3>Treatment mismatch</h3><p>Standard recovery repeatedly fails for reasons linked to forgetfulness, distraction, impulsivity or poor follow-through.</p></div></div>
+      <div class="cr"><div class="crn">6</div><div><h3>Response-to-sequence signal</h3><p>Engagement improves once ADHD is properly recognised, treated or stabilised under qualified clinical care.</p></div></div>
+      <div class="cr"><div class="crn">7</div><div><h3>Continuity need</h3><p>The person is known to services but not held across the whole user journey.</p></div></div>
+      <div class="cr"><div class="crn">8</div><div><h3>Repeated crisis contact</h3><p>A&amp;E, detox, ICU, crisis mental health, safeguarding, police or probation contact recurs without the thread connecting.</p></div></div>
+      <div class="cr"><div class="crn">9</div><div><h3>Mental-health engagement history</h3><p>Therapy, antidepressants, anxiety/depression treatment or counselling has occurred without the ADHD/alcohol sequence being held.</p></div></div>
+      <div class="cr"><div class="crn">10</div><div><h3>Recovery-service recycling</h3><p>Repeated onboarding into CGL, CRS, detox, day-hab, rehab, AA or recovery support without durable resolution.</p></div></div>
+      <div class="cr"><div class="crn">11</div><div><h3>Waiting-list vulnerability</h3><p>ADHD assessment, titration or medication review is delayed while addiction risk remains active.</p></div></div>
+      <div class="cr"><div class="crn">12</div><div><h3>Cross-service evidence trail</h3><p>Letters, discharge notes, referrals or partner observations reveal the same pattern across services, but no one system owns it.</p></div></div>
+    </div>
+
+    <div class="page-foot"><span>Proposed features for discussion · confirmation is a clinical matter</span><span>Page 16 / 23</span></div>
+  </section>
+
+  <!-- ════════ 17 · WHAT NIA IS / IS NOT ════════ -->
+  <section class="page azv2" data-screen-label="17 · What NIA is / is not">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Boundary &amp; benefit · 15</span></div>
+    <div class="sec-head">
+      <div class="mod-no">15</div>
+      <div class="htext">
+        <span class="kicker">Boundary as strength</span>
+        <h1 class="title">What NIA is — and what OTOS makes possible.</h1>
+      </div>
+    </div>
+
+    <p class="lede">The boundary is not a weakness. It is how the idea becomes safe, useful and testable — every line OTOS will not cross sits beside something it makes possible.</p>
+
+    <div class="confcols">
+      <div class="cc no">
+        <div class="cch">What OTOS does not claim or do</div>
+        <ul>
+          <li style="">Does not diagnose ADHD<div><br></div></li>
+          <li style="">Does not prescribe or manage medication<div><br></div></li>
+          <li style="">Does not treat alcohol addiction or deliver therapy<div><br></div></li>
+          <li style="">Does not replace NHS, CGL, AA, rehab, GPs, psychiatry or crisis services<div><br></div></li>
+          <li style="">Does not make clinical decisions or automate risk<div><br></div></li>
+          <li style="">Does not claim ADHD medication cures addiction<div><br></div></li>
+          <li style="">Does not claim all alcohol dependence is ADHD-driven<div><br></div></li>
+          <li style="">Does not claim founder proof is population proof<div><br></div></li>
+          <li style="">Does not write into NHS clinical records<div><br></div></li>
+          <li style="">Does not guarantee outcomes<div><br></div></li>
+          <li>Does not ask partners to endorse NIA before evidence is built</li>
+        </ul>
+      </div>
+      <div class="cc yes">
+        <div class="cch">What OTOS makes possible</div>
+        <ul>
+          <li style="">Helps identify the ADHD-driven alcohol pattern earlier<div><br></div></li>
+          <li style="">Helps route people toward the right qualified clinical door<div><br></div></li>
+          <li style="">Makes the missing thread visible, so recognition speeds up<div><br></div></li>
+          <li style="">Shows services what otherwise disappears between appointments<div><br></div></li>
+          <li style="">Holds continuity around existing services, enhancing them<div><br></div></li>
+          <li style="">Supports diagnosis pathways without diagnosing<div><br></div></li>
+          <li style="">Supports treatment pathways without prescribing<div><br></div></li>
+          <li style="">Supports recovery services without replacing them<div><br></div></li>
+          <li style="">Simplifies handoffs with receipts, reminders and visible next steps<div><br></div></li>
+          <li style="">Helps prevent silent drift while people wait<div><br></div></li>
+          <li>Creates evidence so claims can be tested, proved or stopped</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-foot"><span>The boundary is the design — safe, useful, testable</span><span>Page 17 / 23</span></div>
+  </section>
+
+  <!-- ════════ 18 · EVIDENCE POSITION ════════ -->
+  <section class="page azv2 dense-ev" data-screen-label="18 · Evidence position">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Evidence position · 16</span></div>
+    <div class="sec-head">
+      <div class="mod-no">16</div>
+      <div class="htext">
+        <span class="kicker">Bold on pattern · honest on proof</span>
+        <h1 class="title">What the evidence already points to.</h1>
+      </div>
+    </div>
+
+    <p class="lede">None of these are OTOS outcomes. They are anchors and signals pointing in the same direction — strong enough to justify formal review and research, not strong enough to claim NIA as settled.</p>
+
+    <div class="col-split" style="margin-top:13px;">
+      <div>
+        <div class="ch">Verified / documented anchors</div>
+        <ul class="value-list" style="margin-top:0;">
+          <li><strong>Clinical letter anchor</strong> — "self-medicate inadequately managed ADHD symptoms." <em>One documented case, not population proof.</em></li>
+          <li><strong>RCPsych CR243</strong> — adult ADHD co-occurs with SUD: earlier onset, greater severity, reduced treatment effectiveness. <em>Published guidance.</em></li>
+          <li><strong>RCPsych CR235</strong> — substance misuse may be ~2× as common in ADHD; manage jointly across services. <em>Published guidance.</em></li>
+          <li><strong>NICE NG87</strong> — substance-misuse history is a context where ADHD prevalence may be raised. <em>Published guidance.</em></li>
+          <li><strong>NHS ADHD Taskforce</strong> — unsupported ADHD carries major whole-system cost and harm. <em>Macro context.</em></li>
+          <li><strong>Founder service trail</strong> — A&amp;E, ICU, CGL, rehab, probation, psychiatry and ADHD waiting-list contact without the thread held. <em>Lived user-journey evidence.</em></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ch">Candidate / comparator signals</div>
+        <ul class="value-list" style="margin-top:0;">
+          <li><strong>START 61.3%</strong> — improvement in addictive disorders after ADHD treatment in a study population. <em>Comparator only; not an OTOS outcome.</em></li>
+          <li><strong>ADHD prevalence in addiction cohorts</strong> — reported elevated (23–45%). <em>Published / candidate depending on source pinning.</em></li>
+          <li><strong>BMJ / Southampton</strong> — reduced substance-misuse events with ADHD medication. <em>Candidate; citation pending.</em></li>
+          <li><strong>Am. J. Psychiatry</strong> — reported reductions in substance-use crises. <em>Candidate; citation pending.</em></li>
+          <li><strong>2–3× risk estimates</strong> — elevated SUD risk in ADHD by method/population. <em>Candidate; CR235 ~2× is the safer anchor.</em></li>
+          <li><strong>Local demonstrator need</strong> — a bounded local test to replace modelling with evidence. <em>OTOS research rationale.</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout push-foot"><strong>The position, in a line:</strong> the evidence is strong enough to justify recognition and research, and not yet strong enough to claim NIA as settled.</div>
+
+    <div class="page-foot"><span>Published evidence candidates, not OTOS outcomes · full ledger in Appendix A</span><span>Page 18 / 23</span></div>
+  </section>
+
+  <!-- ════════ 19 · THE OTOS ROLE ════════ -->
+  <section class="page azv2" data-screen-label="19 · The OTOS role">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>The OTOS role · 17</span></div>
+    <div class="sec-head">
+      <div class="mod-no">17</div>
+      <div class="htext">
+        <span class="kicker">Category · intervention · infrastructure</span>
+        <h1 class="title">Where OTOS sits — and what the layer actually does.</h1>
+      </div>
+    </div>
+
+    <p>NIA is the category. Medicine-plus-Continuity is the intervention. <strong class="ink">OTOS Continuity is the infrastructure:</strong> a non-clinical engagement layer that keeps the person active, visible and learning between services. It does not just record handoffs. It delivers micro check-ins, partner-approved next-step prompts, waiting-well learning, partner-branded messages where agreed, appointment prompts, recovery-literacy nudges, human-review queues and consent-led engagement signals. Those repetitions matter. They keep the new behavioural pattern active while ADHD treatment, addiction recovery, therapy, community support and clinical services do their work. Continuity is not the clinical intervention. It is the layer that helps every existing intervention land more consistently.</p>
+
+    <div class="cards-4">
+      <div class="col-card"><h3>Surface</h3><p>Micro check-ins, drift visibility and relapse-risk signals before crisis is the only signal.</p></div>
+      <div class="col-card"><h3>Hold</h3><p>Appointment prompts, transition receipts, partner messages and human review so the person stays connected between services.</p></div>
+      <div class="col-card"><h3>Reinforce</h3><p>Waiting-well learning, ADHD/recovery literacy, CBT-style repetition and behavioural nudges that help new habits stick.</p></div>
+      <div class="col-card"><h3>Evidence</h3><p>Consent-led signals, engagement tracking and learning reports so claims can be tested, improved, proved or stopped.</p></div>
+    </div>
+
+    <div class="callout soft">
+      <strong>The firewall is the design.</strong> OTOS does not diagnose ADHD, prescribe, manage or promote medication, treat addiction, deliver therapy, replace any service or make clinical decisions. <strong>OTOS surfaces signals; partner teams make the decisions.</strong>
+    </div>
+
+    <div class="page-foot"><span>Non-clinical engagement layer · consent-led · partner-reviewed</span><span>Page 19 / 23</span></div>
+  </section>
+
+  <!-- ════════ 20 · WHY RECOGNITION MATTERS ════════ -->
+  <section class="page azv2 dark" data-screen-label="20 · Why recognition matters">
+    <div class="page-head"><span class="who">Dean Butler</span><span>Why recognition matters · 18</span></div>
+    <div class="sec-head">
+      <div class="mod-no">18</div>
+      <div class="htext">
+        <span class="kicker">And the process now under way</span>
+        <h1 class="title">If you name it, you can hold it.</h1>
+      </div>
+    </div>
+
+    <p>Naming a category changes what the system can do with it. A named NIA category / clinical pattern could be screened for, sequenced correctly, commissioned, audited and researched — instead of being repeatedly rediscovered, one crisis at a time. Recognition is not vanity; it is what turns a lived insight into something a service can act on.</p>
+
+    <div class="recog">
+      <div class="rg live"><div class="rgk">Step 1 · in progress</div><h3>Submission being prepared</h3><p style="">OTOS has opened contact with the Royal College of Psychiatrists to establish the right route for an NIA category-recognition / clinical-pattern review dialogue, which is being prepared for consideration as a recognised research and clinical-pattern model.</p></div>
+      <div class="rg"><div class="rgk">Step 2 · next</div><h3 style="">Research &amp;&nbsp;<div>publication</div></h3><p>A bounded demonstrator and written-up findings to move NIA from proposition toward an evidenced clinical pattern.</p></div>
+      <div class="rg"><div class="rgk">Step 3 · longer term</div><h3 style="">Formal&nbsp;<div>review</div></h3><p>With evidence behind it, submission toward the bodies that maintain clinical classifications and guidance.</p></div>
+    </div>
+
+    <div class="callout" style="margin-top: 14px;">
+      <strong>Stated carefully:</strong> beginning a submission is not the same as recognition. No body has endorsed, accepted or approved NIA. What can be said honestly is that the process has been started and that doing so openly is itself part of holding the idea to a proper standard.
+    </div>
+
+    <div class="page-foot"><span>Submission in progress · no endorsement or acceptance is claimed</span><span>Page 20 / 23</span></div>
+  </section>
+
+  <!-- PASS 16 · the wave — cost/stakes plate -->
+  <section class="page" data-screen-label="20a · The cost of not recognising it" style="position:relative; padding:0; overflow:hidden; background:#0a0a0c;">
+    <img src="assets/support-img/tsunami-wave-people.png" alt="A colossal wave made entirely of people, curling out of a doorway where a small crowd waits, breaking onto a row of lit public services — hospital, school, police, courts, library, social services — with a single amber continuity thread running along the ground" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(1.02);" />
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,8,10,.72) 0%, rgba(8,8,10,.32) 34%, rgba(8,8,10,0) 54%, rgba(8,8,10,.42) 100%);"></div>
+    <div style="position:absolute; inset:0; padding:18mm 20mm 14mm; display:flex; flex-direction:column; z-index:2;">
+      <div style="display:flex; justify-content:space-between; font-size:9.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.62);"><span>OTOS Continuity™</span><span>Why it matters · the cost</span></div>
+      <div style="margin-top:8mm; max-width:19ch;">
+        <h1 style="margin:0; font-size:38px; font-weight:1000; letter-spacing:-.035em; line-height:1.0; color:#fff; text-shadow:0 2px 26px rgba(0,0,0,.55);">Leave the driver unrecognised, and the cost arrives <span style="color:#ff9c3f;">as a wave.</span></h1>
+      </div>
+      <div style="margin-top:auto; max-width:56ch;">
+        <p style="margin:0; font-size:13px; line-height:1.55; font-weight:600; color:rgba(255,255,255,.9); text-shadow:0 1px 14px rgba(0,0,0,.6);">When the ADHD-shaped driver goes unrecognised, the person is treated again and again for the downstream — addiction, crisis, relapse — while the upstream cause stays untouched. One untreated case does not create one cost. It ripples <strong style="color:#fff;">£90k–£220k+ a year</strong> across the whole system, from the family to the courts to the litter on the street.</p>
+        <p style="margin:11px 0 0; font-size:9px; line-height:1.5; font-weight:600; color:rgba(255,255,255,.6);">Strategic risk hypothesis, not a proven forecast. Full-ripple cost model — a way of seeing the whole burden, not a guaranteed per-case invoice. OTOS is non-clinical; clinical teams make clinical decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 21 · SAFEGUARDS ════════ -->
+  <section class="page azv2 dark" data-screen-label="21 · Safeguards">
+    <img class="bg-img" src="assets/brief-img/IMAGE_05.jpg" alt="" aria-hidden="true">
+    <div class="bg-scrim"></div>
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Safeguards · 19</span></div>
+    <div class="safe-arch">
+      <div class="core">
+        <div class="ck">The line, held to</div>
+        <h2>NIA remains proposed.</h2>
+      </div>
+      <div class="ring">
+        <div class="sg"><div class="sn">01 · Status</div><p><strong>Proposed, founder-originated terminology — not an official diagnosis.</strong> OTOS Continuity is early-stage and non-clinical. Founder proof is not population proof.</p></div>
+        <div class="sg"><div class="sn">02 · Medication</div><p><strong>No cure claim.</strong> Medication choice, titration and supervision are clinical decisions. OTOS does not prescribe, manage or promote medication.</p></div>
+        <div class="sg"><div class="sn">03 · Services</div><p><strong>Nothing replaced, nothing dismissed.</strong> Existing services remain essential. OTOS does not diagnose, treat, replace any service or make clinical decisions.</p></div>
+        <div class="sg"><div class="sn">04 · Evidence</div><p><strong>Published figures are context and candidates, not OTOS outcomes.</strong> Several are observational. No endorsement is assumed.</p></div>
+      </div>
+    </div>
+    <div class="page-foot"><span>Non-clinical · evidence-disciplined · no endorsement assumed</span><span>Page 21 / 23</span></div>
+  </section>
+
+  <!-- ════════ 22 · CLOSING ════════ -->
+  <section class="page azv2 dark has-bg closing" data-screen-label="22 · Closing">
+    <img class="bg-img" src="assets/brief-img/az-ext-10-door.png" alt="A glowing doorway on a dark plain, light-trails leading toward sunrise — out the other side" />
+    <div class="bg-scrim"></div>
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Closing · 20</span></div>
+    <span class="kicker">Out the other side</span>
+    <h1 class="title" style="">Surviving the journey, now the pattern can be&nbsp;<span style="letter-spacing: -0.04em;">named.</span></h1>
+
+    <p style="max-width: 64ch;">This paper is not a pitch and not a request for anything. It is a statement of position: what our Founder navigated, what the pattern is, why the science makes it credible, what the published evidence already shows and where the boundaries sit. NIA is offered for clinical consideration and research — to be tested, challenged and refined by people more qualified than its founder.</p>
+
+    <div class="ask-box">
+      <div class="label">The position, in a sentence</div>
+      <p style="">A cohort the system already sees and already pays for is likely driven by untreated ADHD beneath the visible addiction — naming that pattern, clinically addressing the driver where indicated and holding the person across services could change what recovery is even able to do. <strong>That is worth recognising properly.</strong></p>
+    </div>
+
+    <div class="signoff">
+      <span class="name">Dean Butler — Founder, OTOS Continuity.</span>
+      OTOS Continuity · OTOS Digital Ltd · Co. No. 17084455<br>
+      dean@otos.life · 07585 899 235
+    </div>
+
+    <div class="page-foot"><span>A position &amp; recognition paper · not a pitch</span><span>Page 22 / 23</span></div>
+  </section>
+
+  <!-- ════════ 23 · APPENDIX A · EVIDENCE LEDGER ════════ -->
+  <section class="page azv2" data-screen-label="23 · Appendix A · Evidence ledger">
+    <div class="page-head"><span class="who brand">OTOS Continuity</span><span>Appendix A · 21</span></div>
+    <div class="sec-head">
+      <div class="mod-no" style="font-size:58px;">A</div>
+      <div class="htext">
+        <span class="kicker">Sources &amp; status</span>
+        <h1 class="title">Evidence ledger.</h1>
+      </div>
+    </div>
+
+    <p class="note" style="margin-top:0;"><strong>Note</strong> — figures below are published evidence candidates and context, not OTOS outcomes. The science in this paper is a simplified explanatory model. OTOS does not diagnose, prescribe or treat, and no endorsement by any body is assumed. <strong>The full source register follows in the separate OTOS Evidence Dossier.</strong></p>
+
+    <table class="fb srctable">
+      <thead><tr><th>Claim / figure</th><th>Source</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="el">ADHD-driven self-medication of alcohol (founder case)</td><td class="wh">Independent consultant psychiatrist, diagnostic letter, April 2026</td><td><span class="tag-candidate">Clinical anchor</span> — one documented case, not population proof</td></tr>
+        <tr><td class="el">Substance misuse ~2× as common in ADHD; joint management advised</td><td class="wh">RCPsych CR235</td><td><span class="tag-verified">Published guidance</span></td></tr>
+        <tr><td class="el">ADHD co-occurs with SUD: earlier onset, greater severity, reduced treatment effect</td><td class="wh">RCPsych CR243, 2025</td><td><span class="tag-verified">Published guidance</span> — validated ADHD screening in SUD</td></tr>
+        <tr><td class="el">23–45% ADHD prevalence in addiction cohorts</td><td class="wh">RCPsych</td><td><span class="tag-verified">Published</span> — recognised range</td></tr>
+        <tr><td class="el">£17bn avoidable annual cost of unsupported ADHD</td><td class="wh">NHS ADHD Taskforce, 2025</td><td><span class="tag-verified">Published</span> — macro context</td></tr>
+        <tr><td class="el">61.3% improvement in addictive disorders after ADHD treatment</td><td class="wh">START study, 2025 (methylphenidate)</td><td><span class="tag-candidate">Candidate</span> — observational; comparator only</td></tr>
+        <tr><td class="el">BMJ ~25% fewer misuse events · AJP ~35/31% fewer crises · ≈2–3× risk</td><td class="wh">BMJ/Southampton · Am. J. Psychiatry · meta-analyses</td><td><span class="tag-candidate">Candidate</span> — citation pending; see Dossier</td></tr>
+        <tr><td class="el">NIA recognition with a recognised body</td><td class="wh">RCPsych submission in progress</td><td><span class="tag-forecast">In progress</span> — no acceptance claimed</td></tr>
+      </tbody>
+    </table>
+
+    <div class="page-foot"><span>Appendix A · evidence candidates &amp; source status</span><span>Page 23 / 23</span></div>
+  </section>
+
+</div>
+
+
+</body></html>
