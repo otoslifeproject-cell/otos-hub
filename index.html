@@ -750,6 +750,7 @@
       <button class="sn-item" data-view="reports"><span class="sn-icon">📑</span>Reports</button>
       <button class="sn-item" data-view="templates"><span class="sn-icon">✉️</span>Templates</button>
       <button class="sn-item" data-view="activity"><span class="sn-icon">🕒</span>Activity</button>
+      <button class="sn-item" data-view="welcome"><span class="sn-icon">👋</span>Welcome</button>
       <button class="sn-item" data-view="about"><span class="sn-icon">ℹ️</span>About</button>
       <div class="sn-spacer"></div>
       <div class="sn-foot">25 funding docs · 8 masters · CRM by Dean &amp; Gareth</div>
@@ -1088,6 +1089,38 @@
           </div>
           <div class="feed-list" id="feedList"></div>
         </div>
+      </section>
+
+      <!-- ============ WELCOME ============ -->
+      <section data-view-panel="welcome" hidden class="wm-brain">
+        <div class="panel-head">
+          <h1>Welcome, Gareth</h1>
+          <div class="ph-sub">A quick orientation before you dive in — five minutes, then you're ready to use this properly.</div>
+        </div>
+
+        <div class="explainer">
+          <div class="lbl">What OTOS is, in brief</div>
+          <p><b>OTOS Continuity™</b> is a non-clinical continuity infrastructure for adults with suspected or diagnosed ADHD-driven addiction — built to hold a person's thread across services that don't currently talk to each other. It doesn't diagnose, prescribe, manage medication, treat addiction, deliver therapy, or make clinical decisions; partner teams keep all of that. What OTOS provides is one shared, non-clinical layer that keeps continuity visible where it currently falls through the gaps between services. The founder-origin reason it exists — Dean's own lived experience — is told in full in the Founder Story document; ask Dean for the fastest way in if you want the whole picture before the funding-pack documents.</p>
+        </div>
+
+        <div class="explainer">
+          <div class="lbl">Where to look, in order — full detail on each is in About, right below this</div>
+          <p><b>Today → Contacts / Pipeline → Documents → Templates → Aerial view (before any send) → Activity.</b> That's the sensible order for a first pass — Today as home base, a skim of who's who, then the documents themselves, then how outreach actually gets sent. About has the full description of every screen; no need to repeat it here.</p>
+        </div>
+
+        <div class="explainer">
+          <div class="lbl">Logging in</div>
+          <p><b>Hub:</b> <a href="https://hub.otos.network" target="_blank" rel="noopener">hub.otos.network</a> — no password to remember. Enter your <b>gareth.owen@otos.digital</b> address and the login page emails you a one-time code each time; paste it in.</p>
+          <p><b>Email:</b> webmail at <a href="https://mail.zoho.eu" target="_blank" rel="noopener">mail.zoho.eu</a> using the same address — Dean will have sent (or will send) the temporary password separately; set your own on first login.</p>
+        </div>
+
+        <div class="explainer">
+          <div class="lbl">A few house rules, kept short on purpose</div>
+          <p>Nothing heavyweight — just the handful of things that actually protect the work while it's the two of us:</p>
+          <p>1) If a document reads as finished, polished, or has a version number, don't overwrite it directly — flag it to Dean rather than editing in place; he's precious about earlier work being lost. 2) If you're not sure whether something's been approved to send to a contact, or is still a draft, ask before it goes out — "it's in the Hub" isn't the same as "it's approved." 3) The <a href="03-otos-role-project-partner.html">OTOS Role as Project Partner</a> note is worth reading early — on every funding route in this pack, OTOS is not the applicant, and it shapes how every conversation should be framed. 4) When in doubt about a claim, a figure, or how something's worded, that's a genuine question, not a blocker — better asked than guessed.</p>
+        </div>
+
+        <p class="task-note"><b>That's it for now.</b> Everything else — what each screen does in full, the live-sync details, the funding-route governance note — lives in <b>About</b>, right below this in the menu. Treat this Welcome page as the tour; treat About as the reference you come back to. Good to have you on this — ask Dean anything that isn't covered here.</p>
       </section>
 
       <!-- ============ ABOUT ============ -->
@@ -1811,6 +1844,7 @@
     }
     const REPORTS = [
       { id:'procurement', kicker:'Procurement · v0.1', name:'NHS Procurement Route Response Pack', desc:'A source-led positioning pack built from the HCI / P4H NHS supplier guidance — how OTOS answers the procurement route before the buyer asks.', meta:'13 sections · working draft', mins:9, status:'draft', file:'reports/report-procurement.html', pdf:'reports/OTOS Continuity - NHS Procurement Route Response Pack.pdf' },
+      { id:'procurement-intel', kicker:'Procurement · Webinar notes', name:'Public-Sector Procurement Intelligence — Webinar Notes', desc:"Dean's notes from a public-sector procurement-intelligence webinar — frameworks vs contract volume, pre-market engagement windows, decision-maker targeting and social-value scoring, read for what it means for the Cambridge First-50 route.", meta:'9 sections · founder notes, 2026-07-22', mins:8, status:'draft', file:'reports/report-procurement-intelligence.html', pdf:'reports/OTOS Continuity - Public Sector Procurement Intelligence Webinar Notes.pdf' },
       { id:'roi', kicker:'Research · Economics', name:'Economic Justification & ROI in NHS Commissioning', desc:'How digital mental-health and addiction tools are justified on cost-per-user and ROI — and what a funding-ready CPICS pilot must build in.', meta:'Case studies · cost benchmarks', mins:7, status:'research', file:'reports/report-roi.html', pdf:'reports/Economic Justification and ROI in NHS Commissioning.pdf' },
       { id:'data', kicker:'Research · Standards', name:'NHS Data Integration & Reporting Standards', desc:'The integration points, data-security frameworks and KPI reporting a tool like OTOS must meet across NHS and justice settings.', meta:'IM1 · FHIR · DTAC · DSPT', mins:7, status:'research', file:'reports/report-data.html', pdf:'reports/NHS Data Integration and Reporting Standards.pdf' },
       { id:'comorbidity', kicker:'Research · Co-morbidity', name:'ADHD & Addiction Co-Morbidity — Digital Interventions & NHS Outcomes (2020–2025)', desc:'The evidence base on ADHD–addiction co-morbidity and where digital interventions have (and have not) shifted NHS-focused outcomes over the last five years.', meta:'Deep research · 2020–2025', mins:14, status:'research', file:'reports/ADHD-Addiction Co-Morbidity - Digital Interventions and NHS Outcomes 2020-2025.pdf', pdf:'reports/ADHD-Addiction Co-Morbidity - Digital Interventions and NHS Outcomes 2020-2025.pdf' },
