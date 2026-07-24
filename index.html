@@ -175,6 +175,26 @@
   .quick-card .qc-n{ font-family:var(--serif); font-size:24px; font-weight:600; color:var(--ink); }
   .quick-card .qc-l{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
 
+  /* ---------- today strip + drawer (replaces the long stacked Today lists) ---------- */
+  .today-strip{ display:flex; align-items:center; gap:10px; margin:0 0 8px; flex-wrap:wrap; }
+  .ts-chip{ display:flex; align-items:baseline; gap:6px; border:1px solid var(--rule); border-radius:8px; padding:8px 14px; background:var(--paper); cursor:pointer; }
+  .ts-chip:hover{ border-color:var(--accent-ink); }
+  .ts-chip .ts-n{ font-family:var(--serif); font-size:18px; font-weight:600; color:var(--ink); }
+  .ts-chip .ts-l{ font-size:11.5px; color:var(--muted); }
+  .ts-more{ margin-left:auto; font-family:var(--sans); font-size:12.5px; font-weight:700; color:var(--accent-ink); background:none; border:none; cursor:pointer; padding:8px 4px; }
+  .ts-more:hover{ text-decoration:underline; }
+
+  .today-drawer-backdrop{ position:fixed; inset:0; background:rgba(20,15,10,.35); z-index:40; }
+  .today-drawer{
+    position:fixed; top:0; right:0; bottom:0; width:min(480px, 92vw); background:var(--paper);
+    box-shadow:-12px 0 32px rgba(0,0,0,.18); z-index:41; display:flex; flex-direction:column;
+  }
+  .today-drawer .td-head{ display:flex; align-items:center; justify-content:space-between; padding:20px 22px; border-bottom:1px solid var(--rule); font-size:13px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); flex:none; }
+  .today-drawer .td-close{ font-size:16px; background:none; border:none; color:var(--muted); cursor:pointer; padding:4px; }
+  .today-drawer .td-close:hover{ color:var(--accent-ink); }
+  .today-drawer .td-scroll{ overflow-y:auto; padding:20px 22px 40px; flex:1; }
+  @media (max-width:760px){ .today-drawer{ width:100vw; } }
+
   /* ---------- search/filter bar ---------- */
   .search-wrap{ margin: 0 0 28px; }
   .search-box{ position:relative; }
@@ -459,6 +479,27 @@
   .etpl-send{ border:none; background:var(--accent-ink); color:#fff; }
   .etpl-send:hover{ background:var(--ink); }
   /* ---------- Pipeline board ---------- */
+  .oneaction{ background:var(--paper); border:1px solid var(--accent-ink); border-radius:14px; padding:20px 22px; margin-bottom:26px; }
+  .oneaction .oa-kicker{ font-size:10px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:8px; }
+  .oneaction .oa-title{ font-size:19px; font-weight:700; color:var(--ink); line-height:1.35; }
+  .oneaction .oa-reason{ font-size:12.5px; color:var(--muted); margin-top:5px; }
+  .oneaction .oa-tune{ display:flex; align-items:center; gap:8px; margin-top:12px; flex-wrap:wrap; }
+  .oneaction .oa-tune-lbl{ font-size:10.5px; font-weight:700; color:var(--faint); text-transform:uppercase; letter-spacing:.04em; }
+  .oneaction .oa-steps{ display:flex; gap:3px; margin-right:10px; }
+  .oneaction .oa-steps span{ width:9px; height:9px; border-radius:50%; background:var(--rule); cursor:pointer; }
+  .oneaction .oa-steps span.on{ background:var(--accent-ink); }
+  .oneaction .oa-actions{ display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+  .oa-btn{ font-family:var(--sans); font-size:12.5px; font-weight:700; border:1px solid var(--rule); border-radius:7px; background:var(--paper); color:var(--ink); padding:8px 14px; cursor:pointer; }
+  .oa-btn:hover{ border-color:var(--accent-ink); color:var(--accent-ink); }
+  .oa-btn.oa-primary{ background:var(--accent-ink); border-color:var(--accent-ink); color:#fff; }
+  .oa-btn.oa-primary:hover{ opacity:.9; color:#fff; }
+  .oneaction .oa-candidates{ margin-top:14px; border-top:1px solid var(--rule); padding-top:12px; display:flex; flex-direction:column; gap:2px; }
+  .oa-cand{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:7px 4px; border-radius:6px; cursor:pointer; }
+  .oa-cand:hover{ background:var(--accent-wash); }
+  .oa-cand .oc-title{ font-size:12.5px; color:var(--ink); }
+  .oa-cand .oc-pick{ font-size:11px; font-weight:700; color:var(--accent-ink); }
+  .oneaction.oa-empty .oa-title{ color:var(--muted); font-weight:600; }
+
   .aerial-toolbar{ display:flex; align-items:center; gap:10px; margin:0 0 14px; }
   .aerial-toolbar button{ font-family:var(--sans); font-size:13px; font-weight:700; color:var(--ink); background:var(--paper); border:1px solid var(--rule); border-radius:7px; width:30px; height:30px; cursor:pointer; }
   .aerial-toolbar button:hover{ border-color:var(--accent-ink); color:var(--accent-ink); }
@@ -791,34 +832,67 @@
           <div class="ph-sub" id="todayDate"></div>
         </div>
 
-        <div class="today-work">
-          <div class="lbl">Due today &amp; overdue</div>
-          <div class="na-sub">Everything that needs you today, soonest first. Tap any item to action it — on mobile, swipe left to mark done.</div>
-          <div id="todayList"><div class="today-empty">Loading…</div></div>
+        <div class="oneaction" id="oneActionCard">
+          <div class="oa-kicker">One action</div>
+          <div class="oa-body">
+            <div class="oa-title" id="oaTitle">Loading…</div>
+            <div class="oa-reason" id="oaReason"></div>
+            <div class="oa-tune" id="oaTune" hidden>
+              <span class="oa-tune-lbl">Value</span>
+              <div class="oa-steps" data-field="value"></div>
+              <span class="oa-tune-lbl">Effort</span>
+              <div class="oa-steps" data-field="effort"></div>
+            </div>
+          </div>
+          <div class="oa-actions" id="oaActions" hidden>
+            <button type="button" class="oa-btn oa-primary" id="oaDone">Done</button>
+            <button type="button" class="oa-btn" id="oaOpen">Open record</button>
+            <button type="button" class="oa-btn" id="oaPark">Park</button>
+            <button type="button" class="oa-btn" id="oaReplace">Replace</button>
+          </div>
+          <div class="oa-candidates" id="oaCandidates" hidden></div>
         </div>
 
-        <div class="next-actions">
-          <div class="lbl">Next actions</div>
-          <div class="na-sub">Computed live — the 5 highest-priority things to do right now.</div>
-          <div id="nextActionsList"><div class="na-item"><span class="na-txt"><span>Loading…</span></span></div></div>
+        <div class="today-strip">
+          <button type="button" class="ts-chip sn-jump" data-view="tasks"><span class="ts-n" id="qcTasks">–</span><span class="ts-l">Open to-dos</span></button>
+          <button type="button" class="ts-chip sn-jump" data-view="contacts"><span class="ts-n" id="qcOverdue">–</span><span class="ts-l">Overdue follow-ups</span></button>
+          <button type="button" class="ts-chip sn-jump" data-view="documents"><span class="ts-n" id="qcReady">33</span><span class="ts-l">Documents in the pack</span></button>
+          <button type="button" class="ts-more" id="todayDrawerOpen">Show today's list ▸</button>
         </div>
 
-        <div class="quick-grid">
-          <button type="button" class="quick-card sn-jump" data-view="tasks"><span class="qc-n" id="qcTasks">–</span><span class="qc-l">Open to-dos</span></button>
-          <button type="button" class="quick-card sn-jump" data-view="contacts"><span class="qc-n" id="qcOverdue">–</span><span class="qc-l">Overdue follow-ups</span></button>
-          <button type="button" class="quick-card sn-jump" data-view="documents"><span class="qc-n" id="qcReady">33</span><span class="qc-l">Documents in the pack</span></button>
-        </div>
+        <div class="today-drawer-backdrop" id="todayDrawerBackdrop" hidden></div>
+        <div class="today-drawer" id="todayDrawer" hidden>
+          <div class="td-head">
+            <span>Today, in full</span>
+            <button type="button" class="td-close" id="todayDrawerClose" title="Close" aria-label="Close">✕</button>
+          </div>
+          <div class="td-scroll">
 
-        <div class="week-panel">
-          <div class="lbl">This week</div>
-          <div class="wk-summary" id="wkSummary">Loading…</div>
-          <button type="button" id="wkDigestBtn" class="tf-export" style="margin-bottom:12px;">Email digest of due tasks</button>
-          <div id="weekTaskList"></div>
-        </div>
+          <div class="today-work">
+            <div class="lbl">Due today &amp; overdue</div>
+            <div class="na-sub">Everything that needs you today, soonest first. Tap any item to action it — on mobile, swipe left to mark done.</div>
+            <div id="todayList"><div class="today-empty">Loading…</div></div>
+          </div>
 
-        <div class="week-panel" id="pinnedPanel" hidden>
-          <div class="lbl">&#9733; Pinned events</div>
-          <div id="pinnedList"></div>
+          <div class="next-actions">
+            <div class="lbl">Next actions</div>
+            <div class="na-sub">Computed live — the 5 highest-priority things to do right now.</div>
+            <div id="nextActionsList"><div class="na-item"><span class="na-txt"><span>Loading…</span></span></div></div>
+          </div>
+
+          <div class="week-panel">
+            <div class="lbl">This week</div>
+            <div class="wk-summary" id="wkSummary">Loading…</div>
+            <button type="button" id="wkDigestBtn" class="tf-export" style="margin-bottom:12px;">Email digest of due tasks</button>
+            <div id="weekTaskList"></div>
+          </div>
+
+          <div class="week-panel" id="pinnedPanel" hidden>
+            <div class="lbl">&#9733; Pinned events</div>
+            <div id="pinnedList"></div>
+          </div>
+
+          </div>
         </div>
       </section>
 
@@ -1386,11 +1460,25 @@
       if (view === 'pipeline') loadPipeline();
       if (view === 'templates') loadTemplates();
       if (view === 'reports') loadReports();
+      if (view === 'home' && typeof renderOneAction === 'function') renderOneAction();
     }
     document.querySelectorAll('.sn-item[data-view]').forEach(btn => {
       btn.addEventListener('click', () => goToView(btn.dataset.view));
     });
     document.getElementById('rptBack').addEventListener('click', loadReports);
+
+    // ---------- Today drawer (the rest of Today's lists, tucked away by default) ----------
+    (function(){
+      const drawer = document.getElementById('todayDrawer'), backdrop = document.getElementById('todayDrawerBackdrop');
+      const openBtn = document.getElementById('todayDrawerOpen'), closeBtn = document.getElementById('todayDrawerClose');
+      if (!drawer || !openBtn) return;
+      const open = () => { drawer.hidden = false; backdrop.hidden = false; };
+      const close = () => { drawer.hidden = true; backdrop.hidden = true; };
+      openBtn.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
+      backdrop.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !drawer.hidden) close(); });
+    })();
 
     // ---------- Aerial view zoom ----------
     (function(){
@@ -1409,7 +1497,7 @@
 
     // ---------- Who's editing (attribution for the activity feed) ----------
     function getActor(){ return localStorage.getItem('otos_actor') || 'Unknown'; }
-    function setActor(name){ localStorage.setItem('otos_actor', name); renderActorPicker(); }
+    function setActor(name){ localStorage.setItem('otos_actor', name); renderActorPicker(); if (typeof renderOneAction === 'function') renderOneAction(); }
     function renderActorPicker(){
       let el = document.getElementById('actorPicker');
       if (!el) {
@@ -1711,7 +1799,157 @@
       }
     }
 
+    // ---------- OneAction ----------
+    function oaParkKey(actor){ return 'otos_oa_parked_' + actor; }
+    function oaGetParked(actor){
+      let list = [];
+      try { list = JSON.parse(localStorage.getItem(oaParkKey(actor)) || '[]'); } catch(e){}
+      const now = Date.now();
+      list = list.filter(p => p.until > now);
+      localStorage.setItem(oaParkKey(actor), JSON.stringify(list));
+      return new Set(list.map(p => String(p.id)));
+    }
+    function oaPark(actor, id){
+      let list = [];
+      try { list = JSON.parse(localStorage.getItem(oaParkKey(actor)) || '[]'); } catch(e){}
+      const until = new Date(); until.setDate(until.getDate() + 1); until.setHours(9, 0, 0, 0);
+      list = list.filter(p => String(p.id) !== String(id));
+      list.push({ id: id, until: until.getTime() });
+      localStorage.setItem(oaParkKey(actor), JSON.stringify(list));
+    }
+    function oaScore(t){
+      const today = new Date().toISOString().slice(0, 10);
+      const prio = t.priority === 'high' ? 3 : t.priority === 'low' ? 1 : 2;
+      const value = t.value == null ? 3 : t.value;
+      const effort = t.effort == null ? 3 : t.effort;
+      let score = prio * 10 + value * 6 - effort * 4;
+      const reasons = [];
+      if (t.due_date && t.due_date < today) { score += 15; reasons.push('overdue'); }
+      else if (t.due_date === today) { score += 8; reasons.push('due today'); }
+      else if (t.due_date) {
+        const days = Math.floor((new Date(t.due_date) - new Date(today)) / 86400000);
+        if (days >= 0 && days <= 3) { score += 4; reasons.push('due soon'); }
+      }
+      if (t.priority === 'high') reasons.push('high priority');
+      if (value >= 4) reasons.push('high value');
+      if (effort <= 2) reasons.push('quick win');
+      return { score: score, reasons: reasons };
+    }
+    function oaReasonText(scored, isPinned){
+      if (isPinned) return 'Manually selected.';
+      if (!scored.reasons.length) return 'Next up on your list.';
+      return 'Suggested because it’s ' + scored.reasons.slice(0, 3).join(', ') + '.';
+    }
+    async function oaGetCandidates(actor){
+      const rows = await sbGet('todos', '?select=*&owner=eq.' + encodeURIComponent(actor) + '&done=eq.false');
+      const parked = oaGetParked(actor);
+      return (rows || [])
+        .filter(t => t.status !== 'done' && !parked.has(String(t.id)))
+        .map(t => Object.assign({}, t, oaScore(t)))
+        .sort((a, b) => b.score - a.score);
+    }
+    async function oaGetPin(actor){
+      const rows = await sbGet('hub_settings', '?select=*&key=eq.oneaction_pin_' + actor);
+      return rows && rows[0] ? rows[0].value : null;
+    }
+    async function oaSetPin(actor, id){
+      await sbUpsert('hub_settings', { key: 'oneaction_pin_' + actor, value: String(id), updated_at: new Date().toISOString() }, 'key');
+    }
+    async function oaClearPin(actor){
+      await fetch(SB_URL + '/rest/v1/hub_settings?key=eq.oneaction_pin_' + actor, { method: 'DELETE', headers: SB_HEADERS }).catch(() => {});
+    }
+    async function renderOneAction(){
+      const card = document.getElementById('oneActionCard');
+      if (!card) return;
+      const actor = getActor();
+      const titleEl = document.getElementById('oaTitle'), reasonEl = document.getElementById('oaReason');
+      const tuneEl = document.getElementById('oaTune'), actionsEl = document.getElementById('oaActions'), candEl = document.getElementById('oaCandidates');
+      candEl.hidden = true; candEl.innerHTML = '';
+
+      if (actor !== 'Dean' && actor !== 'Gareth') {
+        card.classList.add('oa-empty');
+        titleEl.textContent = 'Pick Dean or Gareth (top right) to see your one action.';
+        reasonEl.textContent = '';
+        tuneEl.hidden = true; actionsEl.hidden = true;
+        return;
+      }
+
+      const [candidates, pinId] = await Promise.all([oaGetCandidates(actor), oaGetPin(actor)]);
+      let winner = null, isPinned = false;
+      if (pinId) { winner = candidates.find(c => String(c.id) === String(pinId)); if (winner) isPinned = true; }
+      if (!winner) winner = candidates[0];
+
+      if (!winner) {
+        card.classList.add('oa-empty');
+        titleEl.textContent = 'All caught up, ' + actor + '.';
+        reasonEl.textContent = 'Nothing open and owned by you right now.';
+        tuneEl.hidden = true; actionsEl.hidden = true;
+        return;
+      }
+
+      card.classList.remove('oa-empty');
+      titleEl.textContent = winner.title;
+      reasonEl.textContent = oaReasonText(winner, isPinned);
+      actionsEl.hidden = false;
+      tuneEl.hidden = false;
+
+      ['value', 'effort'].forEach(field => {
+        const box = tuneEl.querySelector('.oa-steps[data-field="' + field + '"]');
+        box.innerHTML = '';
+        for (let i = 1; i <= 5; i++) {
+          const dot = document.createElement('span');
+          if (i <= (winner[field] || 3)) dot.classList.add('on');
+          dot.addEventListener('click', () => {
+            const patch = {}; patch[field] = i;
+            sbPatch('todos', 'id', winner.id, patch);
+            logActivity('To-do', field + ' set to ' + i + ' for "' + winner.title + '"');
+            winner[field] = i;
+            renderOneAction();
+          });
+          box.appendChild(dot);
+        }
+      });
+
+      document.getElementById('oaDone').onclick = async () => {
+        await sbPatch('todos', 'id', winner.id, { status: 'done', done: true, updated_at: new Date().toISOString() });
+        logActivity('To-do', 'completed: "' + winner.title + '" (One action)');
+        if (isPinned) await oaClearPin(actor);
+        showConfirm('Done ✓');
+        renderOneAction();
+        if (typeof loadTodos === 'function') loadTodos();
+        if (typeof refreshTaskBadge === 'function') refreshTaskBadge();
+      };
+      document.getElementById('oaPark').onclick = () => {
+        oaPark(actor, winner.id);
+        if (isPinned) oaClearPin(actor);
+        logActivity('To-do', 'parked "' + winner.title + '" (One action)');
+        showConfirm('Parked — back tomorrow');
+        renderOneAction();
+      };
+      document.getElementById('oaOpen').onclick = () => {
+        if (winner.linked_id && typeof window.__openContact === 'function') { goToView('contacts'); window.__openContact(winner.linked_id); }
+        else openTaskWindow(winner);
+      };
+      document.getElementById('oaReplace').onclick = () => {
+        if (!candEl.hidden) { candEl.hidden = true; return; }
+        const others = candidates.filter(c => String(c.id) !== String(winner.id)).slice(0, 4);
+        if (!others.length) { candEl.hidden = true; showConfirm('Nothing else open right now'); return; }
+        candEl.innerHTML = others.map(c => '<div class="oa-cand"><span class="oc-title"></span><span class="oc-pick">Make this One action</span></div>').join('');
+        candEl.querySelectorAll('.oa-cand').forEach((el, i) => {
+          el.querySelector('.oc-title').textContent = others[i].title;
+          el.addEventListener('click', async () => {
+            await oaSetPin(actor, others[i].id);
+            logActivity('To-do', '"' + others[i].title + '" set as One action');
+            showConfirm('One action updated');
+            renderOneAction();
+          });
+        });
+        candEl.hidden = false;
+      };
+    }
+
     wireDocStatus();
+    renderOneAction();
     loadTodos();
 
     function timeAgo(iso){
